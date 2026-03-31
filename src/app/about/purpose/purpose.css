@@ -1,0 +1,243 @@
+/* Purpose Page Styles - Standardized */
+
+/* Banner */
+.purpose-banner {
+  background: linear-gradient(135deg, rgba(26, 58, 92, 0.9), rgba(44, 82, 130, 0.9)),
+              url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&q=80');
+  background-size: cover;
+  background-position: center;
+}
+
+/* Section Label */
+.section-label {
+  display: inline-block;
+  color: var(--gold-color);
+  font-weight: 600;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 15px;
+}
+
+/* Highlight Quote */
+.highlight-quote {
+  font-size: 20px;
+  font-style: italic;
+  color: var(--text-gray);
+  line-height: 1.8;
+  padding: 25px 30px;
+  border-left: 4px solid var(--gold-color);
+  background: var(--light-bg);
+  margin-top: 25px;
+}
+
+/* Purpose Grid */
+.purpose-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-top: 50px;
+}
+
+.purpose-card {
+  background: var(--white);
+  border-radius: 10px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  position: relative;
+  transition: all 0.4s ease;
+}
+
+.purpose-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+}
+
+.card-accent {
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary-color), var(--gold-color));
+}
+
+.purpose-card .card-icon {
+  width: 70px;
+  height: 70px;
+  background: var(--primary-color);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 30px 25px 20px;
+}
+
+.purpose-card .card-icon i {
+  font-size: 28px;
+  color: var(--gold-color);
+}
+
+.purpose-card h3 {
+  font-size: 20px;
+  color: var(--primary-color);
+  margin: 0 25px 15px;
+  font-weight: 600;
+}
+
+.purpose-card p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text-gray);
+  margin: 0 25px 20px;
+}
+
+.purpose-list {
+  list-style: none;
+  padding: 0 25px 30px;
+  margin: 0;
+}
+
+.purpose-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.purpose-list li:last-child {
+  border-bottom: none;
+}
+
+.purpose-list li i {
+  color: var(--gold-color);
+  font-size: 16px;
+  margin-top: 3px;
+}
+
+.purpose-list li span {
+  font-size: 14px;
+  color: var(--text-dark);
+}
+
+/* Mission Content */
+.mission-content {
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.mission-text {
+  font-size: 20px;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 50px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-number {
+  display: block;
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--gold-color);
+  margin-bottom: 10px;
+}
+
+.stat-label {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* About Nav Section */
+.about-nav-section {
+  padding: 40px 20px;
+  background: var(--light-bg);
+}
+
+.about-nav-section .section-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--primary-color);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.nav-back:hover {
+  color: var(--gold-color);
+}
+
+.nav-links {
+  display: flex;
+  gap: 15px;
+}
+
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 24px;
+  background: var(--white);
+  color: var(--primary-color);
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+  background: var(--primary-color);
+  color: var(--white);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .purpose-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .stats-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .purpose-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  
+  .highlight-quote {
+    font-size: 18px;
+    padding: 20px;
+  }
+  
+  .about-nav-section .section-inner {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}

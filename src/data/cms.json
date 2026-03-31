@@ -1,0 +1,276 @@
+{
+  "site": {
+    "name": "Chris & Associates",
+    "nameZh": "傑銳會計師事務所",
+    "nameCn": "杰锐会计师事务所",
+    "tagline": "Professional Accounting & Advisory Services",
+    "description": "Providing comprehensive audit, tax, risk advisory, forensic, consulting and M&A services",
+    "phone": "+852 3987 1008",
+    "email": "info@chrisacc.com",
+    "address": "Hong Kong"
+  },
+  "nav": {
+    "home": "Home",
+    "homeZh": "首頁",
+    "homeCn": "首页",
+    "about": "About Us",
+    "aboutZh": "關於我們",
+    "aboutCn": "关于我们",
+    "services": "Our Services",
+    "servicesZh": "服務範圍",
+    "servicesCn": "服务范围",
+    "contact": "Contact Us",
+    "contactZh": "聯絡我們",
+    "contactCn": "联络我们"
+  },
+  "aboutSubmenu": {
+    "mission": "Our Mission",
+    "missionZh": "我們的使命",
+    "missionCn": "我们的使命",
+    "vision": "Our Vision",
+    "visionZh": "我們的願景",
+    "visionCn": "我们的愿景",
+    "commitment": "Our Commitment",
+    "commitmentZh": "我們的承諾",
+    "commitmentCn": "我们的承诺"
+  },
+  "servicesSubmenu": {
+    "audit": "Audit & Assurance",
+    "auditZh": "審計與鑑證",
+    "auditCn": "审计与鉴证",
+    "tax": "Tax Advisory",
+    "taxZh": "稅務諮詢",
+    "taxCn": "税务咨询",
+    "risk": "Risk & Regulatory",
+    "riskZh": "風險與監管",
+    "riskCn": "风险与监管",
+    "forensic": "Forensic Services",
+    "forensicZh": "法證服務",
+    "forensicCn": "法证服务",
+    "consulting": "Consulting",
+    "consultingZh": "企業諮詢",
+    "consultingCn": "企业咨询",
+    "ma": "M&A Advisory",
+    "maZh": "併購交易",
+    "maCn": "并购交易"
+  },
+  "hero": {
+    "title": "Professional Excellence",
+    "titleZh": "專業卓越",
+    "titleCn": "专业卓越",
+    "subtitle": "in Audit, Tax & Advisory Services",
+    "subtitleZh": "審計、稅務與諮詢服務",
+    "subtitleCn": "审计、税务与咨询服务",
+    "description": "We provide comprehensive professional services to help businesses navigate complex financial landscapes with confidence and precision.",
+    "descriptionZh": "我們提供全面的專業服務，幫助企業自信而精確地駕馭複雜的財務環境。",
+    "descriptionCn": "我们提供全面的专业服务，帮助企业自信而精确地驾驭复杂的财务环境。",
+    "ctaPrimary": "Explore Our Services",
+    "ctaPrimaryZh": "探索我們的服務",
+    "ctaPrimaryCn": "探索我们的服务",
+    "ctaSecondary": "Contact Us",
+    "ctaSecondaryZh": "聯絡我們",
+    "ctaSecondaryCn": "联络我们"
+  },
+  "about": {
+    "title": "About Us",
+    "titleZh": "關於我們",
+    "titleCn": "关于我们",
+    "subtitle": "Who We Are",
+    "subtitleZh": "我們是誰",
+    "subtitleCn": "我们是谁",
+    "description": "Chris & Associates is a professional accounting firm dedicated to providing high-quality audit, tax, and advisory services. Our team of experienced professionals brings deep industry knowledge and technical expertise to every engagement.",
+    "descriptionZh": "傑銳會計師事務所是一家致力於提供高質量審計、稅務和諮詢服務的專業會計師事務所。我們的經驗豐富的專業團隊為每個項目帶來深厚的行業知識和技術專長。",
+    "descriptionCn": "杰锐会计师事务所是一家致力于提供高质量审计、税务和咨询服务的专业会计师事务所。我们的经验丰富的专业团队为每个项目带来深厚的行业知识和技术专长。",
+    "imageAlt": "Our Team",
+    "imageAltZh": "我們的團隊",
+    "imageAltCn": "我们的团队",
+    "mission": {
+      "title": "Our Mission",
+      "titleZh": "我們的使命",
+      "titleCn": "我们的使命",
+      "content": "To deliver exceptional professional services that create lasting value for our clients, helping them achieve their business objectives with integrity and excellence.",
+      "contentZh": "提供卓越的專業服務，為客戶創造持久價值，幫助他們以誠信和卓越實現業務目標。",
+      "contentCn": "提供卓越的专业服务，为客户创造持久价值，帮助他们以诚信和卓越实现业务目标。"
+    },
+    "vision": {
+      "title": "Our Vision",
+      "titleZh": "我們的願景",
+      "titleCn": "我们的愿景",
+      "content": "To be the trusted advisor of choice for businesses seeking strategic financial guidance and professional excellence in the Asia-Pacific region.",
+      "contentZh": "成為亞太地區尋求戰略財務指導和專業卓越的企業首選信賴顧問。",
+      "contentCn": "成为亚太地区寻求战略财务指导和专业卓越的企业首选信赖顾问。"
+    },
+    "commitment": {
+      "title": "Our Commitment",
+      "titleZh": "我們的承諾",
+      "titleCn": "我们的承诺",
+      "content": "We are committed to maintaining the highest standards of professional ethics, delivering quality service, and building long-term relationships based on trust and mutual success.",
+      "contentZh": "我們致力於保持最高的專業道德標準，提供優質服務，並建立基於信任和共同成功的長期關係。",
+      "contentCn": "我们致力于保持最高的专业道德标准，提供优质服务，并建立基于信任和共同成功的长期关系。"
+    },
+    "stats": [
+      { "number": "15+", "label": "Years Experience", "labelZh": "年經驗", "labelCn": "年经验" },
+      { "number": "500+", "label": "Clients Served", "labelZh": "服務客戶", "labelCn": "服务客户" },
+      { "number": "50+", "label": "Professional Staff", "labelZh": "專業團隊", "labelCn": "专业团队" },
+      { "number": "98%", "label": "Client Satisfaction", "labelZh": "客戶滿意度", "labelCn": "客户满意度" }
+    ]
+  },
+  "services": {
+    "title": "Our Services",
+    "titleZh": "服務範圍",
+    "titleCn": "服务范围",
+    "subtitle": "Comprehensive Professional Solutions",
+    "subtitleZh": "全面的專業解決方案",
+    "subtitleCn": "全面的专业解决方案",
+    "description": "We offer a full spectrum of professional services tailored to meet the unique needs of each client, from startups to established enterprises.",
+    "descriptionZh": "我們提供全方位的專業服務，量身定製以滿足每位客戶的獨特需求，從初創企業到成熟企業。",
+    "descriptionCn": "我们提供全方位的专业服务，量身定制以满足每位客户的独特需求，从初创企业到成熟企业。",
+    "items": [
+      {
+        "id": "audit",
+        "icon": "Shield",
+        "title": "Audit & Assurance",
+        "titleZh": "審計與鑑證",
+        "titleCn": "审计与鉴证",
+        "description": "Independent audit services providing stakeholders with confidence in financial reporting. Our rigorous approach ensures compliance and transparency.",
+        "descriptionZh": "獨立審計服務，為利益相關者提供對財務報告的信心。我們嚴謹的方法確保合規性和透明度。",
+        "descriptionCn": "独立审计服务，为利益相关者提供对财务报告的信心。我们严谨的方法确保合规性和透明度。",
+        "features": [
+          "Statutory Audits",
+          "Internal Audit",
+          "Special Purpose Audits",
+          "Due Diligence"
+        ],
+        "featuresZh": ["法定審計", "內部審計", "特別目的審計", "盡職審查"],
+        "featuresCn": ["法定审计", "内部审计", "特别目的审计", "尽职审查"]
+      },
+      {
+        "id": "tax",
+        "icon": "FileText",
+        "title": "Tax Advisory",
+        "titleZh": "稅務諮詢",
+        "titleCn": "税务咨询",
+        "description": "Strategic tax planning and compliance services to optimize your tax position while ensuring full regulatory compliance.",
+        "descriptionZh": "策略性稅務規劃和合規服務，在確保完全監管合規的同時優化您的稅務狀況。",
+        "descriptionCn": "策略性税务规划和合规服务，在确保完全监管合规的同时优化您的税务状况。",
+        "features": [
+          "Corporate Tax Planning",
+          "Tax Compliance",
+          "Transfer Pricing",
+          "Tax Dispute Resolution"
+        ],
+        "featuresZh": ["企業稅務規劃", "稅務合規", "轉讓定價", "稅務爭議解決"],
+        "featuresCn": ["企业税务规划", "税务合规", "转让定价", "税务争议解决"]
+      },
+      {
+        "id": "risk",
+        "icon": "AlertTriangle",
+        "title": "Risk & Regulatory",
+        "titleZh": "風險與監管",
+        "titleCn": "风险与监管",
+        "description": "Comprehensive risk management and regulatory compliance services to protect your business and ensure sustainable operations.",
+        "descriptionZh": "全面的風險管理和監管合規服務，保護您的業務並確保可持續運營。",
+        "descriptionCn": "全面的风险管理和监管合规服务，保护您的业务并确保可持续运营。",
+        "features": [
+          "Risk Assessment",
+          "Regulatory Compliance",
+          "Internal Controls",
+          "Governance Advisory"
+        ],
+        "featuresZh": ["風險評估", "監管合規", "內部控制", "治理諮詢"],
+        "featuresCn": ["风险评估", "监管合规", "内部控制", "治理咨询"]
+      },
+      {
+        "id": "forensic",
+        "icon": "Search",
+        "title": "Forensic Services",
+        "titleZh": "法證服務",
+        "titleCn": "法证服务",
+        "description": "Expert forensic accounting and investigation services to detect and prevent fraud, and resolve financial disputes.",
+        "descriptionZh": "專家法證會計和調查服務，檢測和預防欺詐，並解決財務糾紛。",
+        "descriptionCn": "专家法证会计和调查服务，检测和预防欺诈，并解决财务纠纷。",
+        "features": [
+          "Fraud Investigation",
+          "Financial Forensics",
+          "Dispute Resolution",
+          "Asset Tracing"
+        ],
+        "featuresZh": ["欺詐調查", "財務法證", "糾紛解決", "資產追踪"],
+        "featuresCn": ["欺诈调查", "财务法证", "纠纷解决", "资产追踪"]
+      },
+      {
+        "id": "consulting",
+        "icon": "Briefcase",
+        "title": "Consulting",
+        "titleZh": "企業諮詢",
+        "titleCn": "企业咨询",
+        "description": "Strategic business consulting services to help organizations improve performance, manage change, and achieve sustainable growth.",
+        "descriptionZh": "戰略業務諮詢服務，幫助組織提高績效、管理變革並實現可持續增長。",
+        "descriptionCn": "战略业务咨询服务，帮助组织提高绩效、管理变革并实现可持续增长。",
+        "features": [
+          "Business Strategy",
+          "Performance Improvement",
+          "Change Management",
+          "Financial Advisory"
+        ],
+        "featuresZh": ["業務策略", "績效改進", "變革管理", "財務諮詢"],
+        "featuresCn": ["业务策略", "绩效改进", "变革管理", "财务咨询"]
+      },
+      {
+        "id": "ma",
+        "icon": "GitMerge",
+        "title": "M&A Advisory",
+        "titleZh": "併購交易",
+        "titleCn": "并购交易",
+        "description": "End-to-end mergers and acquisitions advisory services, from target identification to deal completion and post-merger integration.",
+        "descriptionZh": "端到端併購諮詢服務，從目標識別到交易完成及併購後整合。",
+        "descriptionCn": "端到端并购咨询服务，从目标识别到交易完成及并购后整合。",
+        "features": [
+          "Buy-side Advisory",
+          "Sell-side Advisory",
+          "Due Diligence",
+          "Valuation Services"
+        ],
+        "featuresZh": ["買方諮詢", "賣方諮詢", "盡職審查", "估值服務"],
+        "featuresCn": ["买方咨询", "卖方咨询", "尽职审查", "估值服务"]
+      }
+    ]
+  },
+  "contact": {
+    "title": "Contact Us",
+    "titleZh": "聯絡我們",
+    "titleCn": "联络我们",
+    "subtitle": "Get in Touch",
+    "subtitleZh": "聯繫我們",
+    "subtitleCn": "联系我们",
+    "description": "Ready to discuss how we can help your business? Contact us today for a consultation.",
+    "descriptionZh": "準備好討論我們如何幫助您的業務了嗎？今天就聯繫我們進行諮詢。",
+    "descriptionCn": "准备好讨论我们如何帮助您的业务了吗？今天就联系我们进行咨询。",
+    "phone": "Phone",
+    "phoneZh": "電話",
+    "phoneCn": "电话",
+    "email": "Email",
+    "emailZh": "電郵",
+    "emailCn": "电邮",
+    "address": "Address",
+    "addressZh": "地址",
+    "addressCn": "地址",
+    "hours": "Business Hours",
+    "hoursZh": "辦公時間",
+    "hoursCn": "办公时间",
+    "hoursValue": "Mon - Fri: 9:00 AM - 6:00 PM",
+    "hoursValueZh": "星期一至五：上午9時至下午6時",
+    "hoursValueCn": "星期一至五：上午9时至下午6时",
+    "cta": "Schedule a Consultation",
+    "ctaZh": "預約諮詢",
+    "ctaCn": "预约咨询"
+  },
+  "footer": {
+    "copyright": "© 2024 Chris & Associates. All rights reserved.",
+    "copyrightZh": "© 2024 傑銳會計師事務所。保留所有權利。",
+    "copyrightCn": "© 2024 杰锐会计师事务所。保留所有权利。",
+    "tagline": "Professional Excellence in Audit, Tax & Advisory Services",
+    "taglineZh": "審計、稅務與諮詢服務的專業卓越",
+    "taglineCn": "审计、税务与咨询服务的专业卓越"
+  }
+}

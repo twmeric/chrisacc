@@ -1,0 +1,383 @@
+/* ==========================================================================
+   Forensic Services Page Styles - Standardized per about-en.html
+   ========================================================================== */
+
+/* Import base variables from about.css */
+@import url('../../about/about.css');
+
+/* Forensic-specific styles */
+
+/* Hero Section */
+.forensic-hero {
+  background: linear-gradient(135deg, rgba(26, 58, 92, 0.95) 0%, rgba(44, 82, 130, 0.95) 100%),
+              url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1920&q=80');
+  background-size: cover;
+  background-position: center;
+}
+
+/* Forensic Features - Dark icons */
+.forensic-features .about-feature i {
+  color: var(--primary-color);
+}
+
+/* Services Grid */
+.forensic-services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-top: 50px;
+}
+
+.forensic-service-card {
+  background: var(--white);
+  border-radius: 10px;
+  padding: 40px 30px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+  border-top: 4px solid var(--gold-color);
+  transition: all 0.4s ease;
+}
+
+.forensic-service-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+}
+
+.forensic-service-card .card-icon {
+  width: 70px;
+  height: 70px;
+  background: rgba(201, 162, 39, 0.15);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 25px;
+}
+
+.forensic-service-card .card-icon.blue {
+  background: rgba(44, 82, 130, 0.15);
+}
+
+.forensic-service-card .card-icon.dark {
+  background: rgba(26, 58, 92, 0.15);
+}
+
+.forensic-service-card .card-icon i {
+  font-size: 32px;
+  color: var(--gold-color);
+}
+
+.forensic-service-card .card-icon.blue i {
+  color: var(--secondary-color);
+}
+
+.forensic-service-card .card-icon.dark i {
+  color: var(--primary-color);
+}
+
+.forensic-service-card h3 {
+  font-size: 22px;
+  color: var(--primary-color);
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.forensic-service-card p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text-gray);
+  margin-bottom: 20px;
+}
+
+.service-list {
+  list-style: none;
+  padding: 0;
+}
+
+.service-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0;
+  font-size: 14px;
+  color: var(--text-dark);
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.service-list li:last-child {
+  border-bottom: none;
+}
+
+.service-list li i {
+  color: var(--gold-color);
+  font-size: 12px;
+}
+
+/* ============================================
+   Process Timeline - Fixed Layout
+   ============================================ */
+
+.forensic-timeline {
+  max-width: 900px;
+  margin: 50px auto 0;
+  position: relative;
+  padding: 0 20px;
+}
+
+/* 中央時間線 */
+.forensic-timeline::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(to bottom, var(--primary-color), var(--gold-color));
+  transform: translateX(-50%);
+}
+
+/* 每個步驟容器 */
+.forensic-timeline .process-step {
+  display: flex;
+  align-items: center;
+  margin-bottom: 50px;
+  position: relative;
+}
+
+/* 步驟內容區域 */
+.forensic-timeline .step-content {
+  width: calc(50% - 60px);
+  background: var(--white);
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  position: relative;
+}
+
+/* 左側內容 */
+.forensic-timeline .process-step:nth-child(odd) .step-content {
+  margin-right: auto;
+  margin-left: 0;
+}
+
+/* 右側內容 */
+.forensic-timeline .process-step:nth-child(even) .step-content {
+  margin-left: auto;
+  margin-right: 0;
+}
+
+/* 步驟編號 - 固定在中央線上 */
+.forensic-timeline .step-number {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  background: var(--primary-color);
+  color: var(--gold-color);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 700;
+  z-index: 2;
+  box-shadow: 0 0 0 6px var(--white), 0 0 0 8px var(--gold-color);
+}
+
+/* 步驟圖標 */
+.forensic-timeline .step-content i {
+  font-size: 32px;
+  color: var(--gold-color);
+  margin-bottom: 15px;
+  display: block;
+}
+
+/* 步驟標題 */
+.forensic-timeline .step-content h4 {
+  font-size: 18px;
+  color: var(--primary-color);
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+/* 步驟描述 */
+.forensic-timeline .step-content p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-gray);
+  margin: 0;
+}
+
+/* 連接線指示器 */
+.forensic-timeline .step-content::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 0;
+  height: 0;
+  border-style: solid;
+}
+
+/* 左側卡片箭頭 */
+.forensic-timeline .process-step:nth-child(odd) .step-content::after {
+  right: -10px;
+  transform: translateY(-50%);
+  border-width: 10px 0 10px 10px;
+  border-color: transparent transparent transparent var(--white);
+}
+
+/* 右側卡片箭頭 */
+.forensic-timeline .process-step:nth-child(even) .step-content::after {
+  left: -10px;
+  transform: translateY(-50%);
+  border-width: 10px 10px 10px 0;
+  border-color: transparent var(--white) transparent transparent;
+}
+
+/* Cases Grid */
+.cases-grid {
+  max-width: 1200px;
+  margin: 50px auto 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  padding: 0 20px;
+}
+
+.case-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  padding: 30px;
+  transition: all 0.3s ease;
+}
+
+.case-card:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-5px);
+}
+
+.case-card i {
+  font-size: 32px;
+  color: var(--gold-color);
+  margin-bottom: 20px;
+}
+
+.case-card h4 {
+  font-size: 18px;
+  color: var(--white);
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.case-card p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* About Image - Icon Style */
+.about-image i {
+  font-size: 80px;
+  color: var(--gold-color);
+  opacity: 0.5;
+}
+
+/* ============================================
+   Responsive Design - Tablet (1024px)
+   ============================================ */
+@media (max-width: 1024px) {
+  .forensic-services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .cases-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ============================================
+   Responsive Design - Mobile (768px)
+   ============================================ */
+@media (max-width: 768px) {
+  .forensic-services-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .cases-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .forensic-service-card {
+    padding: 30px 20px;
+  }
+  
+  /* Mobile Timeline - 單列佈局 */
+  .forensic-timeline {
+    padding-left: 40px;
+    padding-right: 20px;
+  }
+  
+  .forensic-timeline::before {
+    left: 60px;
+    transform: none;
+  }
+  
+  .forensic-timeline .process-step {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 30px;
+  }
+  
+  .forensic-timeline .step-number {
+    position: relative;
+    left: 0;
+    top: 0;
+    transform: none;
+    margin-bottom: 15px;
+    width: 50px;
+    height: 50px;
+    font-size: 16px;
+    box-shadow: 0 0 0 4px var(--white), 0 0 0 6px var(--gold-color);
+  }
+  
+  .forensic-timeline .step-content {
+    width: 100%;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding: 20px;
+  }
+  
+  /* 隱藏桌面端的箭頭 */
+  .forensic-timeline .step-content::after {
+    display: none;
+  }
+}
+
+/* ============================================
+   Responsive Design - Small Mobile (480px)
+   ============================================ */
+@media (max-width: 480px) {
+  .forensic-timeline {
+    padding-left: 20px;
+  }
+  
+  .forensic-timeline::before {
+    left: 40px;
+  }
+  
+  .forensic-timeline .step-content {
+    padding: 20px 15px;
+  }
+  
+  .forensic-timeline .step-content h4 {
+    font-size: 16px;
+  }
+  
+  .forensic-timeline .step-content p {
+    font-size: 13px;
+  }
+}
