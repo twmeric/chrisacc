@@ -1,0 +1,4 @@
+name = "ltgroupcpa-proxy"
+main = "index.js"
+compatibility_date = "2024-01-01"
+account_id = "b2187cd0be0035e1fa6dd285500aeefa"
