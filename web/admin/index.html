@@ -1,321 +1,1238 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-Hant" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LT Group CPA - Professional Accounting Services</title>
+    <title>LTCPA CMS Admin - Professional Content Management</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-tertiary: #334155;
+            --bg-hover: #475569;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --accent: #c9a227;
+            --accent-hover: #d4af37;
+            --accent-light: rgba(201, 162, 39, 0.1);
+            --success: #22c55e;
+            --success-light: rgba(34, 197, 94, 0.1);
+            --danger: #ef4444;
+            --danger-light: rgba(239, 68, 68, 0.1);
+            --warning: #f59e0b;
+            --warning-light: rgba(245, 158, 11, 0.1);
+            --info: #3b82f6;
+            --info-light: rgba(59, 130, 246, 0.1);
+            --border: #334155;
+            --border-light: #475569;
+            --input-bg: #1e293b;
+            --input-text: #f1f5f9;
+            --input-border: #475569;
+            --card-bg: #1e293b;
+            --sidebar-bg: #0f172a;
+            --sidebar-width: 280px;
+            --header-height: 70px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.3);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.4);
+            --radius: 8px;
+            --radius-lg: 12px;
+            --radius-xl: 16px;
         }
-        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans TC', sans-serif;
-            background: linear-gradient(135deg, #1e3a5f 0%, #0f172a 100%);
-            color: #f1f5f9;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans TC', 'Noto Sans SC', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        .login-screen {
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 50%, #1a2744 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+        .login-box {
+            background: var(--card-bg);
+            padding: 48px;
+            border-radius: var(--radius-xl);
+            width: 100%;
+            max-width: 420px;
+            border: 1px solid var(--border);
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+        }
+        .login-logo {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 24px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--bg-primary);
+            font-size: 32px;
+            font-weight: bold;
+        }
+        .login-box h1 { color: var(--text-primary); margin-bottom: 8px; font-size: 28px; font-weight: 700; }
+        .login-box .subtitle { color: var(--text-secondary); margin-bottom: 32px; font-size: 14px; }
+        .login-box input {
+            width: 100%;
+            padding: 14px 16px;
+            background: var(--input-bg);
+            border: 1px solid var(--input-border);
+            border-radius: var(--radius);
+            color: var(--input-text);
+            font-size: 16px;
+            margin-bottom: 16px;
+        }
+        .login-box input:focus { outline: none; border-color: var(--accent); }
+        .login-box button {
+            width: 100%;
+            padding: 14px;
+            background: var(--accent);
+            color: var(--bg-primary);
+            border: none;
+            border-radius: var(--radius);
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .login-box button:hover { background: var(--accent-hover); }
+        .admin-layout { display: none; min-height: 100vh; }
+        .admin-layout.active { display: flex; }
+        .sidebar {
+            width: var(--sidebar-width);
+            background: var(--sidebar-bg);
+            border-right: 1px solid var(--border);
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            z-index: 100;
+        }
+        .sidebar-header {
+            padding: 24px;
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+        }
+        .sidebar-logo {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 12px;
+            background: var(--accent);
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--bg-primary);
+        }
+        .sidebar-header h2 { font-size: 18px; margin-bottom: 4px; color: var(--text-primary); }
+        .sidebar-header p { font-size: 11px; color: var(--text-secondary); }
+        .sidebar-nav { flex: 1; padding: 16px 0; overflow-y: auto; }
+        .nav-group-title {
+            padding: 8px 24px;
+            font-size: 10px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+        .nav-item {
+            padding: 12px 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-left: 3px solid transparent;
+            color: var(--text-secondary);
+            font-size: 14px;
+            transition: var(--transition);
+        }
+        .nav-item:hover { background: var(--bg-hover); color: var(--text-primary); }
+        .nav-item.active { background: var(--accent-light); border-left-color: var(--accent); color: var(--accent); }
+        .nav-item i { width: 20px; text-align: center; }
+        .sidebar-footer {
+            padding: 16px 24px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .user-info { flex: 1; }
+        .user-name { font-size: 13px; font-weight: 500; color: var(--text-primary); }
+        .user-role { font-size: 11px; color: var(--text-secondary); }
+        .logout-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: var(--radius);
+            background: var(--bg-hover);
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+        }
+        .main-content {
+            flex: 1;
+            margin-left: var(--sidebar-width);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+        }
+        .header {
+            height: var(--header-height);
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border);
+            display: flex;
             align-items: center;
-            justify-content: center;
-            padding: 20px;
+            justify-content: space-between;
+            padding: 0 24px;
+            position: sticky;
+            top: 0;
+            z-index: 50;
         }
-        
-        .container {
-            max-width: 800px;
-            width: 100%;
-            text-align: center;
+        .header h1 { color: var(--text-primary); font-size: 20px; font-weight: 600; }
+        .header-actions { display: flex; align-items: center; gap: 12px; }
+        .page-content { flex: 1; padding: 24px; }
+        .lang-selector {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 24px;
+            background: var(--bg-secondary);
+            padding: 6px;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            width: fit-content;
         }
-        
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            color: #c9a227;
-        }
-        
-        .subtitle {
-            font-size: 1.2rem;
-            color: #94a3b8;
-            margin-bottom: 40px;
-        }
-        
-        .form-container {
-            background: rgba(30, 41, 59, 0.8);
-            border-radius: 16px;
-            padding: 40px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-            text-align: left;
-        }
-        
-        label {
-            display: block;
-            margin-bottom: 8px;
-            color: #cbd5e1;
+        .lang-btn {
+            padding: 8px 16px;
+            background: transparent;
+            border: none;
+            border-radius: 6px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-size: 13px;
             font-weight: 500;
         }
-        
-        input, select, textarea {
+        .lang-btn:hover { color: var(--text-primary); background: var(--bg-hover); }
+        .lang-btn.active { background: var(--accent); color: var(--bg-primary); }
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            margin-bottom: 24px;
+            border: 1px solid var(--border);
+        }
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+        .card-title { font-size: 16px; font-weight: 600; }
+        .btn {
+            padding: 10px 18px;
+            border: none;
+            border-radius: var(--radius);
+            cursor: pointer;
+            font-size: 13px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        .btn:hover { transform: translateY(-1px); }
+        .btn-primary { background: var(--accent); color: var(--bg-primary); }
+        .btn-secondary { background: var(--bg-hover); color: var(--text-primary); border: 1px solid var(--border); }
+        .btn-success { background: var(--success); color: white; }
+        .btn-danger { background: var(--danger); color: white; }
+        .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 500; font-size: 13px; color: var(--text-secondary); }
+        .form-control {
             width: 100%;
             padding: 12px 16px;
-            border: 1px solid #475569;
-            border-radius: 8px;
-            background: #1e293b;
-            color: #f1f5f9;
-            font-size: 16px;
-            transition: border-color 0.3s;
-        }
-        
-        input:focus, select:focus, textarea:focus {
-            outline: none;
-            border-color: #c9a227;
-        }
-        
-        textarea {
-            min-height: 100px;
-            resize: vertical;
-        }
-        
-        button {
-            width: 100%;
-            padding: 14px 24px;
-            background: linear-gradient(135deg, #c9a227 0%, #d4af37 100%);
-            color: #0f172a;
-            border: none;
-            border-radius: 8px;
-            font-size: 18px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        
-        button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 20px rgba(201, 162, 39, 0.4);
-        }
-        
-        button:disabled {
-            background: #475569;
-            cursor: not-allowed;
-            transform: none;
-        }
-        
-        .status {
-            margin-top: 20px;
-            padding: 12px;
-            border-radius: 8px;
-            display: none;
-        }
-        
-        .status.success {
-            display: block;
-            background: rgba(34, 197, 94, 0.2);
-            border: 1px solid #22c55e;
-            color: #22c55e;
-        }
-        
-        .status.error {
-            display: block;
-            background: rgba(239, 68, 68, 0.2);
-            border: 1px solid #ef4444;
-            color: #ef4444;
-        }
-        
-        .info {
-            margin-top: 30px;
-            padding: 20px;
-            background: rgba(59, 130, 246, 0.1);
-            border: 1px solid rgba(59, 130, 246, 0.3);
-            border-radius: 8px;
-            text-align: left;
-        }
-        
-        .info h3 {
-            color: #60a5fa;
-            margin-bottom: 10px;
-        }
-        
-        .info p {
-            color: #94a3b8;
+            background: var(--input-bg);
+            border: 1px solid var(--input-border);
+            border-radius: var(--radius);
+            color: var(--input-text);
             font-size: 14px;
-            line-height: 1.6;
         }
-        
-        .loading {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 2px solid #f1f5f9;
-            border-top-color: transparent;
+        .form-control:focus { outline: none; border-color: var(--accent); }
+        textarea.form-control { min-height: 120px; resize: vertical; }
+        textarea.form-control.large { min-height: 200px; }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin-bottom: 24px;
+        }
+        .stat-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+        }
+        .stat-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            margin-bottom: 16px;
+        }
+        .stat-icon.accent { background: var(--accent-light); color: var(--accent); }
+        .stat-icon.success { background: var(--success-light); color: var(--success); }
+        .stat-icon.info { background: var(--info-light); color: var(--info); }
+        .stat-value { font-size: 32px; font-weight: 700; margin-bottom: 4px; }
+        .stat-label { color: var(--text-secondary); font-size: 14px; }
+        .content-tabs {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 24px;
+            border-bottom: 1px solid var(--border);
+            overflow-x: auto;
+        }
+        .content-tab {
+            padding: 12px 20px;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            font-weight: 500;
+            color: var(--text-secondary);
+            white-space: nowrap;
+        }
+        .content-tab:hover { color: var(--text-primary); }
+        .content-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+        .toast-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .toast {
+            padding: 16px 20px;
+            border-radius: var(--radius);
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: var(--shadow-lg);
+            min-width: 300px;
+        }
+        .toast.success { background: var(--success); }
+        .toast.error { background: var(--danger); }
+        .toast.warning { background: var(--warning); color: var(--bg-primary); }
+        .toast.info { background: var(--info); }
+        .loading-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9998;
+            opacity: 0;
+            visibility: hidden;
+        }
+        .loading-overlay.show { opacity: 1; visibility: visible; }
+        .loading-spinner {
+            width: 48px;
+            height: 48px;
+            border: 3px solid var(--border);
+            border-top-color: var(--accent);
             border-radius: 50%;
             animation: spin 1s linear infinite;
-            margin-left: 10px;
-            vertical-align: middle;
         }
-        
-        @keyframes spin {
-            to { transform: rotate(360deg); }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10001;
+            opacity: 0;
+            visibility: hidden;
         }
+        .modal-overlay.show { opacity: 1; visibility: visible; }
+        .modal {
+            background: var(--card-bg);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            width: 100%;
+            max-width: 480px;
+            margin: 20px;
+        }
+        .modal-header {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .modal-title { font-size: 18px; font-weight: 600; }
+        .modal-close { background: none; border: none; color: var(--text-secondary); cursor: pointer; font-size: 18px; }
+        .modal-body { padding: 20px 24px; }
+        .modal-footer { padding: 16px 24px; border-top: 1px solid var(--border); display: flex; justify-content: flex-end; gap: 12px; }
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        .badge-success { background: var(--success-light); color: var(--success); }
+        .badge-warning { background: var(--warning-light); color: var(--warning); }
+        .autosave-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--text-secondary);
+            padding: 8px 16px;
+            background: var(--bg-secondary);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+        }
+        .autosave-indicator.saved { color: var(--success); }
+        .form-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        @media (max-width: 768px) {
+            .sidebar { transform: translateX(-100%); }
+            .sidebar.open { transform: translateX(0); }
+            .main-content { margin-left: 0; }
+            .page-content { padding: 16px; }
+            .form-row { grid-template-columns: 1fr; }
+        }
+        .hidden { display: none !important; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>LT Group CPA</h1>
-        <p class="subtitle">專業會計服務 | Professional Accounting Services</p>
-        
-        <div class="form-container">
-            <h2 style="margin-bottom: 24px; color: #f1f5f9;">免費諮詢 | Free Consultation</h2>
-            
-            <form id="contactForm">
-                <div class="form-group">
-                    <label for="name">姓名 * | Name *</label>
-                    <input type="text" id="name" name="name" required placeholder="請輸入您的姓名">
-                </div>
-                
-                <div class="form-group">
-                    <label for="phone">電話 * | Phone *</label>
-                    <input type="tel" id="phone" name="phone" required placeholder="請輸入您的電話">
-                </div>
-                
-                <div class="form-group">
-                    <label for="email">電郵 | Email</label>
-                    <input type="email" id="email" name="email" placeholder="請輸入您的電郵">
-                </div>
-                
-                <div class="form-group">
-                    <label for="company">公司 | Company</label>
-                    <input type="text" id="company" name="company" placeholder="請輸入您的公司名稱">
-                </div>
-                
-                <div class="form-group">
-                    <label for="service">感興趣的服務 | Service Interested</label>
-                    <select id="service" name="service">
-                        <option value="">請選擇服務類型</option>
-                        <option value="audit">審計服務 Audit Services</option>
-                        <option value="tax">稅務服務 Tax Services</option>
-                        <option value="consulting">商業顧問 Business Consulting</option>
-                        <option value="other">其他 Others</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="message">訊息 | Message</label>
-                    <textarea id="message" name="message" placeholder="請描述您的需求..."></textarea>
-                </div>
-                
-                <button type="submit" id="submitBtn">
-                    提交查詢 | Submit Inquiry
-                </button>
-            </form>
-            
-            <div id="status" class="status"></div>
+    <!-- Login Screen -->
+    <div class="login-screen" id="loginScreen">
+        <div class="login-box">
+            <div class="login-logo">LT</div>
+            <h1>LTCPA CMS</h1>
+            <p class="subtitle">Professional Content Management System</p>
+            <input type="password" id="passwordInput" placeholder="Enter password" onkeypress="if(event.key==='Enter')login()">
+            <button onclick="login()">
+                <i class="fas fa-sign-in-alt"></i> Login
+            </button>
         </div>
-        
-        <div class="info">
-            <h3>📞 聯繫我們 | Contact Us</h3>
-            <p>
-                <strong>電話 Phone:</strong> +852 5116 4453<br>
-                <strong>電郵 Email:</strong> info@ltgroupcpa.com<br>
-                <strong>地址 Address:</strong> 香港中環德輔道中10號皇后像廣場
-            </p>
-            <p style="margin-top: 10px;">
-                <strong>API Status:</strong> <span id="apiStatus">Checking...</span>
-            </p>
+    </div>
+
+    <!-- Admin Layout -->
+    <div class="admin-layout" id="adminLayout">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">LT</div>
+                <h2>LTCPA CMS</h2>
+                <p>Admin Panel</p>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-group-title">Main Menu</div>
+                <div class="nav-item active" onclick="showDashboard()" data-nav="dashboard">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </div>
+                
+                <div class="nav-group-title">Pages</div>
+                <div class="nav-item" onclick="showPageEditor('index')" data-nav="page-index">
+                    <i class="fas fa-home"></i>
+                    <span>Index (Home)</span>
+                </div>
+                <div class="nav-item" onclick="showPageEditor('about')" data-nav="page-about">
+                    <i class="fas fa-info-circle"></i>
+                    <span>About</span>
+                </div>
+                <div class="nav-item" onclick="showPageEditor('services')" data-nav="page-services">
+                    <i class="fas fa-briefcase"></i>
+                    <span>Services</span>
+                </div>
+                <div class="nav-item" onclick="showPageEditor('audit')" data-nav="page-audit">
+                    <i class="fas fa-search-dollar"></i>
+                    <span>Audit</span>
+                </div>
+                <div class="nav-item" onclick="showPageEditor('tax')" data-nav="page-tax">
+                    <i class="fas fa-file-invoice-dollar"></i>
+                    <span>Tax</span>
+                </div>
+                <div class="nav-item" onclick="showPageEditor('risk')" data-nav="page-risk">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Risk</span>
+                </div>
+                <div class="nav-item" onclick="showPageEditor('forensic')" data-nav="page-forensic">
+                    <i class="fas fa-user-secret"></i>
+                    <span>Forensic</span>
+                </div>
+                <div class="nav-item" onclick="showPageEditor('consulting')" data-nav="page-consulting">
+                    <i class="fas fa-lightbulb"></i>
+                    <span>Consulting</span>
+                </div>
+                <div class="nav-item" onclick="showPageEditor('deals')" data-nav="page-deals">
+                    <i class="fas fa-handshake"></i>
+                    <span>Deals</span>
+                </div>
+                <div class="nav-item" onclick="showPageEditor('commitment')" data-nav="page-commitment">
+                    <i class="fas fa-hand-holding-heart"></i>
+                    <span>Commitment</span>
+                </div>
+                <div class="nav-item" onclick="showPageEditor('purpose')" data-nav="page-purpose">
+                    <i class="fas fa-bullseye"></i>
+                    <span>Purpose</span>
+                </div>
+                <div class="nav-item" onclick="showPageEditor('value')" data-nav="page-value">
+                    <i class="fas fa-gem"></i>
+                    <span>Value</span>
+                </div>
+                <div class="nav-item" onclick="showPageEditor('contact')" data-nav="page-contact">
+                    <i class="fas fa-envelope"></i>
+                    <span>Contact</span>
+                </div>
+                
+                <div class="nav-group-title">System</div>
+                <div class="nav-item" onclick="showSettings()" data-nav="settings">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </div>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <div class="user-name">Administrator</div>
+                    <div class="user-role">CMS Admin</div>
+                </div>
+                <button class="logout-btn" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="header">
+                <h1 id="pageTitle"><i class="fas fa-tachometer-alt"></i> Dashboard</h1>
+                <div class="header-actions">
+                    <div class="autosave-indicator" id="autosaveIndicator">
+                        <i class="fas fa-check-circle"></i>
+                        <span>All changes saved</span>
+                    </div>
+                    <button class="btn btn-primary" onclick="saveAllData()" id="saveBtn">
+                        <i class="fas fa-save"></i> Save Changes
+                    </button>
+                    <button class="btn btn-success" onclick="publishChanges()" id="publishBtn">
+                        <i class="fas fa-rocket"></i> Publish
+                    </button>
+                </div>
+            </header>
+
+            <div class="page-content" id="pageContent">
+                <!-- Dashboard View -->
+                <div id="dashboardView">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon accent"><i class="fas fa-file-alt"></i></div>
+                            <div class="stat-value">13</div>
+                            <div class="stat-label">Total Pages</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon info"><i class="fas fa-language"></i></div>
+                            <div class="stat-value">3</div>
+                            <div class="stat-label">Languages</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon success"><i class="fas fa-check-circle"></i></div>
+                            <div class="stat-value" id="lastSavedTime">-</div>
+                            <div class="stat-label">Last Saved</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon accent"><i class="fas fa-cloud"></i></div>
+                            <div class="stat-value" id="publishStatus">Draft</div>
+                            <div class="stat-label">Publish Status</div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="card-title"><i class="fas fa-info-circle"></i> Welcome to LTCPA CMS</span>
+                        </div>
+                        <p style="margin-bottom: 16px;">This content management system allows you to manage your website content across all pages and languages.</p>
+                        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                            <button class="btn btn-primary" onclick="loadDataFromAPI()">
+                                <i class="fas fa-sync"></i> Refresh Data
+                            </button>
+                            <button class="btn btn-secondary" onclick="resetToDefaults()">
+                                <i class="fas fa-undo"></i> Reset to Defaults
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="card-title"><i class="fas fa-list"></i> Quick Navigation</span>
+                        </div>
+                        <div class="form-row">
+                            <button class="btn btn-secondary" onclick="showPageEditor('index')">
+                                <i class="fas fa-home"></i> Edit Home Page
+                            </button>
+                            <button class="btn btn-secondary" onclick="showPageEditor('contact')">
+                                <i class="fas fa-envelope"></i> Edit Contact Page
+                            </button>
+                            <button class="btn btn-secondary" onclick="showSettings()">
+                                <i class="fas fa-cog"></i> Site Settings
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Page Editor View -->
+                <div id="editorView" class="hidden">
+                    <div class="lang-selector">
+                        <button class="lang-btn active" data-lang="tc" onclick="switchLang('tc')">
+                            <span class="flag">🇭🇰</span> 繁體中文
+                        </button>
+                        <button class="lang-btn" data-lang="en" onclick="switchLang('en')">
+                            <span class="flag">🇬🇧</span> English
+                        </button>
+                        <button class="lang-btn" data-lang="sc" onclick="switchLang('sc')">
+                            <span class="flag">🇨🇳</span> 简体中文
+                        </button>
+                    </div>
+
+                    <div class="content-tabs" id="contentTabs">
+                        <div class="content-tab active" data-tab="meta" onclick="switchTab('meta')">SEO Meta</div>
+                        <div class="content-tab" data-tab="hero" onclick="switchTab('hero')">Hero Section</div>
+                        <div class="content-tab" data-tab="content" onclick="switchTab('content')">Content</div>
+                        <div class="content-tab" data-tab="cta" onclick="switchTab('cta')">Call to Action</div>
+                    </div>
+
+                    <div id="formContainer">
+                        <!-- Form content will be dynamically inserted here -->
+                    </div>
+                </div>
+
+                <!-- Settings View -->
+                <div id="settingsView" class="hidden">
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="card-title"><i class="fas fa-globe"></i> Site Information</span>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Site Title (TC)</label>
+                                <input type="text" class="form-control" data-path="site.title.tc" placeholder="Site title in Traditional Chinese">
+                            </div>
+                            <div class="form-group">
+                                <label>Site Title (EN)</label>
+                                <input type="text" class="form-control" data-path="site.title.en" placeholder="Site title in English">
+                            </div>
+                            <div class="form-group">
+                                <label>Site Title (SC)</label>
+                                <input type="text" class="form-control" data-path="site.title.sc" placeholder="Site title in Simplified Chinese">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="card-title"><i class="fas fa-address-card"></i> Contact Information</span>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Phone Number</label>
+                                <input type="text" class="form-control" data-path="site.phone" placeholder="+852 1234 5678">
+                            </div>
+                            <div class="form-group">
+                                <label>Email Address</label>
+                                <input type="email" class="form-control" data-path="site.email" placeholder="info@example.com">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Address (TC)</label>
+                                <textarea class="form-control" data-path="site.address.tc" rows="2"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Address (EN)</label>
+                                <textarea class="form-control" data-path="site.address.en" rows="2"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Address (SC)</label>
+                                <textarea class="form-control" data-path="site.address.sc" rows="2"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <!-- Confirm Modal -->
+    <div class="modal-overlay" id="confirmModal">
+        <div class="modal">
+            <div class="modal-header">
+                <span class="modal-title" id="modalTitle">Confirm Action</span>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                Are you sure you want to proceed?
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+                <button class="btn btn-danger" id="modalConfirmBtn" onclick="confirmModalAction()">Confirm</button>
+            </div>
         </div>
     </div>
 
     <script>
-        // API Configuration
+        // ========================================
+        // Configuration
+        // ========================================
         const API_BASE = 'https://ltcpa-cms-worker.jimsbond007.workers.dev';
+        const CORRECT_PASSWORD = 'Maid360';
         
-        // Check API health on page load
-        async function checkApiHealth() {
-            try {
-                const response = await fetch(`${API_BASE}/api/health`, {
-                    method: 'GET',
-                    mode: 'cors'
-                });
-                
-                if (response.ok) {
-                    document.getElementById('apiStatus').textContent = '✅ Online';
-                    document.getElementById('apiStatus').style.color = '#22c55e';
-                } else {
-                    throw new Error('API not responding');
-                }
-            } catch (error) {
-                document.getElementById('apiStatus').textContent = '❌ Offline';
-                document.getElementById('apiStatus').style.color = '#ef4444';
-                console.error('API Health Check Failed:', error);
+        // ========================================
+        // State Management
+        // ========================================
+        let cmsData = null;
+        let currentLang = 'tc';
+        let currentPage = null;
+        let currentTab = 'meta';
+        let isDirty = false;
+        let pendingChanges = {};
+        
+        // Page definitions
+        const PAGES = {
+            index: { name: 'Index (Home)', icon: 'fa-home' },
+            about: { name: 'About', icon: 'fa-info-circle' },
+            services: { name: 'Services', icon: 'fa-briefcase' },
+            audit: { name: 'Audit', icon: 'fa-search-dollar' },
+            tax: { name: 'Tax', icon: 'fa-file-invoice-dollar' },
+            risk: { name: 'Risk', icon: 'fa-shield-alt' },
+            forensic: { name: 'Forensic', icon: 'fa-user-secret' },
+            consulting: { name: 'Consulting', icon: 'fa-lightbulb' },
+            deals: { name: 'Deals', icon: 'fa-handshake' },
+            commitment: { name: 'Commitment', icon: 'fa-hand-holding-heart' },
+            purpose: { name: 'Purpose', icon: 'fa-bullseye' },
+            value: { name: 'Value', icon: 'fa-gem' },
+            contact: { name: 'Contact', icon: 'fa-envelope' }
+        };
+        
+        // Default data structure
+        function getDefaultData() {
+            return {
+                site: {
+                    title: { tc: '櫪韜會計師事務所', en: 'LTCPA Limited', sc: '櫪韬会计师事务所' },
+                    phone: '+852 6232 2466',
+                    email: 'info@ltcpa.com.hk',
+                    address: {
+                        tc: '香港九龍尖沙咀廣東道123號海港中心15樓1501室',
+                        en: 'Suite 1501, 15/F, Harbour Centre, 123 Canton Road, Tsim Sha Tsui, Kowloon, Hong Kong',
+                        sc: '香港九龙尖沙咀广东道123号海港中心15楼1501室'
+                    }
+                },
+                pages: {}
+            };
+        }
+        
+        // Initialize page data structure
+        function initPageData(pageId) {
+            if (!cmsData.pages[pageId]) {
+                cmsData.pages[pageId] = {
+                    tc: createEmptyPageData(),
+                    en: createEmptyPageData(),
+                    sc: createEmptyPageData()
+                };
             }
         }
         
-        // Handle form submission
-        document.getElementById('contactForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const submitBtn = document.getElementById('submitBtn');
-            const statusDiv = document.getElementById('status');
-            
-            // Disable button and show loading
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '提交中... <span class="loading"></span>';
-            statusDiv.className = 'status';
-            
-            // Get form data
-            const formData = {
-                name: document.getElementById('name').value,
-                phone: document.getElementById('phone').value,
-                email: document.getElementById('email').value,
-                company: document.getElementById('company').value,
-                service: document.getElementById('service').value,
-                message: document.getElementById('message').value
+        function createEmptyPageData() {
+            return {
+                metaTitle: '',
+                metaDescription: '',
+                pageTitle: '',
+                pageSubtitle: '',
+                heroTitle: '',
+                heroDescription: '',
+                content: '',
+                ctaText: '',
+                ctaLink: ''
             };
-            
+        }
+        
+        // ========================================
+        // Authentication
+        // ========================================
+        function login() {
+            const password = document.getElementById('passwordInput').value;
+            if (password === CORRECT_PASSWORD) {
+                document.getElementById('loginScreen').style.display = 'none';
+                document.getElementById('adminLayout').classList.add('active');
+                initializeApp();
+            } else {
+                showToast('Invalid password', 'error');
+                document.getElementById('passwordInput').value = '';
+                document.getElementById('passwordInput').focus();
+            }
+        }
+        
+        function logout() {
+            location.reload();
+        }
+        
+        // ========================================
+        // Initialization
+        // ========================================
+        async function initializeApp() {
+            cmsData = getDefaultData();
+            await loadDataFromAPI();
+            showDashboard();
+            setupAutoSave();
+        }
+        
+        // ========================================
+        // API Integration
+        // ========================================
+        async function loadDataFromAPI() {
+            showLoading(true);
             try {
-                // Submit to Worker API with CORS
-                const response = await fetch(`${API_BASE}/api/inquiries/submit`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    mode: 'cors',
-                    body: JSON.stringify(formData)
+                const response = await fetch(`${API_BASE}/api/cms/data?t=${Date.now()}`, {
+                    headers: { 'Cache-Control': 'no-cache' }
                 });
-                
-                const result = await response.json();
-                
                 if (response.ok) {
-                    // Success
-                    statusDiv.className = 'status success';
-                    statusDiv.textContent = '✅ 提交成功！我們會盡快與您聯繫。';
-                    
-                    // Reset form
-                    document.getElementById('contactForm').reset();
+                    const data = await response.json();
+                    cmsData = deepMerge(getDefaultData(), data);
+                    showToast('Data loaded successfully', 'success');
+                    updateLastSavedTime();
                 } else {
-                    // API returned error
-                    throw new Error(result.error || '提交失敗');
+                    throw new Error(`HTTP ${response.status}`);
                 }
             } catch (error) {
-                // Error
-                statusDiv.className = 'status error';
-                statusDiv.textContent = '❌ ' + (error.message || '網絡錯誤，請稍後再試');
-                console.error('Form Submission Error:', error);
+                console.error('Load error:', error);
+                showToast('Using local data (API unavailable)', 'warning');
             } finally {
-                // Re-enable button
-                submitBtn.disabled = false;
-                submitBtn.textContent = '提交查詢 | Submit Inquiry';
+                showLoading(false);
             }
-        });
+        }
         
-        // Check API health on load
-        checkApiHealth();
+        async function saveAllData() {
+            if (!isDirty) {
+                showToast('No changes to save', 'info');
+                return;
+            }
+            
+            showLoading(true);
+            document.getElementById('saveBtn').disabled = true;
+            
+            try {
+                const response = await fetch(`${API_BASE}/api/cms/data`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(cmsData)
+                });
+                
+                if (response.ok) {
+                    isDirty = false;
+                    pendingChanges = {};
+                    updateAutosaveIndicator('saved');
+                    showToast('Changes saved successfully', 'success');
+                    updateLastSavedTime();
+                } else {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+            } catch (error) {
+                console.error('Save error:', error);
+                showToast('Failed to save changes', 'error');
+                updateAutosaveIndicator('error');
+            } finally {
+                showLoading(false);
+                document.getElementById('saveBtn').disabled = false;
+            }
+        }
+        
+        async function publishChanges() {
+            showConfirmModal(
+                'Publish Changes',
+                'Are you sure you want to publish all changes to the live website?',
+                async () => {
+                    showLoading(true);
+                    try {
+                        const response = await fetch(`${API_BASE}/api/cms/publish`, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' }
+                        });
+                        
+                        if (response.ok) {
+                            document.getElementById('publishStatus').textContent = 'Published';
+                            showToast('Changes published successfully', 'success');
+                        } else {
+                            throw new Error(`HTTP ${response.status}`);
+                        }
+                    } catch (error) {
+                        console.error('Publish error:', error);
+                        showToast('Failed to publish changes', 'error');
+                    } finally {
+                        showLoading(false);
+                    }
+                }
+            );
+        }
+        
+        // ========================================
+        // Navigation & Views
+        // ========================================
+        function showDashboard() {
+            currentPage = null;
+            updateNav('dashboard');
+            document.getElementById('pageTitle').innerHTML = '<i class="fas fa-tachometer-alt"></i> Dashboard';
+            document.getElementById('dashboardView').classList.remove('hidden');
+            document.getElementById('editorView').classList.add('hidden');
+            document.getElementById('settingsView').classList.add('hidden');
+        }
+        
+        function showPageEditor(pageId) {
+            currentPage = pageId;
+            initPageData(pageId);
+            updateNav(`page-${pageId}`);
+            const page = PAGES[pageId];
+            document.getElementById('pageTitle').innerHTML = `<i class="fas ${page.icon}"></i> ${page.name}`;
+            document.getElementById('dashboardView').classList.add('hidden');
+            document.getElementById('editorView').classList.remove('hidden');
+            document.getElementById('settingsView').classList.add('hidden');
+            renderForm();
+        }
+        
+        function showSettings() {
+            currentPage = null;
+            updateNav('settings');
+            document.getElementById('pageTitle').innerHTML = '<i class="fas fa-cog"></i> Settings';
+            document.getElementById('dashboardView').classList.add('hidden');
+            document.getElementById('editorView').classList.add('hidden');
+            document.getElementById('settingsView').classList.remove('hidden');
+            populateSettingsForm();
+        }
+        
+        function updateNav(activeNav) {
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            const activeItem = document.querySelector(`[data-nav="${activeNav}"]`);
+            if (activeItem) activeItem.classList.add('active');
+        }
+        
+        function switchLang(lang) {
+            currentLang = lang;
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.lang === lang);
+            });
+            if (currentPage) {
+                renderForm();
+            } else if (!document.getElementById('settingsView').classList.contains('hidden')) {
+                populateSettingsForm();
+            }
+        }
+        
+        function switchTab(tab) {
+            currentTab = tab;
+            document.querySelectorAll('.content-tab').forEach(t => {
+                t.classList.toggle('active', t.dataset.tab === tab);
+            });
+            renderForm();
+        }
+        
+        // ========================================
+        // Form Rendering
+        // ========================================
+        function renderForm() {
+            if (!currentPage) return;
+            
+            const container = document.getElementById('formContainer');
+            const pageData = cmsData.pages[currentPage][currentLang];
+            
+            let html = '<div class="card">';
+            
+            if (currentTab === 'meta') {
+                html += `
+                    <div class="card-header"><span class="card-title"><i class="fas fa-search"></i> SEO Meta Information</span></div>
+                    <div class="form-group">
+                        <label>Meta Title</label>
+                        <input type="text" class="form-control" data-field="metaTitle" value="${escapeHtml(pageData.metaTitle)}" placeholder="Page title for search engines">
+                    </div>
+                    <div class="form-group">
+                        <label>Meta Description</label>
+                        <textarea class="form-control" data-field="metaDescription" rows="3" placeholder="Page description for search engines">${escapeHtml(pageData.metaDescription)}</textarea>
+                    </div>
+                `;
+            } else if (currentTab === 'hero') {
+                html += `
+                    <div class="card-header"><span class="card-title"><i class="fas fa-image"></i> Hero Section</span></div>
+                    <div class="form-group">
+                        <label>Page Title</label>
+                        <input type="text" class="form-control" data-field="pageTitle" value="${escapeHtml(pageData.pageTitle)}" placeholder="Main page heading">
+                    </div>
+                    <div class="form-group">
+                        <label>Page Subtitle</label>
+                        <input type="text" class="form-control" data-field="pageSubtitle" value="${escapeHtml(pageData.pageSubtitle)}" placeholder="Subheading">
+                    </div>
+                    <div class="form-group">
+                        <label>Hero Title</label>
+                        <input type="text" class="form-control" data-field="heroTitle" value="${escapeHtml(pageData.heroTitle)}" placeholder="Hero section title">
+                    </div>
+                    <div class="form-group">
+                        <label>Hero Description</label>
+                        <textarea class="form-control" data-field="heroDescription" rows="4" placeholder="Hero section description">${escapeHtml(pageData.heroDescription)}</textarea>
+                    </div>
+                `;
+            } else if (currentTab === 'content') {
+                html += `
+                    <div class="card-header"><span class="card-title"><i class="fas fa-align-left"></i> Main Content</span></div>
+                    <div class="form-group">
+                        <label>Content</label>
+                        <textarea class="form-control large" data-field="content" rows="12" placeholder="Main page content">${escapeHtml(pageData.content)}</textarea>
+                    </div>
+                `;
+            } else if (currentTab === 'cta') {
+                html += `
+                    <div class="card-header"><span class="card-title"><i class="fas fa-bullhorn"></i> Call to Action</span></div>
+                    <div class="form-group">
+                        <label>CTA Button Text</label>
+                        <input type="text" class="form-control" data-field="ctaText" value="${escapeHtml(pageData.ctaText)}" placeholder="e.g., Contact Us, Learn More">
+                    </div>
+                    <div class="form-group">
+                        <label>CTA Link</label>
+                        <input type="text" class="form-control" data-field="ctaLink" value="${escapeHtml(pageData.ctaLink)}" placeholder="e.g., /contact.html, #contact">
+                    </div>
+                `;
+            }
+            
+            html += '</div>';
+            container.innerHTML = html;
+            
+            // Attach change listeners
+            container.querySelectorAll('[data-field]').forEach(input => {
+                input.addEventListener('input', handleFieldChange);
+                input.addEventListener('change', handleFieldChange);
+            });
+        }
+        
+        function populateSettingsForm() {
+            const site = cmsData.site;
+            document.querySelectorAll('[data-path]').forEach(input => {
+                const path = input.dataset.path;
+                const value = getDeepValue(site, path.replace('site.', ''));
+                if (value) input.value = value;
+            });
+            
+            // Attach listeners
+            document.querySelectorAll('#settingsView [data-path]').forEach(input => {
+                input.addEventListener('input', handleSettingsChange);
+            });
+        }
+        
+        function handleFieldChange(e) {
+            const field = e.target.dataset.field;
+            const value = e.target.value;
+            
+            if (!cmsData.pages[currentPage][currentLang]) {
+                cmsData.pages[currentPage][currentLang] = createEmptyPageData();
+            }
+            
+            cmsData.pages[currentPage][currentLang][field] = value;
+            isDirty = true;
+            updateAutosaveIndicator('unsaved');
+        }
+        
+        function handleSettingsChange(e) {
+            const path = e.target.dataset.path;
+            const value = e.target.value;
+            setDeepValue(cmsData, path, value);
+            isDirty = true;
+            updateAutosaveIndicator('unsaved');
+        }
+        
+        // ========================================
+        // Utility Functions
+        // ========================================
+        function deepMerge(target, source) {
+            if (!source || typeof source !== 'object') return target;
+            if (!target || typeof target !== 'object') return source;
+            
+            const result = { ...target };
+            for (const key in source) {
+                if (source[key] && typeof source[key] === 'object' && !Array.isArray(source[key])) {
+                    result[key] = deepMerge(target[key] || {}, source[key]);
+                } else {
+                    result[key] = source[key];
+                }
+            }
+            return result;
+        }
+        
+        function getDeepValue(obj, path) {
+            return path.split('.').reduce((o, k) => o && o[k], obj);
+        }
+        
+        function setDeepValue(obj, path, value) {
+            const keys = path.split('.');
+            let cur = obj;
+            for (let i = 0; i < keys.length - 1; i++) {
+                if (!cur[keys[i]]) cur[keys[i]] = {};
+                cur = cur[keys[i]];
+            }
+            cur[keys[keys.length - 1]] = value;
+        }
+        
+        function escapeHtml(text) {
+            if (!text) return '';
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+        
+        // ========================================
+        // UI Helpers
+        // ========================================
+        function showToast(message, type = 'info', duration = 3000) {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            
+            const icon = type === 'success' ? 'check-circle' : 
+                        type === 'error' ? 'exclamation-circle' : 
+                        type === 'warning' ? 'exclamation-triangle' : 'info-circle';
+            
+            toast.innerHTML = `
+                <i class="fas fa-${icon}"></i>
+                <span>${message}</span>
+            `;
+            
+            container.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.classList.add('removing');
+                setTimeout(() => toast.remove(), 300);
+            }, duration);
+        }
+        
+        function showLoading(show) {
+            document.getElementById('loadingOverlay').classList.toggle('show', show);
+        }
+        
+        function updateAutosaveIndicator(status) {
+            const indicator = document.getElementById('autosaveIndicator');
+            if (status === 'saving') {
+                indicator.innerHTML = '<i class="fas fa-spinner fa-spin"></i><span>Saving...</span>';
+                indicator.className = 'autosave-indicator saving';
+            } else if (status === 'saved') {
+                indicator.innerHTML = '<i class="fas fa-check-circle"></i><span>All changes saved</span>';
+                indicator.className = 'autosave-indicator saved';
+            } else if (status === 'unsaved') {
+                indicator.innerHTML = '<i class="fas fa-circle"></i><span>Unsaved changes</span>';
+                indicator.className = 'autosave-indicator';
+            } else if (status === 'error') {
+                indicator.innerHTML = '<i class="fas fa-exclamation-circle"></i><span>Save failed</span>';
+                indicator.className = 'autosave-indicator error';
+            }
+        }
+        
+        function updateLastSavedTime() {
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+            document.getElementById('lastSavedTime').textContent = timeStr;
+        }
+        
+        function setupAutoSave() {
+            // Auto-save every 30 seconds if there are changes
+            setInterval(() => {
+                if (isDirty) {
+                    saveAllData();
+                }
+            }, 30000);
+            
+            // Warn before leaving with unsaved changes
+            window.addEventListener('beforeunload', (e) => {
+                if (isDirty) {
+                    e.preventDefault();
+                    e.returnValue = '';
+                }
+            });
+        }
+        
+        // ========================================
+        // Modal Functions
+        // ========================================
+        let modalCallback = null;
+        
+        function showConfirmModal(title, message, callback) {
+            modalCallback = callback;
+            document.getElementById('modalTitle').textContent = title;
+            document.getElementById('modalBody').textContent = message;
+            document.getElementById('confirmModal').classList.add('show');
+        }
+        
+        function closeModal() {
+            document.getElementById('confirmModal').classList.remove('show');
+            modalCallback = null;
+        }
+        
+        function confirmModalAction() {
+            if (modalCallback) {
+                modalCallback();
+            }
+            closeModal();
+        }
+        
+        // ========================================
+        // Reset Function
+        // ========================================
+        function resetToDefaults() {
+            showConfirmModal(
+                'Reset to Defaults',
+                'This will reset all data to default values. Any unsaved changes will be lost. Continue?',
+                () => {
+                    cmsData = getDefaultData();
+                    isDirty = true;
+                    updateAutosaveIndicator('unsaved');
+                    showToast('Data reset to defaults', 'warning');
+                    if (currentPage) renderForm();
+                    if (!document.getElementById('settingsView').classList.contains('hidden')) {
+                        populateSettingsForm();
+                    }
+                }
+            );
+        }
+        
+        // ========================================
+        // Initialize
+        // ========================================
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('passwordInput').focus();
+        });
     </script>
-<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"091e43e64fae48c9849ce70a6416148f","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 </body>
 </html>
