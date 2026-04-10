@@ -7,7 +7,7 @@ export default {
       return Response.redirect('https://www.ltgroupcpa.com' + url.pathname + url.search, 301);
     }
     
-    const targetUrl = 'https://b2a13409.ltcpa-website.pages.dev' + url.pathname + url.search;
+    const targetUrl = 'https://553edc9e.ltcpa-website.pages.dev' + url.pathname + url.search;
     
     const modifiedRequest = new Request(targetUrl, {
       method: request.method,
