@@ -1,0 +1,29 @@
+{
+  "name": "ltgroupcpa-cms",
+  "version": "1.0.0",
+  "description": "LT Group CPA CMS - Cloudflare Workers + Pages",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "deploy:worker": "wrangler deploy",
+    "pages:dev": "wrangler pages dev public",
+    "pages:deploy": "wrangler pages deploy public --project-name=ltcpa-website",
+    "test": "echo \"No tests yet\"",
+    "format": "prettier --write ."
+  },
+  "keywords": [
+    "cloudflare",
+    "workers",
+    "pages",
+    "cms",
+    "kv"
+  ],
+  "author": "LT Group CPA",
+  "license": "MIT",
+  "devDependencies": {
+    "prettier": "^3.0.0",
+    "wrangler": "^3.0.0"
+  },
+  "dependencies": {}
+}

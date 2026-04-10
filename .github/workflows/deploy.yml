@@ -1,0 +1,159 @@
+# ==========================================
+# LT Group CPA - CI/CD Pipeline
+# Deploy to Cloudflare Pages (Account A) + Worker (Account A)
+# Then purge CDN cache on Account B
+# ==========================================
+
+name: Deploy LT Group CPA CMS
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+env:
+  NODE_VERSION: '20'
+  DOMAIN: 'ltgroupcpa.com'
+
+jobs:
+  # ==========================================
+  # Test & Build
+  # ==========================================
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm test
+
+      - name: Check code formatting
+        run: npx prettier --check .
+
+  # ==========================================
+  # Deploy Worker to Account A
+  # ==========================================
+  deploy-worker:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Install Wrangler
+        run: npm install -g wrangler
+
+      - name: Deploy Worker to Account A
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_TOKEN_A }}
+          CLOUDFLARE_ACCOUNT_ID: dfbee5c2a5706a81bc04675499c933d4
+        run: |
+          echo "Deploying Worker to Account A..."
+          wrangler deploy --config wrangler.toml
+
+      - name: Verify Worker Deployment
+        run: |
+          echo "Checking Worker health..."
+          sleep 5
+          curl -s https://ltcpa-cms-worker.jimsbond007.workers.dev/api/health || echo "Health check skipped"
+
+  # ==========================================
+  # Deploy Pages to Account A
+  # ==========================================
+  deploy-pages:
+    needs: [test, deploy-worker]
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Install Wrangler
+        run: npm install -g wrangler
+
+      - name: Deploy Pages to Account A
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_TOKEN_A }}
+          CLOUDFLARE_ACCOUNT_ID: dfbee5c2a5706a81bc04675499c933d4
+        run: |
+          echo "Deploying Pages to Account A..."
+          wrangler pages deploy public \
+            --project-name=ltcpa-website \
+            --branch=main
+
+      - name: Get Pages URL
+        id: pages-url
+        run: |
+          echo "Pages deployed successfully"
+          echo "url=https://ltcpa-website.pages.dev" >> $GITHUB_OUTPUT
+
+  # ==========================================
+  # Purge CDN Cache on Account B
+  # ==========================================
+  purge-cdn:
+    needs: [deploy-worker, deploy-pages]
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+    steps:
+      - name: Purge Cloudflare CDN Cache (Account B)
+        env:
+          CF_TOKEN_B: ${{ secrets.CF_TOKEN_B }}
+          ZONE_ID: decb73699e3037ab607fc24f6dd21745
+        run: |
+          echo "Purging CDN cache on Account B..."
+          
+          # Purge everything
+          curl -X POST "https://api.cloudflare.com/client/v4/zones/${ZONE_ID}/purge_cache" \
+            -H "Authorization: Bearer ${CF_TOKEN_B}" \
+            -H "Content-Type: application/json" \
+            --data '{"purge_everything":true}' \
+            --fail-with-body
+          
+          echo "CDN cache purged successfully"
+
+      - name: Verify Domain
+        run: |
+          echo "Verifying domain https://${{ env.DOMAIN }}..."
+          sleep 10
+          curl -sI "https://${{ env.DOMAIN }}" | head -5 || echo "Verification skipped"
+
+  # ==========================================
+  # Notify on Completion
+  # ==========================================
+  notify:
+    needs: [deploy-worker, deploy-pages, purge-cdn]
+    runs-on: ubuntu-latest
+    if: always()
+    steps:
+      - name: Deployment Summary
+        run: |
+          echo "========================================="
+          echo "🚀 Deployment Summary"
+          echo "========================================="
+          echo "Project: ltgroupcpa"
+          echo "Domain: ${{ env.DOMAIN }}"
+          echo "Pages: https://ltcpa-website.pages.dev"
+          echo "Worker: https://ltcpa-cms-worker.jimsbond007.workers.dev"
+          echo "========================================="

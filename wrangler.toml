@@ -1,0 +1,24 @@
+# ==========================================
+# Cloudflare Worker Configuration
+# Project: ltgroupcpa
+# Account A: Pages + Workers (dfbee5c2a5706a81bc04675499c933d4)
+# ==========================================
+
+name = "ltcpa-cms-worker"
+main = "src/index.js"
+compatibility_date = "2024-01-01"
+account_id = "dfbee5c2a5706a81bc04675499c933d4"
+
+# KV Namespace Binding
+[[kv_namespaces]]
+binding = "LTCPA_CMS"
+id = "ca4e0945e6fc4ef590e4a57548da7626"
+
+# Environment Variables
+[vars]
+DOMAIN = "ltgroupcpa.com"
+PHONE = "85251164453"
+
+# Secrets (使用 wrangler secret put 設置)
+# WHATSAPP_API_TOKEN
+# WHATSAPP_PHONE_NUMBER_ID
