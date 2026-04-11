@@ -1,321 +1,336 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-Hant" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LT Group CPA - Professional Accounting Services</title>
+    <title data-cms="site.companyName.tc">櫪韜會計師事務所有限公司 | 專業會計服務</title>
+    <meta name="description" content="提供全面的審計、稅務及顧問服務" data-cms="pages.index.tc.meta.description">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            --primary: #1a3a5c;
+            --secondary: #2c5282;
+            --accent: #c9a227;
+            --bg-dark: #0f172a;
+            --bg-card: #1e293b;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Noto Sans TC', sans-serif; background: var(--bg-dark); color: var(--text-primary); line-height: 1.8; }
+        
+        /* Header */
+        header { background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px); position: fixed; width: 100%; top: 0; z-index: 1000; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .header-container { max-width: 1400px; margin: 0 auto; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; }
+        .logo { display: flex; align-items: center; gap: 1rem; }
+        .logo img { width: 50px; height: 50px; border-radius: 8px; }
+        .logo-text h1 { font-size: 1.25rem; color: var(--accent); }
+        .logo-text p { font-size: 0.75rem; color: var(--text-secondary); }
+        
+        nav ul { display: flex; gap: 2rem; list-style: none; }
+        nav a { color: var(--text-secondary); text-decoration: none; transition: color 0.3s; }
+        nav a:hover { color: var(--accent); }
+        
+        .language-switcher { display: flex; gap: 0.5rem; }
+        .language-switcher button { background: transparent; border: 1px solid var(--accent); color: var(--accent); padding: 0.25rem 0.75rem; border-radius: 4px; cursor: pointer; }
+        .language-switcher button.active { background: var(--accent); color: var(--bg-dark); }
+        
+        /* Hero */
+        .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 8rem 2rem 4rem; background: linear-gradient(135deg, var(--bg-dark) 0%, var(--primary) 100%); position: relative; overflow: hidden; }
+        .hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(201,162,39,0.1)" stroke-width="0.5"/></svg>'); background-size: 200px; opacity: 0.5; }
+        .hero-content { position: relative; z-index: 1; max-width: 900px; }
+        .hero h1 { font-size: 3.5rem; margin-bottom: 1.5rem; background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero p { font-size: 1.25rem; color: var(--text-secondary); margin-bottom: 2rem; }
+        .cta-button { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--accent); color: var(--bg-dark); padding: 1rem 2rem; border-radius: 8px; text-decoration: none; font-weight: 600; transition: transform 0.3s, box-shadow 0.3s; }
+        .cta-button:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(201,162,39,0.3); }
+        
+        /* Services */
+        .services { padding: 6rem 2rem; max-width: 1400px; margin: 0 auto; }
+        .section-header { text-align: center; margin-bottom: 4rem; }
+        .section-header h2 { font-size: 2.5rem; color: var(--accent); margin-bottom: 1rem; }
+        .section-header p { color: var(--text-secondary); font-size: 1.125rem; }
+        
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; }
+        .service-card { background: var(--bg-card); padding: 2.5rem; border-radius: 16px; border: 1px solid rgba(255,255,255,0.1); transition: transform 0.3s, border-color 0.3s; }
+        .service-card:hover { transform: translateY(-5px); border-color: var(--accent); }
+        .service-card i { font-size: 2.5rem; color: var(--accent); margin-bottom: 1.5rem; }
+        .service-card h3 { font-size: 1.5rem; margin-bottom: 1rem; }
+        .service-card p { color: var(--text-secondary); margin-bottom: 1.5rem; }
+        .service-card a { color: var(--accent); text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; }
+        
+        /* About Preview */
+        .about-preview { padding: 6rem 2rem; background: linear-gradient(135deg, var(--primary) 0%, var(--bg-dark) 100%); }
+        .about-container { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+        .about-content h2 { font-size: 2.5rem; color: var(--accent); margin-bottom: 1.5rem; }
+        .about-content p { color: var(--text-secondary); margin-bottom: 2rem; font-size: 1.125rem; }
+        
+        /* CTA Section */
+        .cta-section { padding: 6rem 2rem; text-align: center; background: var(--bg-card); }
+        .cta-section h2 { font-size: 2.5rem; margin-bottom: 1rem; }
+        .cta-section p { color: var(--text-secondary); margin-bottom: 2rem; font-size: 1.25rem; }
+        
+        /* Footer */
+        footer { background: var(--bg-dark); padding: 4rem 2rem 2rem; border-top: 1px solid rgba(255,255,255,0.1); }
+        .footer-container { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; }
+        .footer-brand img { width: 60px; height: 60px; border-radius: 8px; margin-bottom: 1rem; }
+        .footer-brand p { color: var(--text-secondary); margin-bottom: 1.5rem; }
+        .social-links { display: flex; gap: 1rem; }
+        .social-links a { width: 40px; height: 40px; background: var(--bg-card); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); transition: all 0.3s; }
+        .social-links a:hover { background: var(--accent); color: var(--bg-dark); }
+        .footer-links h4 { color: var(--accent); margin-bottom: 1.5rem; }
+        .footer-links ul { list-style: none; }
+        .footer-links li { margin-bottom: 0.75rem; }
+        .footer-links a { color: var(--text-secondary); text-decoration: none; transition: color 0.3s; }
+        .footer-links a:hover { color: var(--accent); }
+        .footer-bottom { max-width: 1400px; margin: 3rem auto 0; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); text-align: center; color: var(--text-secondary); }
+        
+        /* Mobile Menu */
+        .mobile-menu-btn { display: none; background: none; border: none; color: var(--text-primary); font-size: 1.5rem; cursor: pointer; }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-btn { display: block; }
+            nav { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--bg-dark); padding: 2rem; }
+            nav.active { display: block; }
+            nav ul { flex-direction: column; gap: 1rem; }
+            .hero h1 { font-size: 2rem; }
+            .about-container { grid-template-columns: 1fr; }
+            .footer-container { grid-template-columns: 1fr; }
+            .services-grid { grid-template-columns: 1fr; }
         }
         
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans TC', sans-serif;
-            background: linear-gradient(135deg, #1e3a5f 0%, #0f172a 100%);
-            color: #f1f5f9;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-        
-        .container {
-            max-width: 800px;
-            width: 100%;
-            text-align: center;
-        }
-        
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            color: #c9a227;
-        }
-        
-        .subtitle {
-            font-size: 1.2rem;
-            color: #94a3b8;
-            margin-bottom: 40px;
-        }
-        
-        .form-container {
-            background: rgba(30, 41, 59, 0.8);
-            border-radius: 16px;
-            padding: 40px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-            text-align: left;
-        }
-        
-        label {
-            display: block;
-            margin-bottom: 8px;
-            color: #cbd5e1;
-            font-weight: 500;
-        }
-        
-        input, select, textarea {
-            width: 100%;
-            padding: 12px 16px;
-            border: 1px solid #475569;
-            border-radius: 8px;
-            background: #1e293b;
-            color: #f1f5f9;
-            font-size: 16px;
-            transition: border-color 0.3s;
-        }
-        
-        input:focus, select:focus, textarea:focus {
-            outline: none;
-            border-color: #c9a227;
-        }
-        
-        textarea {
-            min-height: 100px;
-            resize: vertical;
-        }
-        
-        button {
-            width: 100%;
-            padding: 14px 24px;
-            background: linear-gradient(135deg, #c9a227 0%, #d4af37 100%);
-            color: #0f172a;
-            border: none;
-            border-radius: 8px;
-            font-size: 18px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        
-        button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 20px rgba(201, 162, 39, 0.4);
-        }
-        
-        button:disabled {
-            background: #475569;
-            cursor: not-allowed;
-            transform: none;
-        }
-        
-        .status {
-            margin-top: 20px;
-            padding: 12px;
-            border-radius: 8px;
-            display: none;
-        }
-        
-        .status.success {
-            display: block;
-            background: rgba(34, 197, 94, 0.2);
-            border: 1px solid #22c55e;
-            color: #22c55e;
-        }
-        
-        .status.error {
-            display: block;
-            background: rgba(239, 68, 68, 0.2);
-            border: 1px solid #ef4444;
-            color: #ef4444;
-        }
-        
-        .info {
-            margin-top: 30px;
-            padding: 20px;
-            background: rgba(59, 130, 246, 0.1);
-            border: 1px solid rgba(59, 130, 246, 0.3);
-            border-radius: 8px;
-            text-align: left;
-        }
-        
-        .info h3 {
-            color: #60a5fa;
-            margin-bottom: 10px;
-        }
-        
-        .info p {
-            color: #94a3b8;
-            font-size: 14px;
-            line-height: 1.6;
-        }
-        
-        .loading {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 2px solid #f1f5f9;
-            border-top-color: transparent;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin-left: 10px;
-            vertical-align: middle;
-        }
-        
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
+        /* Loading State */
+        [data-cms]:empty::before { content: attr(data-cms-placeholder); color: var(--text-secondary); }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>LT Group CPA</h1>
-        <p class="subtitle">專業會計服務 | Professional Accounting Services</p>
-        
-        <div class="form-container">
-            <h2 style="margin-bottom: 24px; color: #f1f5f9;">免費諮詢 | Free Consultation</h2>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <a href="/" class="logo">
+                <img src="admin/logo.png" alt="LTCPA Logo" data-cms="site.logo.url">
+                <div class="logo-text">
+                    <h1 data-cms="site.companyName.tc">櫪韜會計師事務所</h1>
+                    <p data-cms="site.tagline.tc">專業會計服務</p>
+                </div>
+            </a>
             
-            <form id="contactForm">
-                <div class="form-group">
-                    <label for="name">姓名 * | Name *</label>
-                    <input type="text" id="name" name="name" required placeholder="請輸入您的姓名">
-                </div>
-                
-                <div class="form-group">
-                    <label for="phone">電話 * | Phone *</label>
-                    <input type="tel" id="phone" name="phone" required placeholder="請輸入您的電話">
-                </div>
-                
-                <div class="form-group">
-                    <label for="email">電郵 | Email</label>
-                    <input type="email" id="email" name="email" placeholder="請輸入您的電郵">
-                </div>
-                
-                <div class="form-group">
-                    <label for="company">公司 | Company</label>
-                    <input type="text" id="company" name="company" placeholder="請輸入您的公司名稱">
-                </div>
-                
-                <div class="form-group">
-                    <label for="service">感興趣的服務 | Service Interested</label>
-                    <select id="service" name="service">
-                        <option value="">請選擇服務類型</option>
-                        <option value="audit">審計服務 Audit Services</option>
-                        <option value="tax">稅務服務 Tax Services</option>
-                        <option value="consulting">商業顧問 Business Consulting</option>
-                        <option value="other">其他 Others</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="message">訊息 | Message</label>
-                    <textarea id="message" name="message" placeholder="請描述您的需求..."></textarea>
-                </div>
-                
-                <button type="submit" id="submitBtn">
-                    提交查詢 | Submit Inquiry
-                </button>
-            </form>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
             
-            <div id="status" class="status"></div>
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="/" data-i18n="nav.home">首頁</a></li>
+                    <li><a href="about.html" data-i18n="nav.about">關於我們</a></li>
+                    <li><a href="services.html" data-i18n="nav.services">服務範圍</a></li>
+                    <li><a href="contact.html" data-i18n="nav.contact">聯繫我們</a></li>
+                </ul>
+            </nav>
+            
+            <div class="language-switcher">
+                <button class="active" onclick="switchLanguage('tc')">繁</button>
+                <button onclick="switchLanguage('en')">EN</button>
+                <button onclick="switchLanguage('sc')">简</button>
+            </div>
         </div>
-        
-        <div class="info">
-            <h3>📞 聯繫我們 | Contact Us</h3>
-            <p>
-                <strong>電話 Phone:</strong> +852 5116 4453<br>
-                <strong>電郵 Email:</strong> info@ltgroupcpa.com<br>
-                <strong>地址 Address:</strong> 香港中環德輔道中10號皇后像廣場
-            </p>
-            <p style="margin-top: 10px;">
-                <strong>API Status:</strong> <span id="apiStatus">Checking...</span>
-            </p>
-        </div>
-    </div>
+    </header>
 
-    <script>
-        // API Configuration
-        const API_BASE = 'https://ltcpa-cms-worker.jimsbond007.workers.dev';
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 data-cms="pages.index.tc.hero.title">專業會計服務，助您業務騰飛</h1>
+            <p data-cms="pages.index.tc.hero.subtitle">憑藉豐富經驗和專業知識，為企業提供最優質的財務解決方案</p>
+            <a href="contact.html" class="cta-button" data-cms="pages.index.tc.hero.ctaText">
+                <i class="fas fa-calendar-check"></i> 免費諮詢
+            </a>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section class="services">
+        <div class="section-header">
+            <h2 data-cms="pages.index.tc.services.title">我們的服務</h2>
+            <p data-cms="pages.index.tc.services.subtitle">從稅務策劃到企業併購，全方位支援您的商業決策</p>
+        </div>
         
-        // Check API health on page load
-        async function checkApiHealth() {
+        <div class="services-grid" id="servicesGrid">
+            <!-- Services will be rendered by JavaScript -->
+            <div class="service-card" data-cms-item="pages.index.tc.services.items[0]">
+                <i class="fas fa-chart-line"></i>
+                <h3>審計服務</h3>
+                <p>提供法定審計、內部審計及各類鑒證服務，確保財務報表的準確性和合規性。</p>
+                <a href="audit.html">了解更多 <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="service-card" data-cms-item="pages.index.tc.services.items[1]">
+                <i class="fas fa-calculator"></i>
+                <h3>稅務服務</h3>
+                <p>專業的稅務規劃及申報服務，助您合法節稅，優化稅務結構。</p>
+                <a href="tax.html">了解更多 <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="service-card" data-cms-item="pages.index.tc.services.items[2]">
+                <i class="fas fa-shield-alt"></i>
+                <h3>風險管理</h3>
+                <p>協助企業識別及管理風險，確保業務運營符合法規要求。</p>
+                <a href="risk.html">了解更多 <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="service-card" data-cms-item="pages.index.tc.services.items[3]">
+                <i class="fas fa-handshake"></i>
+                <h3>商業顧問</h3>
+                <p>從業務策略到營運優化，提供全方位的專業顧問服務。</p>
+                <a href="consulting.html">了解更多 <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="service-card" data-cms-item="pages.index.tc.services.items[4]">
+                <i class="fas fa-search"></i>
+                <h3>法證服務</h3>
+                <p>提供專業的調查及法證服務，協助處理商業糾紛及舞弊調查。</p>
+                <a href="forensic.html">了解更多 <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="service-card" data-cms-item="pages.index.tc.services.items[5]">
+                <i class="fas fa-building"></i>
+                <h3>企業併購</h3>
+                <p>協助處理併購交易、盡職調查及企業估值等專業服務。</p>
+                <a href="deals.html">了解更多 <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Preview -->
+    <section class="about-preview">
+        <div class="about-container">
+            <div class="about-content">
+                <h2 data-cms="pages.index.tc.about.title">關於櫪韜</h2>
+                <p data-cms="pages.index.tc.about.content">櫪韜會計師事務所有限公司擁有經驗豐富的專業團隊，致力於為客戶提供優質的會計及顧問服務。我們以客戶為本，深入了解每位客戶的獨特需求，提供度身訂造的解決方案。</p>
+                <a href="about.html" class="cta-button" data-cms="pages.index.tc.about.ctaText">
+                    <i class="fas fa-arrow-right"></i> 了解更多
+                </a>
+            </div>
+            <div class="about-image">
+                <img src="admin/logo.png" alt="About LTCPA" style="width: 100%; max-width: 500px; border-radius: 16px;">
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <h2 data-cms="pages.index.tc.cta.title">準備好提升您的業務了嗎？</h2>
+        <p data-cms="pages.index.tc.cta.description">立即與我們的專家團隊聯繫，獲取專業建議</p>
+        <a href="contact.html" class="cta-button" data-cms="pages.index.tc.cta.buttonText">
+            <i class="fas fa-phone"></i> 立即諮詢
+        </a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-brand">
+                <img src="admin/logo.png" alt="LTCPA Logo">
+                <p data-cms="site.footer.description.tc">我們是一家擁有豐富經驗的專業會計事務所，致力於為各行各業的企業提供全面的會計、審計、稅務及商業顧問服務。</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4>快速鏈接</h4>
+                <ul>
+                    <li><a href="/">首頁</a></li>
+                    <li><a href="about.html">關於我們</a></li>
+                    <li><a href="services.html">服務範圍</a></li>
+                    <li><a href="contact.html">聯繫我們</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>服務</h4>
+                <ul>
+                    <li><a href="audit.html">審計服務</a></li>
+                    <li><a href="tax.html">稅務服務</a></li>
+                    <li><a href="risk.html">風險管理</a></li>
+                    <li><a href="consulting.html">商業顧問</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>聯繫我們</h4>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"></i> <span data-cms="site.contact.address.tc">香港金鐘道95號</span></li>
+                    <li><i class="fas fa-phone"></i> <span data-cms="site.contact.phone">+852 3987 1008</span></li>
+                    <li><i class="fas fa-envelope"></i> <span data-cms="site.contact.email">info@ltgroupcpa.com</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p data-cms="site.footer.copyright">© 2026 櫪韜會計師事務所有限公司. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- CMS Rendering Script -->
+    <script>
+        // CMS Configuration
+        const API_BASE_URL = 'https://ltcpa-cms-worker.jimsbond007.workers.dev';
+        let cmsCache = null;
+        
+        // Fetch CMS Data
+        async function fetchCMSData() {
             try {
-                const response = await fetch(`${API_BASE}/api/health`, {
-                    method: 'GET',
-                    mode: 'cors'
-                });
-                
-                if (response.ok) {
-                    document.getElementById('apiStatus').textContent = '✅ Online';
-                    document.getElementById('apiStatus').style.color = '#22c55e';
-                } else {
-                    throw new Error('API not responding');
-                }
-            } catch (error) {
-                document.getElementById('apiStatus').textContent = '❌ Offline';
-                document.getElementById('apiStatus').style.color = '#ef4444';
-                console.error('API Health Check Failed:', error);
+                const res = await fetch(API_BASE_URL + '/api/cms/data', { cache: 'no-store' });
+                if (!res.ok) throw new Error('CMS API error');
+                cmsCache = await res.json();
+                renderCMS(cmsCache);
+            } catch (err) {
+                console.warn('[CMS] Using static fallback', err);
             }
         }
         
-        // Handle form submission
-        document.getElementById('contactForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
+        // Render CMS Content
+        function renderCMS(data) {
+            if (!data) return;
             
-            const submitBtn = document.getElementById('submitBtn');
-            const statusDiv = document.getElementById('status');
+            const lang = document.documentElement.lang || 'zh-Hant';
+            const langCode = lang === 'zh-Hant' ? 'tc' : lang === 'en' ? 'en' : 'sc';
             
-            // Disable button and show loading
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '提交中... <span class="loading"></span>';
-            statusDiv.className = 'status';
+            // Render all elements with data-cms attribute
+            document.querySelectorAll('[data-cms]').forEach(el => {
+                const path = el.getAttribute('data-cms');
+                const value = getNestedValue(data, path);
+                if (value) el.textContent = value;
+            });
             
-            // Get form data
-            const formData = {
-                name: document.getElementById('name').value,
-                phone: document.getElementById('phone').value,
-                email: document.getElementById('email').value,
-                company: document.getElementById('company').value,
-                service: document.getElementById('service').value,
-                message: document.getElementById('message').value
-            };
-            
-            try {
-                // Submit to Worker API with CORS
-                const response = await fetch(`${API_BASE}/api/inquiries/submit`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    mode: 'cors',
-                    body: JSON.stringify(formData)
-                });
-                
-                const result = await response.json();
-                
-                if (response.ok) {
-                    // Success
-                    statusDiv.className = 'status success';
-                    statusDiv.textContent = '✅ 提交成功！我們會盡快與您聯繫。';
-                    
-                    // Reset form
-                    document.getElementById('contactForm').reset();
-                } else {
-                    // API returned error
-                    throw new Error(result.error || '提交失敗');
-                }
-            } catch (error) {
-                // Error
-                statusDiv.className = 'status error';
-                statusDiv.textContent = '❌ ' + (error.message || '網絡錯誤，請稍後再試');
-                console.error('Form Submission Error:', error);
-            } finally {
-                // Re-enable button
-                submitBtn.disabled = false;
-                submitBtn.textContent = '提交查詢 | Submit Inquiry';
+            // Render site meta
+            if (data.site?.companyName?.[langCode]) {
+                document.title = document.title.replace(/^.+\|/, data.site.companyName[langCode] + ' |');
             }
-        });
+        }
         
-        // Check API health on load
-        checkApiHealth();
+        // Get nested value from object
+        function getNestedValue(obj, path) {
+            return path.split('.').reduce((o, k) => o?.[k], obj);
+        }
+        
+        // Language Switcher
+        function switchLanguage(lang) {
+            const langMap = { 'tc': 'zh-Hant', 'en': 'en', 'sc': 'zh-Hans' };
+            document.documentElement.lang = langMap[lang];
+            
+            // Update active button
+            document.querySelectorAll('.language-switcher button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Reload with new language
+            if (cmsCache) renderCMS(cmsCache);
+        }
+        
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            document.getElementById('mainNav').classList.toggle('active');
+        }
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchCMSData();
+        });
     </script>
-<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"091e43e64fae48c9849ce70a6416148f","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 </body>
 </html>
