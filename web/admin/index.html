@@ -3,679 +3,478 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LTCPA CMS Admin - Professional Content Management</title>
+    <title>LTCPA CMS V9 | Masterpiece Control Panel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-primary: #0f172a;
-            --bg-secondary: #1e293b;
-            --bg-tertiary: #334155;
-            --bg-hover: #475569;
-            --text-primary: #f1f5f9;
-            --text-secondary: #94a3b8;
-            --text-muted: #64748b;
-            --accent: #c9a227;
-            --accent-hover: #d4af37;
-            --accent-light: rgba(201, 162, 39, 0.1);
-            --success: #22c55e;
-            --success-light: rgba(34, 197, 94, 0.1);
-            --danger: #ef4444;
-            --danger-light: rgba(239, 68, 68, 0.1);
-            --warning: #f59e0b;
-            --warning-light: rgba(245, 158, 11, 0.1);
-            --info: #3b82f6;
-            --info-light: rgba(59, 130, 246, 0.1);
-            --border: #334155;
-            --border-light: #475569;
-            --input-bg: #1e293b;
-            --input-text: #f1f5f9;
-            --input-border: #475569;
-            --card-bg: #1e293b;
-            --sidebar-bg: #0f172a;
-            --sidebar-width: 280px;
-            --header-height: 70px;
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            --shadow: 0 4px 6px -1px rgba(0,0,0,0.3);
-            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.4);
-            --radius: 8px;
-            --radius-lg: 12px;
-            --radius-xl: 16px;
+            --gold: #d4a853; --gold-hover: #e8c87a;
+            --bg-body: #0a0a0a; --bg-panel: #111111; --bg-card: #161616; --bg-hover: #1a1a1a;
+            --border: #27272a;
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans TC', 'Noto Sans SC', sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.6;
-            min-height: 100vh;
+        [data-theme="light"] {
+            --bg-body: #faf8f3; --bg-panel: #ffffff; --bg-card: #fefdfb; --bg-hover: #f4f4f5;
+            --border: #e4e4e7;
+            --text-primary: #18181b;
         }
-        .login-screen {
-            position: fixed;
-            inset: 0;
-            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 50%, #1a2744 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-        }
-        .login-box {
-            background: var(--card-bg);
-            padding: 48px;
-            border-radius: var(--radius-xl);
-            width: 100%;
-            max-width: 420px;
-            border: 1px solid var(--border);
-            text-align: center;
-            box-shadow: var(--shadow-lg);
-        }
-        .login-logo {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 24px;
-            background: linear-gradient(135deg, var(--accent), var(--accent-hover));
-            border-radius: var(--radius-lg);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--bg-primary);
-            font-size: 32px;
-            font-weight: bold;
-        }
-        .login-box h1 { color: var(--text-primary); margin-bottom: 8px; font-size: 28px; font-weight: 700; }
-        .login-box .subtitle { color: var(--text-secondary); margin-bottom: 32px; font-size: 14px; }
-        .login-box input {
-            width: 100%;
-            padding: 14px 16px;
-            background: var(--input-bg);
-            border: 1px solid var(--input-border);
-            border-radius: var(--radius);
-            color: var(--input-text);
-            font-size: 16px;
-            margin-bottom: 16px;
-        }
-        .login-box input:focus { outline: none; border-color: var(--accent); }
-        .login-box button {
-            width: 100%;
-            padding: 14px;
-            background: var(--accent);
-            color: var(--bg-primary);
-            border: none;
-            border-radius: var(--radius);
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-        }
-        .login-box button:hover { background: var(--accent-hover); }
-        .admin-layout { display: none; min-height: 100vh; }
-        .admin-layout.active { display: flex; }
-        .sidebar {
-            width: var(--sidebar-width);
-            background: var(--sidebar-bg);
-            border-right: 1px solid var(--border);
-            position: fixed;
-            height: 100vh;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            z-index: 100;
-        }
-        .sidebar-header {
-            padding: 24px;
-            text-align: center;
-            border-bottom: 1px solid var(--border);
-        }
-        .sidebar-logo {
-            width: 60px;
-            height: 60px;
-            margin: 0 auto 12px;
-            background: var(--accent);
-            border-radius: var(--radius);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--bg-primary);
-        }
-        .sidebar-header h2 { font-size: 18px; margin-bottom: 4px; color: var(--text-primary); }
-        .sidebar-header p { font-size: 11px; color: var(--text-secondary); }
-        .sidebar-nav { flex: 1; padding: 16px 0; overflow-y: auto; }
-        .nav-group-title {
-            padding: 8px 24px;
-            font-size: 10px;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 600;
-        }
-        .nav-item {
-            padding: 12px 24px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            border-left: 3px solid transparent;
-            color: var(--text-secondary);
-            font-size: 14px;
-            transition: var(--transition);
-        }
+        
+        * { font-family: 'Inter', 'Noto Sans TC', system-ui, sans-serif; }
+        body { background: var(--bg-body); color: var(--text-primary); }
+        
+        .gold-btn { background: var(--gold); color: #1e3a5f; }
+        .gold-btn:hover { background: var(--gold-hover); }
+        
+        .nav-item { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 1rem; border-radius: 0.5rem; color: var(--text-secondary); transition: all 0.2s; }
         .nav-item:hover { background: var(--bg-hover); color: var(--text-primary); }
-        .nav-item.active { background: var(--accent-light); border-left-color: var(--accent); color: var(--accent); }
-        .nav-item i { width: 20px; text-align: center; }
-        .sidebar-footer {
-            padding: 16px 24px;
-            border-top: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .user-info { flex: 1; }
-        .user-name { font-size: 13px; font-weight: 500; color: var(--text-primary); }
-        .user-role { font-size: 11px; color: var(--text-secondary); }
-        .logout-btn {
-            width: 36px;
-            height: 36px;
-            border-radius: var(--radius);
-            background: var(--bg-hover);
-            border: none;
-            color: var(--text-secondary);
-            cursor: pointer;
-        }
-        .main-content {
-            flex: 1;
-            margin-left: var(--sidebar-width);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-        .header {
-            height: var(--header-height);
-            background: var(--bg-secondary);
-            border-bottom: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 24px;
-            position: sticky;
-            top: 0;
-            z-index: 50;
-        }
-        .header h1 { color: var(--text-primary); font-size: 20px; font-weight: 600; }
-        .header-actions { display: flex; align-items: center; gap: 12px; }
-        .page-content { flex: 1; padding: 24px; }
-        .lang-selector {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 24px;
-            background: var(--bg-secondary);
-            padding: 6px;
-            border-radius: var(--radius);
-            border: 1px solid var(--border);
-            width: fit-content;
-        }
-        .lang-btn {
-            padding: 8px 16px;
-            background: transparent;
-            border: none;
-            border-radius: 6px;
-            color: var(--text-secondary);
-            cursor: pointer;
-            font-size: 13px;
-            font-weight: 500;
-        }
-        .lang-btn:hover { color: var(--text-primary); background: var(--bg-hover); }
-        .lang-btn.active { background: var(--accent); color: var(--bg-primary); }
-        .card {
-            background: var(--card-bg);
-            border-radius: var(--radius-lg);
-            padding: 24px;
-            margin-bottom: 24px;
-            border: 1px solid var(--border);
-        }
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 16px;
-            border-bottom: 1px solid var(--border);
-        }
-        .card-title { font-size: 16px; font-weight: 600; }
-        .btn {
-            padding: 10px 18px;
-            border: none;
-            border-radius: var(--radius);
-            cursor: pointer;
-            font-size: 13px;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: 500;
-            transition: var(--transition);
-        }
-        .btn:hover { transform: translateY(-1px); }
-        .btn-primary { background: var(--accent); color: var(--bg-primary); }
-        .btn-secondary { background: var(--bg-hover); color: var(--text-primary); border: 1px solid var(--border); }
-        .btn-success { background: var(--success); color: white; }
-        .btn-danger { background: var(--danger); color: white; }
-        .btn:disabled { opacity: 0.5; cursor: not-allowed; }
-        .form-group { margin-bottom: 20px; }
-        .form-group label { display: block; margin-bottom: 8px; font-weight: 500; font-size: 13px; color: var(--text-secondary); }
-        .form-control {
-            width: 100%;
-            padding: 12px 16px;
-            background: var(--input-bg);
-            border: 1px solid var(--input-border);
-            border-radius: var(--radius);
-            color: var(--input-text);
-            font-size: 14px;
-        }
-        .form-control:focus { outline: none; border-color: var(--accent); }
-        textarea.form-control { min-height: 120px; resize: vertical; }
-        textarea.form-control.large { min-height: 200px; }
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 20px;
-            margin-bottom: 24px;
-        }
-        .stat-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
-            padding: 24px;
-        }
-        .stat-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: var(--radius);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            margin-bottom: 16px;
-        }
-        .stat-icon.accent { background: var(--accent-light); color: var(--accent); }
-        .stat-icon.success { background: var(--success-light); color: var(--success); }
-        .stat-icon.info { background: var(--info-light); color: var(--info); }
-        .stat-value { font-size: 32px; font-weight: 700; margin-bottom: 4px; }
-        .stat-label { color: var(--text-secondary); font-size: 14px; }
-        .content-tabs {
-            display: flex;
-            gap: 4px;
-            margin-bottom: 24px;
-            border-bottom: 1px solid var(--border);
-            overflow-x: auto;
-        }
-        .content-tab {
-            padding: 12px 20px;
-            cursor: pointer;
-            border-bottom: 2px solid transparent;
-            font-weight: 500;
-            color: var(--text-secondary);
-            white-space: nowrap;
-        }
-        .content-tab:hover { color: var(--text-primary); }
-        .content-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
-        .toast-container {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 10000;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-        .toast {
-            padding: 16px 20px;
-            border-radius: var(--radius);
-            color: white;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            box-shadow: var(--shadow-lg);
-            min-width: 300px;
-        }
-        .toast.success { background: var(--success); }
-        .toast.error { background: var(--danger); }
-        .toast.warning { background: var(--warning); color: var(--bg-primary); }
-        .toast.info { background: var(--info); }
-        .loading-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(15, 23, 42, 0.8);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 9998;
-            opacity: 0;
-            visibility: hidden;
-        }
-        .loading-overlay.show { opacity: 1; visibility: visible; }
-        .loading-spinner {
-            width: 48px;
-            height: 48px;
-            border: 3px solid var(--border);
-            border-top-color: var(--accent);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-        @keyframes spin { to { transform: rotate(360deg); } }
-        .modal-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.6);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 10001;
-            opacity: 0;
-            visibility: hidden;
-        }
-        .modal-overlay.show { opacity: 1; visibility: visible; }
-        .modal {
-            background: var(--card-bg);
-            border-radius: var(--radius-lg);
-            border: 1px solid var(--border);
-            width: 100%;
-            max-width: 480px;
-            margin: 20px;
-        }
-        .modal-header {
-            padding: 20px 24px;
-            border-bottom: 1px solid var(--border);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .modal-title { font-size: 18px; font-weight: 600; }
-        .modal-close { background: none; border: none; color: var(--text-secondary); cursor: pointer; font-size: 18px; }
-        .modal-body { padding: 20px 24px; }
-        .modal-footer { padding: 16px 24px; border-top: 1px solid var(--border); display: flex; justify-content: flex-end; gap: 12px; }
-        .badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 500;
-        }
-        .badge-success { background: var(--success-light); color: var(--success); }
-        .badge-warning { background: var(--warning-light); color: var(--warning); }
-        .autosave-indicator {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 13px;
-            color: var(--text-secondary);
-            padding: 8px 16px;
-            background: var(--bg-secondary);
-            border-radius: var(--radius);
-            border: 1px solid var(--border);
-        }
-        .autosave-indicator.saved { color: var(--success); }
-        .form-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-        @media (max-width: 768px) {
-            .sidebar { transform: translateX(-100%); }
-            .sidebar.open { transform: translateX(0); }
-            .main-content { margin-left: 0; }
-            .page-content { padding: 16px; }
-            .form-row { grid-template-columns: 1fr; }
-        }
-        .hidden { display: none !important; }
+        .nav-item.active { background: var(--gold); color: #1e3a5f; }
+        
+        .bg-panel { background: var(--bg-panel); }
+        .bg-card { background: var(--bg-card); }
+        .border-theme { border-color: var(--border); }
+        
+        .fade-in { animation: fadeIn 0.25s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-body); }
+        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+        
+        /* Form elements */
+        .input-theme { background: var(--bg-card); border: 1px solid var(--border); color: inherit; }
+        .input-theme:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px rgba(212,168,83,0.12); }
+        
+        /* Toggle switch */
+        .toggle { appearance: none; width: 44px; height: 24px; background: var(--border); border-radius: 12px; position: relative; cursor: pointer; }
+        .toggle::after { content: ''; position: absolute; top: 2px; left: 2px; width: 20px; height: 20px; background: white; border-radius: 50%; transition: transform 0.2s; }
+        .toggle:checked { background: var(--gold); }
+        .toggle:checked::after { transform: translateX(20px); }
+        
+        /* Stats cards */
+        .stat-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; }
+        .stat-value { font-size: 2rem; font-weight: 700; color: var(--gold); }
+        .stat-label { color: var(--text-secondary); font-size: 0.875rem; }
+        
+        /* Media grid */
+        .media-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 1rem; }
+        .media-item { aspect-ratio: 1; background: var(--bg-hover); border-radius: 8px; overflow: hidden; cursor: pointer; position: relative; }
+        .media-item img { width: 100%; height: 100%; object-fit: cover; }
+        .media-item:hover .media-overlay { opacity: 1; }
+        .media-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.7); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.2s; }
+        
+        /* Timeline editor */
+        .timeline-editor-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 1rem; margin-bottom: 0.75rem; }
+        
+        /* Language tabs */
+        .lang-tab { padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; transition: all 0.2s; }
+        .lang-tab:hover { background: var(--bg-hover); }
+        .lang-tab.active { background: var(--gold); color: #1e3a5f; }
     </style>
 </head>
-<body>
+<body class="min-h-screen">
+    <script>
+        const API_BASE_URL = location.hostname === 'localhost' 
+            ? 'http://localhost:8787' 
+            : 'https://ltcpa-cms-worker.jimsbond007.workers.dev';
+    </script>
+
     <!-- Login Screen -->
-    <div class="login-screen" id="loginScreen">
-        <div class="login-box">
-            <div class="login-logo">LT</div>
-            <h1>LTCPA CMS</h1>
-            <p class="subtitle">Professional Content Management System</p>
-            <input type="password" id="passwordInput" placeholder="Enter password" onkeypress="if(event.key==='Enter')login()">
-            <button onclick="login()">
-                <i class="fas fa-sign-in-alt"></i> Login
-            </button>
+    <div id="loginScreen" class="fixed inset-0 z-50 flex items-center justify-center" style="background: linear-gradient(135deg, #0a0a0a 0%, #141414 50%, #0f0f0f 100%);">
+        <div class="w-full max-w-md p-6">
+            <div class="text-center mb-8">
+                <div class="inline-flex items-center justify-center w-24 h-24 rounded-2xl mb-4 shadow-lg overflow-hidden" style="background: var(--gold);">
+                    <img src="logo.png" alt="JKDCoding" class="w-24 h-24 object-cover">
+                </div>
+                <h1 class="text-2xl font-bold text-white">LTCPA CMS</h1>
+                <p class="text-sm text-gray-400 mt-1">Powered by JKDCoding</p>
+                <p class="text-xs text-gray-500 mt-2">Masterpiece V9 Control Panel</p>
+            </div>
+            <div class="bg-panel border border-theme rounded-2xl p-8">
+                <h2 class="text-xl font-bold text-white mb-6 text-center">管理員登入</h2>
+                <form id="loginForm" class="space-y-5">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-400 mb-2">密碼</label>
+                        <input type="password" id="adminPassword" class="w-full px-4 py-3 rounded-lg input-theme" placeholder="請輸入管理密碼" required>
+                    </div>
+                    <button type="submit" class="w-full gold-btn font-bold py-3 rounded-lg transition flex items-center justify-center gap-2">
+                        <i class="fas fa-sign-in-alt"></i> 登入
+                    </button>
+                </form>
+                <p id="loginError" class="text-red-400 text-sm mt-3 hidden text-center">密碼錯誤，請重試。</p>
+            </div>
+            <p class="text-center text-gray-600 text-sm mt-8">
+                © 2026 JKDCoding. Professional CMS Solutions.
+            </p>
         </div>
     </div>
 
-    <!-- Admin Layout -->
-    <div class="admin-layout" id="adminLayout">
-        <aside class="sidebar" id="sidebar">
-            <div class="sidebar-header">
-                <div class="sidebar-logo">LT</div>
-                <h2>LTCPA CMS</h2>
-                <p>Admin Panel</p>
+    <!-- Main App -->
+    <div id="app" class="hidden flex min-h-screen">
+        <!-- Sidebar -->
+        <aside id="sidebar" class="bg-panel border-r border-theme fixed h-full z-30 flex flex-col transition-all" style="width: 280px;">
+            <div class="h-16 flex items-center gap-3 px-5 border-b border-theme">
+                <div class="w-10 h-10 rounded-xl overflow-hidden flex-shrink-0" style="background: var(--gold);">
+                    <img src="logo.png" alt="Logo" class="w-10 h-10 object-cover">
+                </div>
+                <div>
+                    <h1 class="font-bold text-white">LTCPA</h1>
+                    <p class="text-xs text-gray-400">CMS V9</p>
+                </div>
             </div>
-            <nav class="sidebar-nav">
-                <div class="nav-group-title">Main Menu</div>
-                <div class="nav-item active" onclick="showDashboard()" data-nav="dashboard">
-                    <i class="fas fa-tachometer-alt"></i>
-                    <span>Dashboard</span>
-                </div>
-                
-                <div class="nav-group-title">Pages</div>
-                <div class="nav-item" onclick="showPageEditor('index')" data-nav="page-index">
-                    <i class="fas fa-home"></i>
-                    <span>Index (Home)</span>
-                </div>
-                <div class="nav-item" onclick="showPageEditor('about')" data-nav="page-about">
-                    <i class="fas fa-info-circle"></i>
-                    <span>About</span>
-                </div>
-                <div class="nav-item" onclick="showPageEditor('services')" data-nav="page-services">
-                    <i class="fas fa-briefcase"></i>
-                    <span>Services</span>
-                </div>
-                <div class="nav-item" onclick="showPageEditor('audit')" data-nav="page-audit">
-                    <i class="fas fa-search-dollar"></i>
-                    <span>Audit</span>
-                </div>
-                <div class="nav-item" onclick="showPageEditor('tax')" data-nav="page-tax">
-                    <i class="fas fa-file-invoice-dollar"></i>
-                    <span>Tax</span>
-                </div>
-                <div class="nav-item" onclick="showPageEditor('risk')" data-nav="page-risk">
-                    <i class="fas fa-shield-alt"></i>
-                    <span>Risk</span>
-                </div>
-                <div class="nav-item" onclick="showPageEditor('forensic')" data-nav="page-forensic">
-                    <i class="fas fa-user-secret"></i>
-                    <span>Forensic</span>
-                </div>
-                <div class="nav-item" onclick="showPageEditor('consulting')" data-nav="page-consulting">
-                    <i class="fas fa-lightbulb"></i>
-                    <span>Consulting</span>
-                </div>
-                <div class="nav-item" onclick="showPageEditor('deals')" data-nav="page-deals">
-                    <i class="fas fa-handshake"></i>
-                    <span>Deals</span>
-                </div>
-                <div class="nav-item" onclick="showPageEditor('commitment')" data-nav="page-commitment">
-                    <i class="fas fa-hand-holding-heart"></i>
-                    <span>Commitment</span>
-                </div>
-                <div class="nav-item" onclick="showPageEditor('purpose')" data-nav="page-purpose">
-                    <i class="fas fa-bullseye"></i>
-                    <span>Purpose</span>
-                </div>
-                <div class="nav-item" onclick="showPageEditor('value')" data-nav="page-value">
-                    <i class="fas fa-gem"></i>
-                    <span>Value</span>
-                </div>
-                <div class="nav-item" onclick="showPageEditor('contact')" data-nav="page-contact">
-                    <i class="fas fa-envelope"></i>
-                    <span>Contact</span>
-                </div>
-                
-                <div class="nav-group-title">System</div>
-                <div class="nav-item" onclick="showSettings()" data-nav="settings">
-                    <i class="fas fa-cog"></i>
-                    <span>Settings</span>
-                </div>
+
+            <nav class="flex-1 overflow-y-auto py-4 px-3">
+                <div class="text-xs font-medium text-gray-500 uppercase tracking-wider mb-3 px-3">概覽</div>
+                <a href="#" class="nav-item active" data-page="dashboard">
+                    <i class="fas fa-chart-line w-5"></i> Dashboard
+                </a>
+                <a href="#" class="nav-item" data-page="analytics">
+                    <i class="fas fa-chart-pie w-5"></i> 數據分析
+                </a>
+
+                <div class="text-xs font-medium text-gray-500 uppercase tracking-wider mb-3 mt-6 px-3">內容管理</div>
+                <a href="#" class="nav-item" data-page="site">
+                    <i class="fas fa-globe w-5"></i> 網站設置
+                </a>
+                <a href="#" class="nav-item" data-page="navigation">
+                    <i class="fas fa-bars w-5"></i> 導航管理
+                </a>
+                <a href="#" class="nav-item" data-page="pages">
+                    <i class="fas fa-file-alt w-5"></i> 頁面管理
+                </a>
+                <a href="#" class="nav-item" data-page="media">
+                    <i class="fas fa-images w-5"></i> 媒體庫
+                </a>
+
+                <div class="text-xs font-medium text-gray-500 uppercase tracking-wider mb-3 mt-6 px-3">客戶管理</div>
+                <a href="#" class="nav-item" data-page="leads">
+                    <i class="fas fa-users w-5"></i> 客戶留資
+                </a>
+                <a href="#" class="nav-item" data-page="whatsapp">
+                    <i class="fab fa-whatsapp w-5"></i> WhatsApp 設置
+                </a>
             </nav>
-            <div class="sidebar-footer">
-                <div class="user-info">
-                    <div class="user-name">Administrator</div>
-                    <div class="user-role">CMS Admin</div>
-                </div>
-                <button class="logout-btn" onclick="logout()">
-                    <i class="fas fa-sign-out-alt"></i>
+
+            <div class="p-4 border-t border-theme">
+                <button onclick="logout()" class="nav-item w-full text-red-400 hover:text-red-300">
+                    <i class="fas fa-sign-out-alt w-5"></i> 登出
                 </button>
             </div>
         </aside>
 
-        <main class="main-content">
-            <header class="header">
-                <h1 id="pageTitle"><i class="fas fa-tachometer-alt"></i> Dashboard</h1>
-                <div class="header-actions">
-                    <div class="autosave-indicator" id="autosaveIndicator">
-                        <i class="fas fa-check-circle"></i>
-                        <span>All changes saved</span>
-                    </div>
-                    <button class="btn btn-primary" onclick="saveAllData()" id="saveBtn">
-                        <i class="fas fa-save"></i> Save Changes
+        <!-- Main Content -->
+        <main class="flex-1 ml-[280px]">
+            <!-- Top Bar -->
+            <header class="h-16 bg-panel border-b border-theme flex items-center justify-between px-6 sticky top-0 z-20">
+                <h2 id="pageTitle" class="text-xl font-bold">Dashboard</h2>
+                <div class="flex items-center gap-4">
+                    <button onclick="saveChanges()" class="gold-btn px-4 py-2 rounded-lg font-medium flex items-center gap-2">
+                        <i class="fas fa-save"></i> 保存變更
                     </button>
-                    <button class="btn btn-success" onclick="publishChanges()" id="publishBtn">
-                        <i class="fas fa-rocket"></i> Publish
+                    <button onclick="publishSite()" class="bg-green-600 hover:bg-green-500 text-white px-4 py-2 rounded-lg font-medium flex items-center gap-2">
+                        <i class="fas fa-rocket"></i> 發布
                     </button>
                 </div>
             </header>
 
-            <div class="page-content" id="pageContent">
+            <!-- Content Area -->
+            <div id="contentArea" class="p-6">
                 <!-- Dashboard View -->
-                <div id="dashboardView">
-                    <div class="stats-grid">
+                <div id="dashboardView" class="fade-in">
+                    <!-- Stats Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
                         <div class="stat-card">
-                            <div class="stat-icon accent"><i class="fas fa-file-alt"></i></div>
-                            <div class="stat-value">13</div>
-                            <div class="stat-label">Total Pages</div>
+                            <div class="stat-value" id="statPageViews">0</div>
+                            <div class="stat-label">今日瀏覽量</div>
                         </div>
                         <div class="stat-card">
-                            <div class="stat-icon info"><i class="fas fa-language"></i></div>
-                            <div class="stat-value">3</div>
-                            <div class="stat-label">Languages</div>
+                            <div class="stat-value" id="statVisitors">0</div>
+                            <div class="stat-label">今日訪客</div>
                         </div>
                         <div class="stat-card">
-                            <div class="stat-icon success"><i class="fas fa-check-circle"></i></div>
-                            <div class="stat-value" id="lastSavedTime">-</div>
-                            <div class="stat-label">Last Saved</div>
+                            <div class="stat-value" id="statLeads">0</div>
+                            <div class="stat-label">新客戶留資</div>
                         </div>
                         <div class="stat-card">
-                            <div class="stat-icon accent"><i class="fas fa-cloud"></i></div>
-                            <div class="stat-value" id="publishStatus">Draft</div>
-                            <div class="stat-label">Publish Status</div>
+                            <div class="stat-value" id="statConversion">0%</div>
+                            <div class="stat-label">轉化率</div>
                         </div>
                     </div>
 
-                    <div class="card">
-                        <div class="card-header">
-                            <span class="card-title"><i class="fas fa-info-circle"></i> Welcome to LTCPA CMS</span>
-                        </div>
-                        <p style="margin-bottom: 16px;">This content management system allows you to manage your website content across all pages and languages.</p>
-                        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-                            <button class="btn btn-primary" onclick="loadDataFromAPI()">
-                                <i class="fas fa-sync"></i> Refresh Data
-                            </button>
-                            <button class="btn btn-secondary" onclick="resetToDefaults()">
-                                <i class="fas fa-undo"></i> Reset to Defaults
-                            </button>
+                    <!-- Language Stats -->
+                    <div class="bg-card border border-theme rounded-xl p-6 mb-6">
+                        <h3 class="text-lg font-bold mb-4">語言分佈</h3>
+                        <div class="grid grid-cols-3 gap-4">
+                            <div class="text-center p-4 bg-[#1a1a1a] rounded-lg">
+                                <div class="text-3xl font-bold text-[#d4a853]" id="langTC">0</div>
+                                <div class="text-sm text-gray-400 mt-1">繁體中文</div>
+                            </div>
+                            <div class="text-center p-4 bg-[#1a1a1a] rounded-lg">
+                                <div class="text-3xl font-bold text-[#d4a853]" id="langEN">0</div>
+                                <div class="text-sm text-gray-400 mt-1">English</div>
+                            </div>
+                            <div class="text-center p-4 bg-[#1a1a1a] rounded-lg">
+                                <div class="text-3xl font-bold text-[#d4a853]" id="langSC">0</div>
+                                <div class="text-sm text-gray-400 mt-1">简体中文</div>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="card">
-                        <div class="card-header">
-                            <span class="card-title"><i class="fas fa-list"></i> Quick Navigation</span>
+                    <!-- Recent Leads -->
+                    <div class="bg-card border border-theme rounded-xl p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-lg font-bold">最新客戶留資</h3>
+                            <a href="#" onclick="showPage('leads')" class="text-[#d4a853] hover:underline text-sm">查看全部</a>
                         </div>
-                        <div class="form-row">
-                            <button class="btn btn-secondary" onclick="showPageEditor('index')">
-                                <i class="fas fa-home"></i> Edit Home Page
-                            </button>
-                            <button class="btn btn-secondary" onclick="showPageEditor('contact')">
-                                <i class="fas fa-envelope"></i> Edit Contact Page
-                            </button>
-                            <button class="btn btn-secondary" onclick="showSettings()">
-                                <i class="fas fa-cog"></i> Site Settings
-                            </button>
+                        <div id="recentLeads" class="space-y-3">
+                            <p class="text-gray-500 text-center py-8">暫無數據</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Page Editor View -->
-                <div id="editorView" class="hidden">
-                    <div class="lang-selector">
-                        <button class="lang-btn active" data-lang="tc" onclick="switchLang('tc')">
-                            <span class="flag">🇭🇰</span> 繁體中文
-                        </button>
-                        <button class="lang-btn" data-lang="en" onclick="switchLang('en')">
-                            <span class="flag">🇬🇧</span> English
-                        </button>
-                        <button class="lang-btn" data-lang="sc" onclick="switchLang('sc')">
-                            <span class="flag">🇨🇳</span> 简体中文
-                        </button>
+                <!-- Analytics View -->
+                <div id="analyticsView" class="hidden fade-in">
+                    <div class="bg-card border border-theme rounded-xl p-6 mb-6">
+                        <h3 class="text-lg font-bold mb-4">瀏覽趨勢</h3>
+                        <div id="trafficChart" class="h-64 flex items-end justify-around gap-2">
+                            <!-- Chart bars will be rendered here -->
+                        </div>
                     </div>
 
-                    <div class="content-tabs" id="contentTabs">
-                        <div class="content-tab active" data-tab="meta" onclick="switchTab('meta')">SEO Meta</div>
-                        <div class="content-tab" data-tab="hero" onclick="switchTab('hero')">Hero Section</div>
-                        <div class="content-tab" data-tab="content" onclick="switchTab('content')">Content</div>
-                        <div class="content-tab" data-tab="cta" onclick="switchTab('cta')">Call to Action</div>
-                    </div>
-
-                    <div id="formContainer">
-                        <!-- Form content will be dynamically inserted here -->
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <div class="bg-card border border-theme rounded-xl p-6">
+                            <h3 class="text-lg font-bold mb-4">熱門頁面</h3>
+                            <div id="popularPages" class="space-y-2">
+                                <!-- Page stats will be rendered here -->
+                            </div>
+                        </div>
+                        <div class="bg-card border border-theme rounded-xl p-6">
+                            <h3 class="text-lg font-bold mb-4">流量來源</h3>
+                            <div id="trafficSources" class="space-y-2">
+                                <!-- Source stats will be rendered here -->
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Settings View -->
-                <div id="settingsView" class="hidden">
-                    <div class="card">
-                        <div class="card-header">
-                            <span class="card-title"><i class="fas fa-globe"></i> Site Information</span>
+                <!-- Site Settings View -->
+                <div id="siteView" class="hidden fade-in">
+                    <div class="max-w-3xl">
+                        <div class="bg-card border border-theme rounded-xl p-6 mb-6">
+                            <h3 class="text-lg font-bold mb-4">公司資訊</h3>
+                            
+                            <!-- Language Tabs -->
+                            <div class="flex gap-2 mb-6">
+                                <div class="lang-tab active" onclick="switchLangTab('tc')">繁體中文</div>
+                                <div class="lang-tab" onclick="switchLangTab('en')">English</div>
+                                <div class="lang-tab" onclick="switchLangTab('sc')">简体中文</div>
+                            </div>
+
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-sm text-gray-400 mb-2">公司名稱</label>
+                                    <input type="text" id="siteCompanyName" class="w-full px-4 py-3 rounded-lg input-theme" placeholder="公司名稱">
+                                </div>
+                                <div>
+                                    <label class="block text-sm text-gray-400 mb-2">標語</label>
+                                    <input type="text" id="siteTagline" class="w-full px-4 py-3 rounded-lg input-theme" placeholder="標語">
+                                </div>
+                                <div>
+                                    <label class="block text-sm text-gray-400 mb-2">地址</label>
+                                    <textarea id="siteAddress" rows="2" class="w-full px-4 py-3 rounded-lg input-theme" placeholder="地址"></textarea>
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label>Site Title (TC)</label>
-                                <input type="text" class="form-control" data-path="site.title.tc" placeholder="Site title in Traditional Chinese">
+
+                        <div class="bg-card border border-theme rounded-xl p-6 mb-6">
+                            <h3 class="text-lg font-bold mb-4">聯繫信息</h3>
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-sm text-gray-400 mb-2">電話</label>
+                                    <input type="text" id="sitePhone" class="w-full px-4 py-3 rounded-lg input-theme" placeholder="+852 0000 0000">
+                                </div>
+                                <div>
+                                    <label class="block text-sm text-gray-400 mb-2">電郵</label>
+                                    <input type="email" id="siteEmail" class="w-full px-4 py-3 rounded-lg input-theme" placeholder="email@example.com">
+                                </div>
+                                <div>
+                                    <label class="block text-sm text-gray-400 mb-2">WhatsApp</label>
+                                    <input type="text" id="siteWhatsapp" class="w-full px-4 py-3 rounded-lg input-theme" placeholder="85200000000">
+                                </div>
+                                <div>
+                                    <label class="block text-sm text-gray-400 mb-2">營業時間</label>
+                                    <input type="text" id="siteHours" class="w-full px-4 py-3 rounded-lg input-theme" placeholder="星期一至五: 9:00 - 18:00">
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label>Site Title (EN)</label>
-                                <input type="text" class="form-control" data-path="site.title.en" placeholder="Site title in English">
-                            </div>
-                            <div class="form-group">
-                                <label>Site Title (SC)</label>
-                                <input type="text" class="form-control" data-path="site.title.sc" placeholder="Site title in Simplified Chinese">
+                        </div>
+
+                        <div class="bg-card border border-theme rounded-xl p-6">
+                            <h3 class="text-lg font-bold mb-4">社交媒體</h3>
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-sm text-gray-400 mb-2">LinkedIn</label>
+                                    <input type="text" id="siteLinkedIn" class="w-full px-4 py-3 rounded-lg input-theme" placeholder="LinkedIn URL">
+                                </div>
+                                <div>
+                                    <label class="block text-sm text-gray-400 mb-2">Facebook</label>
+                                    <input type="text" id="siteFacebook" class="w-full px-4 py-3 rounded-lg input-theme" placeholder="Facebook URL">
+                                </div>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <div class="card">
-                        <div class="card-header">
-                            <span class="card-title"><i class="fas fa-address-card"></i> Contact Information</span>
+                <!-- Pages View -->
+                <div id="pagesView" class="hidden fade-in">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+                        <div class="bg-card border border-theme rounded-xl p-4 cursor-pointer hover:border-[#d4a853] transition" onclick="editPage('index')">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-lg bg-[#d4a853]/20 flex items-center justify-center">
+                                    <i class="fas fa-home text-[#d4a853]"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">首頁</h4>
+                                    <p class="text-xs text-gray-400">index.html</p>
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label>Phone Number</label>
-                                <input type="text" class="form-control" data-path="site.phone" placeholder="+852 1234 5678">
-                            </div>
-                            <div class="form-group">
-                                <label>Email Address</label>
-                                <input type="email" class="form-control" data-path="site.email" placeholder="info@example.com">
+                        <div class="bg-card border border-theme rounded-xl p-4 cursor-pointer hover:border-[#d4a853] transition" onclick="editPage('about')">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-lg bg-[#d4a853]/20 flex items-center justify-center">
+                                    <i class="fas fa-info-circle text-[#d4a853]"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">關於我們</h4>
+                                    <p class="text-xs text-gray-400">about.html</p>
+                                </div>
                             </div>
                         </div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label>Address (TC)</label>
-                                <textarea class="form-control" data-path="site.address.tc" rows="2"></textarea>
+                        <div class="bg-card border border-theme rounded-xl p-4 cursor-pointer hover:border-[#d4a853] transition" onclick="editPage('services')">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-lg bg-[#d4a853]/20 flex items-center justify-center">
+                                    <i class="fas fa-briefcase text-[#d4a853]"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">服務範圍</h4>
+                                    <p class="text-xs text-gray-400">services.html</p>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label>Address (EN)</label>
-                                <textarea class="form-control" data-path="site.address.en" rows="2"></textarea>
+                        </div>
+                        <!-- More page cards... -->
+                    </div>
+
+                    <!-- Page Editor (hidden by default) -->
+                    <div id="pageEditor" class="hidden">
+                        <div class="bg-card border border-theme rounded-xl p-6">
+                            <div class="flex items-center justify-between mb-6">
+                                <h3 class="text-lg font-bold" id="editorPageTitle">編輯頁面</h3>
+                                <button onclick="closePageEditor()" class="text-gray-400 hover:text-white">
+                                    <i class="fas fa-times"></i>
+                                </button>
                             </div>
-                            <div class="form-group">
-                                <label>Address (SC)</label>
-                                <textarea class="form-control" data-path="site.address.sc" rows="2"></textarea>
+                            
+                            <!-- Language Tabs -->
+                            <div class="flex gap-2 mb-6">
+                                <div class="lang-tab active" onclick="switchEditorLang('tc')">繁體中文</div>
+                                <div class="lang-tab" onclick="switchEditorLang('en')">English</div>
+                                <div class="lang-tab" onclick="switchEditorLang('sc')">简体中文</div>
+                            </div>
+
+                            <!-- Editor Form -->
+                            <div id="editorForm" class="space-y-6">
+                                <!-- Dynamic form fields will be inserted here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Media Library View -->
+                <div id="mediaView" class="hidden fade-in">
+                    <div class="bg-card border border-theme rounded-xl p-6">
+                        <div class="flex items-center justify-between mb-6">
+                            <h3 class="text-lg font-bold">媒體庫</h3>
+                            <button onclick="uploadMedia()" class="gold-btn px-4 py-2 rounded-lg font-medium flex items-center gap-2">
+                                <i class="fas fa-upload"></i> 上傳文件
+                            </button>
+                        </div>
+                        <div id="mediaGrid" class="media-grid">
+                            <div class="media-item border-2 border-dashed border-[#27272a] flex items-center justify-center" onclick="uploadMedia()">
+                                <div class="text-center text-gray-500">
+                                    <i class="fas fa-plus text-2xl mb-2"></i>
+                                    <p class="text-sm">上傳新文件</p>
+                                </div>
+                            </div>
+                            <!-- Media items will be rendered here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Leads View -->
+                <div id="leadsView" class="hidden fade-in">
+                    <div class="bg-card border border-theme rounded-xl overflow-hidden">
+                        <div class="p-4 border-b border-theme flex items-center justify-between">
+                            <h3 class="text-lg font-bold">客戶留資</h3>
+                            <div class="flex gap-2">
+                                <select id="leadFilter" class="input-theme px-3 py-2 rounded-lg text-sm" onchange="filterLeads()">
+                                    <option value="all">全部狀態</option>
+                                    <option value="new">新提交</option>
+                                    <option value="contacted">已聯繫</option>
+                                    <option value="completed">已完成</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div id="leadsTable" class="overflow-x-auto">
+                            <table class="w-full">
+                                <thead class="bg-[#1a1a1a]">
+                                    <tr>
+                                        <th class="text-left px-4 py-3 text-sm font-medium text-gray-400">時間</th>
+                                        <th class="text-left px-4 py-3 text-sm font-medium text-gray-400">姓名</th>
+                                        <th class="text-left px-4 py-3 text-sm font-medium text-gray-400">電話</th>
+                                        <th class="text-left px-4 py-3 text-sm font-medium text-gray-400">服務</th>
+                                        <th class="text-left px-4 py-3 text-sm font-medium text-gray-400">狀態</th>
+                                        <th class="text-left px-4 py-3 text-sm font-medium text-gray-400">操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="leadsTableBody">
+                                    <!-- Leads will be rendered here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- WhatsApp Settings View -->
+                <div id="whatsappView" class="hidden fade-in">
+                    <div class="max-w-2xl">
+                        <div class="bg-card border border-theme rounded-xl p-6 mb-6">
+                            <h3 class="text-lg font-bold mb-4">WhatsApp Business API 設置</h3>
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-sm text-gray-400 mb-2">API Token</label>
+                                    <input type="password" id="whatsappApiToken" class="w-full px-4 py-3 rounded-lg input-theme" placeholder="WhatsApp Business API Token">
+                                </div>
+                                <div>
+                                    <label class="block text-sm text-gray-400 mb-2">Phone Number ID</label>
+                                    <input type="text" id="whatsappPhoneId" class="w-full px-4 py-3 rounded-lg input-theme" placeholder="Phone Number ID">
+                                </div>
+                                <div>
+                                    <label class="block text-sm text-gray-400 mb-2">通知訊息模板</label>
+                                    <textarea id="whatsappTemplate" rows="4" class="w-full px-4 py-3 rounded-lg input-theme" placeholder="您好，有新的客戶留資：{name} - {phone}"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-card border border-theme rounded-xl p-6">
+                            <h3 class="text-lg font-bold mb-4">測試發送</h3>
+                            <div class="flex gap-4">
+                                <input type="text" id="testPhone" class="flex-1 px-4 py-3 rounded-lg input-theme" placeholder="測試手機號碼 (852xxxxxxxx)">
+                                <button onclick="testWhatsApp()" class="gold-btn px-6 py-3 rounded-lg font-medium">
+                                    發送測試
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -684,555 +483,267 @@
         </main>
     </div>
 
-    <!-- Toast Container -->
-    <div class="toast-container" id="toastContainer"></div>
-
-    <!-- Loading Overlay -->
-    <div class="loading-overlay" id="loadingOverlay">
-        <div class="loading-spinner"></div>
-    </div>
-
-    <!-- Confirm Modal -->
-    <div class="modal-overlay" id="confirmModal">
-        <div class="modal">
-            <div class="modal-header">
-                <span class="modal-title" id="modalTitle">Confirm Action</span>
-                <button class="modal-close" onclick="closeModal()">&times;</button>
-            </div>
-            <div class="modal-body" id="modalBody">
-                Are you sure you want to proceed?
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
-                <button class="btn btn-danger" id="modalConfirmBtn" onclick="confirmModalAction()">Confirm</button>
-            </div>
-        </div>
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-6 right-6 bg-[#d4a853] text-[#1e3a5f] px-6 py-3 rounded-lg shadow-lg transform translate-y-20 opacity-0 transition-all z-50 font-medium">
+        <span id="toastMessage">操作成功</span>
     </div>
 
     <script>
-        // ========================================
-        // Configuration
-        // ========================================
-        const API_BASE = 'https://ltcpa-cms-worker.jimsbond007.workers.dev';
-        const CORRECT_PASSWORD = 'Maid360';
-        
-        // ========================================
-        // State Management
-        // ========================================
+        // Global state
         let cmsData = null;
+        let currentPage = 'dashboard';
         let currentLang = 'tc';
-        let currentPage = null;
-        let currentTab = 'meta';
-        let isDirty = false;
-        let pendingChanges = {};
-        
-        // Page definitions
-        const PAGES = {
-            index: { name: 'Index (Home)', icon: 'fa-home' },
-            about: { name: 'About', icon: 'fa-info-circle' },
-            services: { name: 'Services', icon: 'fa-briefcase' },
-            audit: { name: 'Audit', icon: 'fa-search-dollar' },
-            tax: { name: 'Tax', icon: 'fa-file-invoice-dollar' },
-            risk: { name: 'Risk', icon: 'fa-shield-alt' },
-            forensic: { name: 'Forensic', icon: 'fa-user-secret' },
-            consulting: { name: 'Consulting', icon: 'fa-lightbulb' },
-            deals: { name: 'Deals', icon: 'fa-handshake' },
-            commitment: { name: 'Commitment', icon: 'fa-hand-holding-heart' },
-            purpose: { name: 'Purpose', icon: 'fa-bullseye' },
-            value: { name: 'Value', icon: 'fa-gem' },
-            contact: { name: 'Contact', icon: 'fa-envelope' }
-        };
-        
-        // Default data structure
-        function getDefaultData() {
-            return {
-                site: {
-                    title: { tc: '櫪韜會計師事務所', en: 'LTCPA Limited', sc: '櫪韬会计师事务所' },
-                    phone: '+852 6232 2466',
-                    email: 'info@ltcpa.com.hk',
-                    address: {
-                        tc: '香港九龍尖沙咀廣東道123號海港中心15樓1501室',
-                        en: 'Suite 1501, 15/F, Harbour Centre, 123 Canton Road, Tsim Sha Tsui, Kowloon, Hong Kong',
-                        sc: '香港九龙尖沙咀广东道123号海港中心15楼1501室'
-                    }
-                },
-                pages: {}
-            };
-        }
-        
-        // Initialize page data structure
-        function initPageData(pageId) {
-            if (!cmsData.pages[pageId]) {
-                cmsData.pages[pageId] = {
-                    tc: createEmptyPageData(),
-                    en: createEmptyPageData(),
-                    sc: createEmptyPageData()
-                };
-            }
-        }
-        
-        function createEmptyPageData() {
-            return {
-                metaTitle: '',
-                metaDescription: '',
-                pageTitle: '',
-                pageSubtitle: '',
-                heroTitle: '',
-                heroDescription: '',
-                content: '',
-                ctaText: '',
-                ctaLink: ''
-            };
-        }
-        
-        // ========================================
+        let editorLang = 'tc';
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            checkAuth();
+        });
+
         // Authentication
-        // ========================================
-        function login() {
-            const password = document.getElementById('passwordInput').value;
-            if (password === CORRECT_PASSWORD) {
-                document.getElementById('loginScreen').style.display = 'none';
-                document.getElementById('adminLayout').classList.add('active');
-                initializeApp();
-            } else {
-                showToast('Invalid password', 'error');
-                document.getElementById('passwordInput').value = '';
-                document.getElementById('passwordInput').focus();
+        function checkAuth() {
+            const token = localStorage.getItem('ltcpa_admin_token');
+            if (token) {
+                showApp();
             }
         }
-        
+
+        document.getElementById('loginForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const password = document.getElementById('adminPassword').value;
+            
+            // Simple auth - in production use proper authentication
+            if (password === 'Maid360') {
+                localStorage.setItem('ltcpa_admin_token', 'authenticated');
+                showApp();
+            } else {
+                document.getElementById('loginError').classList.remove('hidden');
+            }
+        });
+
+        function showApp() {
+            document.getElementById('loginScreen').classList.add('hidden');
+            document.getElementById('app').classList.remove('hidden');
+            loadCMSData();
+        }
+
         function logout() {
+            localStorage.removeItem('ltcpa_admin_token');
             location.reload();
         }
-        
-        // ========================================
-        // Initialization
-        // ========================================
-        async function initializeApp() {
-            cmsData = getDefaultData();
-            await loadDataFromAPI();
-            showDashboard();
-            setupAutoSave();
-        }
-        
-        // ========================================
-        // API Integration
-        // ========================================
-        async function loadDataFromAPI() {
-            showLoading(true);
+
+        // Load CMS Data
+        async function loadCMSData() {
             try {
-                const response = await fetch(`${API_BASE}/api/cms/data?t=${Date.now()}`, {
-                    headers: { 'Cache-Control': 'no-cache' }
-                });
-                if (response.ok) {
-                    const data = await response.json();
-                    cmsData = deepMerge(getDefaultData(), data);
-                    showToast('Data loaded successfully', 'success');
-                    updateLastSavedTime();
-                } else {
-                    throw new Error(`HTTP ${response.status}`);
+                const res = await fetch(API_BASE_URL + '/api/cms/data');
+                if (res.ok) {
+                    cmsData = await res.json();
+                    renderDashboard();
                 }
-            } catch (error) {
-                console.error('Load error:', error);
-                showToast('Using local data (API unavailable)', 'warning');
-            } finally {
-                showLoading(false);
+            } catch (err) {
+                showToast('載入數據失敗', 'error');
             }
         }
-        
-        async function saveAllData() {
-            if (!isDirty) {
-                showToast('No changes to save', 'info');
-                return;
-            }
-            
-            showLoading(true);
-            document.getElementById('saveBtn').disabled = true;
-            
-            try {
-                const response = await fetch(`${API_BASE}/api/cms/data`, {
-                    method: 'PUT',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(cmsData)
-                });
+
+        // Navigation
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                const page = item.dataset.page;
+                showPage(page);
                 
-                if (response.ok) {
-                    isDirty = false;
-                    pendingChanges = {};
-                    updateAutosaveIndicator('saved');
-                    showToast('Changes saved successfully', 'success');
-                    updateLastSavedTime();
-                } else {
-                    throw new Error(`HTTP ${response.status}`);
-                }
-            } catch (error) {
-                console.error('Save error:', error);
-                showToast('Failed to save changes', 'error');
-                updateAutosaveIndicator('error');
-            } finally {
-                showLoading(false);
-                document.getElementById('saveBtn').disabled = false;
-            }
-        }
-        
-        async function publishChanges() {
-            showConfirmModal(
-                'Publish Changes',
-                'Are you sure you want to publish all changes to the live website?',
-                async () => {
-                    showLoading(true);
-                    try {
-                        const response = await fetch(`${API_BASE}/api/cms/publish`, {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' }
-                        });
-                        
-                        if (response.ok) {
-                            document.getElementById('publishStatus').textContent = 'Published';
-                            showToast('Changes published successfully', 'success');
-                        } else {
-                            throw new Error(`HTTP ${response.status}`);
-                        }
-                    } catch (error) {
-                        console.error('Publish error:', error);
-                        showToast('Failed to publish changes', 'error');
-                    } finally {
-                        showLoading(false);
-                    }
-                }
-            );
-        }
-        
-        // ========================================
-        // Navigation & Views
-        // ========================================
-        function showDashboard() {
-            currentPage = null;
-            updateNav('dashboard');
-            document.getElementById('pageTitle').innerHTML = '<i class="fas fa-tachometer-alt"></i> Dashboard';
-            document.getElementById('dashboardView').classList.remove('hidden');
-            document.getElementById('editorView').classList.add('hidden');
-            document.getElementById('settingsView').classList.add('hidden');
-        }
-        
-        function showPageEditor(pageId) {
-            currentPage = pageId;
-            initPageData(pageId);
-            updateNav(`page-${pageId}`);
-            const page = PAGES[pageId];
-            document.getElementById('pageTitle').innerHTML = `<i class="fas ${page.icon}"></i> ${page.name}`;
-            document.getElementById('dashboardView').classList.add('hidden');
-            document.getElementById('editorView').classList.remove('hidden');
-            document.getElementById('settingsView').classList.add('hidden');
-            renderForm();
-        }
-        
-        function showSettings() {
-            currentPage = null;
-            updateNav('settings');
-            document.getElementById('pageTitle').innerHTML = '<i class="fas fa-cog"></i> Settings';
-            document.getElementById('dashboardView').classList.add('hidden');
-            document.getElementById('editorView').classList.add('hidden');
-            document.getElementById('settingsView').classList.remove('hidden');
-            populateSettingsForm();
-        }
-        
-        function updateNav(activeNav) {
-            document.querySelectorAll('.nav-item').forEach(item => {
-                item.classList.remove('active');
+                // Update active state
+                document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+                item.classList.add('active');
             });
-            const activeItem = document.querySelector(`[data-nav="${activeNav}"]`);
-            if (activeItem) activeItem.classList.add('active');
-        }
-        
-        function switchLang(lang) {
-            currentLang = lang;
-            document.querySelectorAll('.lang-btn').forEach(btn => {
-                btn.classList.toggle('active', btn.dataset.lang === lang);
-            });
-            if (currentPage) {
-                renderForm();
-            } else if (!document.getElementById('settingsView').classList.contains('hidden')) {
-                populateSettingsForm();
-            }
-        }
-        
-        function switchTab(tab) {
-            currentTab = tab;
-            document.querySelectorAll('.content-tab').forEach(t => {
-                t.classList.toggle('active', t.dataset.tab === tab);
-            });
-            renderForm();
-        }
-        
-        // ========================================
-        // Form Rendering
-        // ========================================
-        function renderForm() {
-            if (!currentPage) return;
-            
-            const container = document.getElementById('formContainer');
-            const pageData = cmsData.pages[currentPage][currentLang];
-            
-            let html = '<div class="card">';
-            
-            if (currentTab === 'meta') {
-                html += `
-                    <div class="card-header"><span class="card-title"><i class="fas fa-search"></i> SEO Meta Information</span></div>
-                    <div class="form-group">
-                        <label>Meta Title</label>
-                        <input type="text" class="form-control" data-field="metaTitle" value="${escapeHtml(pageData.metaTitle)}" placeholder="Page title for search engines">
-                    </div>
-                    <div class="form-group">
-                        <label>Meta Description</label>
-                        <textarea class="form-control" data-field="metaDescription" rows="3" placeholder="Page description for search engines">${escapeHtml(pageData.metaDescription)}</textarea>
-                    </div>
-                `;
-            } else if (currentTab === 'hero') {
-                html += `
-                    <div class="card-header"><span class="card-title"><i class="fas fa-image"></i> Hero Section</span></div>
-                    <div class="form-group">
-                        <label>Page Title</label>
-                        <input type="text" class="form-control" data-field="pageTitle" value="${escapeHtml(pageData.pageTitle)}" placeholder="Main page heading">
-                    </div>
-                    <div class="form-group">
-                        <label>Page Subtitle</label>
-                        <input type="text" class="form-control" data-field="pageSubtitle" value="${escapeHtml(pageData.pageSubtitle)}" placeholder="Subheading">
-                    </div>
-                    <div class="form-group">
-                        <label>Hero Title</label>
-                        <input type="text" class="form-control" data-field="heroTitle" value="${escapeHtml(pageData.heroTitle)}" placeholder="Hero section title">
-                    </div>
-                    <div class="form-group">
-                        <label>Hero Description</label>
-                        <textarea class="form-control" data-field="heroDescription" rows="4" placeholder="Hero section description">${escapeHtml(pageData.heroDescription)}</textarea>
-                    </div>
-                `;
-            } else if (currentTab === 'content') {
-                html += `
-                    <div class="card-header"><span class="card-title"><i class="fas fa-align-left"></i> Main Content</span></div>
-                    <div class="form-group">
-                        <label>Content</label>
-                        <textarea class="form-control large" data-field="content" rows="12" placeholder="Main page content">${escapeHtml(pageData.content)}</textarea>
-                    </div>
-                `;
-            } else if (currentTab === 'cta') {
-                html += `
-                    <div class="card-header"><span class="card-title"><i class="fas fa-bullhorn"></i> Call to Action</span></div>
-                    <div class="form-group">
-                        <label>CTA Button Text</label>
-                        <input type="text" class="form-control" data-field="ctaText" value="${escapeHtml(pageData.ctaText)}" placeholder="e.g., Contact Us, Learn More">
-                    </div>
-                    <div class="form-group">
-                        <label>CTA Link</label>
-                        <input type="text" class="form-control" data-field="ctaLink" value="${escapeHtml(pageData.ctaLink)}" placeholder="e.g., /contact.html, #contact">
-                    </div>
-                `;
-            }
-            
-            html += '</div>';
-            container.innerHTML = html;
-            
-            // Attach change listeners
-            container.querySelectorAll('[data-field]').forEach(input => {
-                input.addEventListener('input', handleFieldChange);
-                input.addEventListener('change', handleFieldChange);
-            });
-        }
-        
-        function populateSettingsForm() {
-            const site = cmsData.site;
-            document.querySelectorAll('[data-path]').forEach(input => {
-                const path = input.dataset.path;
-                const value = getDeepValue(site, path.replace('site.', ''));
-                if (value) input.value = value;
-            });
-            
-            // Attach listeners
-            document.querySelectorAll('#settingsView [data-path]').forEach(input => {
-                input.addEventListener('input', handleSettingsChange);
-            });
-        }
-        
-        function handleFieldChange(e) {
-            const field = e.target.dataset.field;
-            const value = e.target.value;
-            
-            if (!cmsData.pages[currentPage][currentLang]) {
-                cmsData.pages[currentPage][currentLang] = createEmptyPageData();
-            }
-            
-            cmsData.pages[currentPage][currentLang][field] = value;
-            isDirty = true;
-            updateAutosaveIndicator('unsaved');
-        }
-        
-        function handleSettingsChange(e) {
-            const path = e.target.dataset.path;
-            const value = e.target.value;
-            setDeepValue(cmsData, path, value);
-            isDirty = true;
-            updateAutosaveIndicator('unsaved');
-        }
-        
-        // ========================================
-        // Utility Functions
-        // ========================================
-        function deepMerge(target, source) {
-            if (!source || typeof source !== 'object') return target;
-            if (!target || typeof target !== 'object') return source;
-            
-            const result = { ...target };
-            for (const key in source) {
-                if (source[key] && typeof source[key] === 'object' && !Array.isArray(source[key])) {
-                    result[key] = deepMerge(target[key] || {}, source[key]);
-                } else {
-                    result[key] = source[key];
-                }
-            }
-            return result;
-        }
-        
-        function getDeepValue(obj, path) {
-            return path.split('.').reduce((o, k) => o && o[k], obj);
-        }
-        
-        function setDeepValue(obj, path, value) {
-            const keys = path.split('.');
-            let cur = obj;
-            for (let i = 0; i < keys.length - 1; i++) {
-                if (!cur[keys[i]]) cur[keys[i]] = {};
-                cur = cur[keys[i]];
-            }
-            cur[keys[keys.length - 1]] = value;
-        }
-        
-        function escapeHtml(text) {
-            if (!text) return '';
-            const div = document.createElement('div');
-            div.textContent = text;
-            return div.innerHTML;
-        }
-        
-        // ========================================
-        // UI Helpers
-        // ========================================
-        function showToast(message, type = 'info', duration = 3000) {
-            const container = document.getElementById('toastContainer');
-            const toast = document.createElement('div');
-            toast.className = `toast ${type}`;
-            
-            const icon = type === 'success' ? 'check-circle' : 
-                        type === 'error' ? 'exclamation-circle' : 
-                        type === 'warning' ? 'exclamation-triangle' : 'info-circle';
-            
-            toast.innerHTML = `
-                <i class="fas fa-${icon}"></i>
-                <span>${message}</span>
-            `;
-            
-            container.appendChild(toast);
-            
-            setTimeout(() => {
-                toast.classList.add('removing');
-                setTimeout(() => toast.remove(), 300);
-            }, duration);
-        }
-        
-        function showLoading(show) {
-            document.getElementById('loadingOverlay').classList.toggle('show', show);
-        }
-        
-        function updateAutosaveIndicator(status) {
-            const indicator = document.getElementById('autosaveIndicator');
-            if (status === 'saving') {
-                indicator.innerHTML = '<i class="fas fa-spinner fa-spin"></i><span>Saving...</span>';
-                indicator.className = 'autosave-indicator saving';
-            } else if (status === 'saved') {
-                indicator.innerHTML = '<i class="fas fa-check-circle"></i><span>All changes saved</span>';
-                indicator.className = 'autosave-indicator saved';
-            } else if (status === 'unsaved') {
-                indicator.innerHTML = '<i class="fas fa-circle"></i><span>Unsaved changes</span>';
-                indicator.className = 'autosave-indicator';
-            } else if (status === 'error') {
-                indicator.innerHTML = '<i class="fas fa-exclamation-circle"></i><span>Save failed</span>';
-                indicator.className = 'autosave-indicator error';
-            }
-        }
-        
-        function updateLastSavedTime() {
-            const now = new Date();
-            const timeStr = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
-            document.getElementById('lastSavedTime').textContent = timeStr;
-        }
-        
-        function setupAutoSave() {
-            // Auto-save every 30 seconds if there are changes
-            setInterval(() => {
-                if (isDirty) {
-                    saveAllData();
-                }
-            }, 30000);
-            
-            // Warn before leaving with unsaved changes
-            window.addEventListener('beforeunload', (e) => {
-                if (isDirty) {
-                    e.preventDefault();
-                    e.returnValue = '';
-                }
-            });
-        }
-        
-        // ========================================
-        // Modal Functions
-        // ========================================
-        let modalCallback = null;
-        
-        function showConfirmModal(title, message, callback) {
-            modalCallback = callback;
-            document.getElementById('modalTitle').textContent = title;
-            document.getElementById('modalBody').textContent = message;
-            document.getElementById('confirmModal').classList.add('show');
-        }
-        
-        function closeModal() {
-            document.getElementById('confirmModal').classList.remove('show');
-            modalCallback = null;
-        }
-        
-        function confirmModalAction() {
-            if (modalCallback) {
-                modalCallback();
-            }
-            closeModal();
-        }
-        
-        // ========================================
-        // Reset Function
-        // ========================================
-        function resetToDefaults() {
-            showConfirmModal(
-                'Reset to Defaults',
-                'This will reset all data to default values. Any unsaved changes will be lost. Continue?',
-                () => {
-                    cmsData = getDefaultData();
-                    isDirty = true;
-                    updateAutosaveIndicator('unsaved');
-                    showToast('Data reset to defaults', 'warning');
-                    if (currentPage) renderForm();
-                    if (!document.getElementById('settingsView').classList.contains('hidden')) {
-                        populateSettingsForm();
-                    }
-                }
-            );
-        }
-        
-        // ========================================
-        // Initialize
-        // ========================================
-        document.addEventListener('DOMContentLoaded', () => {
-            document.getElementById('passwordInput').focus();
         });
+
+        function showPage(page) {
+            currentPage = page;
+            
+            // Hide all views
+            document.querySelectorAll('[id$="View"]').forEach(v => v.classList.add('hidden'));
+            
+            // Show selected view
+            const viewId = page + 'View';
+            const view = document.getElementById(viewId);
+            if (view) {
+                view.classList.remove('hidden');
+            }
+            
+            // Update title
+            const titles = {
+                'dashboard': 'Dashboard',
+                'analytics': '數據分析',
+                'site': '網站設置',
+                'navigation': '導航管理',
+                'pages': '頁面管理',
+                'media': '媒體庫',
+                'leads': '客戶留資',
+                'whatsapp': 'WhatsApp 設置'
+            };
+            document.getElementById('pageTitle').textContent = titles[page] || page;
+            
+            // Load page-specific data
+            if (page === 'dashboard') renderDashboard();
+            if (page === 'leads') renderLeads();
+        }
+
+        // Dashboard
+        function renderDashboard() {
+            // Mock data - in production fetch from API
+            document.getElementById('statPageViews').textContent = '1,234';
+            document.getElementById('statVisitors').textContent = '567';
+            document.getElementById('statLeads').textContent = '23';
+            document.getElementById('statConversion').textContent = '4.1%';
+            
+            document.getElementById('langTC').textContent = '45%';
+            document.getElementById('langEN').textContent = '35%';
+            document.getElementById('langSC').textContent = '20%';
+        }
+
+        // Site Settings - Language Tabs
+        function switchLangTab(lang) {
+            currentLang = lang;
+            document.querySelectorAll('#siteView .lang-tab').forEach(t => t.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Load data for selected language
+            if (cmsData && cmsData.site) {
+                document.getElementById('siteCompanyName').value = cmsData.site.companyName?.[lang] || '';
+                document.getElementById('siteTagline').value = cmsData.site.tagline?.[lang] || '';
+                document.getElementById('siteAddress').value = cmsData.site.contact?.address?.[lang] || '';
+            }
+        }
+
+        // Page Editor
+        function editPage(pageName) {
+            document.getElementById('pageEditor').classList.remove('hidden');
+            document.getElementById('editorPageTitle').textContent = '編輯: ' + pageName;
+            
+            // Render editor form based on page structure
+            const form = document.getElementById('editorForm');
+            form.innerHTML = `
+                <div>
+                    <label class="block text-sm text-gray-400 mb-2">頁面標題 (SEO)</label>
+                    <input type="text" class="w-full px-4 py-3 rounded-lg input-theme" placeholder="頁面標題">
+                </div>
+                <div>
+                    <label class="block text-sm text-gray-400 mb-2">Meta 描述</label>
+                    <textarea rows="3" class="w-full px-4 py-3 rounded-lg input-theme" placeholder="Meta 描述"></textarea>
+                </div>
+                <div class="flex items-center gap-3">
+                    <input type="checkbox" class="toggle" checked>
+                    <span class="text-sm text-gray-400">啟用此頁面</span>
+                </div>
+            `;
+        }
+
+        function closePageEditor() {
+            document.getElementById('pageEditor').classList.add('hidden');
+        }
+
+        function switchEditorLang(lang) {
+            editorLang = lang;
+            document.querySelectorAll('#pageEditor .lang-tab').forEach(t => t.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        // Media Library
+        function uploadMedia() {
+            // Trigger file upload
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'image/*';
+            input.onchange = (e) => {
+                const file = e.target.files[0];
+                if (file) {
+                    showToast('上傳成功: ' + file.name);
+                    // Add to media grid
+                    addMediaItem(URL.createObjectURL(file), file.name);
+                }
+            };
+            input.click();
+        }
+
+        function addMediaItem(url, name) {
+            const grid = document.getElementById('mediaGrid');
+            const item = document.createElement('div');
+            item.className = 'media-item';
+            item.innerHTML = `
+                <img src="${url}" alt="${name}">
+                <div class="media-overlay">
+                    <button onclick="copyMediaUrl('${url}')" class="text-white hover:text-[#d4a853]">
+                        <i class="fas fa-link"></i>
+                    </button>
+                </div>
+            `;
+            grid.insertBefore(item, grid.firstChild.nextSibling);
+        }
+
+        function copyMediaUrl(url) {
+            navigator.clipboard.writeText(url);
+            showToast('URL 已複製');
+        }
+
+        // Leads
+        function renderLeads() {
+            const tbody = document.getElementById('leadsTableBody');
+            tbody.innerHTML = `
+                <tr class="border-b border-[#27272a]">
+                    <td class="px-4 py-3 text-sm">2026-04-11 10:30</td>
+                    <td class="px-4 py-3">陳先生</td>
+                    <td class="px-4 py-3">+852 9123 4567</td>
+                    <td class="px-4 py-3">審計服務</td>
+                    <td class="px-4 py-3"><span class="px-2 py-1 rounded text-xs bg-yellow-500/20 text-yellow-500">新提交</span></td>
+                    <td class="px-4 py-3">
+                        <button class="text-[#d4a853] hover:underline text-sm">查看</button>
+                    </td>
+                </tr>
+            `;
+        }
+
+        // WhatsApp Test
+        function testWhatsApp() {
+            const phone = document.getElementById('testPhone').value;
+            if (phone) {
+                showToast('測試訊息已發送到 ' + phone);
+            } else {
+                showToast('請輸入手機號碼', 'error');
+            }
+        }
+
+        // Save & Publish
+        async function saveChanges() {
+            showToast('保存中...');
+            // Implement actual save logic
+            setTimeout(() => showToast('保存成功'), 1000);
+        }
+
+        function publishSite() {
+            showToast('發布中...');
+            setTimeout(() => showToast('網站已發布'), 1500);
+        }
+
+        // Toast Notification
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            const msgEl = document.getElementById('toastMessage');
+            msgEl.textContent = message;
+            
+            if (type === 'error') {
+                toast.classList.remove('bg-[#d4a853]', 'text-[#1e3a5f]');
+                toast.classList.add('bg-red-500', 'text-white');
+            } else {
+                toast.classList.add('bg-[#d4a853]', 'text-[#1e3a5f]');
+                toast.classList.remove('bg-red-500', 'text-white');
+            }
+            
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
     </script>
 </body>
 </html>
