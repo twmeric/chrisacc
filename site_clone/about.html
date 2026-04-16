@@ -1,0 +1,1512 @@
+<!DOCTYPE html>
+<html data-nav-breakpoint="768" lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>éæ¼æå | æ«ªéæè¨å¸«äºåææéå¬å¸</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/nav-submenu.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #1a3a5c;
+            --secondary-color: #2c5282;
+            --accent-color: #3182ce;
+            --gold-color: #c9a227;
+            --light-bg: #f7fafc;
+            --white: #ffffff;
+            --text-dark: #2d3748;
+            --text-light: #718096;
+        }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        /* ===== Header ===== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: var(--white);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .header-main {
+            padding: 12px 0;
+        }
+
+        .nav-container {
+            margin: 0;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            flex-shrink: 0;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .header-logo {
+            flex-shrink: 0;
+        }
+
+        .header-logo .logo-img {
+            width: auto;
+            height: 40px;
+            max-width: 120px;
+            display: block;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-shrink: 0;
+        }
+
+        .header-lang {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--text-dark);
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .header-lang i.fa-globe {
+            color: var(--primary-color);
+            font-size: 16px;
+        }
+
+        .header-lang .lang-current {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .header-lang .lang-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            margin-top: 0;
+            padding: 10px 0 8px 0;
+            background: var(--white);
+            min-width: 120px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+            border-radius: 6px;
+            list-style: none;
+            display: none;
+            z-index: 100;
+        }
+
+        .header-lang:hover .lang-dropdown {
+            display: block;
+        }
+
+        .header-lang .lang-dropdown a {
+            display: block;
+            padding: 8px 16px;
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .header-lang .lang-dropdown a:hover {
+            background: var(--light-bg);
+            color: var(--primary-color);
+        }
+
+        .header-search {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--text-dark);
+            font-size: 14px;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .header-search:hover {
+            color: var(--primary-color);
+        }
+
+        .header-search i {
+            color: var(--primary-color);
+            font-size: 15px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .logo-text h1 {
+            font-size: 22px;
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        .logo-text span {
+            font-size: 12px;
+            color: var(--text-light);
+            letter-spacing: 2px;
+        }
+        .logo-img {
+            width: 100%;
+            height: auto;
+        max-Width: 100px;}
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 16px;
+            position: relative;
+            padding: 10px 0;
+            transition: color 0.3s;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold-color);
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover,
+        nav ul li a.active {
+            color: var(--primary-color);
+        }
+
+        nav ul li a:hover::after,
+        nav ul li a.active::after {
+            width: 100%;
+        }
+        nav ul li.has-dropdown { position: relative; }
+        nav ul li.has-dropdown .submenu { display: none; position: absolute; top: 100%; left: 0; background: var(--white); min-width: 200px; box-shadow: 0 8px 25px rgba(0,0,0,0.12); list-style: none; padding: 10px 0; margin: 0; border-radius: 6px; z-index: 100; }
+        nav ul li.has-dropdown:hover .submenu { display: block; }
+        nav ul li.has-dropdown .submenu li { margin: 0; }
+        nav ul li.has-dropdown .submenu a { display: block; padding: 10px 20px; font-size: 14px; color: var(--text-dark); }
+        nav ul li.has-dropdown .submenu a::after { display: none; }
+        nav ul li.has-dropdown .submenu a:hover { background: var(--light-bg); color: var(--primary-color); }
+        /* ===== Hamburger Menu ===== */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            width: 30px;
+            height: 25px;
+            justify-content: space-between;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background: var(--primary-color);
+            border-radius: 3px;
+            transition: all 0.4s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+            transform-origin: center;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: translateY(11px) rotate(45deg);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+            transform: scaleX(0);
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: translateY(-11px) rotate(-45deg);
+        }
+
+        /* ===== Page Banner ===== */
+        .page-banner {
+            margin-top: 72px;
+            height: 350px;
+            background: linear-gradient(135deg, rgba(26, 58, 92, 0.9), rgba(49, 130, 206, 0.85)), 
+                        url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&q=80') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            position: relative;
+        }
+
+        .page-banner h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease forwards 0.2s;
+        }
+
+        .page-banner .breadcrumb {
+            font-size: 16px;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards 0.4s;
+        }
+
+        .page-banner .breadcrumb a {
+            color: var(--gold-color);
+            text-decoration: none;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===== About Section (from homepage) ===== */
+        .about {
+            padding: 100px 20px;
+            background: var(--white);
+        }
+
+        .about-container {
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            width: 100%;
+            height: 100%;
+            border: 4px solid var(--gold-color);
+            border-radius: 10px;
+            z-index: -1;
+        }
+
+        .about-content h2 {
+            font-size: 36px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .about-content p {
+            color: var(--text-light);
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        .about-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .about-feature {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .about-feature i {
+            color: var(--gold-color);
+            font-size: 24px;
+        }
+
+        .about-feature span {
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        /* ===== About Intro ===== */
+        .about-intro {
+            padding: 100px 20px;
+            background: var(--white);
+        }
+
+        .about-intro-container {
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .about-intro-image {
+            position: relative;
+        }
+
+        .about-intro-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+        }
+
+        .about-intro-image::before {
+            content: '';
+            position: absolute;
+            top: -25px;
+            left: -25px;
+            width: 100%;
+            height: 100%;
+            border: 5px solid var(--gold-color);
+            border-radius: 10px;
+            z-index: -1;
+        }
+
+        .experience-badge {
+            position: absolute;
+            bottom: -30px;
+            right: -30px;
+            width: 150px;
+            height: 150px;
+            background: var(--gold-color);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            box-shadow: 0 10px 30px rgba(201, 162, 39, 0.4);
+        }
+
+        .experience-badge .number {
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .experience-badge .text {
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .about-intro-content h2 {
+            font-size: 38px;
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            line-height: 1.3;
+        }
+
+        .about-intro-content h2 span {
+            color: var(--gold-color);
+        }
+
+        .about-intro-content p {
+            color: var(--text-light);
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        .about-intro-content .highlight {
+            background: var(--light-bg);
+            padding: 25px;
+            border-left: 4px solid var(--gold-color);
+            margin: 30px 0;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .about-intro-content .highlight p {
+            margin: 0;
+            font-style: italic;
+            color: var(--text-dark);
+        }
+
+        /* ===== Mission & Vision ===== */
+        .titlecontainer {
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        .mission-vision {
+            padding: 100px 20px;
+            background: var(--light-bg);
+        }
+
+        .mission-vision-container {
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .mv-card {
+            background: var(--white);
+            padding: 50px 40px;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mv-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-color), var(--gold-color));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .mv-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.1);
+        }
+
+        .mv-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .mv-icon {
+            width: 90px;
+            height: 90px;
+            margin: 0 auto 30px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 36px;
+            transition: all 0.4s ease;
+        }
+
+        .mv-card:hover .mv-icon {
+            transform: scale(1.1) rotate(10deg);
+            background: linear-gradient(135deg, var(--gold-color), #d4af37);
+        }
+
+        .mv-card h3 {
+            font-size: 24px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .mv-card p {
+            color: var(--text-light);
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+        .mv-card .mv-more {
+            display: inline-block;
+            margin-top: 20px;
+            color: var(--gold-color);
+            font-weight: 600;
+            font-size: 15px;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .mv-card .mv-more:hover {
+            color: var(--primary-color);
+        }
+
+        /* ===== Core Values ===== */
+        .core-values {
+            padding: 100px 20px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 40px;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--gold-color);
+        }
+
+        .section-header p {
+            font-size: 18px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 20px auto 0;
+        }
+
+        .values-grid {
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+
+        .value-item {
+            text-align: center;
+            padding: 40px 25px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            transition: all 0.4s ease;
+        }
+
+        .value-item:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-5px);
+        }
+
+        .value-item i {
+            font-size: 48px;
+            color: var(--gold-color);
+            margin-bottom: 20px;
+        }
+
+        .value-item h4 {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .value-item p {
+            font-size: 14px;
+            opacity: 0.85;
+            line-height: 1.7;
+        }
+
+        /* ===== Team Section ===== */
+        .team {
+            padding: 100px 20px;
+            background: var(--white);
+        }
+
+        .team .section-header h2 {
+            color: var(--primary-color);
+        }
+
+        .team .section-header p {
+            color: var(--text-light);
+        }
+
+        .team-grid {
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+
+        .team-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.4s ease;
+        }
+
+        .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .team-image {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .team-image img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .team-card:hover .team-image img {
+            transform: scale(1.1);
+        }
+
+        .team-social {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 15px;
+            background: linear-gradient(transparent, rgba(26, 58, 92, 0.9));
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.4s ease;
+        }
+
+        .team-card:hover .team-social {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .team-social a {
+            width: 40px;
+            height: 40px;
+            background: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            transition: all 0.3s;
+        }
+
+        .team-social a:hover {
+            background: var(--gold-color);
+            color: var(--white);
+        }
+
+        .team-info {
+            padding: 25px;
+            text-align: center;
+        }
+
+        .team-info h4 {
+            font-size: 20px;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .team-info span {
+            color: var(--gold-color);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        /* ===== Timeline ===== */
+        .timeline {
+            padding: 100px 20px;
+            background: var(--light-bg);
+        }
+
+        .timeline .section-header h2 {
+            color: var(--primary-color);
+        }
+
+        .timeline .section-header p {
+            color: var(--text-light);
+        }
+
+        .timeline-container {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--gold-color);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 50%;
+            position: relative;
+            margin-bottom: 50px;
+        }
+
+        .timeline-item:nth-child(even) {
+            justify-content: flex-start;
+            padding-right: 0;
+            padding-left: 50%;
+        }
+
+        .timeline-content {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            width: 90%;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 30px;
+            width: 20px;
+            height: 20px;
+            background: var(--gold-color);
+            border: 4px solid var(--white);
+            border-radius: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+
+        .timeline-content .year {
+            display: inline-block;
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 15px;    display: none;
+        }
+
+        .timeline-content h4 {
+            font-size: 20px;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .timeline-content p {
+            color: var(--text-light);
+            font-size: 15px;
+        }
+
+        /* ===== CTA Section ===== */
+        .cta-section {
+            padding: 100px 20px;
+            background: var(--white);
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 36px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            color: var(--text-light);
+            font-size: 18px;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: var(--gold-color);
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: var(--primary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        /* ===== Footer ===== */
+        footer {
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 60px 20px 20px;
+        }
+
+        .footer-container {
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .footer-about h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: var(--gold-color);
+        }
+
+        .footer-about p {
+            opacity: 0.8;
+            line-height: 1.8;
+            font-size: 14px;
+        }
+
+        .footer-links h4 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: var(--gold-color);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links ul li a {
+            color: var(--white);
+            text-decoration: none;
+            opacity: 0.8;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+
+        .footer-links ul li a:hover {
+            opacity: 1;
+            color: var(--gold-color);
+            padding-left: 5px;
+        }
+
+        .footer-contact p {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            opacity: 0.8;
+            font-size: 14px;
+        }
+
+        .footer-contact i {
+            color: var(--gold-color);
+            width: 20px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            opacity: 0.6;
+            font-size: 14px;
+        }
+
+        /* ===== Mobile Responsive ===== */
+        @media (max-width: 992px) {
+            .about-intro-container {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+
+            .mission-vision-container {
+                grid-template-columns: 1fr;
+            }
+
+            .values-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            nav ul {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                max-width: 350px;
+                height: 100vh;
+                background: var(--white);
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: stretch;
+                gap: 0;
+                padding: 80px 20px 30px;
+                overflow-y: auto;
+                transition: right 0.5s cubic-bezier(0.68, -0.1, 0.32, 1.1);
+                box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+            }
+
+            nav ul.active {
+                right: 0;
+            }
+
+            .mobile-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.5);
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s;
+                z-index: 999;
+            }
+
+            .mobile-overlay.active {
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .page-banner {
+                height: 280px;
+                margin-top: 70px;
+            }
+
+            .page-banner h1 {
+                font-size: 32px;
+            }
+
+            .experience-badge {
+                width: 120px;
+                height: 120px;
+                right: 10px;
+                bottom: -20px;
+            }
+
+            .experience-badge .number {
+                font-size: 36px;
+            }
+
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline-container::before {
+                left: 20px;
+            }
+
+            .timeline-item,
+            .timeline-item:nth-child(even) {
+                padding-left: 60px;
+                padding-right: 0;
+                justify-content: flex-start;
+            }
+
+            .timeline-item::after {
+                left: 20px;
+                transform: translateX(-50%);
+            }
+
+            .timeline-content {
+                width: 100%;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-contact p {
+                justify-content: center;
+            }
+
+            .header-actions {
+                gap: 12px;
+            }
+            .header-lang .lang-current span { display: none; }
+        }
+
+        /* ===== Scroll Animation ===== */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Mobile Overlay -->
+    <div class="mobile-overlay"></div>
+
+    <!-- Header -->
+    <header>
+        <div class="header-main">
+            <div class="nav-container">
+                <div class="header-left">
+                    <div class="header-logo">
+                        <a href="index.html"><img src="img/logo-tcsc.jpg" alt="Logo" class="logo-img"></a>
+                    </div>
+                    <nav>
+                    <ul id="navMenu">
+                        <li><a href="index.html">é¦é </a></li>
+                        <li class="has-dropdown">
+                            <a href="about.html" class="active">éæ¼æå</a>
+                            <button type="button" class="nav-submenu-toggle" aria-expanded="false" aria-label="å±éå­é¸å®"><span class="nav-toggle-icon">+</span></button>
+                            <ul class="submenu">
+                                <li><a href="purpose.html">æåçä½¿å½</a></li>
+                                <li><a href="value.html">æåçé¡æ¯</a></li>
+                                <li><a href="commitment.html">æåçæ¿è«¾</a></li>
+                            </ul>
+                        </li>
+                        <li class="has-dropdown">
+                            <a href="services.html">æåç¯å</a>
+                            <button type="button" class="nav-submenu-toggle" aria-expanded="false" aria-label="å±éå­é¸å®"><span class="nav-toggle-icon">+</span></button>
+                            <ul class="submenu">
+                                <li><a href="audit.html">å¯©è¨èéè­</a></li>
+                                <li><a href="tax.html">ç¨åè«®è©¢</a></li>
+                                <li><a href="risk.html">é¢¨éªèç£ç®¡</a></li>
+                                <li><a href="forensic.html">æ³è­æå</a></li>
+                                <li><a href="consulting.html">ä¼æ¥­è«®è©¢</a></li>
+                                <li><a href="deals.html">ä½µè³¼äº¤æ</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="contact.html">è¯çµ¡æå</a></li>
+                    </ul>
+                    </nav>
+                </div>
+                <div class="header-right">
+                    <div class="header-actions">
+                    <div class="header-lang">
+                        <span class="lang-current">
+                            <i class="fa-solid fa-globe"></i>
+                            <span>ç¹é«</span>
+                            <i class="fa-solid fa-chevron-up" style="font-size:10px;"></i>
+                        </span>
+                        <ul class="lang-dropdown">
+                            <li><a href="about.html">ç¹é«</a></li>
+                            <li><a href="about-sc.html">ç®ä½</a></li>
+                            <li><a href="about-en.html">EN</a></li>
+                        </ul>
+                    </div>
+                    <a href="#" class="header-search" id="headerSearch" aria-label="Search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <span>Search</span>
+                    </a>
+                    </div>
+                    <div class="hamburger" id="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Banner -->
+    <section class="page-banner">
+        <div>
+            <h1>éæ¼æå</h1>
+            <div class="breadcrumb">
+                <a href="index.html">é¦é </a> / éæ¼æå
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section (from homepage) -->
+    <section class="about">
+        <div class="about-container">
+            <div class="about-image fade-in">
+                <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600&q=80" alt="å°æ¥­åé">
+            </div>
+            <div class="about-content fade-in">
+                <h2>çºä½é¸ææåï¼</h2>
+                <p>æ«ªéæè¨å¸«äºåææéå¬å¸ææç¶é©è±å¯çå°æ¥­åéï¼è´åæ¼çºå®¢æ¶æä¾åªè³ªçæè¨åé¡§åæåãæåä»¥å®¢æ¶çºæ¬ï¼æ·±å¥äºè§£æ¯ä½å®¢æ¶çç¨ç¹éæ±ï¼æä¾åº¦èº«è¨é çè§£æ±ºæ¹æ¡ã</p>
+                <p>æèå¤å¹´çè¡æ¥­ç¶é©ï¼æåå»ºç«äºå»£æ³çå°æ¥­ç¶²çµ¡ï¼è½å¤ çºå®¢æ¶æä¾å¨é¢çåæ¥­æ¯æ´ï¼å©æ¨å¨ç«¶ç­æ¿ççå¸å ´ä¸­è«ç©èåºã</p>
+                <div class="about-features">
+                    <div class="about-feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>å°æ¥­èªè­åé</span>
+                    </div>
+                    <div class="about-feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>è±å¯è¡æ¥­ç¶é©</span>
+                    </div>
+                    <div class="about-feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>åº¦èº«è¨é æ¹æ¡</span>
+                    </div>
+                    <div class="about-feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>åªè³ªå®¢æ¶æå</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Intro -->
+    <section class="about-intro">
+        <div class="about-intro-container">
+            <div class="about-intro-image fade-in">
+                <img src="https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?w=600&q=80" alt="å¬å¸åé">
+                <div class="experience-badge">
+                    <span class="number">20+</span>
+                    <span class="text">å¹´å°æ¥­ç¶é©</span>
+                </div>
+            </div>
+            <div class="about-intro-content fade-in">
+                <h2>æ¨å¼å¾ä¿¡è³´ç<span>è²¡åå¤¥ä¼´</span></h2>
+                <p>æ«ªéæè¨å¸«äºåææéå¬å¸æç«æ¼2005å¹´ï¼æ¯é¦æ¸¯é åçå°æ¥­æè¨äºåæä¹ä¸ãæåè´åæ¼çºåè¡åæ¥­çä¼æ¥­æä¾å¨é¢çæè¨ãå¯©è¨ãç¨åååæ¥­é¡§åæåã</p>
+                <p>æèè±å¯çå°æ¥­ç¶é©åæ·±åçè¡æ¥­ç¥è­ï¼æåçåéè½å¤ æ·±å¥äºè§£æ¯ä½å®¢æ¶çç¨ç¹éæ±ï¼æä¾åº¦èº«è¨é çè§£æ±ºæ¹æ¡ï¼åå©å®¢æ¶å¯¦ç¾è²¡åç®æ¨ï¼æ¨åæ¥­åæçºç¼å±ã</p>
+                <div class="highlight">
+                    <p>ãæåçæåå»ºåºæ¼å®¢æ¶çæåãééå°æ¥­ãèª ä¿¡ãåµæ°çæåçå¿µï¼æåèå®¢æ¶å»ºç«é·æçåä½éä¿ï¼å±åæé·ãã</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission & Vision -->
+    <section class="mission-vision">
+        <div class="mission-vision-container">
+            <div class="mv-card fade-in">
+                <div class="mv-icon">
+                    <i class="fas fa-bullseye"></i>
+                </div>
+                <h3>æåçä½¿å½</h3>
+                <p>è´åæ¼çºå®¢æ¶æä¾æåªè³ªçå°æ¥­æåï¼åå©ä¼æ¥­éæè²¡åç®æ¨ï¼åµé å¯æçºçåæ¥­å¹å¼ï¼æçºå®¢æ¶æä¿¡è³´çè²¡åé¡§åã</p>
+                <a href="purpose.html" class="mv-more">æ´å¤ <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="mv-card fade-in">
+                <div class="mv-icon">
+                    <i class="fas fa-eye"></i>
+                </div>
+                <h3>æåçé¡æ¯</h3>
+                <p>æçºé¦æ¸¯åå¤§ç£åæå·å½±é¿åçå°æ¥­æè¨äºåæï¼ä»¥åè¶çæååè³ªååµæ°çè§£æ±ºæ¹æ¡ï¼å¼é è¡æ¥­ç¼å±ã</p>
+                <a href="value.html" class="mv-more">æ´å¤ <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="mv-card fade-in">
+                <div class="mv-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <h3>æåçæ¿è«¾</h3>
+                <p>å å®å°æ¥­æå®ï¼ä»¥å®¢æ¶å©ççºåï¼æä¾èª å¯¦ãéæãé«æçæåï¼èå®¢æ¶å»ºç«é·æäºä¿¡çåä½éä¿ã</p>
+                <a href="commitment.html" class="mv-more">æ´å¤ <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Values -->
+    <section class="core-values">
+        <div class="section-header fade-in">
+            <h2>æ ¸å¿å¹å¼</h2>
+            <p>æåç§æçæ ¸å¿å¹å¼è§ï¼æå¼èæåçæ¯ä¸é æ±ºç­åè¡å</p>
+        </div>
+        <div class="values-grid">
+            <div class="value-item fade-in">
+                <i class="fas fa-award"></i>
+                <h4>å°æ¥­åè¶</h4>
+                <p>æçºæåå°æ¥­è½åï¼è¿½æ±åè¶æååè³ªï¼çºå®¢æ¶åµé æå¤§å¹å¼</p>
+            </div>
+            <div class="value-item fade-in">
+                <i class="fas fa-handshake"></i>
+                <h4>èª ä¿¡çºæ¬</h4>
+                <p>å å®è·æ¥­éå¾·ï¼ä»¥èª ä¿¡åéæçæåº¦å°å¾æ¯ä¸ä½å®¢æ¶</p>
+            </div>
+            <div class="value-item fade-in">
+                <i class="fas fa-lightbulb"></i>
+                <h4>åµæ°æç¶­</h4>
+                <p>ææ±è®é©èåµæ°ï¼éç¨ææ°æè¡åæ¹æ³æåæåæç</p>
+            </div>
+            <div class="value-item fade-in">
+                <i class="fas fa-users"></i>
+                <h4>åéåä½</h4>
+                <p>ç¼æ®åéåä½ç²¾ç¥ï¼æ´åå°æ¥­è³æºï¼çºå®¢æ¶æä¾å¨æ¹ä½æ¯æ´</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team">
+        <div class="section-header fade-in">
+            <h2>å°æ¥­åé</h2>
+            <p>æåææç¶é©è±å¯çå°æ¥­åéï¼è´åæ¼çºå®¢æ¶æä¾æåªè³ªçæå</p>
+        </div>
+        <div class="team-grid">
+            <div class="team-card fade-in">
+                <div class="team-image">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=80" alt="é³å¤§æ">
+                    <div class="team-social">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+                <div class="team-info">
+                    <h4>é³å¤§æ</h4>
+                    <span>åµè¾¦äººåå·è¡è£äº</span>
+                </div>
+            </div>
+            <div class="team-card fade-in">
+                <div class="team-image">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80" alt="æç¾çª">
+                    <div class="team-social">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+                <div class="team-info">
+                    <h4>æç¾çª</h4>
+                    <span>å¯©è¨é¨ç¸½ç£</span>
+                </div>
+            </div>
+            <div class="team-card fade-in">
+                <div class="team-image">
+                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80" alt="çå¿å¼·">
+                    <div class="team-social">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+                <div class="team-info">
+                    <h4>çå¿å¼·</h4>
+                    <span>ç¨åé¨ç¸½ç£</span>
+                </div>
+            </div>
+            <div class="team-card fade-in">
+                <div class="team-image">
+                    <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&q=80" alt="å¼µææ">
+                    <div class="team-social">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+                <div class="team-info">
+                    <h4>å¼µææ</h4>
+                    <span>é¡§åæåç¸½ç£</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline -->
+    <section class="timeline">
+        <div class="section-header fade-in">
+            <h2>ç¼å±æ­·ç¨</h2>
+            <p>è¦è­æåçæé·èè»è®</p>
+        </div>
+        <div class="timeline-container">
+            <div class="timeline-item fade-in">
+                <div class="timeline-content">
+                    <span class="year">2005</span>
+                    <h4>å¬å¸æç«</h4>
+                    <p>æ«ªéæè¨å¸«äºåææéå¬å¸å¨é¦æ¸¯æ­£å¼æç«ï¼éå§çºæ¬å°ä¸­å°ä¼æ¥­æä¾å°æ¥­æè¨æåã</p>
+                </div>
+            </div>
+            <div class="timeline-item fade-in">
+                <div class="timeline-content">
+                    <span class="year">2010</span>
+                    <h4>æ¥­åæ´å±</h4>
+                    <p>æåæå±ç¨åè«®è©¢ååæ¥­é¡§åæåï¼å®¢æ¶æ¸éçªç ´100å®¶ã</p>
+                </div>
+            </div>
+            <div class="timeline-item fade-in">
+                <div class="timeline-content">
+                    <span class="year">2015</span>
+                    <h4>åéå£¯å¤§</h4>
+                    <p>å°æ¥­åéå¢è³30äººï¼æåç¯åæ´å±è³ä¼æ¥­ä½µè³¼åæ³è­æè¨æåã</p>
+                </div>
+            </div>
+            <div class="timeline-item fade-in">
+                <div class="timeline-content">
+                    <span class="year">2020</span>
+                    <h4>æ¸ç¢¼è½å</h4>
+                    <p>å¼å¥åé²çæ¸ç¢¼åç³»çµ±ï¼æåæåæçï¼çºå®¢æ¶æä¾æ´ä¾¿æ·çæåé«é©ã</p>
+                </div>
+            </div>
+            <div class="timeline-item fade-in">
+                <div class="timeline-content">
+                    <span class="year">2025</span>
+                    <h4>éåæªä¾</h4>
+                    <p>æåå®¢æ¶è¶é500å®¶ï¼å°æ¥­åéå¢è³50äººï¼ç¹¼çºè´åæ¼çºå®¢æ¶åµé å¹å¼ã</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <h2 class="fade-in">èæåææåä½</h2>
+        <p class="fade-in">ç¡è«æ¨çä¼æ¥­è¦æ¨¡å¤§å°ï¼æåé½è½çºæ¨æä¾å°æ¥­ãå¯é çè²¡åè§£æ±ºæ¹æ¡</p>
+        <a href="contact.html" class="btn fade-in">ç«å³è¯çµ¡æå</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-about">
+                <h3>æ«ªéæè¨å¸«äºåææéå¬å¸</h3>
+                <p>æåæ¯ä¸å®¶å°æ¥­çæè¨äºåæï¼è´åæ¼çºå®¢æ¶æä¾åªè³ªçå¯©è¨ãç¨ååé¡§åæåãæèè±å¯çç¶é©åå°æ¥­ç¥è­ï¼æååå©å®¢æ¶å¯¦ç¾è²¡åç®æ¨ï¼æ¨åæ¥­åç¼å±ã</p>
+            </div>
+            <div class="footer-links">
+                <h4>å¿«éé£çµ</h4>
+                <ul>
+                    <li><a href="index.html">é¦é </a></li>
+                    <li><a href="about.html">éæ¼æå</a></li>
+                    <li><a href="services.html">æåç¯å</a></li>
+                    <li><a href="contact.html">è¯çµ¡æå</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>æåé ç®</h4>
+                <ul>
+                    <li><a href="audit.html">å¯©è¨èéè­</a></li>
+                    <li><a href="tax.html">ç¨åè«®è©¢</a></li>
+                    <li><a href="risk.html">é¢¨éªèç£ç®¡</a></li>
+                    <li><a href="forensic.html">æ³è­æå</a></li>
+                    <li><a href="consulting.html">ä¼æ¥­è«®è©¢</a></li>
+                    <li><a href="deals.html">ä½µè³¼äº¤æ</a></li>
+                </ul>
+            </div>
+            <div class="footer-links footer-contact">
+                <h4>è¯çµ¡æå</h4>
+                <p><i class="fas fa-phone"></i> 3987 1008</p>
+                <p><i class="fas fa-envelope"></i> info@ltgroupcpa.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> é¦æ¸¯ééåå¯¶ä¸­å¿2åº§5æ¨503å®¤</p>
+            </div>
+            
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 æ«ªéæè¨å¸«äºåææéå¬å¸. çæ¬ææ.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Hamburger Menu
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+        const mobileOverlay = document.querySelector('.mobile-overlay');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+            mobileOverlay.classList.toggle('active');
+            document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+        });
+
+        mobileOverlay.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+            mobileOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        // Scroll Animation
+        const fadeElements = document.querySelectorAll('.fade-in');
+
+        const fadeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        fadeElements.forEach(el => fadeObserver.observe(el));
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.boxShadow = '0 2px 30px rgba(0,0,0,0.15)';
+            } else {
+                header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+            }
+        });
+    </script>
+    <script src="js/nav-submenu.js"></script>
+    <script src="js/search.js"></script>
+</body>
+</html>

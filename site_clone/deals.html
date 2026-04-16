@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html data-nav-breakpoint="992" lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ä½µè³¼äº¤æ | æ«ªéæè¨å¸«äºåææéå¬å¸</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/nav-submenu.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary-color: #1a3a5c;
+            --secondary-color: #2c5282;
+            --accent-color: #3182ce;
+            --gold-color: #c9a227;
+            --light-bg: #f7fafc;
+            --white: #ffffff;
+            --text-dark: #2d3748;
+            --text-light: #718096;
+        }
+        body { font-family: 'Noto Sans TC', sans-serif; color: var(--text-dark); line-height: 1.8; overflow-x: hidden; }
+        header { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; background: var(--white); box-shadow: 0 2px 20px rgba(0,0,0,0.1); }
+        .header-main { padding: 12px 0; }
+        .nav-container { margin: 0; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; gap: 24px; }
+        .header-left { display: flex; align-items: center; gap: 40px; flex-shrink: 0; }
+        .header-right { display: flex; align-items: center; gap: 20px; }
+        .header-logo { flex-shrink: 0; }
+        .header-logo .logo-img { width: auto; height: 40px; max-width: 120px; display: block; }
+        .header-actions { display: flex; align-items: center; gap: 20px; flex-shrink: 0; }
+        .header-lang { position: relative; display: flex; align-items: center; gap: 6px; color: var(--text-dark); font-size: 14px; cursor: pointer; }
+        .header-lang i.fa-globe { color: var(--primary-color); font-size: 16px; }
+        .header-lang .lang-current { display: flex; align-items: center; gap: 4px; }
+        .header-lang .lang-dropdown { position: absolute; top: 100%; right: 0; margin-top: 0; padding: 10px 0 8px 0; background: var(--white); min-width: 120px; box-shadow: 0 8px 25px rgba(0,0,0,0.12); border-radius: 6px; list-style: none; display: none; z-index: 100; }
+        .header-lang:hover .lang-dropdown { display: block; }
+        .header-lang .lang-dropdown a { display: block; padding: 8px 16px; color: var(--text-dark); text-decoration: none; font-size: 14px; }
+        .header-lang .lang-dropdown a:hover { background: var(--light-bg); color: var(--primary-color); }
+        .header-search { display: flex; align-items: center; gap: 6px; color: var(--text-dark); font-size: 14px; text-decoration: none; transition: color 0.3s; }
+        .header-search:hover { color: var(--primary-color); }
+        .header-search i { color: var(--primary-color); font-size: 15px; }
+        .logo { display: flex; align-items: center; text-decoration: none; }
+        .logo-img { width: auto; height: auto; max-width: 100px; }
+        nav ul { display: flex; list-style: none; gap: 40px; }
+        nav ul li a { text-decoration: none; color: var(--text-dark); font-weight: 500; font-size: 16px; }
+        nav ul li a:hover, nav ul li a.active { color: var(--primary-color); }
+        nav ul li.has-dropdown { position: relative; }
+        nav ul li.has-dropdown .submenu { display: none; position: absolute; top: 100%; left: 0; background: var(--white); min-width: 200px; box-shadow: 0 8px 25px rgba(0,0,0,0.12); list-style: none; padding: 10px 0; margin: 0; border-radius: 6px; z-index: 100; }
+        nav ul li.has-dropdown:hover .submenu { display: block; }
+        nav ul li.has-dropdown .submenu li { margin: 0; }
+        nav ul li.has-dropdown .submenu a { display: block; padding: 10px 20px; font-size: 14px; color: var(--text-dark); }
+        nav ul li.has-dropdown .submenu a:hover { background: var(--light-bg); color: var(--primary-color); }
+        .hamburger { display: none; flex-direction: column; cursor: pointer; width: 30px; height: 25px; justify-content: space-between; z-index: 1001; }
+        .hamburger span { display: block; height: 3px; width: 100%; background: var(--primary-color); border-radius: 3px; }
+        @media (max-width: 992px) {
+            .hamburger { display: flex; }
+            nav ul { display: none; position: fixed; top: 0; right: -280px; width: 280px; height: 100vh; background: var(--white); flex-direction: column; justify-content: flex-start; padding: 80px 20px 30px; overflow-y: auto; box-shadow: -5px 0 20px rgba(0,0,0,0.1); transition: right 0.3s; z-index: 999; }
+            nav ul.active { right: 0; display: flex; }
+            nav ul li.has-dropdown .submenu { display: none; position: static; box-shadow: none; padding-left: 15px; margin: 10px 0px; }
+            .header-actions { gap: 12px; }
+            .header-lang .lang-current span { display: none; }
+        }
+        .service-hero { margin-top: 72px; background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%); color: var(--white); padding: 80px 20px 100px; position: relative; overflow: hidden; }
+        .service-hero::before { content: ''; position: absolute; top: -50%; right: -10%; width: 600px; height: 600px; border: 1px solid rgba(201,162,39,0.1); border-radius: 50%; }
+        .service-hero::after { content: ''; position: absolute; bottom: -30%; left: -5%; width: 400px; height: 400px; border: 1px solid rgba(255,255,255,0.05); border-radius: 50%; }
+        .service-hero-inner { margin: 0 auto; padding: 0 20px; position: relative; z-index: 1; }
+        .service-hero .breadcrumb { font-size: 14px; color: rgba(255,255,255,0.6); margin-bottom: 20px; }
+        .service-hero .breadcrumb a { color: rgba(255,255,255,0.6); text-decoration: none; }
+        .service-hero .breadcrumb a:hover { color: var(--gold-color); }
+        .service-hero .breadcrumb span { color: var(--gold-color); }
+        .service-hero h1 { font-size: 48px; font-weight: 700; margin-bottom: 15px; letter-spacing: 1px; }
+        .service-hero .tagline { font-size: 22px; color: var(--gold-color); font-style: italic; margin-bottom: 25px; }
+        .service-hero .description { font-size: 17px; color: rgba(255,255,255,0.85); max-width: 700px; line-height: 1.8; }
+        .section { padding: 80px 20px; }
+        .section-inner { margin: 0 auto; padding: 0 20px; }
+        .overview-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        @media (max-width: 900px) { .overview-grid { grid-template-columns: 1fr; } }
+        .overview-content h2 { font-size: 32px; color: var(--primary-color); margin-bottom: 20px; }
+        .overview-content p { color: var(--text-light); line-height: 1.8; margin-bottom: 15px; }
+        .overview-content .highlight-box { background: var(--light-bg); border-left: 4px solid var(--gold-color); padding: 20px 25px; margin: 25px 0; }
+        .overview-content .highlight-box p { margin: 0; font-style: italic; color: var(--text-dark); }
+        .overview-visual .main-image { background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); height: 400px; border-radius: 10px; display: flex; align-items: center; justify-content: center; }
+        .overview-visual .main-image i { font-size: 120px; color: var(--gold-color); opacity: 0.3; }
+        .overview-visual .stat-card { position: absolute; background: var(--white); padding: 25px 30px; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
+        .overview-visual .stat-card.top { top: -20px; right: -20px; }
+        .overview-visual .stat-card.bottom { bottom: -20px; left: -20px; }
+        .overview-visual { position: relative; }
+        .overview-visual .stat-card .number { font-size: 36px; font-weight: 700; color: var(--gold-color); }
+        .overview-visual .stat-card .label { font-size: 14px; color: var(--text-light); }
+        .services-detail-section { background: var(--light-bg); }
+        .section-header { text-align: center; margin-bottom: 50px; }
+        .section-header h2 { font-size: 36px; color: var(--primary-color); margin-bottom: 15px; }
+        .section-header p { font-size: 18px; color: var(--text-light); max-width: 600px; margin: 0 auto; }
+        .service-detail-card { background: var(--white); border-radius: 10px; overflow: hidden; margin-bottom: 30px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); }
+        .service-detail-card .card-header { background: var(--primary-color); padding: 30px 40px; display: flex; align-items: center; gap: 20px; }
+        .service-detail-card .card-header .icon { width: 70px; height: 70px; background: rgba(201,162,39,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .service-detail-card .card-header .icon i { font-size: 30px; color: var(--gold-color); }
+        .service-detail-card .card-header h3 { font-size: 24px; color: var(--white); margin-bottom: 5px; }
+        .service-detail-card .card-header p { color: rgba(255,255,255,0.7); font-size: 14px; }
+        .service-detail-card .card-body { padding: 40px; }
+        .service-detail-card .card-body > p { color: var(--text-light); line-height: 1.8; margin-bottom: 25px; font-size: 15px; }
+        .features-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+        .feature-item { display: flex; gap: 15px; padding: 15px; background: var(--light-bg); border-radius: 6px; }
+        .feature-item i { color: var(--gold-color); font-size: 20px; margin-top: 2px; }
+        .feature-item span { color: var(--text-dark); font-size: 14px; line-height: 1.6; }
+        .process-timeline { position: relative; max-width: 900px; margin: 0 auto; }
+        .process-timeline::before { content: ''; position: absolute; left: 50%; transform: translateX(-50%); width: 2px; height: 100%; background: #e2e8f0; }
+        @media (max-width: 768px) { .process-timeline::before { left: 30px; } }
+        .process-step { display: flex; gap: 40px; margin-bottom: 40px; position: relative; }
+        @media (max-width: 768px) { .process-step { flex-direction: column; padding-left: 70px; gap: 15px; } }
+        .process-step:nth-child(even) { flex-direction: row-reverse; }
+        @media (max-width: 768px) { .process-step:nth-child(even) { flex-direction: column; } }
+        .process-step .step-content { flex: 1; background: var(--light-bg); padding: 30px; border-radius: 8px; }
+        .process-step .step-number { position: absolute; left: 50%; transform: translateX(-50%); width: 50px; height: 50px; background: var(--primary-color); color: var(--gold-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 700; z-index: 1; }
+        @media (max-width: 768px) { .process-step .step-number { left: 30px; top: 0; } }
+        .process-step .step-content h4 { font-size: 18px; color: var(--primary-color); margin-bottom: 10px; }
+        .process-step .step-content p { color: var(--text-light); font-size: 14px; line-height: 1.7; }
+        .process-step .step-spacer { flex: 1; }
+        @media (max-width: 768px) { .process-step .step-spacer { display: none; } }
+        .why-choose-section { background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: var(--white); }
+        .why-choose-section .section-header h2 { color: var(--white); }
+        .why-choose-section .section-header p { color: rgba(255,255,255,0.7); }
+        .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; }
+        .why-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 35px; text-align: center; transition: all 0.3s; }
+        .why-card:hover { background: rgba(255,255,255,0.1); transform: translateY(-5px); }
+        .why-card .icon { width: 70px; height: 70px; background: rgba(201,162,39,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; }
+        .why-card .icon i { font-size: 28px; color: var(--gold-color); }
+        .why-card h4 { font-size: 18px; margin-bottom: 12px; }
+        .why-card p { color: rgba(255,255,255,0.7); font-size: 14px; line-height: 1.7; }
+        .related-section { background: var(--light-bg); }
+        .related-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
+        .related-card { background: var(--white); padding: 30px; border-radius: 8px; border-left: 4px solid var(--gold-color); transition: all 0.3s; }
+        .related-card:hover { box-shadow: 0 10px 30px rgba(0,0,0,0.1); transform: translateX(5px); }
+        .related-card h4 { font-size: 18px; color: var(--primary-color); margin-bottom: 10px; }
+        .related-card p { color: var(--text-light); font-size: 14px; margin-bottom: 15px; line-height: 1.6; }
+        .related-card a { color: var(--primary-color); font-size: 14px; font-weight: 600; text-decoration: none; }
+        .related-card a:hover { color: var(--gold-color); }
+        .cta-section { background: var(--gold-color); padding: 60px 20px; text-align: center; }
+        .cta-content { max-width: 700px; margin: 0 auto; }
+        .cta-content h2 { font-size: 32px; color: var(--primary-color); margin-bottom: 15px; }
+        .cta-content p { font-size: 18px; color: var(--primary-color); margin-bottom: 25px; opacity: 0.9; }
+        .cta-buttons { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
+        .cta-btn { display: inline-block; padding: 15px 40px; font-size: 14px; font-weight: 700; text-decoration: none; border-radius: 3px; transition: all 0.3s; }
+        .cta-btn.primary { background: var(--primary-color); color: var(--white); }
+        .cta-btn.primary:hover { background: var(--secondary-color); transform: translateY(-2px); }
+        .cta-btn.secondary { background: transparent; color: var(--primary-color); border: 2px solid var(--primary-color); }
+        .cta-btn.secondary:hover { background: var(--primary-color); color: var(--white); }
+        footer { background: var(--primary-color); color: var(--white); padding: 60px 20px 20px; }
+        .footer-container { margin: 0 auto; padding: 0 20px; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; padding-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        @media (max-width: 768px) { .footer-container { grid-template-columns: 1fr; } }
+        .footer-about h3 { font-size: 24px; margin-bottom: 20px; color: var(--gold-color); }
+        .footer-about p { opacity: 0.8; line-height: 1.8; font-size: 14px; }
+        .footer-links h4 { font-size: 18px; margin-bottom: 20px; color: var(--gold-color); }
+        .footer-links ul { list-style: none; }
+        .footer-links ul li { margin-bottom: 10px; }
+        .footer-links ul li a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; }
+        .footer-links ul li a:hover { color: var(--gold-color); }
+        .footer-bottom { padding-top: 30px; text-align: center; color: rgba(255,255,255,0.6); font-size: 14px; }
+        .mobile-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 998; }
+        .mobile-overlay.active { display: block; }
+    </style>
+</head>
+<body>
+    <div class="mobile-overlay"></div>
+    <header>
+        <div class="header-main">
+            <div class="nav-container">
+                <div class="header-left">
+                    <div class="header-logo">
+                        <a href="index.html"><img src="img/logo-tcsc.jpg" alt="Logo" class="logo-img"></a>
+                    </div>
+                    <nav>
+                    <ul id="navMenu">
+                        <li><a href="index.html">é¦é </a></li>
+                        <li class="has-dropdown">
+                            <a href="about.html">éæ¼æå</a>
+                            <button type="button" class="nav-submenu-toggle" aria-expanded="false" aria-label="å±éå­é¸å®"><span class="nav-toggle-icon">+</span></button>
+                            <ul class="submenu">
+                                <li><a href="purpose.html">æåçä½¿å½</a></li>
+                                <li><a href="value.html">æåçé¡æ¯</a></li>
+                                <li><a href="commitment.html">æåçæ¿è«¾</a></li>
+                            </ul>
+                        </li>
+                        <li class="has-dropdown">
+                            <a href="services.html">æåç¯å</a>
+                            <button type="button" class="nav-submenu-toggle" aria-expanded="false" aria-label="å±éå­é¸å®"><span class="nav-toggle-icon">+</span></button>
+                            <ul class="submenu">
+                                <li><a href="audit.html">å¯©è¨èéè­</a></li>
+                                <li><a href="tax.html">ç¨åè«®è©¢</a></li>
+                                <li><a href="risk.html">é¢¨éªèç£ç®¡</a></li>
+                                <li><a href="forensic.html">æ³è­æå</a></li>
+                                <li><a href="consulting.html">ä¼æ¥­è«®è©¢</a></li>
+                                <li><a href="deals.html" class="active">ä½µè³¼äº¤æ</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="contact.html">è¯çµ¡æå</a></li>
+                    </ul>
+                </nav>
+                </div>
+                <div class="header-right">
+                <div class="header-actions">
+                    <div class="header-lang">
+                        <span class="lang-current">
+                            <i class="fa-solid fa-globe"></i>
+                            <span>ç¹é«</span>
+                            <i class="fa-solid fa-chevron-up" style="font-size:10px;"></i>
+                        </span>
+                        <ul class="lang-dropdown">
+                            <li><a href="deals.html">ç¹é«</a></li>
+                            <li><a href="deals-sc.html">ç®ä½</a></li>
+                            <li><a href="deals-en.html">EN</a></li>
+                        </ul>
+                    </div>
+                    <a href="#" class="header-search" id="headerSearch" aria-label="Search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <span>Search</span>
+                    </a>
+                </div>
+                <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="service-hero">
+        <div class="service-hero-inner">
+            <p class="breadcrumb"><a href="index.html">é¦é </a> / <a href="services.html">æåç¯å</a> / <span>ä½µè³¼èæ¶è³¼</span></p>
+            <h1>ä½µè³¼èæ¶è³¼</h1>
+            <p class="tagline">ãå¨äº¤æçæ¯åéæ®µéæ¾å¹å¼ãã</p>
+            <p class="description">æåçäº¤æéè¦ãé å°åãåæ¸æ°åº¦ãç¡è«æ¨æ¯è²·æ¹ãè³£æ¹éæ¯é²è¡éçµï¼æåé½è½ç©¿éåªé³ï¼æä¾èªä¿¡è«å¤åå®æäº¤ææéçééµè²¡åæ´å¯ã</p>
+        </div>
+    </section>
+
+    <!-- Overview Section -->
+    <section class="section overview-section">
+        <div class="section-inner">
+            <div class="overview-grid">
+                <div class="overview-content">
+                    <h2>å¨äº¤ææ¯åéæ®µéæ¾å¹å¼</h2>
+                    <p>æåçäº¤æéè¦ãé å°åãåæ¸æ°åº¦ãç¡è«æ¨æ¯è²·æ¹ãè³£æ¹éæ¯é²è¡éçµï¼æåé½è½ç©¿éåªé³ï¼æä¾èªä¿¡è«å¤åå®æäº¤ææéçééµè²¡åæ´å¯ã</p>
+                    <p>æåé²è¡å¨é¢çè²·æ¹åè³£æ¹ç¡è·èª¿æ¥ï¼è¶è¶é©è­æ­·å²æ¸å­ï¼åæçå©è³ªéãçéè³éè¶¨å¢åé±èçç¨åè² åµãæåçå ±åçºæ¨æä¾èª¿æ´å®å¹æè«å¤è³ åæéçãå½è¥ãã</p>
+                    <div class="highlight-box">
+                        <p>ãæåçºä¼æ¥­ãç¡å½¢è³ç¢åéèå·¥å·æä¾ç¨ç«ä¼°å¼ãç¡è«æ¯ç¨æ¼è²¡åå ±åï¼è³¼è²·å¹æ ¼åæ¤ï¼ãç¨åç®çéæ¯äº¤æå®å¹ï¼æåçä¼°å¼æ¨¡åç©©å¥ãå¯è¾¯è­·ï¼ä¸¦ä»¥ç¶åå¸å ´æ¸æçºåºç¤ãã</p>
+                    </div>
+                    <p>æååå©èçä¼æ¥­éçµçè¤éæ©å¶ï¼åæ¬çºåæä¸å¸å¯¦é«é²è¡ Pre-IPO éåéçµï¼ä»¥ååä½µå¾æ´åè¦åï¼ä»¥ç¢ºä¿å¯¦ç¾çååææèäº¤æè«é»ç¸ç¬¦ã</p>
+                </div>
+                <div class="overview-visual">
+                    <div class="main-image"><i class="fas fa-handshake"></i></div>
+                    <div class="stat-card top"><div class="number">DD</div><div class="label">ç¡è·èª¿æ¥</div></div>
+                    <div class="stat-card bottom"><div class="number">PPA</div><div class="label">è³¼è²·å¹æ ¼åæ¤</div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section services-detail-section">
+        <div class="section-inner">
+            <div class="section-header">
+                <h2>æåç¯å</h2>
+                <p>è²¡ååç¨åç¡è·èª¿æ¥ãä¼°å¼æåãä¼æ¥­éçµèæ´åï¼ä¾ Deals, Mergers and Acquisitions è³æï¼</p>
+            </div>
+            <div class="service-detail-card">
+                <div class="card-header">
+                    <div class="icon"><i class="fas fa-search-dollar"></i></div>
+                    <div>
+                        <h3>è²¡ååç¨åç¡è·èª¿æ¥</h3>
+                        <p>Financial & Tax Due Diligence</p>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p>æåé²è¡å¨é¢çè²·æ¹åè³£æ¹ç¡è·èª¿æ¥ãæåè¶è¶é©è­æ­·å²æ¸å­ï¼åæçå©è³ªéãçéè³éè¶¨å¢åé±èçç¨åè² åµãæåçå ±åçºæ¨æä¾èª¿æ´å®å¹æè«å¤è³ åæéçãå½è¥ãã</p>
+                    <div class="features-list">
+                        <div class="feature-item"><i class="fas fa-check"></i><span>è²·æ¹ç¡è·èª¿æ¥</span></div>
+                        <div class="feature-item"><i class="fas fa-check"></i><span>è³£æ¹ç¡è·èª¿æ¥</span></div>
+                        <div class="feature-item"><i class="fas fa-check"></i><span>çå©è³ªéåæ</span></div>
+                        <div class="feature-item"><i class="fas fa-check"></i><span>çéè³éè¶¨å¢</span></div>
+                        <div class="feature-item"><i class="fas fa-check"></i><span>é±èç¨åè² åµè­å¥</span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="service-detail-card">
+                <div class="card-header">
+                    <div class="icon"><i class="fas fa-chart-line"></i></div>
+                    <div>
+                        <h3>ä¼°å¼æå</h3>
+                        <p>Valuation Services</p>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p>æåçºä¼æ¥­ãç¡å½¢è³ç¢åéèå·¥å·æä¾ç¨ç«ä¼°å¼ãç¡è«æ¯ç¨æ¼è²¡åå ±åï¼è³¼è²·å¹æ ¼åæ¤ï¼ãç¨åç®çéæ¯äº¤æå®å¹ï¼æåçä¼°å¼æ¨¡åç©©å¥ãå¯è¾¯è­·ï¼ä¸¦ä»¥ç¶åå¸å ´æ¸æçºåºç¤ã</p>
+                    <div class="features-list">
+                        <div class="feature-item"><i class="fas fa-check"></i><span>ä¼æ¥­ä¼°å¼</span></div>
+                        <div class="feature-item"><i class="fas fa-check"></i><span>ç¡å½¢è³ç¢ä¼°å¼</span></div>
+                        <div class="feature-item"><i class="fas fa-check"></i><span>è³¼è²·å¹æ ¼åæ¤ï¼PPAï¼</span></div>
+                        <div class="feature-item"><i class="fas fa-check"></i><span>äº¤æå®å¹</span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="service-detail-card">
+                <div class="card-header">
+                    <div class="icon"><i class="fas fa-sitemap"></i></div>
+                    <div>
+                        <h3>ä¼æ¥­éçµèæ´å</h3>
+                        <p>Corporate Restructuring & Integration</p>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p>æååå©èçä¼æ¥­éçµçè¤éæ©å¶ãéåæ¬çºåæä¸å¸å¯¦é«é²è¡ Pre-IPO éåéçµï¼ä»¥ååä½µå¾æ´åè¦åï¼ä»¥ç¢ºä¿å¯¦ç¾çååææèäº¤æè«é»ç¸ç¬¦ã</p>
+                    <div class="features-list">
+                        <div class="feature-item"><i class="fas fa-check"></i><span>Pre-IPO éåéçµ</span></div>
+                        <div class="feature-item"><i class="fas fa-check"></i><span>åæä¸å¸å¯¦é«</span></div>
+                        <div class="feature-item"><i class="fas fa-check"></i><span>åä½µå¾æ´åè¦å</span></div>
+                        <div class="feature-item"><i class="fas fa-check"></i><span>ååææå¯¦ç¾</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="section process-section">
+        <div class="section-inner">
+            <div class="section-header">
+                <h2>ä½µè³¼äº¤ææåæµç¨</h2>
+                <p>ç³»çµ±åçå¯©è¨æ¹æ³ï¼ç¢ºä¿è³ªéèæç</p>
+            </div>
+            <div class="process-timeline">
+                <div class="process-step">
+                    <div class="step-content">
+                        <h4>è¦åèé¢¨éªè©ä¼°</h4>
+                        <p>æ·±å¥äºè§£æ¨çæ¥­åãè¡æ¥­ç°å¢åå§é¨æ§å¶ï¼è­å¥éå¤§é¯å ±é¢¨éªé åï¼å¶å®éå°æ§çå¯©è¨ç­ç¥ã</p>
+                    </div>
+                    <div class="step-number">1</div>
+                    <div class="step-spacer"></div>
+                </div>
+                <div class="process-step">
+                    <div class="step-spacer"></div>
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>å§é¨æ§å¶æ¸¬è©¦</h4>
+                        <p>è©ä¼°ééµæ¥­åæµç¨çå§é¨æ§å¶è¨­è¨èéä½æææ§ï¼ç¢ºå®å¯¦è³ªæ§ç¨åºçæ§è³ªãæéåç¯åã</p>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-content">
+                        <h4>å¯¦è³ªæ§å¯©è¨ç¨åº</h4>
+                        <p>å·è¡åææ§ç¨åºåç´°ç¯æ¸¬è©¦ï¼ç²åååãé©ç¶çå¯©è¨è­æï¼ä»¥æ¯æå¯©è¨æè¦ã</p>
+                    </div>
+                    <div class="step-number">3</div>
+                    <div class="step-spacer"></div>
+                </div>
+                <div class="process-step">
+                    <div class="step-spacer"></div>
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h4>å¯©è¨ç¸½çµèå ±å</h4>
+                        <p>å¯ç¸½å¯©è¨ç¼ç¾ï¼èç®¡çå±¤è¨è«éè¦äºé ï¼åºå·å¯©è¨å ±ååç®¡çå»ºè­°æ¸ã</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section why-choose-section">
+        <div class="section-inner">
+            <div class="section-header">
+                <h2>çºä½é¸æ LT CPA ä½µè³¼äº¤ææå</h2>
+                <p>æåçå·®ç°ååªå¢</p>
+            </div>
+            <div class="why-grid">
+                <div class="why-card">
+                    <div class="icon"><i class="fas fa-star"></i></div>
+                    <h4>å°æ¥­è³è³ª</h4>
+                    <p>åéæå¡åææé¦æ¸¯æè¨å¸«å¬æååéèªå¯å°æ¥­è³æ ¼ï¼ç¢ºä¿æåç¬¦åæé«å°æ¥­æ¨æºã</p>
+                </div>
+                <div class="why-card">
+                    <div class="icon"><i class="fas fa-users"></i></div>
+                    <h4>åå¤¥äººåè</h4>
+                    <p>æ¯åå¯©è¨é ç®ç±è³æ·±åå¤¥äººè¦ªèªç£å°ï¼ç¢ºä¿å¯©è¨è³ªéåå®¢æ¶æåçä¸è´æ§ã</p>
+                </div>
+                <div class="why-card">
+                    <div class="icon"><i class="fas fa-cogs"></i></div>
+                    <h4>è¡æ¥­å°é·</h4>
+                    <p>æ·±å¥äºè§£åè¡æ¥­ç¹é»ï¼æä¾å·éå°æ§çå¯©è¨æ¹æ³åæå¹å¼çè¡æ¥­æ´å¯ã</p>
+                </div>
+                <div class="why-card">
+                    <div class="icon"><i class="fas fa-clock"></i></div>
+                    <h4>é«ææºé</h4>
+                    <p>å»ºç«æ¸æ°çæºéæ©å¶ï¼åæåé¥å¯©è¨é²åº¦ï¼ç¢ºä¿å¯©è¨éç¨é æ¢é«æã</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section related-section">
+        <div class="section-inner">
+            <div class="section-header"><h2>ç¸éæå</h2></div>
+            <div class="related-grid">
+                <div class="related-card">
+                    <h4>ç¨åè«®è©¢</h4>
+                    <p>å¨ä½µè³¼äº¤æä¸­æä¾ç¨åç¡è·èª¿æ¥ãäº¤ææ¶æ§è¨­è¨åè³¼è²·å¹æ ¼åæ¤ç­å°æ¥­æåã</p>
+                    <a href="tax.html">äºè§£æ´å¤ â</a>
+                </div>
+                <div class="related-card">
+                    <h4>å¯©è¨èéè­</h4>
+                    <p>æä¾è²¡åç¡è·èª¿æ¥ãä¼°å¼æååäº¤ææ¯æ´ï¼å©æ¨ååºææºçæè³æ±ºç­ã</p>
+                    <a href="audit.html">äºè§£æ´å¤ â</a>
+                </div>
+                <div class="related-card">
+                    <h4>ä¼æ¥­è«®è©¢</h4>
+                    <p>åå©åä½µå¾æ´åè¦åãæµç¨åªåï¼ç¢ºä¿å¯¦ç¾çååææèäº¤æè«é»ç¸ç¬¦ã</p>
+                    <a href="consulting.html">äºè§£æ´å¤ â</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>éè¦ä½µè³¼äº¤ææ¯æ´ï¼</h2>
+            <p>å¨äº¤ææ¯åéæ®µéæ¾å¹å¼ï¼è®æåçåéå©æ¨å®æäº¤æ</p>
+            <div class="cta-buttons">
+                <a href="contact.html" class="cta-btn primary">åè²»è«®è©¢</a>
+                <a href="services.html" class="cta-btn secondary">æ¥çæææå</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-about">
+                <h3>æ«ªéæè¨å¸«äºåææéå¬å¸</h3>
+                <p>æåæ¯ä¸å®¶å°æ¥­çæè¨äºåæï¼è´åæ¼çºå®¢æ¶æä¾åªè³ªçå¯©è¨ãç¨ååé¡§åæåã</p>
+            </div>
+            <div class="footer-links">
+                <h4>å¿«éé£çµ</h4>
+                <ul>
+                    <li><a href="index.html">é¦é </a></li>
+                    <li><a href="about.html">éæ¼æå</a></li>
+                    <li><a href="services.html">æåç¯å</a></li>
+                    <li><a href="contact.html">è¯çµ¡æå</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>æåé ç®</h4>
+                <ul>
+                    <li><a href="audit.html">å¯©è¨èéè­</a></li>
+                    <li><a href="tax.html">ç¨åè«®è©¢</a></li>
+                    <li><a href="risk.html">é¢¨éªèç£ç®¡</a></li>
+                    <li><a href="forensic.html">æ³è­æå</a></li>
+                    <li><a href="consulting.html">ä¼æ¥­è«®è©¢</a></li>
+                    <li><a href="deals.html">ä½µè³¼äº¤æ</a></li>
+                </ul>
+            </div>
+            <div class="footer-links footer-contact">
+                <h4>è¯çµ¡æå</h4>
+                <p><i class="fas fa-envelope"></i> info@ltgroupcpa.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> é¦æ¸¯ééåå¯¶ä¸­å¿2åº§5æ¨503å®¤</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 æ«ªéæè¨å¸«äºåææéå¬å¸. çæ¬ææ.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('hamburger').addEventListener('click', function() {
+            document.getElementById('navMenu').classList.toggle('active');
+            document.querySelector('.mobile-overlay').classList.toggle('active');
+        });
+        document.querySelector('.mobile-overlay').addEventListener('click', function() {
+            document.getElementById('navMenu').classList.remove('active');
+            this.classList.remove('active');
+        });
+    </script>
+    <script src="js/nav-submenu.js"></script>
+    <script src="js/search.js"></script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+name = "ltcpa-decap-oauth"
+main = "src/index.ts"
+compatibility_date = "2024-03-20"
+
+[vars]
+# Set these via wrangler secret or environment variables
+# GITHUB_CLIENT_ID = ""
+# GITHUB_CLIENT_SECRET = ""
