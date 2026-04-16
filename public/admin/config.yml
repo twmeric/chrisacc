@@ -19,7 +19,8 @@ collections:
   - name: "site_settings"
     label: "Site Settings"
     files:
-      - file: "content/site-settings.json"
+      - name: "global"
+        file: "content/site-settings.json"
         label: "Global Settings"
         i18n: true
         fields:
@@ -37,7 +38,8 @@ collections:
   - name: "navigation"
     label: "Navigation"
     files:
-      - file: "content/navigation.json"
+      - name: "main_menu"
+        file: "content/navigation.json"
         label: "Main Menu"
         i18n: true
         fields:
@@ -59,7 +61,8 @@ collections:
   - name: "home"
     label: "Home Page"
     files:
-      - file: "content/home.md"
+      - name: "home_content"
+        file: "content/home.md"
         label: "Home Content"
         i18n: true
         fields:
@@ -71,7 +74,8 @@ collections:
   - name: "about"
     label: "About Us"
     files:
-      - file: "content/about.md"
+      - name: "about_content"
+        file: "content/about.md"
         label: "About Content"
         i18n: true
         fields:
