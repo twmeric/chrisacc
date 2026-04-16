@@ -53,11 +53,12 @@
           </div>
         </div>
         <div class="flex items-center gap-3">
-          <div class="flex items-center gap-2">
-            <input id="apiBaseInput" type="text" placeholder="API Base URL" class="bg-white border border-slate-300 text-slate-700 text-sm rounded-lg px-3 py-1.5 w-64 focus:outline-none focus:ring-2 focus:ring-gold-400" onchange="setApiBase(this.value)">
-            <button type="button" onclick="resetApiBase()" class="text-xs text-slate-500 hover:text-navy-800 underline" title="Reset to default">Reset</button>
-          </div>
           <button onclick="doDeploy()" class="bg-gold-500 hover:bg-gold-600 text-white font-semibold px-5 py-2 rounded-lg transition shadow-sm">Deploy Site</button>
+        </div>
+        <!-- Hidden debug field preserved for emergency console access only -->
+        <div class="hidden">
+          <input id="apiBaseInput" type="text" onchange="setApiBase(this.value)">
+          <button type="button" onclick="resetApiBase()">Reset</button>
         </div>
       </div>
     </header>
