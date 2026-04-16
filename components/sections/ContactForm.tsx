@@ -8,6 +8,8 @@ interface ContactFormProps {
   lang: string;
 }
 
+const INQUIRY_API_URL = process.env.NEXT_PUBLIC_INQUIRY_API_URL || "/api/submit-inquiry/";
+
 const servicesList = [
   { value: "", label: { "zh-hant": "請選擇服務", "zh-hans": "请选择服务", en: "Select a service" } },
   { value: "audit", label: { "zh-hant": "審計及核證", "zh-hans": "审计及核证", en: "Audit & Assurance" } },
@@ -115,7 +117,7 @@ export default function ContactForm({ lang }: ContactFormProps) {
     const data = Object.fromEntries(form.entries());
 
     try {
-      const res = await fetch("/api/submit-inquiry/", {
+      const res = await fetch(INQUIRY_API_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
@@ -123,6 +125,7 @@ export default function ContactForm({ lang }: ContactFormProps) {
       if (res.ok) {
         setStatus("success");
         (e.target as HTMLFormElement).reset();
+        setPreselectedService("");
       } else {
         setStatus("error");
       }

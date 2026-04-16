@@ -1,9 +1,9 @@
 backend:
-  name: git-gateway
-  branch: main
-  # IMPORTANT: For Cloudflare Pages static hosting, Decap CMS requires an OAuth proxy.
-  # The included worker at workers/decap-oauth/ implements a GitHub OAuth proxy.
-  # In production, switch backend.name to 'github' and set base_url to your OAuth worker.
+  name: github
+  repo: twmeric/chrisacc
+  branch: master
+  base_url: https://ltcpa-decap-oauth.jimsbond007.workers.dev
+  auth_endpoint: oauth
 
 publish_mode: editorial_workflow
 

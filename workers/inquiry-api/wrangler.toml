@@ -5,7 +5,7 @@ compatibility_date = "2024-03-20"
 [[d1_databases]]
 binding = "LTCPA_D1"
 database_name = "ltcpa-d1"
-database_id = ""
+database_id = "db7d4aa5-2407-4c20-a311-5daea0f177bf"
 
 [vars]
 ADMIN_EMAIL = "admin@ltcpa.com"
