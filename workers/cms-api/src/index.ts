@@ -204,6 +204,13 @@ export default {
         const auth = requireAuth(request, env);
         if (auth) return auth;
 
+        if (!env.GITHUB_TOKEN) {
+          return jsonResponse(
+            { error: "GITHUB_TOKEN secret is missing. Configure it in the ltcpa-cms-api Worker settings with a GitHub PAT that has repo + workflow scopes." },
+            502
+          );
+        }
+
         const repo = "twmeric/chrisacc";
         const workflowFile = "deploy.yml";
 

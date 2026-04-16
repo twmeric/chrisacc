@@ -4,19 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LTCPA CMS Admin</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            navy: { 50: '#f5f6f8', 100: '#e3e6ec', 200: '#c7cdd9', 300: '#a4aebf', 400: '#7a879f', 500: '#5c6b84', 600: '#4a556d', 700: '#3d4559', 800: '#343b4a', 900: '#1f232d' },
-            gold: { 50: '#fbf9f2', 100: '#f5efd9', 200: '#ebdeb3', 300: '#dec785', 400: '#d0ad5a', 500: '#c6963e', 600: '#ba7c32', 700: '#9b612b', 800: '#7f4d28', 900: '#664024' },
-          }
-        }
-      }
-    }
-  </script>
+  <link rel="stylesheet" href="/admin/admin.css">
   <style>
     .toast { transition: all 0.3s ease; }
     .toast.hidden { opacity: 0; transform: translateY(-10px); pointer-events: none; }
@@ -979,8 +967,13 @@
       try {
         const r = await fetch(`${API_BASE}/deploy`, { method: 'POST', headers: { 'X-Admin-Token': token } });
         const data = await r.json();
-        if (data.success) showToast('Deploy triggered');
-        else showToast(data.error || ('Deploy failed: ' + (data.details || '')), 'error');
+        if (data.success) {
+          showToast('Deploy triggered');
+        } else {
+          const msg = data.error || 'Deploy failed';
+          const details = data.details || '';
+          showToast(msg + (details ? (' | ' + String(details).slice(0, 120)) : ''), 'error');
+        }
       } catch (e) { showToast('Deploy error', 'error'); }
     };
   </script>
