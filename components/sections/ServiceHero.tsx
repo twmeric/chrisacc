@@ -12,7 +12,7 @@ export default function ServiceHero({ lang, title, tagline }: ServiceHeroProps) 
     <section
       className="relative mt-[72px] flex min-h-[320px] items-center justify-center bg-cover bg-center text-center text-white md:min-h-[400px]"
       style={{
-        backgroundImage: `linear-gradient(135deg, rgba(26, 58, 92, 0.9), rgba(49, 130, 206, 0.85)), url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1920&q=80')`,
+        backgroundImage: `linear-gradient(135deg, rgba(26, 58, 92, 0.9), rgba(49, 130, 206, 0.85)), url('/images/service-hero-bg.jpg')`,
       }}
     >
       <div className="relative z-10 px-4">

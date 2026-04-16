@@ -37,7 +37,7 @@ export default function HeroSlider({ lang, slides }: HeroSliderProps) {
           <div
             className="absolute inset-0 animate-[zoom_8s_ease-out_forwards] bg-cover bg-center"
             style={{
-              backgroundImage: `url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&q=80')`,
+              backgroundImage: `url('/images/hero-bg.jpg')`,
             }}
           />
           <div className="absolute inset-0 bg-gradient-to-br from-[rgba(26,58,92,0.85)] to-[rgba(49,130,206,0.7)]" />

@@ -14,7 +14,7 @@ export default function CTASection({ lang, title, description, primaryBtn, secon
     <section
       className="relative bg-cover bg-center px-4 py-20 text-center text-white md:py-24"
       style={{
-        backgroundImage: `linear-gradient(135deg, rgba(26, 58, 92, 0.92), rgba(44, 82, 130, 0.9)), url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1920&q=80')`,
+        backgroundImage: `linear-gradient(135deg, rgba(26, 58, 92, 0.92), rgba(44, 82, 130, 0.9)), url('/images/service-hero-bg.jpg')`,
       }}
     >
       <div className="relative z-10 mx-auto max-w-3xl">
