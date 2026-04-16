@@ -44,12 +44,7 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           workingDirectory: workers/inquiry-api
-          secrets: |
-            RESEND_API_KEY
-            GITHUB_TOKEN
-        env:
-          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
-          GITHUB_TOKEN: ${{ secrets.GH_WORKER_TOKEN || secrets.GITHUB_TOKEN }}
+          command: deploy
 
       - name: Deploy Decap OAuth Worker
         uses: cloudflare/wrangler-action@v3
@@ -57,9 +52,4 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           workingDirectory: workers/decap-oauth
-          secrets: |
-            GITHUB_CLIENT_ID
-            GITHUB_CLIENT_SECRET
-        env:
-          GITHUB_CLIENT_ID: ${{ secrets.GH_CLIENT_ID }}
-          GITHUB_CLIENT_SECRET: ${{ secrets.GH_CLIENT_SECRET }}
+          command: deploy
