@@ -3,7 +3,9 @@
     "site": {
       "name": "櫪韜會計師事務所",
       "tagline": "Professional Accounting",
-      "logo": "/images/logo-tc.jpg"
+      "logo": "/images/logo-tc.jpg",
+      "jkdcodingLogo": "",
+      "jkdcodingUrl": "https://jkdcoding.com"
     },
     "header": {
       "navItems": [
@@ -159,7 +161,7 @@
       }
     },
     "about": {
-      "pageTitle": "關於我們",
+      "pageTitle": "關於我們 ",
       "whyChoose": {
         "title": "為何選擇我們？",
         "desc": "櫪韜會計師事務所有限公司擁有經驗豐富的專業團隊，致力於為客戶提供優質的會計及顧問服務。我們深明每間企業的獨特性，因此會因應客戶的實際需要，量身訂造最合適的解決方案。",

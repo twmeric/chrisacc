@@ -235,13 +235,13 @@ export default {
         }
 
         if (!resp.ok) {
-          // For error response, try JSON first, fallback to text
-          let details = "";
+          // Read text safely; do not call .json() directly on resp to avoid body lock
+          const text = await resp.text();
+          let details = text;
           try {
-            const errJson = await resp.json();
-            details = JSON.stringify(errJson);
+            details = JSON.stringify(JSON.parse(text));
           } catch {
-            details = await resp.text();
+            // keep raw text as details
           }
           return jsonResponse({ error: "Deploy failed", details }, 502);
         }
