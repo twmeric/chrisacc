@@ -261,28 +261,7 @@
       "team": {
         "title": "專業團隊",
         "subtitle": "我們擁有經驗豐富的專業團隊，致力於為客戶提供最優質的服務",
-        "members": [
-          {
-            "name": "陳大文",
-            "role": "創辦人及執行董事",
-            "image": "/images/team-1.jpg"
-          },
-          {
-            "name": "李美琪",
-            "role": "審計總監",
-            "image": "/images/team-2.jpg"
-          },
-          {
-            "name": "張志偉",
-            "role": "稅務合夥人",
-            "image": "/images/team-3.jpg"
-          },
-          {
-            "name": "王曉明",
-            "role": "諮詢總監",
-            "image": "/images/team-4.jpg"
-          }
-        ]
+        "members": []
       },
       "timeline": {
         "title": "發展歷程",

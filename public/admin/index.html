@@ -10,8 +10,8 @@
       theme: {
         extend: {
           colors: {
-            navy: { 50: '#f0f3f8', 100: '#dce4f2', 200: '#b8c9e6', 300: '#8aa5d4', 400: '#5d7fbf', 500: '#3e5fa8', 600: '#2f4a8a', 700: '#1f3263', 800: '#15254d', 900: '#0c1836' },
-            gold: { 50: '#fdf9ed', 100: '#f8efc4', 200: '#f0de8a', 300: '#e8cd50', 400: '#dab525', 500: '#c49c1a', 600: '#a57d12', 700: '#7f5f10', 800: '#664b11', 900: '#553d14' },
+            navy: { 50: '#f5f6f8', 100: '#e3e6ec', 200: '#c7cdd9', 300: '#a4aebf', 400: '#7a879f', 500: '#5c6b84', 600: '#4a556d', 700: '#3d4559', 800: '#343b4a', 900: '#1f232d' },
+            gold: { 50: '#fbf9f2', 100: '#f5efd9', 200: '#ebdeb3', 300: '#dec785', 400: '#d0ad5a', 500: '#c6963e', 600: '#ba7c32', 700: '#9b612b', 800: '#7f4d28', 900: '#664024' },
           }
         }
       }
@@ -21,74 +21,125 @@
     .toast { transition: all 0.3s ease; }
     .toast.hidden { opacity: 0; transform: translateY(-10px); pointer-events: none; }
     .toast.visible { opacity: 1; transform: translateY(0); }
-    .nav-item.active { background: rgba(255,255,255,0.12); border-left: 3px solid #e8cd50; }
+    .nav-group-title { letter-spacing: 0.08em; }
+    .nav-item { border-left: 3px solid transparent; transition: all 0.15s ease; }
+    .nav-item.active { background: rgba(198,150,62,0.08); border-left-color: #c6963e; color: #1f232d; font-weight: 600; }
+    .nav-item:hover:not(.active) { background: rgba(31,35,45,0.04); }
     .section-panel { display: none; }
-    .section-panel.active { display: block; }
+    .section-panel.active { display: block; animation: fadeIn 0.2s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+    .group-content { overflow: hidden; transition: max-height 0.25s ease; }
+    .chevron { transition: transform 0.2s ease; }
+    .chevron.open { transform: rotate(180deg); }
   </style>
 </head>
 <body class="bg-slate-50 text-slate-800">
 
   <!-- Login -->
   <div id="login" class="fixed inset-0 z-50 flex items-center justify-center bg-navy-900">
-    <div className="w-full max-w-sm p-8 rounded-xl bg-white shadow-2xl">
-      <h1 class="text-2xl font-bold text-navy-900 mb-2 text-center">LTCPA Admin</h1>
+    <div class="w-full max-w-sm p-8 rounded-2xl bg-white shadow-2xl">
+      <div class="flex justify-center mb-6">
+        <img src="logo.png" alt="Admin Logo" class="h-20 w-auto object-contain">
+      </div>
+      <h1 class="text-2xl font-bold text-navy-900 mb-1 text-center">LTCPA Admin</h1>
       <p class="text-sm text-slate-500 text-center mb-6">Enter admin token to continue</p>
-      <input id="loginToken" type="password" placeholder="Admin Token" class="w-full border border-slate-300 rounded-lg px-4 py-2 mb-4 focus:outline-none focus:ring-2 focus:ring-gold-400">
-      <button onclick="doLogin()" class="w-full bg-navy-800 hover:bg-navy-900 text-white font-semibold py-2 rounded-lg transition">Login</button>
+      <input id="loginToken" type="password" placeholder="Admin Token" class="w-full border border-slate-300 rounded-xl px-4 py-2.5 mb-4 focus:outline-none focus:ring-2 focus:ring-gold-400">
+      <button onclick="doLogin()" class="w-full bg-navy-800 hover:bg-navy-900 text-white font-semibold py-2.5 rounded-xl transition">Login</button>
       <div id="loginError" class="text-red-600 text-sm mt-3 text-center hidden">Invalid token</div>
     </div>
   </div>
 
   <!-- App -->
   <div id="app" class="hidden min-h-screen flex flex-col">
-    <header class="bg-navy-900 text-white shadow">
+    <header class="bg-white border-b border-slate-200 shadow-sm">
       <div class="flex items-center justify-between px-6 py-3">
         <div class="flex items-center gap-4">
-          <div class="text-xl font-bold tracking-tight">LTCPA <span class="text-gold-400">CMS</span></div>
-          <div class="flex bg-navy-800 rounded-lg overflow-hidden">
-            <button class="lang-tab px-4 py-1.5 text-sm hover:bg-navy-700 transition bg-navy-700" data-lang="zh-hant" onclick="setLang('zh-hant')">繁體中文</button>
-            <button class="lang-tab px-4 py-1.5 text-sm hover:bg-navy-700 transition" data-lang="zh-hans" onclick="setLang('zh-hans')">简体中文</button>
-            <button class="lang-tab px-4 py-1.5 text-sm hover:bg-navy-700 transition" data-lang="en" onclick="setLang('en')">English</button>
+          <div class="flex items-center gap-3">
+            <img src="logo.png" alt="Admin Logo" class="h-10 w-auto object-contain">
+            <div class="text-xl font-bold tracking-tight text-navy-900">LTCPA <span class="text-gold-600">CMS</span></div>
+          </div>
+          <div class="flex bg-navy-50 rounded-lg overflow-hidden border border-navy-100">
+            <button class="lang-tab px-4 py-1.5 text-sm hover:bg-navy-100 transition bg-navy-100 font-medium text-navy-900" data-lang="zh-hant" onclick="setLang('zh-hant')">繁體中文</button>
+            <button class="lang-tab px-4 py-1.5 text-sm hover:bg-navy-100 transition text-navy-700" data-lang="zh-hans" onclick="setLang('zh-hans')">简体中文</button>
+            <button class="lang-tab px-4 py-1.5 text-sm hover:bg-navy-100 transition text-navy-700" data-lang="en" onclick="setLang('en')">English</button>
           </div>
         </div>
         <div class="flex items-center gap-3">
-          <input id="apiBaseInput" type="text" placeholder="API Base URL" class="bg-navy-800 border border-navy-700 text-white text-sm rounded px-3 py-1.5 w-64" onchange="localStorage.setItem('cms_api_url', this.value); API_BASE = this.value;">
-          <button onclick="doDeploy()" class="bg-gold-500 hover:bg-gold-600 text-navy-900 font-semibold px-4 py-1.5 rounded-lg transition">Deploy</button>
+          <input id="apiBaseInput" type="text" placeholder="API Base URL" class="bg-white border border-slate-300 text-slate-700 text-sm rounded-lg px-3 py-1.5 w-64 focus:outline-none focus:ring-2 focus:ring-gold-400" onchange="localStorage.setItem('cms_api_url', this.value); API_BASE = this.value;">
+          <button onclick="doDeploy()" class="bg-gold-500 hover:bg-gold-600 text-white font-semibold px-5 py-2 rounded-lg transition shadow-sm">Deploy Site</button>
         </div>
       </div>
     </header>
 
     <div class="flex flex-1 overflow-hidden">
-      <aside class="w-64 bg-navy-800 text-slate-100 flex flex-col overflow-y-auto">
+      <aside class="w-64 bg-white border-r border-slate-200 flex flex-col overflow-y-auto">
         <nav class="flex-1 py-4">
-          <div class="px-4 text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Content</div>
-          <button class="nav-item w-full text-left px-6 py-2.5 hover:bg-navy-700 transition active" data-sec="site" onclick="setSection('site')">Site Settings</button>
-          <button class="nav-item w-full text-left px-6 py-2.5 hover:bg-navy-700 transition" data-sec="header" onclick="setSection('header')">Header</button>
-          <button class="nav-item w-full text-left px-6 py-2.5 hover:bg-navy-700 transition" data-sec="footer" onclick="setSection('footer')">Footer</button>
-          <button class="nav-item w-full text-left px-6 py-2.5 hover:bg-navy-700 transition" data-sec="home" onclick="setSection('home')">Home Page</button>
-          <button class="nav-item w-full text-left px-6 py-2.5 hover:bg-navy-700 transition" data-sec="about" onclick="setSection('about')">About Page</button>
-          <button class="nav-item w-full text-left px-6 py-2.5 hover:bg-navy-700 transition" data-sec="services" onclick="setSection('services')">Services Page</button>
-          <div class="px-6 py-1 text-xs text-slate-400">Service Details</div>
-          <button class="nav-item w-full text-left pl-10 pr-6 py-2 hover:bg-navy-700 transition" data-sec="service_audit" onclick="setSection('service_audit')">Audit</button>
-          <button class="nav-item w-full text-left pl-10 pr-6 py-2 hover:bg-navy-700 transition" data-sec="service_tax" onclick="setSection('service_tax')">Tax</button>
-          <button class="nav-item w-full text-left pl-10 pr-6 py-2 hover:bg-navy-700 transition" data-sec="service_risk" onclick="setSection('service_risk')">Risk</button>
-          <button class="nav-item w-full text-left pl-10 pr-6 py-2 hover:bg-navy-700 transition" data-sec="service_forensic" onclick="setSection('service_forensic')">Forensic</button>
-          <button class="nav-item w-full text-left pl-10 pr-6 py-2 hover:bg-navy-700 transition" data-sec="service_consulting" onclick="setSection('service_consulting')">Consulting</button>
-          <button class="nav-item w-full text-left pl-10 pr-6 py-2 hover:bg-navy-700 transition" data-sec="service_deals" onclick="setSection('service_deals')">Deals</button>
-          <button class="nav-item w-full text-left px-6 py-2.5 hover:bg-navy-700 transition" data-sec="contact" onclick="setSection('contact')">Contact Page</button>
-          <button class="nav-item w-full text-left px-6 py-2.5 hover:bg-navy-700 transition" data-sec="purpose" onclick="setSection('purpose')">Purpose</button>
-          <button class="nav-item w-full text-left px-6 py-2.5 hover:bg-navy-700 transition" data-sec="value" onclick="setSection('value')">Vision</button>
-          <button class="nav-item w-full text-left px-6 py-2.5 hover:bg-navy-700 transition" data-sec="commitment" onclick="setSection('commitment')">Commitment</button>
+          <!-- Brand -->
+          <div class="px-4 mb-1">
+            <div class="nav-group-title text-[10px] font-bold text-slate-400 uppercase">Brand</div>
+          </div>
+          <button class="nav-item w-full text-left px-5 py-2 text-sm text-slate-700 active" data-sec="site" onclick="setSection('site')">Site Settings</button>
+
+          <!-- Navigation -->
+          <div class="px-4 mt-4 mb-1">
+            <div class="nav-group-title text-[10px] font-bold text-slate-400 uppercase">Navigation</div>
+          </div>
+          <button class="nav-item w-full text-left px-5 py-2 text-sm text-slate-700" data-sec="header" onclick="setSection('header')">Header</button>
+          <button class="nav-item w-full text-left px-5 py-2 text-sm text-slate-700" data-sec="footer" onclick="setSection('footer')">Footer</button>
+
+          <!-- Pages -->
+          <div class="px-4 mt-4 mb-1">
+            <div class="nav-group-title text-[10px] font-bold text-slate-400 uppercase">Pages</div>
+          </div>
+          <button class="nav-item w-full text-left px-5 py-2 text-sm text-slate-700" data-sec="home" onclick="setSection('home')">Home</button>
+          <button class="nav-item w-full text-left px-5 py-2 text-sm text-slate-700" data-sec="about" onclick="setSection('about')">About</button>
+          <button class="nav-item w-full text-left px-5 py-2 text-sm text-slate-700" data-sec="purpose" onclick="setSection('purpose')">Purpose</button>
+          <button class="nav-item w-full text-left px-5 py-2 text-sm text-slate-700" data-sec="value" onclick="setSection('value')">Vision</button>
+          <button class="nav-item w-full text-left px-5 py-2 text-sm text-slate-700" data-sec="commitment" onclick="setSection('commitment')">Commitment</button>
+          <button class="nav-item w-full text-left px-5 py-2 text-sm text-slate-700" data-sec="contact" onclick="setSection('contact')">Contact</button>
+
+          <!-- Services (Collapsible) -->
+          <div class="px-4 mt-4 mb-1">
+            <div class="nav-group-title text-[10px] font-bold text-slate-400 uppercase">Services</div>
+          </div>
+          <button class="nav-item w-full text-left px-5 py-2 text-sm text-slate-700" data-sec="services" onclick="setSection('services')">Overview</button>
+          <div class="px-5">
+            <button onclick="toggleGroup('svcGroup', this)" class="w-full flex items-center justify-between py-1.5 text-xs font-semibold text-slate-500 hover:text-slate-700">
+              <span>Detail Pages</span>
+              <svg class="chevron w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div id="svcGroup" class="group-content">
+              <button class="nav-item w-full text-left pl-8 pr-4 py-1.5 text-sm text-slate-600" data-sec="service_audit" onclick="setSection('service_audit')">Audit</button>
+              <button class="nav-item w-full text-left pl-8 pr-4 py-1.5 text-sm text-slate-600" data-sec="service_tax" onclick="setSection('service_tax')">Tax</button>
+              <button class="nav-item w-full text-left pl-8 pr-4 py-1.5 text-sm text-slate-600" data-sec="service_risk" onclick="setSection('service_risk')">Risk</button>
+              <button class="nav-item w-full text-left pl-8 pr-4 py-1.5 text-sm text-slate-600" data-sec="service_forensic" onclick="setSection('service_forensic')">Forensic</button>
+              <button class="nav-item w-full text-left pl-8 pr-4 py-1.5 text-sm text-slate-600" data-sec="service_consulting" onclick="setSection('service_consulting')">Consulting</button>
+              <button class="nav-item w-full text-left pl-8 pr-4 py-1.5 text-sm text-slate-600" data-sec="service_deals" onclick="setSection('service_deals')">Deals</button>
+            </div>
+          </div>
+
+          <!-- Library -->
+          <div class="px-4 mt-4 mb-1">
+            <div class="nav-group-title text-[10px] font-bold text-slate-400 uppercase">Library</div>
+          </div>
+          <button class="nav-item w-full text-left px-5 py-2 text-sm text-slate-700" data-sec="media" onclick="setSection('media')">Media Gallery</button>
+          <button class="nav-item w-full text-left px-5 py-2 text-sm text-slate-700" data-sec="analytics" onclick="setSection('analytics')">Visitor Statistics</button>
         </nav>
+        <div class="px-5 py-4 border-t border-slate-200 text-xs text-slate-400">
+          <div class="flex items-center gap-2">
+            <span>Powered by</span>
+            <a href="https://jkdcoding.com" target="_blank" class="text-gold-600 hover:underline font-semibold">JKDCoding</a>
+          </div>
+        </div>
       </aside>
 
-      <main class="flex-1 overflow-y-auto p-8">
+      <main class="flex-1 overflow-y-auto p-8 bg-slate-50/50">
         <div id="sectionsContainer"></div>
       </main>
     </div>
   </div>
 
-  <div id="toast" class="toast hidden fixed top-4 right-4 z-50 px-5 py-3 rounded-lg shadow-lg text-white font-medium"></div>
+  <div id="toast" class="toast hidden fixed top-4 right-4 z-50 px-5 py-3 rounded-xl shadow-lg text-white font-medium"></div>
 
   <script>
     let API_BASE = localStorage.getItem('cms_api_url') || 'https://ltcpa-cms-api.jimsbond007.workers.dev/api/cms';
@@ -98,16 +149,36 @@
     let currentSection = 'site';
     let cmsData = {};
 
+    function toggleGroup(id, btn) {
+      const el = document.getElementById(id);
+      const chevron = btn.querySelector('.chevron');
+      const isOpen = el.style.maxHeight && el.style.maxHeight !== '0px';
+      if (isOpen) {
+        el.style.maxHeight = '0px';
+        chevron.classList.remove('open');
+      } else {
+        el.style.maxHeight = el.scrollHeight + 'px';
+        chevron.classList.add('open');
+      }
+    }
+
     function doLogin() {
       const val = document.getElementById('loginToken').value.trim();
       if (!val) return;
       token = val;
-      fetch(`${API_BASE}/data`, { headers: { 'X-Admin-Token': token } })
+      fetch(`${API_BASE}/auth/verify`, { headers: { 'X-Admin-Token': token } })
         .then(r => { if (!r.ok) throw new Error('Unauthorized'); return r.json(); })
+        .then(() => fetch(`${API_BASE}/data`))
+        .then(r => r.json())
         .then(data => {
           cmsData = data || {};
           document.getElementById('login').classList.add('hidden');
           document.getElementById('app').classList.remove('hidden');
+          // Open services group by default
+          setTimeout(() => {
+            const svcBtn = document.querySelector('[onclick^="toggleGroup(\'svcGroup\'"]');
+            if (svcBtn) toggleGroup('svcGroup', svcBtn);
+          }, 0);
           renderSections();
         })
         .catch(() => { document.getElementById('loginError').classList.remove('hidden'); });
@@ -116,14 +187,17 @@
     function showToast(msg, type='success') {
       const t = document.getElementById('toast');
       t.textContent = msg;
-      t.className = `toast visible fixed top-4 right-4 z-50 px-5 py-3 rounded-lg shadow-lg text-white font-medium ${type==='success'?'bg-green-600':'bg-red-600'}`;
+      t.className = `toast visible fixed top-4 right-4 z-50 px-5 py-3 rounded-xl shadow-lg text-white font-medium ${type==='success'?'bg-green-600':'bg-red-600'}`;
       setTimeout(() => { t.classList.remove('visible'); t.classList.add('hidden'); }, 3000);
     }
 
     function setLang(l) {
       currentLang = l;
       document.querySelectorAll('.lang-tab').forEach(b => {
-        b.classList.toggle('bg-navy-700', b.dataset.lang === l);
+        b.classList.toggle('bg-navy-100', b.dataset.lang === l);
+        b.classList.toggle('font-medium', b.dataset.lang === l);
+        b.classList.toggle('text-navy-900', b.dataset.lang === l);
+        b.classList.toggle('text-navy-700', b.dataset.lang !== l);
       });
       renderSections();
     }
@@ -150,31 +224,31 @@
 
     // Generic form helpers
     function inputText(id, label, value) {
-      return `<div class="mb-4"><label class="block text-sm font-semibold text-slate-700 mb-1">${label}</label><input type="text" id="${id}" value="${escapeHtml(value)}" class="w-full border border-slate-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-gold-400"></div>`;
+      return `<div class="mb-4"><label class="block text-sm font-semibold text-slate-700 mb-1">${label}</label><input type="text" id="${id}" value="${escapeHtml(value)}" class="w-full border border-slate-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-gold-400 bg-white"></div>`;
     }
     function inputTextarea(id, label, value, rows=3) {
-      return `<div class="mb-4"><label class="block text-sm font-semibold text-slate-700 mb-1">${label}</label><textarea id="${id}" rows="${rows}" class="w-full border border-slate-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-gold-400">${escapeHtml(value)}</textarea></div>`;
+      return `<div class="mb-4"><label class="block text-sm font-semibold text-slate-700 mb-1">${label}</label><textarea id="${id}" rows="${rows}" class="w-full border border-slate-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-gold-400 bg-white">${escapeHtml(value)}</textarea></div>`;
     }
     function inputImage(id, label, value) {
-      return `<div class="mb-4"><label class="block text-sm font-semibold text-slate-700 mb-1">${label}</label><div class="flex gap-2"><input type="text" id="${id}" value="${escapeHtml(value)}" class="flex-1 border border-slate-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-gold-400"><input type="file" id="${id}_file" accept="image/*" class="hidden" onchange="uploadImage('${id}')"><button type="button" onclick="document.getElementById('${id}_file').click()" class="bg-navy-700 hover:bg-navy-800 text-white px-4 py-2 rounded-lg text-sm">Upload</button></div></div>`;
+      return `<div class="mb-4"><label class="block text-sm font-semibold text-slate-700 mb-1">${label}</label><div class="flex gap-2"><input type="text" id="${id}" value="${escapeHtml(value)}" class="flex-1 border border-slate-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-gold-400 bg-white"><input type="file" id="${id}_file" accept="image/*" class="hidden" onchange="uploadImage('${id}')"><button type="button" onclick="document.getElementById('${id}_file').click()" class="bg-navy-800 hover:bg-navy-900 text-white px-4 py-2 rounded-lg text-sm">Upload</button></div></div>`;
     }
     function arrayContainer(id, label, itemsHTML) {
-      return `<div class="mb-6"><div class="flex items-center justify-between mb-2"><label class="block text-sm font-semibold text-slate-700">${label}</label><button type="button" onclick="addArrayItem('${id}')" class="text-sm bg-gold-500 hover:bg-gold-600 text-navy-900 font-semibold px-3 py-1 rounded">+ Add</button></div><div id="${id}_list" class="space-y-3">${itemsHTML}</div></div>`;
+      return `<div class="mb-6"><div class="flex items-center justify-between mb-2"><label class="block text-sm font-semibold text-slate-700">${label}</label><button type="button" onclick="addArrayItem('${id}')" class="text-sm bg-gold-500 hover:bg-gold-600 text-white font-semibold px-3 py-1 rounded">+ Add</button></div><div id="${id}_list" class="space-y-3">${itemsHTML}</div></div>`;
     }
     function arrayItemWrapper(prefix, idx, innerHTML) {
       return `<div class="border border-slate-200 rounded-lg p-3 bg-white relative array-item" data-prefix="${prefix}" data-idx="${idx}"><button type="button" onclick="this.closest('.array-item').remove()" class="absolute top-2 right-2 text-red-500 hover:text-red-700 text-sm font-semibold">Remove</button><div class="grid grid-cols-1 md:grid-cols-2 gap-3 pr-16">${innerHTML}</div></div>`;
     }
     function smallInput(id, label, value) {
-      return `<div><label class="block text-xs font-semibold text-slate-600 mb-1">${label}</label><input type="text" data-field="${id}" value="${escapeHtml(value)}" class="w-full border border-slate-300 rounded px-2 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-gold-400"></div>`;
+      return `<div><label class="block text-xs font-semibold text-slate-600 mb-1">${label}</label><input type="text" data-field="${id}" value="${escapeHtml(value)}" class="w-full border border-slate-300 rounded px-2 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-gold-400 bg-white"></div>`;
     }
     function smallTextarea(id, label, value) {
-      return `<div class="md:col-span-2"><label class="block text-xs font-semibold text-slate-600 mb-1">${label}</label><textarea data-field="${id}" rows="2" class="w-full border border-slate-300 rounded px-2 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-gold-400">${escapeHtml(value)}</textarea></div>`;
+      return `<div class="md:col-span-2"><label class="block text-xs font-semibold text-slate-600 mb-1">${label}</label><textarea data-field="${id}" rows="2" class="w-full border border-slate-300 rounded px-2 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-gold-400 bg-white">${escapeHtml(value)}</textarea></div>`;
     }
     function smallImage(id, label, value) {
-      return `<div><label class="block text-xs font-semibold text-slate-600 mb-1">${label}</label><div class="flex gap-2"><input type="text" data-field="${id}" value="${escapeHtml(value)}" class="flex-1 border border-slate-300 rounded px-2 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-gold-400"><input type="file" id="${id}_file" accept="image/*" class="hidden" onchange="uploadImageForField(this)"><button type="button" onclick="document.getElementById('${id}_file').click()" class="bg-navy-700 hover:bg-navy-800 text-white px-2 py-1 rounded text-xs">Up</button></div></div>`;
+      return `<div><label class="block text-xs font-semibold text-slate-600 mb-1">${label}</label><div class="flex gap-2"><input type="text" data-field="${id}" value="${escapeHtml(value)}" class="flex-1 border border-slate-300 rounded px-2 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-gold-400 bg-white"><input type="file" id="${id}_file" accept="image/*" class="hidden" onchange="uploadImageForField(this)"><button type="button" onclick="document.getElementById('${id}_file').click()" class="bg-navy-800 hover:bg-navy-900 text-white px-2 py-1 rounded text-xs">Up</button></div></div>`;
     }
     function sectionBox(id, title, innerHTML) {
-      return `<div id="sec-${id}" class="section-panel max-w-5xl bg-white rounded-xl shadow p-6 ${id===currentSection?'active':''}"><h2 class="text-xl font-bold text-navy-900 mb-4">${title}</h2>${innerHTML}<div class="mt-6 flex justify-end"><button type="button" onclick="saveSection('${id}')" class="bg-navy-800 hover:bg-navy-900 text-white font-semibold px-6 py-2 rounded-lg transition">Save Section</button></div></div>`;
+      return `<div id="sec-${id}" class="section-panel max-w-5xl bg-white rounded-xl shadow-sm border border-slate-200 p-6 ${id===currentSection?'active':''}"><h2 class="text-xl font-bold text-navy-900 mb-4">${title}</h2>${innerHTML}<div class="mt-6 flex justify-end"><button type="button" onclick="saveSection('${id}')" class="bg-navy-800 hover:bg-navy-900 text-white font-semibold px-6 py-2 rounded-lg transition">Save Section</button></div></div>`;
     }
 
     async function uploadImage(inputId) {
@@ -231,6 +305,8 @@
       html += inputText('site_name', 'Site Name', d.name);
       html += inputText('site_tagline', 'Tagline', d.tagline);
       html += inputImage('site_logo', 'Logo URL', d.logo);
+      html += inputImage('site_jkdcodingLogo', 'JKDCoding Logo URL', d.jkdcodingLogo || '');
+      html += inputText('site_jkdcodingUrl', 'JKDCoding URL', d.jkdcodingUrl || 'https://jkdcoding.com');
       return sectionBox('site', 'Site Settings', html);
     }
 
@@ -249,7 +325,7 @@
           childHTML += smallInput(`header_nav_${idx}_child_${cidx}_url`, 'Child URL', c.url);
           childHTML += `</div>`;
         });
-        inner += `<div class="col-span-2"><div class="text-xs font-semibold text-slate-600 mb-1">Children</div><div id="header_nav_${idx}_children">${childHTML}</div><button type="button" onclick="addNavChild('header_nav_${idx}_children', 'header_nav_${idx}_child')" class="mt-2 text-xs bg-navy-700 text-white px-2 py-1 rounded">+ Add Child</button></div>`;
+        inner += `<div class="col-span-2"><div class="text-xs font-semibold text-slate-600 mb-1">Children</div><div id="header_nav_${idx}_children">${childHTML}</div><button type="button" onclick="addNavChild('header_nav_${idx}_children', 'header_nav_${idx}_child')" class="mt-2 text-xs bg-navy-800 text-white px-2 py-1 rounded hover:bg-navy-900">+ Add Child</button></div>`;
         itemsHTML += arrayItemWrapper('header_nav', idx, inner);
       });
       let html = arrayContainer('header_nav', 'Navigation Items', itemsHTML);
@@ -536,24 +612,145 @@
       return sectionBox(id, titleKey, html);
     }
 
+    function renderMediaGallery() {
+      return sectionBox('media', 'Media Gallery', `
+        <div id="mediaGalleryContent">
+          <div class="text-slate-500">Loading media...</div>
+        </div>
+        <div class="mt-6 flex gap-2">
+          <input type="file" id="mediaUploadFile" accept="image/*" class="hidden" onchange="uploadMediaGallery()">
+          <button type="button" onclick="document.getElementById('mediaUploadFile').click()" class="bg-navy-800 hover:bg-navy-900 text-white font-semibold px-4 py-2 rounded-lg">Upload Image</button>
+          <button type="button" onclick="loadMediaGallery()" class="bg-slate-200 hover:bg-slate-300 text-slate-800 font-semibold px-4 py-2 rounded-lg">Refresh</button>
+        </div>
+      `);
+    }
+
+    async function loadMediaGallery() {
+      const container = document.getElementById('mediaGalleryContent');
+      container.innerHTML = '<div class="text-slate-500">Loading media...</div>';
+      try {
+        const [r2Res, staticRes] = await Promise.all([
+          fetch(`${API_BASE}/media`, { headers: { 'X-Admin-Token': token } }),
+          fetch('/images-manifest.json')
+        ]);
+        let r2Objects = [];
+        let staticObjects = [];
+        const r2Data = await r2Res.json();
+        if (r2Data.success && r2Data.objects) r2Objects = r2Data.objects;
+        const staticData = await staticRes.json().catch(() => ({ objects: [] }));
+        if (staticData.objects) staticObjects = staticData.objects;
+
+        if (r2Objects.length === 0 && staticObjects.length === 0) {
+          container.innerHTML = '<div class="text-slate-500">No media found.</div>';
+          return;
+        }
+
+        let html = '';
+        if (staticObjects.length > 0) {
+          html += '<div class="mb-2 text-sm font-semibold text-slate-700">Static Images (in site build)</div>';
+          html += '<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">';
+          staticObjects.forEach(obj => {
+            html += `<div class="border rounded-lg overflow-hidden bg-white"><img src="${obj.url}" class="w-full h-32 object-cover" loading="lazy"><div class="p-2 text-xs text-slate-600 truncate" title="${obj.key}">${obj.key}</div></div>`;
+          });
+          html += '</div>';
+        }
+        if (r2Objects.length > 0) {
+          html += '<div class="mb-2 text-sm font-semibold text-slate-700">Uploaded Media (R2)</div>';
+          html += '<div class="grid grid-cols-2 md:grid-cols-4 gap-4">';
+          r2Objects.forEach(obj => {
+            html += `<div class="border rounded-lg overflow-hidden bg-white"><img src="${obj.url}" class="w-full h-32 object-cover" loading="lazy"><div class="p-2 text-xs text-slate-600 truncate" title="${obj.key}">${obj.key}</div></div>`;
+          });
+          html += '</div>';
+        }
+        container.innerHTML = html;
+      } catch (e) {
+        container.innerHTML = '<div class="text-red-600">Error loading media</div>';
+      }
+    }
+
+    async function uploadMediaGallery() {
+      const fileInput = document.getElementById('mediaUploadFile');
+      if (!fileInput.files.length) return;
+      const form = new FormData();
+      form.append('file', fileInput.files[0]);
+      try {
+        const r = await fetch(`${API_BASE}/upload`, { method: 'POST', headers: { 'X-Admin-Token': token }, body: form });
+        const data = await r.json();
+        if (data.success) { showToast('Image uploaded'); loadMediaGallery(); }
+        else { showToast(data.error || 'Upload failed', 'error'); }
+      } catch (e) { showToast('Upload error', 'error'); }
+    }
+
+    window.loadMediaGallery = loadMediaGallery;
+    window.uploadMediaGallery = uploadMediaGallery;
+
+    function renderAnalytics() {
+      return sectionBox('analytics', 'Visitor Statistics', `
+        <div class="mb-4 flex gap-2">
+          <button type="button" onclick="loadAnalytics(7)" class="bg-navy-800 hover:bg-navy-900 text-white px-3 py-1.5 rounded-lg text-sm">Last 7 Days</button>
+          <button type="button" onclick="loadAnalytics(30)" class="bg-navy-800 hover:bg-navy-900 text-white px-3 py-1.5 rounded-lg text-sm">Last 30 Days</button>
+        </div>
+        <div id="analyticsContent"><div class="text-slate-500">Click a button above to load statistics.</div></div>
+      `);
+    }
+
+    async function loadAnalytics(days) {
+      const container = document.getElementById('analyticsContent');
+      container.innerHTML = '<div class="text-slate-500">Loading...</div>';
+      try {
+        const r = await fetch(`${API_BASE}/analytics/report?days=${days}`, { headers: { 'X-Admin-Token': token } });
+        const res = await r.json();
+        if (!res.success) { container.innerHTML = '<div class="text-red-600">Failed to load analytics</div>'; return; }
+        const d = res.data;
+        let html = `<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">`;
+        html += `<div class="bg-navy-50 p-4 rounded-lg"><div class="text-sm text-slate-600">Total Views</div><div class="text-2xl font-bold text-navy-900">${d.totalViews}</div></div>`;
+        html += `<div class="bg-navy-50 p-4 rounded-lg"><div class="text-sm text-slate-600">Avg Daily Views</div><div class="text-2xl font-bold text-navy-900">${d.avgDailyViews}</div></div>`;
+        html += `<div class="bg-navy-50 p-4 rounded-lg"><div class="text-sm text-slate-600">Period</div><div class="text-2xl font-bold text-navy-900">${days} Days</div></div>`;
+        html += `</div>`;
+        if (d.dailyData && d.dailyData.length) {
+          const maxViews = Math.max(...d.dailyData.map(day => day.views), 1);
+          html += `<div class="mb-6"><h3 class="font-semibold text-slate-700 mb-3">Daily Views</h3><div class="space-y-2">`;
+          d.dailyData.forEach(day => {
+            const pct = Math.min(100, (day.views / maxViews) * 100) || 0;
+            html += `<div class="flex items-center gap-3"><span class="text-sm text-slate-600 w-24">${day.date}</span><div class="flex-1 bg-slate-100 rounded h-4 overflow-hidden"><div class="bg-gold-400 h-4" style="width:${pct}%"></div></div><span class="text-sm text-slate-700 w-12 text-right">${day.views}</span></div>`;
+          });
+          html += `</div></div>`;
+        }
+        if (d.topPages && d.topPages.length) {
+          html += `<div class="mb-4"><h3 class="font-semibold text-slate-700 mb-3">Top Pages</h3><div class="grid grid-cols-1 md:grid-cols-2 gap-2">`;
+          d.topPages.forEach(p => {
+            html += `<div class="flex justify-between bg-white border rounded-lg px-3 py-2 text-sm"><span class="text-slate-600 truncate">${p.page}</span><span class="font-semibold text-navy-900">${p.views}</span></div>`;
+          });
+          html += `</div></div>`;
+        }
+        container.innerHTML = html;
+      } catch (e) {
+        container.innerHTML = '<div class="text-red-600">Error loading analytics</div>';
+      }
+    }
+
+    window.loadAnalytics = loadAnalytics;
+
     function renderSections() {
       const container = document.getElementById('sectionsContainer');
       container.innerHTML = '';
       container.appendChild(strToNode(renderSite()));
       container.appendChild(strToNode(renderHeader()));
-      container.appendChild(strToNode(renderFooter()));
       container.appendChild(strToNode(renderHome()));
       container.appendChild(strToNode(renderAbout()));
+      container.appendChild(strToNode(renderSimplePage('purpose', 'Purpose Page', getLangObj().purpose || {})));
+      container.appendChild(strToNode(renderSimplePage('value', 'Vision Page', getLangObj().value || {})));
+      container.appendChild(strToNode(renderSimplePage('commitment', 'Commitment Page', getLangObj().commitment || {})));
       container.appendChild(strToNode(renderServices()));
       ['audit','tax','risk','forensic','consulting','deals'].forEach(slug => {
         container.appendChild(strToNode(renderServiceDetail(slug)));
       });
       container.appendChild(strToNode(renderContact()));
-      const l = getLangObj();
-      container.appendChild(strToNode(renderSimplePage('purpose', 'Purpose Page', l.purpose || {})));
-      container.appendChild(strToNode(renderSimplePage('value', 'Vision Page', l.value || {})));
-      container.appendChild(strToNode(renderSimplePage('commitment', 'Commitment Page', l.commitment || {})));
+      container.appendChild(strToNode(renderFooter()));
+      container.appendChild(strToNode(renderMediaGallery()));
+      container.appendChild(strToNode(renderAnalytics()));
       setSection(currentSection);
+      if (currentSection === 'media') loadMediaGallery();
     }
 
     function strToNode(html) {
@@ -564,19 +761,15 @@
 
     window.addArrayItem = function(prefix) {
       const list = document.getElementById(prefix + '_list');
-      // determine index
       const items = list.querySelectorAll('.array-item');
       const idx = items.length;
-      // clone template from first item if exists, else build generic
       let template = '';
       if (items.length > 0) {
         const first = items[0];
         const p = first.dataset.prefix;
         template = first.outerHTML.replace(new RegExp(p + '_0_', 'g'), prefix + '_' + idx + '_').replace(new RegExp(p + '_0', 'g'), prefix + '_' + idx);
-        // clear values
         template = template.replace(/value="[^"]*"/g, 'value=""').replace(/>([^<]*)<\/textarea>/g, '></textarea>');
       } else {
-        // Generic fallback for arrays without existing items
         template = arrayItemWrapper(prefix, idx, smallInput(prefix + '_' + idx + '_label', 'Label', '') + smallInput(prefix + '_' + idx + '_value', 'Value', ''));
       }
       const div = document.createElement('div');
@@ -587,7 +780,13 @@
     function collectSection(id) {
       const obj = {};
       if (id === 'site') {
-        obj.site = { name: readInput('site_name'), tagline: readInput('site_tagline'), logo: readInput('site_logo') };
+        obj.site = {
+          name: readInput('site_name'),
+          tagline: readInput('site_tagline'),
+          logo: readInput('site_logo'),
+          jkdcodingLogo: readInput('site_jkdcodingLogo'),
+          jkdcodingUrl: readInput('site_jkdcodingUrl'),
+        };
       } else if (id === 'header') {
         const nav = readArray('header_nav', ['label', 'url']);
         nav.forEach((item, idx) => {
@@ -781,7 +980,7 @@
         const r = await fetch(`${API_BASE}/deploy`, { method: 'POST', headers: { 'X-Admin-Token': token } });
         const data = await r.json();
         if (data.success) showToast('Deploy triggered');
-        else showToast(data.error || 'Deploy failed', 'error');
+        else showToast(data.error || ('Deploy failed: ' + (data.details || '')), 'error');
       } catch (e) { showToast('Deploy error', 'error'); }
     };
   </script>

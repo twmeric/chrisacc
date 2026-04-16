@@ -6,6 +6,8 @@ export const defaultCMSData: CMSData = {
       name: "櫪韜會計師事務所",
       tagline: "Professional Accounting",
       logo: "/images/logo-tc.jpg",
+      jkdcodingLogo: "",
+      jkdcodingUrl: "https://jkdcoding.com",
     },
     header: {
       navItems: [
@@ -452,6 +454,8 @@ export const defaultCMSData: CMSData = {
       name: "櫪韬会计师事务所",
       tagline: "Professional Accounting",
       logo: "/images/logo-sc.jpg",
+      jkdcodingLogo: "",
+      jkdcodingUrl: "https://jkdcoding.com",
     },
     header: {
       navItems: [
@@ -898,6 +902,8 @@ export const defaultCMSData: CMSData = {
       name: "LT CPA Limited",
       tagline: "Professional Accounting",
       logo: "/images/logo-en.jpg",
+      jkdcodingLogo: "",
+      jkdcodingUrl: "https://jkdcoding.com",
     },
     header: {
       navItems: [

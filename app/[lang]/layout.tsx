@@ -3,6 +3,7 @@ import { i18n, Locale } from "@/lib/i18n-config";
 import { getLocaleCMS } from "@/lib/cms-data";
 import Header from "@/components/ui/Header";
 import Footer from "@/components/ui/Footer";
+import AnalyticsTracker from "@/components/AnalyticsTracker";
 import "../globals.css";
 
 export async function generateStaticParams() {
@@ -38,6 +39,7 @@ export default async function RootLayout({
         />
       </head>
       <body className="flex min-h-screen flex-col">
+        <AnalyticsTracker />
         <Header
           lang={locale}
           navItems={cms.header.navItems}

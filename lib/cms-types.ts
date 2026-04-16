@@ -24,6 +24,8 @@ export interface SiteData {
   name: string;
   tagline: string;
   logo: string;
+  jkdcodingLogo?: string;
+  jkdcodingUrl?: string;
 }
 
 export interface HeaderData {

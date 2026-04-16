@@ -12,4 +12,4 @@ binding = "MEDIA_BUCKET"
 bucket_name = "ltcpa-media"
 
 [vars]
-ADMIN_PASSWORD = "ltcpa-admin-2025"
+ADMIN_PASSWORD = "admin360"

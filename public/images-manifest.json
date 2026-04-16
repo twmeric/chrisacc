@@ -1,0 +1,70 @@
+{
+  "generatedAt": "2026-04-16T13:04:22.311Z",
+  "objects": [
+    {
+      "key": "banner-bg.jpg",
+      "url": "/images/banner-bg.jpg",
+      "source": "static"
+    },
+    {
+      "key": "hero-bg-1.jpg",
+      "url": "/images/hero-bg-1.jpg",
+      "source": "static"
+    },
+    {
+      "key": "hero-bg-2.jpg",
+      "url": "/images/hero-bg-2.jpg",
+      "source": "static"
+    },
+    {
+      "key": "hero-bg-3.jpg",
+      "url": "/images/hero-bg-3.jpg",
+      "source": "static"
+    },
+    {
+      "key": "hero-bg.jpg",
+      "url": "/images/hero-bg.jpg",
+      "source": "static"
+    },
+    {
+      "key": "logo-en.jpg",
+      "url": "/images/logo-en.jpg",
+      "source": "static"
+    },
+    {
+      "key": "logo-sc.jpg",
+      "url": "/images/logo-sc.jpg",
+      "source": "static"
+    },
+    {
+      "key": "logo-tc.jpg",
+      "url": "/images/logo-tc.jpg",
+      "source": "static"
+    },
+    {
+      "key": "service-hero-bg.jpg",
+      "url": "/images/service-hero-bg.jpg",
+      "source": "static"
+    },
+    {
+      "key": "team-1.jpg",
+      "url": "/images/team-1.jpg",
+      "source": "static"
+    },
+    {
+      "key": "team-2.jpg",
+      "url": "/images/team-2.jpg",
+      "source": "static"
+    },
+    {
+      "key": "team-3.jpg",
+      "url": "/images/team-3.jpg",
+      "source": "static"
+    },
+    {
+      "key": "team-4.jpg",
+      "url": "/images/team-4.jpg",
+      "source": "static"
+    }
+  ]
+}

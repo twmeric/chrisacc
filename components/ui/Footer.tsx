@@ -79,8 +79,14 @@ export default function Footer({ lang }: FooterProps) {
           </div>
         </div>
 
-        <div className="py-5 text-center text-xs text-white/60 md:text-sm">
-          {t.rights}
+        <div className="py-5 text-center text-xs text-white/60 md:text-sm space-y-1">
+          <p>{t.rights}</p>
+          <p>
+            Powered by{" "}
+            <a href="https://jkdcoding.com" target="_blank" rel="noopener noreferrer" className="text-brand-gold hover:underline">
+              JKDCoding
+            </a>
+          </p>
         </div>
       </div>
     </footer>

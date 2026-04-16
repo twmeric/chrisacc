@@ -2,7 +2,7 @@ name: Deploy LTCPA Website
 
 on:
   push:
-    branches: [master, main]
+    branches: [main]
   workflow_dispatch:
 
 jobs:
