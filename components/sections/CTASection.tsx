@@ -18,7 +18,7 @@ export default function CTASection({ lang, title, description, primaryBtn, secon
       }}
     >
       <div className="relative z-10 mx-auto max-w-3xl">
-        <h2 className="mb-4 text-3xl font-bold md:text-4xl">{title}</h2>
+        <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">{title}</h2>
         <p className="mb-8 text-lg text-white/90">{description}</p>
         <div className="flex flex-wrap items-center justify-center gap-4">
           <Link

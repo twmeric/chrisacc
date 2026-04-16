@@ -204,7 +204,7 @@ export default function ContactForm({ lang }: ContactFormProps) {
           </div>
 
           <div className="rounded-2xl bg-gradient-to-br from-brand-navy to-brand-navy-light p-6 text-white md:p-8">
-            <h3 className="mb-5 text-xl font-bold">{t.infoTitle}</h3>
+            <h3 className="mb-5 text-xl font-bold text-white">{t.infoTitle}</h3>
             <div className="mb-6 space-y-3 text-sm opacity-90">
               <p>LT CPA Limited</p>
               <p>Unit 503, Tower 2, Lippo Centre, Admiralty, Hong Kong</p>
@@ -212,7 +212,7 @@ export default function ContactForm({ lang }: ContactFormProps) {
               <p>info@ltcpa.com</p>
             </div>
             <div className="mb-6 border-t border-white/10 pt-5">
-              <h4 className="mb-3 flex items-center gap-2 font-semibold">
+              <h4 className="mb-3 flex items-center gap-2 font-semibold text-white">
                 <Clock className="h-4 w-4 text-brand-gold" /> {t.hoursTitle}
               </h4>
               <div className="space-y-2 text-sm opacity-90">

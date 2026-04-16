@@ -120,12 +120,14 @@ export default function Header({ lang, navItems }: HeaderProps) {
       <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-4 lg:px-6">
         {/* Logo */}
         <Link href={lang === "en" ? "/" : `/${lang}/`} className="flex shrink-0 items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center bg-brand-navy text-lg font-bold text-white md:h-12 md:w-12 md:text-2xl">
-            LT
-          </div>
+          <img
+            src={lang === "en" ? "/images/logo-en.jpg" : lang === "zh-hans" ? "/images/logo-sc.jpg" : "/images/logo-tc.jpg"}
+            alt="LTCPA"
+            className="h-10 w-auto object-contain md:h-12"
+          />
           <div className="hidden flex-col md:flex">
             <span className="text-lg font-bold leading-tight text-brand-navy md:text-[22px]">
-              {lang === "en" ? "LT CPA Limited" : "櫪韜會計師事務所"}
+              {lang === "en" ? "LT CPA Limited" : lang === "zh-hans" ? "櫪韬会计师事务所" : "櫪韜會計師事務所"}
             </span>
             <span className="text-[10px] tracking-[3px] text-text-light md:text-xs uppercase">
               {lang === "en" ? "Professional Accounting" : "Professional Services"}
