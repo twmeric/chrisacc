@@ -15,6 +15,40 @@ function generateState(): string {
   return Array.from(arr, (b) => b.toString(16).padStart(2, "0")).join("");
 }
 
+function sendResponse(status: "success" | "error", payload: string) {
+  const html = `<!DOCTYPE html>
+<html>
+<head><title>OAuth ${status === "success" ? "Success" : "Error"}</title></head>
+<body>
+<p>${status === "success" ? "Authentication successful. You can close this window." : "Authentication failed: " + escapeHtml(payload) + "</p>"}
+<script>
+  (function() {
+    var message = ${JSON.stringify(payload)};
+    if (window.opener) {
+      window.opener.postMessage(message, '*');
+    }
+    setTimeout(function() {
+      window.close();
+    }, ${status === "success" ? "300" : "3000"});
+  })();
+</script>
+</body>
+</html>`;
+  return new Response(html, {
+    status: status === "success" ? 200 : 401,
+    headers: { "Content-Type": "text/html" },
+  });
+}
+
+function escapeHtml(text: string): string {
+  return text
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
     const url = new URL(request.url);
@@ -45,51 +79,47 @@ export default {
 
     if (url.pathname === "/callback") {
       const code = url.searchParams.get("code");
+      const error = url.searchParams.get("error");
+      const errorDescription = url.searchParams.get("error_description");
+
+      if (error) {
+        return sendResponse("error", errorDescription || error);
+      }
+
       if (!code) {
-        return new Response("Missing code", { status: 400 });
+        return sendResponse("error", "Missing authorization code");
       }
 
-      const tokenRes = await fetch(
-        "https://github.com/login/oauth/access_token",
-        {
-          method: "POST",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            client_id: env.GITHUB_CLIENT_ID,
-            client_secret: env.GITHUB_CLIENT_SECRET,
-            code,
-          }),
+      try {
+        const tokenRes = await fetch(
+          "https://github.com/login/oauth/access_token",
+          {
+            method: "POST",
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              client_id: env.GITHUB_CLIENT_ID,
+              client_secret: env.GITHUB_CLIENT_SECRET,
+              code,
+            }),
+          }
+        );
+
+        const tokenData: any = await tokenRes.json();
+        const token = tokenData.access_token;
+        const githubError = tokenData.error_description || tokenData.error;
+
+        if (!token) {
+          return sendResponse("error", githubError || "GitHub authorization failed");
         }
-      );
 
-      const tokenData: any = await tokenRes.json();
-      const token = tokenData.access_token;
-
-      if (!token) {
-        return new Response("Authorization failed", { status: 401 });
+        const message = `authorization:github:success:{"token":"${token}","provider":"github"}`;
+        return sendResponse("success", message);
+      } catch (err: any) {
+        return sendResponse("error", err.message || "Server error during token exchange");
       }
-
-      // Return HTML that posts the token back to Decap CMS opener
-      const html = `<!DOCTYPE html>
-<html>
-<head><title>Auth Success</title></head>
-<body>
-<script>
-  window.opener.postMessage(
-    'authorization:github:success:{"token":"${token}","provider":"github"}',
-    '*'
-  );
-  window.close();
-</script>
-</body>
-</html>`;
-
-      return new Response(html, {
-        headers: { "Content-Type": "text/html" },
-      });
     }
 
     return new Response("Not Found", { status: 404 });
