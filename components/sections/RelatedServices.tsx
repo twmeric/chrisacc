@@ -6,11 +6,11 @@ interface RelatedServicesProps {
   lang: Locale;
   currentSlug: string;
   services: { slug: string; title: string; desc: string }[];
+  title: string;
 }
 
-export default function RelatedServices({ lang, currentSlug, services }: RelatedServicesProps) {
+export default function RelatedServices({ lang, currentSlug, services, title }: RelatedServicesProps) {
   const related = services.filter((s) => s.slug !== currentSlug).slice(0, 3);
-  const title = lang === "en" ? "Related Services" : lang === "zh-hans" ? "相关服务" : "相關服務";
 
   return (
     <section className="bg-brand-cream px-4 py-16 md:py-24">

@@ -1,10 +1,11 @@
 interface ServiceProcessProps {
   lang: "zh-hant" | "zh-hans" | "en";
   title: string;
+  subtitle: string;
   steps: { number: string; title: string; desc: string }[];
 }
 
-export default function ServiceProcess({ lang, title, steps }: ServiceProcessProps) {
+export default function ServiceProcess({ lang, title, subtitle, steps }: ServiceProcessProps) {
   return (
     <section className="bg-white px-4 py-16 md:py-24">
       <div className="mx-auto max-w-6xl">
@@ -14,7 +15,7 @@ export default function ServiceProcess({ lang, title, steps }: ServiceProcessPro
             <span className="absolute -bottom-3 left-1/2 h-[2px] w-20 -translate-x-1/2 bg-brand-gold" />
           </h2>
           <p className="mx-auto mt-6 max-w-2xl text-lg text-text-light">
-            {lang === "en" ? "Systematic approach ensuring quality and efficiency" : lang === "zh-hans" ? "系统化的专业流程，确保质量与效率" : "系統化的專業流程，確保質量與效率"}
+            {subtitle}
           </p>
         </div>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">

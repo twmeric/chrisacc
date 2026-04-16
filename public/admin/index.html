@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LTCPA CMS Admin</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: { 50: '#f0f3f8', 100: '#dce4f2', 200: '#b8c9e6', 300: '#8aa5d4', 400: '#5d7fbf', 500: '#3e5fa8', 600: '#2f4a8a', 700: '#1f3263', 800: '#15254d', 900: '#0c1836' },
+            gold: { 50: '#fdf9ed', 100: '#f8efc4', 200: '#f0de8a', 300: '#e8cd50', 400: '#dab525', 500: '#c49c1a', 600: '#a57d12', 700: '#7f5f10', 800: '#664b11', 900: '#553d14' },
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .toast { transition: all 0.3s ease; }
+    .toast.hidden { opacity: 0; transform: translateY(-10px); pointer-events: none; }
+    .toast.visible { opacity: 1; transform: translateY(0); }
+    .nav-item.active { background: rgba(255,255,255,0.12); border-left: 3px solid #e8cd50; }
+    .section-panel { display: none; }
+    .section-panel.active { display: block; }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+  <!-- Login -->
+  <div id="login" class="fixed inset-0 z-50 flex items-center justify-center bg-navy-900">
+    <div className="w-full max-w-sm p-8 rounded-xl bg-white shadow-2xl">
+      <h1 class="text-2xl font-bold text-navy-900 mb-2 text-center">LTCPA Admin</h1>
+      <p class="text-sm text-slate-500 text-center mb-6">Enter admin token to continue</p>
+      <input id="loginToken" type="password" placeholder="Admin Token" class="w-full border border-slate-300 rounded-lg px-4 py-2 mb-4 focus:outline-none focus:ring-2 focus:ring-gold-400">
+      <button onclick="doLogin()" class="w-full bg-navy-800 hover:bg-navy-900 text-white font-semibold py-2 rounded-lg transition">Login</button>
+      <div id="loginError" class="text-red-600 text-sm mt-3 text-center hidden">Invalid token</div>
+    </div>
+  </div>
+
+  <!-- App -->
+  <div id="app" class="hidden min-h-screen flex flex-col">
+    <header class="bg-navy-900 text-white shadow">
+      <div class="flex items-center justify-between px-6 py-3">
+        <div class="flex items-center gap-4">
+          <div class="text-xl font-bold tracking-tight">LTCPA <span class="text-gold-400">CMS</span></div>
+          <div class="flex bg-navy-800 rounded-lg overflow-hidden">
+            <button class="lang-tab px-4 py-1.5 text-sm hover:bg-navy-700 transition bg-navy-700" data-lang="zh-hant" onclick="setLang('zh-hant')">繁體中文</button>
+            <button class="lang-tab px-4 py-1.5 text-sm hover:bg-navy-700 transition" data-lang="zh-hans" onclick="setLang('zh-hans')">简体中文</button>
+            <button class="lang-tab px-4 py-1.5 text-sm hover:bg-navy-700 transition" data-lang="en" onclick="setLang('en')">English</button>
+          </div>
+        </div>
+        <div class="flex items-center gap-3">
+          <input id="apiBaseInput" type="text" placeholder="API Base URL" class="bg-navy-800 border border-navy-700 text-white text-sm rounded px-3 py-1.5 w-64" onchange="localStorage.setItem('cms_api_url', this.value); API_BASE = this.value;">
+          <button onclick="doDeploy()" class="bg-gold-500 hover:bg-gold-600 text-navy-900 font-semibold px-4 py-1.5 rounded-lg transition">Deploy</button>
+        </div>
+      </div>
+    </header>
+
+    <div class="flex flex-1 overflow-hidden">
+      <aside class="w-64 bg-navy-800 text-slate-100 flex flex-col overflow-y-auto">
+        <nav class="flex-1 py-4">
+          <div class="px-4 text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Content</div>
+          <button class="nav-item w-full text-left px-6 py-2.5 hover:bg-navy-700 transition active" data-sec="site" onclick="setSection('site')">Site Settings</button>
+          <button class="nav-item w-full text-left px-6 py-2.5 hover:bg-navy-700 transition" data-sec="header" onclick="setSection('header')">Header</button>
+          <button class="nav-item w-full text-left px-6 py-2.5 hover:bg-navy-700 transition" data-sec="footer" onclick="setSection('footer')">Footer</button>
+          <button class="nav-item w-full text-left px-6 py-2.5 hover:bg-navy-700 transition" data-sec="home" onclick="setSection('home')">Home Page</button>
+          <button class="nav-item w-full text-left px-6 py-2.5 hover:bg-navy-700 transition" data-sec="about" onclick="setSection('about')">About Page</button>
+          <button class="nav-item w-full text-left px-6 py-2.5 hover:bg-navy-700 transition" data-sec="services" onclick="setSection('services')">Services Page</button>
+          <div class="px-6 py-1 text-xs text-slate-400">Service Details</div>
+          <button class="nav-item w-full text-left pl-10 pr-6 py-2 hover:bg-navy-700 transition" data-sec="service_audit" onclick="setSection('service_audit')">Audit</button>
+          <button class="nav-item w-full text-left pl-10 pr-6 py-2 hover:bg-navy-700 transition" data-sec="service_tax" onclick="setSection('service_tax')">Tax</button>
+          <button class="nav-item w-full text-left pl-10 pr-6 py-2 hover:bg-navy-700 transition" data-sec="service_risk" onclick="setSection('service_risk')">Risk</button>
+          <button class="nav-item w-full text-left pl-10 pr-6 py-2 hover:bg-navy-700 transition" data-sec="service_forensic" onclick="setSection('service_forensic')">Forensic</button>
+          <button class="nav-item w-full text-left pl-10 pr-6 py-2 hover:bg-navy-700 transition" data-sec="service_consulting" onclick="setSection('service_consulting')">Consulting</button>
+          <button class="nav-item w-full text-left pl-10 pr-6 py-2 hover:bg-navy-700 transition" data-sec="service_deals" onclick="setSection('service_deals')">Deals</button>
+          <button class="nav-item w-full text-left px-6 py-2.5 hover:bg-navy-700 transition" data-sec="contact" onclick="setSection('contact')">Contact Page</button>
+          <button class="nav-item w-full text-left px-6 py-2.5 hover:bg-navy-700 transition" data-sec="purpose" onclick="setSection('purpose')">Purpose</button>
+          <button class="nav-item w-full text-left px-6 py-2.5 hover:bg-navy-700 transition" data-sec="value" onclick="setSection('value')">Vision</button>
+          <button class="nav-item w-full text-left px-6 py-2.5 hover:bg-navy-700 transition" data-sec="commitment" onclick="setSection('commitment')">Commitment</button>
+        </nav>
+      </aside>
+
+      <main class="flex-1 overflow-y-auto p-8">
+        <div id="sectionsContainer"></div>
+      </main>
+    </div>
+  </div>
+
+  <div id="toast" class="toast hidden fixed top-4 right-4 z-50 px-5 py-3 rounded-lg shadow-lg text-white font-medium"></div>
+
+  <script>
+    let API_BASE = localStorage.getItem('cms_api_url') || '/api/cms';
+    document.getElementById('apiBaseInput').value = API_BASE;
+    let token = '';
+    let currentLang = 'zh-hant';
+    let currentSection = 'site';
+    let cmsData = {};
+
+    function doLogin() {
+      const val = document.getElementById('loginToken').value.trim();
+      if (!val) return;
+      token = val;
+      fetch(`${API_BASE}/data`, { headers: { 'X-Admin-Token': token } })
+        .then(r => { if (!r.ok) throw new Error('Unauthorized'); return r.json(); })
+        .then(data => {
+          cmsData = data || {};
+          document.getElementById('login').classList.add('hidden');
+          document.getElementById('app').classList.remove('hidden');
+          renderSections();
+        })
+        .catch(() => { document.getElementById('loginError').classList.remove('hidden'); });
+    }
+
+    function showToast(msg, type='success') {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.className = `toast visible fixed top-4 right-4 z-50 px-5 py-3 rounded-lg shadow-lg text-white font-medium ${type==='success'?'bg-green-600':'bg-red-600'}`;
+      setTimeout(() => { t.classList.remove('visible'); t.classList.add('hidden'); }, 3000);
+    }
+
+    function setLang(l) {
+      currentLang = l;
+      document.querySelectorAll('.lang-tab').forEach(b => {
+        b.classList.toggle('bg-navy-700', b.dataset.lang === l);
+      });
+      renderSections();
+    }
+
+    function setSection(s) {
+      currentSection = s;
+      document.querySelectorAll('.nav-item').forEach(b => {
+        b.classList.toggle('active', b.dataset.sec === s);
+      });
+      document.querySelectorAll('.section-panel').forEach(sec => {
+        sec.classList.toggle('active', sec.id === 'sec-' + s);
+      });
+    }
+
+    function getLangObj() {
+      if (!cmsData[currentLang]) cmsData[currentLang] = {};
+      return cmsData[currentLang];
+    }
+
+    function escapeHtml(s) {
+      if (s === null || s === undefined) return '';
+      return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    // Generic form helpers
+    function inputText(id, label, value) {
+      return `<div class="mb-4"><label class="block text-sm font-semibold text-slate-700 mb-1">${label}</label><input type="text" id="${id}" value="${escapeHtml(value)}" class="w-full border border-slate-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-gold-400"></div>`;
+    }
+    function inputTextarea(id, label, value, rows=3) {
+      return `<div class="mb-4"><label class="block text-sm font-semibold text-slate-700 mb-1">${label}</label><textarea id="${id}" rows="${rows}" class="w-full border border-slate-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-gold-400">${escapeHtml(value)}</textarea></div>`;
+    }
+    function inputImage(id, label, value) {
+      return `<div class="mb-4"><label class="block text-sm font-semibold text-slate-700 mb-1">${label}</label><div class="flex gap-2"><input type="text" id="${id}" value="${escapeHtml(value)}" class="flex-1 border border-slate-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-gold-400"><input type="file" id="${id}_file" accept="image/*" class="hidden" onchange="uploadImage('${id}')"><button type="button" onclick="document.getElementById('${id}_file').click()" class="bg-navy-700 hover:bg-navy-800 text-white px-4 py-2 rounded-lg text-sm">Upload</button></div></div>`;
+    }
+    function arrayContainer(id, label, itemsHTML) {
+      return `<div class="mb-6"><div class="flex items-center justify-between mb-2"><label class="block text-sm font-semibold text-slate-700">${label}</label><button type="button" onclick="addArrayItem('${id}')" class="text-sm bg-gold-500 hover:bg-gold-600 text-navy-900 font-semibold px-3 py-1 rounded">+ Add</button></div><div id="${id}_list" class="space-y-3">${itemsHTML}</div></div>`;
+    }
+    function arrayItemWrapper(prefix, idx, innerHTML) {
+      return `<div class="border border-slate-200 rounded-lg p-3 bg-white relative array-item" data-prefix="${prefix}" data-idx="${idx}"><button type="button" onclick="this.closest('.array-item').remove()" class="absolute top-2 right-2 text-red-500 hover:text-red-700 text-sm font-semibold">Remove</button><div class="grid grid-cols-1 md:grid-cols-2 gap-3 pr-16">${innerHTML}</div></div>`;
+    }
+    function smallInput(id, label, value) {
+      return `<div><label class="block text-xs font-semibold text-slate-600 mb-1">${label}</label><input type="text" data-field="${id}" value="${escapeHtml(value)}" class="w-full border border-slate-300 rounded px-2 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-gold-400"></div>`;
+    }
+    function smallTextarea(id, label, value) {
+      return `<div class="md:col-span-2"><label class="block text-xs font-semibold text-slate-600 mb-1">${label}</label><textarea data-field="${id}" rows="2" class="w-full border border-slate-300 rounded px-2 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-gold-400">${escapeHtml(value)}</textarea></div>`;
+    }
+    function smallImage(id, label, value) {
+      return `<div><label class="block text-xs font-semibold text-slate-600 mb-1">${label}</label><div class="flex gap-2"><input type="text" data-field="${id}" value="${escapeHtml(value)}" class="flex-1 border border-slate-300 rounded px-2 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-gold-400"><input type="file" id="${id}_file" accept="image/*" class="hidden" onchange="uploadImageForField(this)"><button type="button" onclick="document.getElementById('${id}_file').click()" class="bg-navy-700 hover:bg-navy-800 text-white px-2 py-1 rounded text-xs">Up</button></div></div>`;
+    }
+    function sectionBox(id, title, innerHTML) {
+      return `<div id="sec-${id}" class="section-panel max-w-5xl bg-white rounded-xl shadow p-6 ${id===currentSection?'active':''}"><h2 class="text-xl font-bold text-navy-900 mb-4">${title}</h2>${innerHTML}<div class="mt-6 flex justify-end"><button type="button" onclick="saveSection('${id}')" class="bg-navy-800 hover:bg-navy-900 text-white font-semibold px-6 py-2 rounded-lg transition">Save Section</button></div></div>`;
+    }
+
+    async function uploadImage(inputId) {
+      const fileInput = document.getElementById(inputId + '_file');
+      if (!fileInput.files.length) return;
+      const form = new FormData();
+      form.append('file', fileInput.files[0]);
+      try {
+        const r = await fetch(`${API_BASE}/upload`, { method: 'POST', headers: { 'X-Admin-Token': token }, body: form });
+        const data = await r.json();
+        if (data.success) { document.getElementById(inputId).value = data.url; showToast('Image uploaded'); }
+        else { showToast(data.error || 'Upload failed', 'error'); }
+      } catch (e) { showToast('Upload error', 'error'); }
+    }
+    async function uploadImageForField(btn) {
+      const fileInput = btn;
+      if (!fileInput.files.length) return;
+      const form = new FormData();
+      form.append('file', fileInput.files[0]);
+      try {
+        const r = await fetch(`${API_BASE}/upload`, { method: 'POST', headers: { 'X-Admin-Token': token }, body: form });
+        const data = await r.json();
+        if (data.success) { fileInput.previousElementSibling.value = data.url; showToast('Image uploaded'); }
+        else { showToast(data.error || 'Upload failed', 'error'); }
+      } catch (e) { showToast('Upload error', 'error'); }
+    }
+
+    window.uploadImage = uploadImage;
+    window.uploadImageForField = uploadImageForField;
+
+    function readInput(id) {
+      const el = document.getElementById(id);
+      return el ? el.value : '';
+    }
+    function readArray(prefix, fieldNames) {
+      const list = document.getElementById(prefix + '_list');
+      const arr = [];
+      if (!list) return arr;
+      list.querySelectorAll('.array-item').forEach(div => {
+        const item = {};
+        fieldNames.forEach(fn => {
+          const input = div.querySelector(`[data-field="${prefix}_${div.dataset.idx}_${fn}"]`);
+          item[fn] = input ? input.value : '';
+        });
+        arr.push(item);
+      });
+      return arr;
+    }
+
+    // Render functions per section
+    function renderSite() {
+      const d = getLangObj().site || {};
+      let html = '';
+      html += inputText('site_name', 'Site Name', d.name);
+      html += inputText('site_tagline', 'Tagline', d.tagline);
+      html += inputImage('site_logo', 'Logo URL', d.logo);
+      return sectionBox('site', 'Site Settings', html);
+    }
+
+    function renderHeader() {
+      const d = getLangObj().header || {};
+      const nav = d.navItems || [];
+      let itemsHTML = '';
+      nav.forEach((item, idx) => {
+        let inner = smallInput(`header_nav_${idx}_label`, 'Label', item.label);
+        inner += smallInput(`header_nav_${idx}_url`, 'URL', item.url);
+        const children = item.children || [];
+        let childHTML = '';
+        children.forEach((c, cidx) => {
+          childHTML += `<div class="col-span-2 grid grid-cols-2 gap-2 mt-2 border-l-2 border-gold-400 pl-2">`;
+          childHTML += smallInput(`header_nav_${idx}_child_${cidx}_label`, 'Child Label', c.label);
+          childHTML += smallInput(`header_nav_${idx}_child_${cidx}_url`, 'Child URL', c.url);
+          childHTML += `</div>`;
+        });
+        inner += `<div class="col-span-2"><div class="text-xs font-semibold text-slate-600 mb-1">Children</div><div id="header_nav_${idx}_children">${childHTML}</div><button type="button" onclick="addNavChild('header_nav_${idx}_children', 'header_nav_${idx}_child')" class="mt-2 text-xs bg-navy-700 text-white px-2 py-1 rounded">+ Add Child</button></div>`;
+        itemsHTML += arrayItemWrapper('header_nav', idx, inner);
+      });
+      let html = arrayContainer('header_nav', 'Navigation Items', itemsHTML);
+      return sectionBox('header', 'Header / Navigation', html);
+    }
+
+    window.addNavChild = function(containerId, prefix) {
+      const container = document.getElementById(containerId);
+      const idx = container.children.length;
+      const div = document.createElement('div');
+      div.className = 'col-span-2 grid grid-cols-2 gap-2 mt-2 border-l-2 border-gold-400 pl-2';
+      div.innerHTML = smallInput(`${prefix}_${idx}_label`, 'Child Label', '') + smallInput(`${prefix}_${idx}_url`, 'Child URL', '');
+      container.appendChild(div);
+    };
+
+    function renderFooter() {
+      const d = getLangObj().footer || {};
+      let html = '';
+      html += inputText('footer_aboutTitle', 'About Title', d.aboutTitle);
+      html += inputTextarea('footer_aboutDesc', 'About Description', d.aboutDesc);
+      html += inputText('footer_linksTitle', 'Links Title', d.linksTitle);
+      html += inputText('footer_servicesTitle', 'Services Title', d.servicesTitle);
+      html += inputText('footer_contactTitle', 'Contact Title', d.contactTitle);
+      html += inputText('footer_rights', 'Copyright', d.rights);
+      html += `<div class="border-t border-slate-200 my-4"></div>`;
+      html += `<div class="mb-2 text-sm font-semibold text-slate-700">Contact Info</div>`;
+      html += smallInput('footer_contact_address', 'Address', (d.contact || {}).address);
+      html += smallInput('footer_contact_phone', 'Phone', (d.contact || {}).phone);
+      html += smallInput('footer_contact_email', 'Email', (d.contact || {}).email);
+      html += `<div class="border-t border-slate-200 my-4"></div>`;
+      html += `<div class="mb-2 text-sm font-semibold text-slate-700">Social Links</div>`;
+      html += smallInput('footer_social_facebook', 'Facebook', ((d.social || {})).facebook);
+      html += smallInput('footer_social_instagram', 'Instagram', ((d.social || {})).instagram);
+      html += smallInput('footer_social_linkedin', 'LinkedIn', ((d.social || {})).linkedin);
+
+      const services = d.services || [];
+      let svcHTML = '';
+      services.forEach((s, idx) => {
+        let inner = smallInput(`footer_svc_${idx}_label`, 'Label', s.label) + smallInput(`footer_svc_${idx}_url`, 'URL', s.url);
+        svcHTML += arrayItemWrapper('footer_svc', idx, inner);
+      });
+      html += arrayContainer('footer_svc', 'Footer Services', svcHTML);
+
+      const links = d.quickLinks || [];
+      let linkHTML = '';
+      links.forEach((s, idx) => {
+        let inner = smallInput(`footer_link_${idx}_label`, 'Label', s.label) + smallInput(`footer_link_${idx}_url`, 'URL', s.url);
+        linkHTML += arrayItemWrapper('footer_link', idx, inner);
+      });
+      html += arrayContainer('footer_link', 'Quick Links', linkHTML);
+      return sectionBox('footer', 'Footer', html);
+    }
+
+    function renderHome() {
+      const d = getLangObj().home || {};
+      let html = '';
+      const hero = d.hero || {};
+      html += `<div class="mb-2 text-sm font-semibold text-slate-700">Hero Slides</div>`;
+      const slides = hero.slides || [];
+      let slideHTML = '';
+      slides.forEach((s, idx) => {
+        let inner = smallInput(`home_hero_slide_${idx}_title`, 'Title', s.title);
+        inner += smallTextarea(`home_hero_slide_${idx}_subtitle`, 'Subtitle', s.subtitle);
+        inner += smallInput(`home_hero_slide_${idx}_cta`, 'CTA Text', s.cta);
+        inner += smallInput(`home_hero_slide_${idx}_href`, 'CTA Link', s.href);
+        slideHTML += arrayItemWrapper('home_hero_slide', idx, inner);
+      });
+      html += arrayContainer('home_hero_slide', 'Slides', slideHTML);
+      const bgs = (hero.backgrounds || []).join('\n');
+      html += inputTextarea('home_hero_backgrounds', 'Background Images (one per line)', bgs, 4);
+      html += `<div class="border-t border-slate-200 my-4"></div>`;
+      html += inputText('home_services_title', 'Services Section Title', (d.services || {}).title);
+      html += inputTextarea('home_services_subtitle', 'Services Section Subtitle', (d.services || {}).subtitle);
+      html += `<div class="border-t border-slate-200 my-4"></div>`;
+      html += inputText('home_cta_title', 'CTA Title', (d.cta || {}).title);
+      html += inputTextarea('home_cta_desc', 'CTA Description', (d.cta || {}).desc);
+      html += inputText('home_cta_btn', 'CTA Button', (d.cta || {}).btn);
+      html += inputText('home_cta_href', 'CTA Link', (d.cta || {}).href);
+      return sectionBox('home', 'Home Page', html);
+    }
+
+    function renderWhyChoose(prefix, data) {
+      let html = inputText(`${prefix}_title`, 'Title', data.title);
+      html += inputTextarea(`${prefix}_desc`, 'Description', data.desc);
+      let itemsHTML = '';
+      (data.items || []).forEach((item, idx) => {
+        let inner = smallInput(`${prefix}_item_${idx}_icon`, 'Icon', item.icon);
+        inner += smallInput(`${prefix}_item_${idx}_title`, 'Title', item.title);
+        inner += smallTextarea(`${prefix}_item_${idx}_desc`, 'Description', item.desc);
+        itemsHTML += arrayItemWrapper(`${prefix}_item`, idx, inner);
+      });
+      html += arrayContainer(`${prefix}_item`, 'Items', itemsHTML);
+      return html;
+    }
+
+    function renderAbout() {
+      const d = getLangObj().about || {};
+      let html = inputText('about_pageTitle', 'Page Title', d.pageTitle);
+      html += `<div class="border-t border-slate-200 my-4"></div>`;
+      html += `<div class="mb-2 text-sm font-semibold text-slate-700">Why Choose Section</div>`;
+      html += renderWhyChoose('about_whyChoose', d.whyChoose || { title: '', desc: '', items: [] });
+      html += `<div class="border-t border-slate-200 my-4"></div>`;
+      html += `<div class="mb-2 text-sm font-semibold text-slate-700">Intro Section</div>`;
+      html += inputText('about_intro_title', 'Title', (d.intro || {}).title);
+      html += inputText('about_intro_titleAccent', 'Title Accent', (d.intro || {}).titleAccent);
+      html += inputTextarea('about_intro_paragraphs', 'Paragraphs (one per line)', ((d.intro || {}).paragraphs || []).join('\n'), 5);
+      html += inputTextarea('about_intro_quote', 'Quote', (d.intro || {}).quote);
+      let statsHTML = '';
+      ((d.intro || {}).stats || []).forEach((s, idx) => {
+        let inner = smallInput(`about_intro_stats_${idx}_value`, 'Value', s.value) + smallInput(`about_intro_stats_${idx}_label`, 'Label', s.label);
+        statsHTML += arrayItemWrapper('about_intro_stats', idx, inner);
+      });
+      html += arrayContainer('about_intro_stats', 'Stats', statsHTML);
+      html += `<div class="border-t border-slate-200 my-4"></div>`;
+      html += `<div class="mb-2 text-sm font-semibold text-slate-700">Mission / Vision / Commitment</div>`;
+      let mvHTML = '';
+      ((d.missionVision || {}).items || []).forEach((item, idx) => {
+        let inner = smallInput(`about_mv_${idx}_icon`, 'Icon', item.icon);
+        inner += smallInput(`about_mv_${idx}_title`, 'Title', item.title);
+        inner += smallTextarea(`about_mv_${idx}_desc`, 'Description', item.desc);
+        mvHTML += arrayItemWrapper('about_mv', idx, inner);
+      });
+      html += arrayContainer('about_mv', 'Cards', mvHTML);
+      html += `<div class="border-t border-slate-200 my-4"></div>`;
+      html += `<div class="mb-2 text-sm font-semibold text-slate-700">Core Values</div>`;
+      html += inputText('about_cv_title', 'Title', (d.coreValues || {}).title);
+      html += inputTextarea('about_cv_subtitle', 'Subtitle', (d.coreValues || {}).subtitle);
+      let cvHTML = '';
+      ((d.coreValues || {}).items || []).forEach((item, idx) => {
+        let inner = smallInput(`about_cv_${idx}_icon`, 'Icon', item.icon);
+        inner += smallInput(`about_cv_${idx}_title`, 'Title', item.title);
+        inner += smallTextarea(`about_cv_${idx}_desc`, 'Description', item.desc);
+        cvHTML += arrayItemWrapper('about_cv', idx, inner);
+      });
+      html += arrayContainer('about_cv', 'Values', cvHTML);
+      html += `<div class="border-t border-slate-200 my-4"></div>`;
+      html += `<div class="mb-2 text-sm font-semibold text-slate-700">Team</div>`;
+      html += inputText('about_team_title', 'Title', (d.team || {}).title);
+      html += inputText('about_team_subtitle', 'Subtitle', (d.team || {}).subtitle);
+      let teamHTML = '';
+      ((d.team || {}).members || []).forEach((m, idx) => {
+        let inner = smallInput(`about_team_${idx}_name`, 'Name', m.name);
+        inner += smallInput(`about_team_${idx}_role`, 'Role', m.role);
+        inner += smallImage(`about_team_${idx}_image`, 'Image', m.image);
+        teamHTML += arrayItemWrapper('about_team', idx, inner);
+      });
+      html += arrayContainer('about_team', 'Team Members', teamHTML);
+      html += `<div class="border-t border-slate-200 my-4"></div>`;
+      html += `<div class="mb-2 text-sm font-semibold text-slate-700">Timeline</div>`;
+      html += inputText('about_timeline_title', 'Title', (d.timeline || {}).title);
+      html += inputText('about_timeline_subtitle', 'Subtitle', (d.timeline || {}).subtitle);
+      let tlHTML = '';
+      ((d.timeline || {}).events || []).forEach((e, idx) => {
+        let inner = smallInput(`about_tl_${idx}_year`, 'Year', e.year);
+        inner += smallInput(`about_tl_${idx}_title`, 'Title', e.title);
+        inner += smallTextarea(`about_tl_${idx}_desc`, 'Description', e.desc);
+        tlHTML += arrayItemWrapper('about_tl', idx, inner);
+      });
+      html += arrayContainer('about_tl', 'Events', tlHTML);
+      html += `<div class="border-t border-slate-200 my-4"></div>`;
+      html += inputText('about_cta_title', 'CTA Title', (d.cta || {}).title);
+      html += inputTextarea('about_cta_desc', 'CTA Description', (d.cta || {}).desc);
+      html += inputText('about_cta_btn', 'CTA Button', (d.cta || {}).btn);
+      html += inputText('about_cta_href', 'CTA Link', (d.cta || {}).href);
+      return sectionBox('about', 'About Page', html);
+    }
+
+    function renderServices() {
+      const d = getLangObj().services || {};
+      let html = inputText('services_pageTitle', 'Page Title', d.pageTitle);
+      html += inputText('services_introTitle', 'Intro Title', d.introTitle);
+      html += inputTextarea('services_introDesc', 'Intro Description', d.introDesc);
+      html += `<div class="border-t border-slate-200 my-4"></div>`;
+      html += renderWhyChoose('services_whyChoose', d.whyChoose || { title: '', desc: '', items: [] });
+      html += `<div class="border-t border-slate-200 my-4"></div>`;
+      html += inputText('services_cta_title', 'CTA Title', (d.cta || {}).title);
+      html += inputTextarea('services_cta_desc', 'CTA Description', (d.cta || {}).desc);
+      html += inputText('services_cta_btn', 'CTA Button', (d.cta || {}).btn);
+      html += inputText('services_cta_href', 'CTA Link', (d.cta || {}).href);
+      return sectionBox('services', 'Services Page', html);
+    }
+
+    function renderServiceDetail(slug) {
+      const d = (getLangObj().servicePages || {})[slug] || {};
+      let html = inputText(`svc_${slug}_tagline`, 'Tagline', d.tagline);
+      html += inputText(`svc_${slug}_overviewTitle`, 'Overview Title', d.overviewTitle);
+      html += inputTextarea(`svc_${slug}_overview`, 'Overview Paragraphs (one per line)', (d.overview || []).join('\n'), 5);
+      html += inputText(`svc_${slug}_scopeTitle`, 'Scope Title', d.scopeTitle);
+      html += inputTextarea(`svc_${slug}_scopeSubtitle`, 'Scope Subtitle', d.serviceScopeSubtitle);
+      let scopeHTML = '';
+      (d.scopeItems || []).forEach((item, idx) => {
+        let inner = smallInput(`svc_${slug}_scope_${idx}_title`, 'Title', item.title);
+        inner += smallInput(`svc_${slug}_scope_${idx}_desc`, 'Desc', item.desc);
+        inner += smallTextarea(`svc_${slug}_scope_${idx}_points`, 'Points (one per line)', (item.points || []).join('\n'));
+        scopeHTML += arrayItemWrapper(`svc_${slug}_scope`, idx, inner);
+      });
+      html += arrayContainer(`svc_${slug}_scope`, 'Scope Items', scopeHTML);
+      html += inputText(`svc_${slug}_processTitle`, 'Process Title', d.processTitle);
+      html += inputTextarea(`svc_${slug}_processSubtitle`, 'Process Subtitle', d.serviceProcessSubtitle);
+      let procHTML = '';
+      (d.processSteps || []).forEach((item, idx) => {
+        let inner = smallInput(`svc_${slug}_proc_${idx}_number`, 'Number', item.number);
+        inner += smallInput(`svc_${slug}_proc_${idx}_title`, 'Title', item.title);
+        inner += smallTextarea(`svc_${slug}_proc_${idx}_desc`, 'Description', item.desc);
+        procHTML += arrayItemWrapper(`svc_${slug}_proc`, idx, inner);
+      });
+      html += arrayContainer(`svc_${slug}_proc`, 'Process Steps', procHTML);
+      html += inputText(`svc_${slug}_whyTitle`, 'Why Choose Title', d.whyTitle);
+      html += inputText(`svc_${slug}_relatedTitle`, 'Related Services Title', d.relatedServicesTitle);
+      html += inputText(`svc_${slug}_ctaTitle`, 'CTA Title', d.ctaTitle);
+      html += inputTextarea(`svc_${slug}_ctaDesc`, 'CTA Description', d.ctaDesc);
+      html += inputText(`svc_${slug}_ctaBtn`, 'CTA Button', d.ctaBtn);
+      html += inputText(`svc_${slug}_ctaBtn2`, 'CTA Secondary Button', d.ctaBtn2);
+      return sectionBox(`service_${slug}`, `Service: ${slug[0].toUpperCase() + slug.slice(1)}`, html);
+    }
+
+    function renderContact() {
+      const d = getLangObj().contact || {};
+      let html = inputText('contact_pageTitle', 'Page Title', d.pageTitle);
+      let cardsHTML = '';
+      (d.cards || []).forEach((c, idx) => {
+        let inner = smallInput(`contact_card_${idx}_icon`, 'Icon', c.icon);
+        inner += smallInput(`contact_card_${idx}_title`, 'Title', c.title);
+        inner += smallTextarea(`contact_card_${idx}_lines`, 'Lines (one per line)', (c.lines || []).join('\n'));
+        cardsHTML += arrayItemWrapper('contact_card', idx, inner);
+      });
+      html += arrayContainer('contact_card', 'Contact Cards', cardsHTML);
+      html += `<div class="border-t border-slate-200 my-4"></div>`;
+      const f = d.form || {};
+      html += `<div class="mb-2 text-sm font-semibold text-slate-700">Form</div>`;
+      html += inputText('contact_form_formTitle', 'Form Title', f.formTitle);
+      html += inputTextarea('contact_form_formDesc', 'Form Description', f.formDesc);
+      html += inputText('contact_form_name', 'Name Label', f.name);
+      html += inputText('contact_form_company', 'Company Label', f.company);
+      html += inputText('contact_form_phone', 'Phone Label', f.phone);
+      html += inputText('contact_form_email', 'Email Label', f.email);
+      html += inputText('contact_form_service', 'Service Label', f.service);
+      html += inputText('contact_form_message', 'Message Label', f.message);
+      html += inputText('contact_form_submit', 'Submit Text', f.submit);
+      html += inputText('contact_form_submitting', 'Submitting Text', f.submitting);
+      html += inputText('contact_form_successMsg', 'Success Message', f.successMsg);
+      html += inputText('contact_form_errorMsg', 'Error Message', f.errorMsg);
+      html += inputText('contact_form_infoTitle', 'Info Title', f.infoTitle);
+      html += inputText('contact_form_hoursTitle', 'Hours Title', f.hoursTitle);
+      html += inputText('contact_form_follow', 'Follow Title', f.follow);
+      let hoursHTML = '';
+      (f.hours || []).forEach((h, idx) => {
+        let inner = smallInput(`contact_form_hours_${idx}_day`, 'Day', h.day) + smallInput(`contact_form_hours_${idx}_time`, 'Time', h.time);
+        hoursHTML += arrayItemWrapper('contact_form_hours', idx, inner);
+      });
+      html += arrayContainer('contact_form_hours', 'Business Hours', hoursHTML);
+      let svcHTML = '';
+      (f.servicesList || []).forEach((s, idx) => {
+        let inner = smallInput(`contact_form_svc_${idx}_value`, 'Value', s.value) + smallInput(`contact_form_svc_${idx}_label`, 'Label', s.label);
+        svcHTML += arrayItemWrapper('contact_form_svc', idx, inner);
+      });
+      html += arrayContainer('contact_form_svc', 'Service Options', svcHTML);
+      html += `<div class="border-t border-slate-200 my-4"></div>`;
+      html += `<div class="mb-2 text-sm font-semibold text-slate-700">Map</div>`;
+      html += inputText('contact_map_title', 'Map Title', (d.map || {}).title);
+      html += inputTextarea('contact_map_address', 'Address', (d.map || {}).address);
+      html += inputTextarea('contact_map_embedUrl', 'Embed URL', (d.map || {}).embedUrl, 2);
+      html += `<div class="border-t border-slate-200 my-4"></div>`;
+      html += `<div class="mb-2 text-sm font-semibold text-slate-700">FAQ</div>`;
+      html += inputText('contact_faq_title', 'FAQ Title', (d.faq || {}).title);
+      html += inputText('contact_faq_subtitle', 'FAQ Subtitle', (d.faq || {}).subtitle);
+      let faqHTML = '';
+      ((d.faq || {}).items || []).forEach((item, idx) => {
+        let inner = smallInput(`contact_faq_${idx}_q`, 'Question', item.q);
+        inner += smallTextarea(`contact_faq_${idx}_a`, 'Answer', item.a);
+        faqHTML += arrayItemWrapper('contact_faq', idx, inner);
+      });
+      html += arrayContainer('contact_faq', 'FAQ Items', faqHTML);
+      return sectionBox('contact', 'Contact Page', html);
+    }
+
+    function renderSimplePage(id, titleKey, data) {
+      let html = inputText(`${id}_pageTitle`, 'Page Title', data.pageTitle);
+      html += inputTextarea(`${id}_paragraphs`, 'Paragraphs (one per line)', (data.paragraphs || []).join('\n'), 6);
+      html += inputText(`${id}_cta_title`, 'CTA Title', (data.cta || {}).title);
+      html += inputTextarea(`${id}_cta_desc`, 'CTA Description', (data.cta || {}).desc);
+      html += inputText(`${id}_cta_btn`, 'CTA Button', (data.cta || {}).btn);
+      html += inputText(`${id}_cta_href`, 'CTA Link', (data.cta || {}).href);
+      return sectionBox(id, titleKey, html);
+    }
+
+    function renderSections() {
+      const container = document.getElementById('sectionsContainer');
+      container.innerHTML = '';
+      container.appendChild(strToNode(renderSite()));
+      container.appendChild(strToNode(renderHeader()));
+      container.appendChild(strToNode(renderFooter()));
+      container.appendChild(strToNode(renderHome()));
+      container.appendChild(strToNode(renderAbout()));
+      container.appendChild(strToNode(renderServices()));
+      ['audit','tax','risk','forensic','consulting','deals'].forEach(slug => {
+        container.appendChild(strToNode(renderServiceDetail(slug)));
+      });
+      container.appendChild(strToNode(renderContact()));
+      const l = getLangObj();
+      container.appendChild(strToNode(renderSimplePage('purpose', 'Purpose Page', l.purpose || {})));
+      container.appendChild(strToNode(renderSimplePage('value', 'Vision Page', l.value || {})));
+      container.appendChild(strToNode(renderSimplePage('commitment', 'Commitment Page', l.commitment || {})));
+      setSection(currentSection);
+    }
+
+    function strToNode(html) {
+      const div = document.createElement('div');
+      div.innerHTML = html.trim();
+      return div.firstChild;
+    }
+
+    window.addArrayItem = function(prefix) {
+      const list = document.getElementById(prefix + '_list');
+      // determine index
+      const items = list.querySelectorAll('.array-item');
+      const idx = items.length;
+      // clone template from first item if exists, else build generic
+      let template = '';
+      if (items.length > 0) {
+        const first = items[0];
+        const p = first.dataset.prefix;
+        template = first.outerHTML.replace(new RegExp(p + '_0_', 'g'), prefix + '_' + idx + '_').replace(new RegExp(p + '_0', 'g'), prefix + '_' + idx);
+        // clear values
+        template = template.replace(/value="[^"]*"/g, 'value=""').replace(/>([^<]*)<\/textarea>/g, '></textarea>');
+      } else {
+        // Generic fallback for arrays without existing items
+        template = arrayItemWrapper(prefix, idx, smallInput(prefix + '_' + idx + '_label', 'Label', '') + smallInput(prefix + '_' + idx + '_value', 'Value', ''));
+      }
+      const div = document.createElement('div');
+      div.innerHTML = template.trim();
+      list.appendChild(div.firstElementChild);
+    };
+
+    function collectSection(id) {
+      const obj = {};
+      if (id === 'site') {
+        obj.site = { name: readInput('site_name'), tagline: readInput('site_tagline'), logo: readInput('site_logo') };
+      } else if (id === 'header') {
+        const nav = readArray('header_nav', ['label', 'url']);
+        nav.forEach((item, idx) => {
+          const childContainer = document.getElementById(`header_nav_${idx}_children`);
+          item.children = [];
+          if (childContainer) {
+            childContainer.querySelectorAll(':scope > div').forEach(div => {
+              const labelIn = div.querySelector(`[data-field="header_nav_${idx}_child_${Array.from(childContainer.children).indexOf(div)}_label"]`);
+              const urlIn = div.querySelector(`[data-field="header_nav_${idx}_child_${Array.from(childContainer.children).indexOf(div)}_url"]`);
+              if (labelIn && urlIn) item.children.push({ label: labelIn.value, url: urlIn.value });
+            });
+          }
+        });
+        obj.header = { navItems: nav };
+      } else if (id === 'footer') {
+        obj.footer = {
+          aboutTitle: readInput('footer_aboutTitle'),
+          aboutDesc: readInput('footer_aboutDesc'),
+          linksTitle: readInput('footer_linksTitle'),
+          servicesTitle: readInput('footer_servicesTitle'),
+          contactTitle: readInput('footer_contactTitle'),
+          rights: readInput('footer_rights'),
+          contact: {
+            address: readInput('footer_contact_address'),
+            phone: readInput('footer_contact_phone'),
+            email: readInput('footer_contact_email'),
+          },
+          social: {
+            facebook: readInput('footer_social_facebook'),
+            instagram: readInput('footer_social_instagram'),
+            linkedin: readInput('footer_social_linkedin'),
+          },
+          services: readArray('footer_svc', ['label', 'url']),
+          quickLinks: readArray('footer_link', ['label', 'url']),
+        };
+      } else if (id === 'home') {
+        const slides = readArray('home_hero_slide', ['title', 'subtitle', 'cta', 'href']);
+        const bgs = readInput('home_hero_backgrounds').split('\n').map(s => s.trim()).filter(Boolean);
+        obj.home = {
+          hero: { slides, backgrounds: bgs },
+          services: { title: readInput('home_services_title'), subtitle: readInput('home_services_subtitle') },
+          cta: { title: readInput('home_cta_title'), desc: readInput('home_cta_desc'), btn: readInput('home_cta_btn'), href: readInput('home_cta_href') },
+        };
+      } else if (id === 'about') {
+        obj.about = {
+          pageTitle: readInput('about_pageTitle'),
+          whyChoose: {
+            title: readInput('about_whyChoose_title'),
+            desc: readInput('about_whyChoose_desc'),
+            items: readArray('about_whyChoose_item', ['icon', 'title', 'desc']),
+          },
+          intro: {
+            title: readInput('about_intro_title'),
+            titleAccent: readInput('about_intro_titleAccent'),
+            paragraphs: readInput('about_intro_paragraphs').split('\n').map(s => s.trim()).filter(Boolean),
+            quote: readInput('about_intro_quote'),
+            stats: readArray('about_intro_stats', ['value', 'label']),
+          },
+          missionVision: { items: readArray('about_mv', ['icon', 'title', 'desc']) },
+          coreValues: {
+            title: readInput('about_cv_title'),
+            subtitle: readInput('about_cv_subtitle'),
+            items: readArray('about_cv', ['icon', 'title', 'desc']),
+          },
+          team: {
+            title: readInput('about_team_title'),
+            subtitle: readInput('about_team_subtitle'),
+            members: readArray('about_team', ['name', 'role', 'image']),
+          },
+          timeline: {
+            title: readInput('about_timeline_title'),
+            subtitle: readInput('about_timeline_subtitle'),
+            events: readArray('about_tl', ['year', 'title', 'desc']),
+          },
+          cta: { title: readInput('about_cta_title'), desc: readInput('about_cta_desc'), btn: readInput('about_cta_btn'), href: readInput('about_cta_href') },
+        };
+      } else if (id === 'services') {
+        obj.services = {
+          pageTitle: readInput('services_pageTitle'),
+          introTitle: readInput('services_introTitle'),
+          introDesc: readInput('services_introDesc'),
+          whyChoose: {
+            title: readInput('services_whyChoose_title'),
+            desc: readInput('services_whyChoose_desc'),
+            items: readArray('services_whyChoose_item', ['icon', 'title', 'desc']),
+          },
+          cta: { title: readInput('services_cta_title'), desc: readInput('services_cta_desc'), btn: readInput('services_cta_btn'), href: readInput('services_cta_href') },
+        };
+      } else if (id.startsWith('service_')) {
+        const slug = id.replace('service_', '');
+        const overview = readInput(`svc_${slug}_overview`).split('\n').map(s => s.trim()).filter(Boolean);
+        const scopeItems = readArray(`svc_${slug}_scope`, ['title', 'desc', 'points']).map(item => ({
+          ...item,
+          points: (item.points || '').split('\n').map(s => s.trim()).filter(Boolean),
+        }));
+        const processSteps = readArray(`svc_${slug}_proc`, ['number', 'title', 'desc']);
+        obj.servicePages = {
+          [slug]: {
+            tagline: readInput(`svc_${slug}_tagline`),
+            overviewTitle: readInput(`svc_${slug}_overviewTitle`),
+            overview,
+            scopeTitle: readInput(`svc_${slug}_scopeTitle`),
+            serviceScopeSubtitle: readInput(`svc_${slug}_scopeSubtitle`),
+            scopeItems,
+            processTitle: readInput(`svc_${slug}_processTitle`),
+            serviceProcessSubtitle: readInput(`svc_${slug}_processSubtitle`),
+            processSteps,
+            whyTitle: readInput(`svc_${slug}_whyTitle`),
+            relatedServicesTitle: readInput(`svc_${slug}_relatedTitle`),
+            ctaTitle: readInput(`svc_${slug}_ctaTitle`),
+            ctaDesc: readInput(`svc_${slug}_ctaDesc`),
+            ctaBtn: readInput(`svc_${slug}_ctaBtn`),
+            ctaBtn2: readInput(`svc_${slug}_ctaBtn2`),
+          }
+        };
+      } else if (id === 'contact') {
+        const cards = readArray('contact_card', ['icon', 'title', 'lines']).map(c => ({
+          ...c,
+          lines: (c.lines || '').split('\n').map(s => s.trim()).filter(Boolean),
+        }));
+        obj.contact = {
+          pageTitle: readInput('contact_pageTitle'),
+          cards,
+          form: {
+            formTitle: readInput('contact_form_formTitle'),
+            formDesc: readInput('contact_form_formDesc'),
+            name: readInput('contact_form_name'),
+            company: readInput('contact_form_company'),
+            phone: readInput('contact_form_phone'),
+            email: readInput('contact_form_email'),
+            service: readInput('contact_form_service'),
+            message: readInput('contact_form_message'),
+            submit: readInput('contact_form_submit'),
+            submitting: readInput('contact_form_submitting'),
+            successMsg: readInput('contact_form_successMsg'),
+            errorMsg: readInput('contact_form_errorMsg'),
+            infoTitle: readInput('contact_form_infoTitle'),
+            hoursTitle: readInput('contact_form_hoursTitle'),
+            follow: readInput('contact_form_follow'),
+            hours: readArray('contact_form_hours', ['day', 'time']),
+            servicesList: readArray('contact_form_svc', ['value', 'label']),
+          },
+          map: {
+            title: readInput('contact_map_title'),
+            address: readInput('contact_map_address'),
+            embedUrl: readInput('contact_map_embedUrl'),
+          },
+          faq: {
+            title: readInput('contact_faq_title'),
+            subtitle: readInput('contact_faq_subtitle'),
+            items: readArray('contact_faq', ['q', 'a']),
+          },
+        };
+      } else if (['purpose', 'value', 'commitment'].includes(id)) {
+        obj[id] = {
+          pageTitle: readInput(`${id}_pageTitle`),
+          paragraphs: readInput(`${id}_paragraphs`).split('\n').map(s => s.trim()).filter(Boolean),
+          cta: {
+            title: readInput(`${id}_cta_title`),
+            desc: readInput(`${id}_cta_desc`),
+            btn: readInput(`${id}_cta_btn`),
+            href: readInput(`${id}_cta_href`),
+          },
+        };
+      }
+      return obj;
+    }
+
+    window.saveSection = async function(id) {
+      const payload = { [currentLang]: collectSection(id) };
+      try {
+        const r = await fetch(`${API_BASE}/data`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'X-Admin-Token': token },
+          body: JSON.stringify(payload),
+        });
+        const data = await r.json();
+        if (data.success) {
+          showToast('Section saved');
+          Object.assign(getLangObj(), payload[currentLang]);
+        } else {
+          showToast(data.error || 'Save failed', 'error');
+        }
+      } catch (e) {
+        showToast('Save error', 'error');
+      }
+    };
+
+    window.doDeploy = async function() {
+      try {
+        const r = await fetch(`${API_BASE}/deploy`, { method: 'POST', headers: { 'X-Admin-Token': token } });
+        const data = await r.json();
+        if (data.success) showToast('Deploy triggered');
+        else showToast(data.error || 'Deploy failed', 'error');
+      } catch (e) { showToast('Deploy error', 'error'); }
+    };
+  </script>
+</body>
+</html>

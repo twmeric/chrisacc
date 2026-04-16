@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { i18n, Locale } from "@/lib/i18n-config";
+import { getLocaleCMS } from "@/lib/cms-data";
 import Header from "@/components/ui/Header";
 import Footer from "@/components/ui/Footer";
 import "../globals.css";
@@ -22,6 +23,7 @@ export default async function RootLayout({
 }) {
   const { lang } = await params;
   const locale = (lang as Locale) || i18n.defaultLocale;
+  const cms = getLocaleCMS(locale);
 
   return (
     <html lang={locale}>
@@ -36,7 +38,13 @@ export default async function RootLayout({
         />
       </head>
       <body className="flex min-h-screen flex-col">
-        <Header lang={locale} />
+        <Header
+          lang={locale}
+          navItems={cms.header.navItems}
+          siteName={cms.site.name}
+          siteTagline={cms.site.tagline}
+          logoUrl={cms.site.logo}
+        />
         <main className="flex-1">{children}</main>
         <Footer lang={locale} />
       </body>

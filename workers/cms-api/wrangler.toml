@@ -1,0 +1,15 @@
+name = "ltcpa-cms-api"
+main = "src/index.ts"
+compatibility_date = "2024-03-20"
+
+[[kv_namespaces]]
+binding = "CMS_DATA"
+id = "ca4e0945e6fc4ef590e4a57548da7626"
+preview_id = "ca4e0945e6fc4ef590e4a57548da7626"
+
+[[r2_buckets]]
+binding = "MEDIA_BUCKET"
+bucket_name = "ltcpa-media"
+
+[vars]
+ADMIN_PASSWORD = "ltcpa-admin-2025"

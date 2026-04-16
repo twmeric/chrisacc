@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Locale } from "@/lib/i18n-config";
+import { getLocaleCMS } from "@/lib/cms-data";
 
 interface ServiceHeroProps {
   lang: Locale;
@@ -8,6 +9,11 @@ interface ServiceHeroProps {
 }
 
 export default function ServiceHero({ lang, title, tagline }: ServiceHeroProps) {
+  const cms = getLocaleCMS(lang);
+  const homeLabel = cms.header.navItems[0]?.label || (lang === "en" ? "Home" : lang === "zh-hans" ? "首页" : "首頁");
+  const servicesItem = cms.header.navItems.find((i) => i.url === "/services/");
+  const servicesLabel = servicesItem?.label || (lang === "en" ? "Services" : lang === "zh-hans" ? "服务范围" : "服務範圍");
+
   return (
     <section
       className="relative mt-[72px] flex min-h-[320px] items-center justify-center bg-cover bg-center text-center text-white md:min-h-[400px]"
@@ -18,11 +24,11 @@ export default function ServiceHero({ lang, title, tagline }: ServiceHeroProps) 
       <div className="relative z-10 px-4">
         <div className="mb-3 text-sm opacity-90">
           <Link href={`/${lang}/`} className="hover:text-brand-gold">
-            {lang === "en" ? "Home" : lang === "zh-hans" ? "首页" : "首頁"}
+            {homeLabel}
           </Link>
           <span className="mx-2">/</span>
-          <Link href={`/${lang}/services/audit/`} className="hover:text-brand-gold">
-            {lang === "en" ? "Services" : lang === "zh-hans" ? "服务范围" : "服務範圍"}
+          <Link href={`/${lang}/services/`} className="hover:text-brand-gold">
+            {servicesLabel}
           </Link>
           <span className="mx-2">/</span>
           <span>{title}</span>
