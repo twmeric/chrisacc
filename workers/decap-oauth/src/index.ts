@@ -30,7 +30,7 @@ export default {
       return new Response(null, { status: 204, headers: corsHeaders });
     }
 
-    if (url.pathname === "/auth") {
+    if (url.pathname === "/auth" || url.pathname === "/oauth") {
       const state = generateState();
       const redirectUri = `${origin}/callback`;
       const githubUrl =
