@@ -1,7 +1,7 @@
 # LTCPA Project Agent Guide
 
 ## Project Status
-**Current State:** Next.js rewrite completed with CI/CD auto-deployment (2026-04-14).  
+**Current State:** Next.js rewrite completed with all 13 page families rebuilt across 3 locales (2026-04-16).  
 Previous static HTML version backed up locally.
 
 ---
@@ -22,7 +22,6 @@ Contains all previous static HTML pages (TC/SC/EN), CSS, JS, images, and CMS fil
 | Pages Domain | `https://ltcpa-website.pages.dev` | Active |
 | Custom Domain | `ltgroupcpa.jkdcoding.com` | Bound to Pages project |
 | Worker | `ltcpa-inquiry-api` | Active (D1 + Resend) |
-| Worker | `ltcpa-decap-oauth` | Active (GitHub OAuth proxy) |
 | KV Namespace | `LTCPA_CMS` (`ca4e0945e6fc4ef590e4a57548da7626`) | Empty (framework retained) |
 | R2 Bucket | `ltcpa-media` | Empty (recreated, framework retained) |
 | D1 Database | `ltcpa-d1` (`db7d4aa5-2407-4c20-a311-5daea0f177bf`) | Active |
@@ -45,7 +44,6 @@ https://github.com/twmeric/chrisacc
 
 ## Worker URLs
 - **Inquiry API:** `https://ltcpa-inquiry-api.jimsbond007.workers.dev`
-- **Decap OAuth:** `https://ltcpa-decap-oauth.jimsbond007.workers.dev`
 
 ---
 
@@ -57,6 +55,27 @@ https://github.com/twmeric/chrisacc
 
 ---
 
+## Site Structure
+13 page families × 3 locales = **39 static HTML pages** generated on build.
+
+| Page Family | Route Pattern | Status |
+|-------------|---------------|--------|
+| Home | `/[lang]/` | ✅ |
+| About | `/[lang]/about/` | ✅ |
+| Purpose (Mission) | `/[lang]/purpose/` | ✅ |
+| Value (Vision) | `/[lang]/value/` | ✅ |
+| Commitment | `/[lang]/commitment/` | ✅ |
+| Services Overview | `/[lang]/services/` | ✅ |
+| Audit | `/[lang]/services/audit/` | ✅ |
+| Tax | `/[lang]/services/tax/` | ✅ |
+| Risk | `/[lang]/services/risk/` | ✅ |
+| Forensic | `/[lang]/services/forensic/` | ✅ |
+| Consulting | `/[lang]/services/consulting/` | ✅ |
+| Deals | `/[lang]/services/deals/` | ✅ |
+| Contact | `/[lang]/contact/` | ✅ |
+
+---
+
 ## GitHub Secrets Required
 | Secret | Status | Purpose |
 |--------|--------|---------|
@@ -65,13 +84,10 @@ https://github.com/twmeric/chrisacc
 | `CMS_API_URL` | ✅ Set | Contact form submission endpoint |
 | `GH_WORKER_TOKEN` | ✅ Set | GitHub API access for inquiry worker |
 | `RESEND_API_KEY` | ⚠️ Missing | Email notifications from inquiry worker |
-| `GH_CLIENT_ID` | ⚠️ Missing | Decap CMS GitHub OAuth App Client ID |
-| `GH_CLIENT_SECRET` | ⚠️ Missing | Decap CMS GitHub OAuth App Client Secret |
 
 ---
 
 ## Next Steps
 1. Set `RESEND_API_KEY` secret for email notifications.
-2. Create a GitHub OAuth App and set `GH_CLIENT_ID` + `GH_CLIENT_SECRET` for Decap CMS login.
-3. Verify first deployment on Cloudflare Pages Dashboard.
-4. Bind custom domain `ltgroupcpa.jkdcoding.com` if needed.
+2. Implement custom CMS backend for content editing.
+3. Verify full site navigation and language switching on deployed Pages domain.

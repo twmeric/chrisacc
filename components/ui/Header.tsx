@@ -24,12 +24,12 @@ const defaultNav: Record<Locale, NavItem[]> = {
       label: "關於我們",
       url: "/about/",
       children: [
-        { label: "我們的使命", url: "/about/#mission" },
-        { label: "我們的願景", url: "/about/#vision" },
-        { label: "我們的承諾", url: "/about/#commitment" },
+        { label: "我們的使命", url: "/purpose/" },
+        { label: "我們的願景", url: "/value/" },
+        { label: "我們的承諾", url: "/commitment/" },
       ],
     },
-    { label: "服務範圍", url: "/services/audit/" },
+    { label: "服務範圍", url: "/services/" },
     { label: "聯絡我們", url: "/contact/" },
   ],
   "zh-hans": [
@@ -38,12 +38,12 @@ const defaultNav: Record<Locale, NavItem[]> = {
       label: "关于我们",
       url: "/about/",
       children: [
-        { label: "我们的使命", url: "/about/#mission" },
-        { label: "我们的愿景", url: "/about/#vision" },
-        { label: "我们的承诺", url: "/about/#commitment" },
+        { label: "我们的使命", url: "/purpose/" },
+        { label: "我们的愿景", url: "/value/" },
+        { label: "我们的承诺", url: "/commitment/" },
       ],
     },
-    { label: "服务范围", url: "/services/audit/" },
+    { label: "服务范围", url: "/services/" },
     { label: "联络我们", url: "/contact/" },
   ],
   en: [
@@ -52,12 +52,12 @@ const defaultNav: Record<Locale, NavItem[]> = {
       label: "About Us",
       url: "/about/",
       children: [
-        { label: "Our Mission", url: "/about/#mission" },
-        { label: "Our Vision", url: "/about/#vision" },
-        { label: "Our Commitment", url: "/about/#commitment" },
+        { label: "Our Mission", url: "/purpose/" },
+        { label: "Our Vision", url: "/value/" },
+        { label: "Our Commitment", url: "/commitment/" },
       ],
     },
-    { label: "Services", url: "/services/audit/" },
+    { label: "Services", url: "/services/" },
     { label: "Contact", url: "/contact/" },
   ],
 };
@@ -147,7 +147,7 @@ export default function Header({ lang, navItems }: HeaderProps) {
         {/* Right actions */}
         <div className="flex items-center gap-4">
           {/* Language */}
-          <div className="relative hidden md:block">
+          <div className="group relative hidden md:block">
             <button className="flex items-center gap-1.5 text-sm font-medium text-text-dark hover:text-brand-navy">
               <Globe className="h-4 w-4 text-brand-navy" />
               <span className="hidden lg:inline">{localeLabels[lang]}</span>
