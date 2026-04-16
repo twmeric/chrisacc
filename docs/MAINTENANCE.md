@@ -10,9 +10,14 @@
 ### 2. Deploy button shows 401
 - This means the `X-Admin-Token` is rejected by the Worker.
 - Solution: re-login with the correct password.
-- If password is correct but still 401, check Worker secret `GITHUB_TOKEN` is set (not missing).
 
-### 3. Deploy button shows 500 / "Body has already been used"
+### 3. Deploy button shows 502 / "GITHUB_TOKEN secret is missing"
+- The Deploy button needs a GitHub Personal Access Token to trigger Actions.
+- Go to Cloudflare Dashboard → `ltcpa-cms-api` Worker → Settings → Variables and Secrets.
+- Add a **Secret** named `GITHUB_TOKEN` with a classic PAT that has `repo` + `workflow` scopes.
+- **Do not paste tokens in chat** — GitHub will auto-revoke exposed tokens.
+
+### 4. Deploy button shows 500 / "Body has already been used"
 - This was a known bug where the GitHub dispatch response was consumed twice.
 - **Fixed** in current `workers/cms-api/src/index.ts`.
 - If it reappears, ensure `resp.clone().text()` is used before any conditional re-read.

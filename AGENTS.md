@@ -159,6 +159,8 @@ This creates a **preview deployment** that does NOT update the production domain
 ### Worker Secrets (Cloudflare Dashboard)
 - `ltcpa-cms-api` → Secret `GITHUB_TOKEN` (GitHub PAT with `repo` + `workflow` scope)
 
+> **Security note:** Do NOT paste GitHub tokens into chat. GitHub Secret Scanning will auto-revoke exposed tokens within seconds. Always set `GITHUB_TOKEN` directly in the Cloudflare Dashboard (Workers & Pages → `ltcpa-cms-api` → Settings → Variables and Secrets).
+
 ---
 
 ## Known Pitfalls (learned the hard way)

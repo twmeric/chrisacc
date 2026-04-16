@@ -226,6 +226,7 @@ export default {
                 Authorization: `Bearer ${env.GITHUB_TOKEN}`,
                 "X-GitHub-Api-Version": "2022-11-28",
                 "Content-Type": "application/json",
+                "User-Agent": "ltcpa-cms-api/1.0",
               },
               body: JSON.stringify(body),
             }
