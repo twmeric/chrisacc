@@ -1,5 +1,5 @@
 interface ServiceProcessProps {
-  lang: string;
+  lang: "zh-hant" | "zh-hans" | "en";
   title: string;
   steps: { number: string; title: string; desc: string }[];
 }
@@ -11,10 +11,10 @@ export default function ServiceProcess({ lang, title, steps }: ServiceProcessPro
         <div className="mb-10 text-center md:mb-14">
           <h2 className="relative inline-block text-3xl font-bold text-brand-navy md:text-[40px]">
             {title}
-            <span className="absolute -bottom-3 left-1/2 h-[3px] w-16 -translate-x-1/2 bg-brand-gold" />
+            <span className="absolute -bottom-3 left-1/2 h-[2px] w-20 -translate-x-1/2 bg-brand-gold" />
           </h2>
           <p className="mx-auto mt-6 max-w-2xl text-lg text-text-light">
-            {lang === "en" ? "Systematic approach ensuring quality and efficiency" : "系統化的專業流程，確保質量與效率"}
+            {lang === "en" ? "Systematic approach ensuring quality and efficiency" : lang === "zh-hans" ? "系统化的专业流程，确保质量与效率" : "系統化的專業流程，確保質量與效率"}
           </p>
         </div>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">

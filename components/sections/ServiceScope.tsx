@@ -1,7 +1,7 @@
 import { CheckCircle } from "lucide-react";
 
 interface ServiceScopeProps {
-  lang: string;
+  lang: "zh-hant" | "zh-hans" | "en";
   title: string;
   items: { title: string; desc: string; points: string[] }[];
 }
@@ -13,10 +13,10 @@ export default function ServiceScope({ lang, title, items }: ServiceScopeProps) 
         <div className="mb-10 text-center md:mb-14">
           <h2 className="relative inline-block text-3xl font-bold text-brand-navy md:text-[40px]">
             {title}
-            <span className="absolute -bottom-3 left-1/2 h-[3px] w-16 -translate-x-1/2 bg-brand-gold" />
+            <span className="absolute -bottom-3 left-1/2 h-[2px] w-20 -translate-x-1/2 bg-brand-gold" />
           </h2>
           <p className="mx-auto mt-6 max-w-2xl text-lg text-text-light">
-            {lang === "en" ? "Comprehensive services to meet all your needs" : "全方位的專業服務，滿足您的各種需求"}
+            {lang === "en" ? "Comprehensive services to meet all your needs" : lang === "zh-hans" ? "全方位的专业服务，满足您的各种需求" : "全方位的專業服務，滿足您的各種需求"}
           </p>
         </div>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">

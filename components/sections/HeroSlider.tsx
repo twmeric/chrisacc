@@ -15,9 +15,10 @@ interface Slide {
 interface HeroSliderProps {
   lang: Locale;
   slides: Slide[];
+  backgrounds?: string[];
 }
 
-export default function HeroSlider({ lang, slides }: HeroSliderProps) {
+export default function HeroSlider({ lang, slides, backgrounds }: HeroSliderProps) {
   const [current, setCurrent] = useState(0);
 
   useEffect(() => {
@@ -26,6 +27,8 @@ export default function HeroSlider({ lang, slides }: HeroSliderProps) {
     }, 6000);
     return () => clearInterval(timer);
   }, [slides.length]);
+
+  const bgImages = backgrounds?.length ? backgrounds : ["/images/hero-bg-1.jpg"];
 
   return (
     <section className="relative mt-[72px] h-[80vh] min-h-[600px] overflow-hidden md:h-screen">
@@ -37,10 +40,10 @@ export default function HeroSlider({ lang, slides }: HeroSliderProps) {
           <div
             className="absolute inset-0 animate-[zoom_8s_ease-out_forwards] bg-cover bg-center"
             style={{
-              backgroundImage: `url('/images/hero-bg.jpg')`,
+              backgroundImage: `url('${bgImages[idx % bgImages.length]}')`,
             }}
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-[rgba(26,58,92,0.85)] to-[rgba(49,130,206,0.7)]" />
+          <div className="absolute inset-0 bg-gradient-to-br from-[rgba(26,58,92,0.88)] to-[rgba(30,50,70,0.75)]" />
         </div>
       ))}
 
@@ -51,15 +54,15 @@ export default function HeroSlider({ lang, slides }: HeroSliderProps) {
               key={idx}
               className={`${idx === current ? "block" : "hidden"}`}
             >
-              <h2 className="mb-5 text-3xl font-bold opacity-0 animate-[fadeInUp_0.8s_ease_forwards_0.3s] md:text-[52px]">
+              <h2 className="mb-5 text-3xl font-bold text-white opacity-0 animate-[fadeInUp_0.8s_ease_forwards_0.3s] md:text-[52px]">
                 {slide.title}
               </h2>
-              <p className="mb-8 text-lg opacity-0 animate-[fadeInUp_0.8s_ease_forwards_0.5s] md:text-xl">
+              <p className="mb-8 text-lg text-white opacity-0 animate-[fadeInUp_0.8s_ease_forwards_0.5s] md:text-xl">
                 {slide.subtitle}
               </p>
               <Link
                 href={`/${lang}${slide.href}`}
-                className="inline-block rounded-full bg-brand-gold px-8 py-4 text-base font-semibold text-white opacity-0 transition-all duration-300 animate-[fadeInUp_0.8s_ease_forwards_0.7s] hover:-translate-y-1 hover:bg-white hover:text-brand-navy hover:shadow-[0_10px_30px_rgba(0,0,0,0.2)] md:px-10 md:text-lg"
+                className="inline-block bg-brand-gold px-8 py-4 text-base font-semibold text-white opacity-0 transition-all duration-300 animate-[fadeInUp_0.8s_ease_forwards_0.7s] hover:-translate-y-0.5 hover:bg-brand-gold-light hover:text-white hover:shadow-[0_6px_20px_rgba(201,162,39,0.45)] md:px-10 md:text-lg"
               >
                 {slide.cta}
               </Link>

@@ -30,6 +30,10 @@ export default async function RootLayout({
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap"
+          rel="stylesheet"
+        />
       </head>
       <body className="flex min-h-screen flex-col">
         <Header lang={locale} />

@@ -20,7 +20,7 @@ const defaults: Record<string, { title: string; items: { icon: React.ReactNode; 
     title: "为何选择 LT CPA 服务",
     items: [
       { icon: <Award className="h-8 w-8" />, title: "专业资质", desc: "团队成员均持有香港会计师公会及国际认可专业资格，确保服务符合最高标准。" },
-      { icon: <Clock className="h-8 w-8" />, title: "准时高效", desc: "我们重视项目进度管理，确保在约定期限内交付高质素的工作成果。" },
+      { icon: <Clock className="h-8 w-8" />, title: "准时高效", desc: "我们重视项目进度管理，确保在约定期限内交付高质量的工作成果。" },
       { icon: <Shield className="h-8 w-8" />, title: "独立客观", desc: "坚守独立性原则，以客观、公正的态度为客户提供专业意见。" },
       { icon: <Users className="h-8 w-8" />, title: "客户为本", desc: "深入了解客户业务，提供切合实际需要的建议，建立长期合作关系。" },
     ],
@@ -47,7 +47,7 @@ export default function WhyChooseService({ lang, title, items }: WhyChooseServic
         <div className="mb-10 text-center md:mb-14">
           <h2 className="relative inline-block text-3xl font-bold text-brand-navy md:text-[40px]">
             {displayTitle}
-            <span className="absolute -bottom-3 left-1/2 h-[3px] w-16 -translate-x-1/2 bg-brand-gold" />
+            <span className="absolute -bottom-3 left-1/2 h-[2px] w-20 -translate-x-1/2 bg-brand-gold" />
           </h2>
         </div>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">

@@ -18,7 +18,7 @@ export default function RelatedServices({ lang, currentSlug, services }: Related
         <div className="mb-10 text-center md:mb-14">
           <h2 className="relative inline-block text-3xl font-bold text-brand-navy md:text-[40px]">
             {title}
-            <span className="absolute -bottom-3 left-1/2 h-[3px] w-16 -translate-x-1/2 bg-brand-gold" />
+            <span className="absolute -bottom-3 left-1/2 h-[2px] w-20 -translate-x-1/2 bg-brand-gold" />
           </h2>
         </div>
         <div className="grid gap-6 md:grid-cols-3">

@@ -57,7 +57,7 @@ export default async function ServicesPage({ params }: ServicesPageProps) {
           <div className="mb-12 text-center md:mb-16">
             <h2 className="relative inline-block text-3xl font-bold text-brand-navy md:text-[40px]">
               {t.introTitle}
-              <span className="absolute -bottom-3 left-1/2 h-[3px] w-16 -translate-x-1/2 bg-brand-gold" />
+              <span className="absolute -bottom-3 left-1/2 h-[2px] w-20 -translate-x-1/2 bg-brand-gold" />
             </h2>
             <p className="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-text-light">{t.introDesc}</p>
           </div>

@@ -15,13 +15,13 @@ export default function PageBanner({ lang, title }: PageBannerProps) {
       }}
     >
       <div>
-        <h1 className="mb-4 text-4xl font-bold md:text-5xl">{title}</h1>
-        <div className="text-base opacity-90">
-          <Link href={`/${lang}/`} className="hover:text-brand-gold">
+        <h1 className="mb-4 text-4xl font-bold text-white md:text-5xl">{title}</h1>
+        <div className="text-base text-white/90">
+          <Link href={lang === "en" ? "/" : `/${lang}/`} className="text-white hover:text-brand-gold">
             {lang === "en" ? "Home" : lang === "zh-hans" ? "首页" : "首頁"}
           </Link>
           <span className="mx-2">/</span>
-          <span>{title}</span>
+          <span className="text-white">{title}</span>
         </div>
       </div>
     </section>

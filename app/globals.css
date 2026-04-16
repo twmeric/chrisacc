@@ -6,7 +6,9 @@
   --color-navy: #1e3a5f;
   --color-gold: #c9a227;
   --color-gold-light: #e0b84a;
+  --color-gold-dark: #b89130;
   --color-cream: #f8f6f1;
+  --color-charcoal: #2c2c2c;
 }
 
 html {
@@ -18,8 +20,15 @@ body {
   font-family: "Inter", "Noto Sans TC", "Noto Sans SC", system-ui, sans-serif;
 }
 
+/* Elegant serif headings for luxury feel */
 h1, h2, h3, h4, h5, h6 {
-  @apply font-serif text-brand-navy;
+  @apply font-serif text-brand-navy tracking-tight;
+}
+
+/* Custom selection color */
+::selection {
+  background-color: rgba(201, 162, 39, 0.25);
+  color: #1e3a5f;
 }
 
 /* Admin preview styles */

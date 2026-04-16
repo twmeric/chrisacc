@@ -52,6 +52,7 @@ https://github.com/twmeric/chrisacc
 - **Trigger:** Push to `master` branch or manual dispatch
 - **Build Command:** `npm run build`
 - **Output Directory:** `dist`
+- **Note:** Workflow passes `branch: main` to `cloudflare/pages-action` because the Pages project `production_branch` is locked to `main`. This ensures every push deploys to production and updates the custom domain.
 
 ---
 

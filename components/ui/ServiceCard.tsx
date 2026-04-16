@@ -18,7 +18,7 @@ export default function ServiceCard({ lang, slug, title, description, iconName =
     >
       <div className="relative p-8 md:p-10">
         <span className="absolute left-0 top-0 h-1 w-full scale-x-0 bg-brand-gold transition-transform duration-300 group-hover:scale-x-100" />
-        <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-brand-navy to-brand-accent text-3xl text-white transition-all duration-500 group-hover:rotate-[360deg] group-hover:bg-gradient-to-br group-hover:from-brand-gold group-hover:to-brand-gold-light">
+        <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-brand-navy to-brand-accent text-3xl text-white transition-all duration-500 group-hover:scale-110 group-hover:bg-gradient-to-br group-hover:from-brand-gold group-hover:to-brand-gold-light">
           <i className={`fas ${iconName}`} />
         </div>
         <h3 className="mb-3 text-xl font-bold text-brand-navy">{title}</h3>
