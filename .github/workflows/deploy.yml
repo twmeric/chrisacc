@@ -37,6 +37,7 @@ jobs:
           projectName: ltcpa-website
           directory: dist
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
 
       - name: Deploy Inquiry Worker
         uses: cloudflare/wrangler-action@v3
