@@ -26,7 +26,8 @@ jobs:
 
       - name: Build Next.js
         env:
-          NEXT_PUBLIC_INQUIRY_API_URL: ${{ secrets.CMS_API_URL }}
+          NEXT_PUBLIC_INQUIRY_API_URL: ${{ secrets.NEXT_PUBLIC_INQUIRY_API_URL }}
+          NEXT_PUBLIC_CMS_API_URL: ${{ secrets.NEXT_PUBLIC_CMS_API_URL }}
         run: npm run build
 
       - name: Deploy to Cloudflare Pages

@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 
-const WORKER_URL = process.env.NEXT_PUBLIC_CMS_API_URL || "https://ltcpa-cms-api.YOUR_SUBDOMAIN.workers.dev";
+const WORKER_URL = process.env.NEXT_PUBLIC_CMS_API_URL || "https://ltcpa-cms-api.jimsbond007.workers.dev";
 
 async function fetchCMSData() {
   try {
