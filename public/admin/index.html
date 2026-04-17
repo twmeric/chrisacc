@@ -414,6 +414,17 @@
       html += `<div class="border-t border-slate-200 my-4"></div>`;
       html += inputText('home_services_title', 'Services Section Title', (d.services || {}).title);
       html += inputTextarea('home_services_subtitle', 'Services Section Subtitle', (d.services || {}).subtitle);
+      let cardsHTML = '';
+      ((d.services || {}).cards || []).forEach((c, idx) => {
+        let inner = smallInput(`home_svc_card_${idx}_slug`, 'Slug', c.slug);
+        inner += smallInput(`home_svc_card_${idx}_title`, 'Title', c.title);
+        inner += smallTextarea(`home_svc_card_${idx}_desc`, 'Description', c.desc);
+        inner += smallInput(`home_svc_card_${idx}_icon`, 'Icon Class', c.icon);
+        inner += smallInput(`home_svc_card_${idx}_linkText`, 'Link Text', c.linkText);
+        inner += smallInput(`home_svc_card_${idx}_href`, 'Href', c.href);
+        cardsHTML += arrayItemWrapper('home_svc_card', idx, inner);
+      });
+      html += arrayContainer('home_svc_card', 'Service Cards', cardsHTML);
       html += `<div class="border-t border-slate-200 my-4"></div>`;
       html += inputText('home_cta_title', 'CTA Title', (d.cta || {}).title);
       html += inputTextarea('home_cta_desc', 'CTA Description', (d.cta || {}).desc);
@@ -956,9 +967,10 @@
       } else if (id === 'home') {
         const slides = readArray('home_hero_slide', ['title', 'subtitle', 'cta', 'href']);
         const bgs = readInput('home_hero_backgrounds').split('\n').map(s => s.trim()).filter(Boolean);
+        const cards = readArray('home_svc_card', ['slug', 'title', 'desc', 'icon', 'linkText', 'href']);
         obj.home = {
           hero: { slides, backgrounds: bgs },
-          services: { title: readInput('home_services_title'), subtitle: readInput('home_services_subtitle') },
+          services: { title: readInput('home_services_title'), subtitle: readInput('home_services_subtitle'), cards },
           cta: { title: readInput('home_cta_title'), desc: readInput('home_cta_desc'), btn: readInput('home_cta_btn'), href: readInput('home_cta_href') },
         };
       } else if (id === 'about') {

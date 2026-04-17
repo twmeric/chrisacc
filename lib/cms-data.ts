@@ -13,6 +13,28 @@ function mergeSimplePage(
   } as LocaleCMSData["purpose"];
 }
 
+function mergeHome(
+  def: LocaleCMSData["home"],
+  loaded?: Partial<LocaleCMSData["home"]>
+) {
+  return {
+    ...def,
+    ...(loaded || {}),
+    hero: {
+      ...def.hero,
+      ...(loaded?.hero || {}),
+      slides: loaded?.hero?.slides || def.hero.slides,
+      backgrounds: loaded?.hero?.backgrounds || def.hero.backgrounds,
+    },
+    services: {
+      ...def.services,
+      ...(loaded?.services || {}),
+      cards: loaded?.services?.cards || def.services.cards,
+    },
+    cta: { ...def.cta, ...(loaded?.cta || {}) },
+  } as LocaleCMSData["home"];
+}
+
 function mergeServices(
   def: LocaleCMSData["services"],
   loaded?: Partial<LocaleCMSData["services"]>
@@ -156,6 +178,10 @@ export function getCMSData(): CMSData {
     "zh-hant": {
       ...defaultCMSData["zh-hant"],
       ...(loaded["zh-hant"] || {}),
+      home: mergeHome(
+        defaultCMSData["zh-hant"].home,
+        (loaded["zh-hant"] || {}).home
+      ),
       about: mergeAbout(
         defaultCMSData["zh-hant"].about,
         (loaded["zh-hant"] || {}).about
@@ -184,6 +210,10 @@ export function getCMSData(): CMSData {
     "zh-hans": {
       ...defaultCMSData["zh-hans"],
       ...(loaded["zh-hans"] || {}),
+      home: mergeHome(
+        defaultCMSData["zh-hans"].home,
+        (loaded["zh-hans"] || {}).home
+      ),
       about: mergeAbout(
         defaultCMSData["zh-hans"].about,
         (loaded["zh-hans"] || {}).about
@@ -212,6 +242,10 @@ export function getCMSData(): CMSData {
     en: {
       ...defaultCMSData.en,
       ...(loaded.en || {}),
+      home: mergeHome(
+        defaultCMSData.en.home,
+        (loaded.en || {}).home
+      ),
       about: mergeAbout(
         defaultCMSData.en.about,
         (loaded.en || {}).about

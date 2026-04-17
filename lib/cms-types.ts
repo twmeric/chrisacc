@@ -67,6 +67,7 @@ export interface HomeData {
   services: {
     title: string;
     subtitle: string;
+    cards: { slug: string; title: string; desc: string; icon: string; linkText: string; href: string }[];
   };
   cta: {
     title: string;
