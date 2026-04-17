@@ -189,25 +189,128 @@ export const defaultCMSData: CMSData = {
         href: "/zh-hant/contact/",
       },
     },
-    services: {
-      pageTitle: "服務範圍",
-      introTitle: "專業服務，全面涵蓋",
-      introDesc: "櫪韜會計師事務所有限公司提供全方位的專業會計及商業顧問服務，協助企業應對複雜的商業環境，實現可持續發展。",
+      services: {
+      pageTitle: `服務範圍`,
+      introTitle: `全方位專業服務`,
+      introDesc: `我們提供多元化的專業服務，涵蓋審計、稅務、風險管理及商業顧問。無論您的企業規模大小，我們都能量身定制解決方案，助您達成目標。`,
+      serviceDetails: [
+        {
+            slug: `audit`,
+            title: `審計與鑑證`,
+            subtitle: `「為資本市場注入信心。」`,
+            desc: `在以波動性為特徵的全球金融格局中，利害關係人不僅需要數字，更需要數字背後的真相。我們的審計與鑑證業務是「信任」的基石。我們不將審計視為商品，而是將其視為驗證財務健康狀況並發掘改進機會的關鍵診斷工具。`,
+            image: `https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&q=80`,
+            features: [
+              `法定審計及財務報表審計`,
+            `內部控制審查及評估`,
+            `特殊目的審計報告`,
+            `上市公司審計服務`,
+            `合規性審查`
+            ],
+            linkText: `了解更多 →`,
+            href: `audit.html`,
+          },{
+            slug: `tax`,
+            title: `稅務諮詢`,
+            subtitle: `「優化效率，傳承保護。」`,
+            desc: `稅法是動態的，往往隨地緣政治潮流而變化。我們的稅務諮詢團隊作為您的策略導航員，確保您的稅務立場與商業目標一致，同時保持嚴格合規。我們超越簡單的申報，進行主動規劃。`,
+            image: `https://images.unsplash.com/photo-1554224154-26032ffc0d07?w=600&q=80`,
+            features: [
+              `企業稅務規劃及優化`,
+            `跨境稅務諮詢`,
+            `轉讓定價策略`,
+            `稅務申報及合規`,
+            `稅務爭議處理`
+            ],
+            linkText: `了解更多 →`,
+            href: `tax.html`,
+          },{
+            slug: `risk`,
+            title: `風險與監管`,
+            subtitle: `「從被動合規到策略韌性。」`,
+            desc: `在「多重危機」時代——監管審查、地緣政治變化和技術顛覆交織——韌性是競爭優勢。我們幫助組織從「打勾式」合規心態轉向預見變化的全面風險管理策略。`,
+            image: `https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&q=80`,
+            features: [
+              `企業風險評估及管理`,
+            `內部控制體系建設`,
+            `監管合規諮詢`,
+            `反洗錢（AML）合規`,
+            `企業管治優化`
+            ],
+            linkText: `了解更多 →`,
+            href: `risk.html`,
+          },{
+            slug: `forensic`,
+            title: `法證服務`,
+            subtitle: `「守護誠信與價值。」`,
+            desc: `當業務誠信受到欺詐、不當行為或爭議威脅時，速度和精準至關重要。我們的法證團隊結合會計專業與調查嚴謹性，確立事實、量化損失並恢復信任。`,
+            image: `https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?w=600&q=80`,
+            features: [
+              `欺詐調查及預防`,
+            `商業糾紛分析`,
+            `訴訟支援服務`,
+            `資產追蹤`,
+            `專家證人服務`
+            ],
+            linkText: `了解更多 →`,
+            href: `forensic.html`,
+          },{
+            slug: `consulting`,
+            title: `企業諮詢`,
+            subtitle: `「驅動轉型與績效。」`,
+            desc: `增長往往帶來複雜性。我們的諮詢業務致力於您營運模式的「轉型」。我們與管理層並肩合作，現代化財務功能、精簡營運，並為您的組織下一階段的演進做好準備。`,
+            image: `https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&q=80`,
+            features: [
+              `業務流程優化`,
+            `財務管理諮詢`,
+            `企業策略規劃`,
+            `數碼轉型顧問`,
+            `人力資源諮詢`
+            ],
+            linkText: `了解更多 →`,
+            href: `consulting.html`,
+          },{
+            slug: `deals`,
+            title: `併購交易`,
+            subtitle: `「在交易每個階段釋放價值。」`,
+            desc: `成功的交易需要「領導力」和清晰度。無論您是買方、賣方還是進行重組，我們都能穿透噪音，提供自信談判和完成交易所需的關鍵財務洞察。`,
+            image: `https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=600&q=80`,
+            features: [
+              `併購策略諮詢`,
+            `財務盡職調查`,
+            `企業估值服務`,
+            `交易結構設計`,
+            `整合後支援`
+            ],
+            linkText: `了解更多 →`,
+            href: `deals.html`,
+          }
+      ],
       whyChoose: {
-        title: "為何選擇我們？",
-        desc: "櫪韜會計師事務所有限公司擁有經驗豐富的專業團隊，致力於為客戶提供優質的會計及顧問服務。我們深明每間企業的獨特性，因此會因應客戶的實際需要，量身訂造最合適的解決方案。",
+        title: `為何選擇 LT CPA`,
+        desc: `我們的差異化優勢`,
         items: [
-          { icon: "Users", title: "專業團隊", desc: "由資深會計師及顧問組成，經驗豐富" },
-          { icon: "Award", title: "行業經驗", desc: "超過20年服務各類型企業的經驗" },
-          { icon: "Target", title: "度身方案", desc: "根據客戶需求提供個人化專業建議" },
-          { icon: "ThumbsUp", title: "優質服務", desc: "以客為本，追求卓越服務品質" },
+          { icon: `fa-globe`, title: `國際視野`, desc: `精通多個司法管轄區的會計準則和稅法，為跨境業務提供無縫服務` },
+            { icon: `fa-users`, title: `合夥人主導`, desc: `每個項目由資深合夥人親自督導，確保服務品質和策略一致性` },
+            { icon: `fa-cogs`, title: `度身訂造`, desc: `根據客戶獨特需求設計專屬解決方案，而非提供一式一樣的服務` },
+            { icon: `fa-comments`, title: `緊密溝通`, desc: `與客戶保持緊密聯繫，迅速回應需求和疑問` }
+        ],
+      },
+      process: {
+        title: `我們的服務流程`,
+        subtitle: `四個簡單步驟，為您交付專業服務`,
+        steps: [
+          { number: `1`, title: `初步諮詢`, desc: `了解您的需求和業務狀況` },
+            { number: `2`, title: `方案設計`, desc: `為您量身定制服務計劃` },
+            { number: `3`, title: `執行落實`, desc: `專業團隊高效交付服務` },
+            { number: `4`, title: `持續支援`, desc: `提供跟進和持續支援` }
         ],
       },
       cta: {
-        title: "需要專業諮詢？",
-        desc: "讓我們的專家團隊為您提供量身訂造的解決方案",
-        btn: "免費諮詢",
-        href: "/contact/",
+        title: `準備好開始合作了嗎？`,
+        desc: `立即聯絡我們，讓專業團隊為您提供最優財務方案`,
+        btn: `立即聯絡`,
+        href: `/zh-hant/contact/`,
       },
     },
     servicePages: {
@@ -683,25 +786,128 @@ export const defaultCMSData: CMSData = {
         href: "/zh-hans/contact/",
       },
     },
-    services: {
-      pageTitle: "服务范围",
-      introTitle: "专业服务，全面涵盖",
-      introDesc: "櫪韬会计师事务所有限公司提供全方位的专业会计及商业顾问服务，协助企业应对复杂的商业环境，实现可持续发展。",
+      services: {
+      pageTitle: `服务范围`,
+      introTitle: `全方位专业服务`,
+      introDesc: `我们提供涵盖审计、税务、风险管理及商业顾问等多元化的专业服务。无论您的企业规模大小，我们都能为您量身定制最适合的解决方案，助您实现业务目标。`,
+      serviceDetails: [
+        {
+            slug: `audit`,
+            title: `审计与鉴证`,
+            subtitle: `「为资本市场注入信心。」`,
+            desc: `在以波动性为特征的全球金融格局中，利益相关者不仅需要数字，更需要数字背后的真相。我们的审计与鉴证业务是「信任」的基石。我们不将审计视为商品，而是将其视为验证财务健康状况并发掘改进机会的关键诊断工具。`,
+            image: `https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&q=80`,
+            features: [
+              `法定审计及财务报表审计`,
+            `内部控制审查及评估`,
+            `特殊目的审计报告`,
+            `上市公司审计服务`,
+            `合规性审查`
+            ],
+            linkText: `了解更多 →`,
+            href: `audit-sc.html`,
+          },{
+            slug: `tax`,
+            title: `税务咨询`,
+            subtitle: `「优化效率，传承保护。」`,
+            desc: `税法是动态的，往往随地缘政治潮流而变化。我们的税务咨询团队作为您的策略导航员，确保您的税务立场与商业目标一致，同时保持严格合规。我们超越简单的申报，进行主动规划。`,
+            image: `https://images.unsplash.com/photo-1554224154-26032ffc0d07?w=600&q=80`,
+            features: [
+              `企业税务规划及优化`,
+            `跨境税务咨询`,
+            `转让定价策略`,
+            `税务申报及合规`,
+            `税务争议处理`
+            ],
+            linkText: `了解更多 →`,
+            href: `tax-sc.html`,
+          },{
+            slug: `risk`,
+            title: `风险与监管`,
+            subtitle: `「从被动合规到策略韧性。」`,
+            desc: `在「多重危机」时代——监管审查、地缘政治变化和技术颠覆交织——韧性是竞争优势。我们帮助组织从「打勾式」合规心态转向预见变化的全面风险管理策略。`,
+            image: `https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&q=80`,
+            features: [
+              `企业风险评估及管理`,
+            `内控体系建设`,
+            `监管合规咨询`,
+            `反洗钱（AML）合规`,
+            `企业管治优化`
+            ],
+            linkText: `了解更多 →`,
+            href: `risk-sc.html`,
+          },{
+            slug: `forensic`,
+            title: `法证服务`,
+            subtitle: `「守护诚信与价值。」`,
+            desc: `当业务诚信受到欺诈、不当行为或争议威胁时，速度和精准至关重要。我们的法证团队结合会计专业与调查严谨性，确立事实、量化损失并恢复信任。`,
+            image: `https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?w=600&q=80`,
+            features: [
+              `欺诈调查及预防`,
+            `商业纠纷分析`,
+            `诉讼支援服务`,
+            `资产追踪`,
+            `专家证人服务`
+            ],
+            linkText: `了解更多 →`,
+            href: `forensic-sc.html`,
+          },{
+            slug: `consulting`,
+            title: `企业咨询`,
+            subtitle: `「驱动转型与绩效。」`,
+            desc: `增长往往带来复杂性。我们的咨询业务致力于您营运模式的「转型」。我们与管理层并肩合作，现代化财务功能、精简营运，并为您的组织下一阶段的演进做好准备。`,
+            image: `https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&q=80`,
+            features: [
+              `业务流程优化`,
+            `财务管理咨询`,
+            `企业策略规划`,
+            `数码转型顾问`,
+            `人力资源咨询`
+            ],
+            linkText: `了解更多 →`,
+            href: `consulting-sc.html`,
+          },{
+            slug: `deals`,
+            title: `并购交易`,
+            subtitle: `「在交易每个阶段释放价值。」`,
+            desc: `成功的交易需要「领导力」和清晰度。无论您是买方、卖方还是进行重组，我们都能穿透噪音，提供自信谈判和完成交易所需的关键财务洞察。`,
+            image: `https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=600&q=80`,
+            features: [
+              `并购策略咨询`,
+            `财务尽职调查`,
+            `企业估值服务`,
+            `交易结构设计`,
+            `整合后支援`
+            ],
+            linkText: `了解更多 →`,
+            href: `deals-sc.html`,
+          }
+      ],
       whyChoose: {
-        title: "为何选择我们？",
-        desc: "櫪韬会计师事务所有限公司拥有经验丰富的专业团队，致力于为客户提供优质的会计及顾问服务。我们深明每间企业的独特性，因此会因应客户的实际需要，量身订造最合适的解决方案。",
+        title: `为何选择 LT CPA`,
+        desc: `我们的差异化优势`,
         items: [
-          { icon: "Users", title: "专业团队", desc: "由资深会计师及顾问组成，经验丰富" },
-          { icon: "Award", title: "行业经验", desc: "超过20年服务各类型企业的经验" },
-          { icon: "Target", title: "度身方案", desc: "根据客户需求提供个人化专业建议" },
-          { icon: "ThumbsUp", title: "优质服务", desc: "以客为本，追求卓越服务品质" },
+          { icon: `fa-globe`, title: `国际视野`, desc: `精通多个司法管辖区的会计准则和税法，为跨境业务提供无缝服务` },
+            { icon: `fa-users`, title: `合伙人主导`, desc: `每个项目由资深合伙人亲自督导，确保服务品质和策略一致性` },
+            { icon: `fa-cogs`, title: `度身订造`, desc: `根据客户独特需求设计专属解决方案，而非提供一式一样的服务` },
+            { icon: `fa-comments`, title: `紧密沟通`, desc: `与客户保持紧密联系，迅速回应需求和疑问` }
+        ],
+      },
+      process: {
+        title: `我们的服务流程`,
+        subtitle: `四个简单步骤，为您交付专业服务`,
+        steps: [
+          { number: `1`, title: `初步咨询`, desc: `了解您的需求和业务状况` },
+            { number: `2`, title: `方案设计`, desc: `为您量身定制服务计划` },
+            { number: `3`, title: `执行落实`, desc: `专业团队高效交付服务` },
+            { number: `4`, title: `持续支援`, desc: `提供跟进和持续支援` }
         ],
       },
       cta: {
-        title: "需要专业咨询？",
-        desc: "让我们的专家团队为您提供量身订造的解决方案",
-        btn: "免费咨询",
-        href: "/contact/",
+        title: `准备好开始合作了吗？`,
+        desc: `立即联络我们，让专业团队为您提供最优财务方案`,
+        btn: `立即联络`,
+        href: `/zh-hans/contact/`,
       },
     },
     servicePages: {
@@ -1177,25 +1383,128 @@ export const defaultCMSData: CMSData = {
         href: "/en/contact/",
       },
     },
-    services: {
-      pageTitle: "Services",
-      introTitle: "Comprehensive Professional Services",
-      introDesc: "LT CPA Limited provides a full range of professional accounting and business advisory services to help enterprises navigate complex business environments and achieve sustainable growth.",
+      services: {
+      pageTitle: `Our Services`,
+      introTitle: `Comprehensive Professional Services`,
+      introDesc: `We offer a diverse range of professional services including audit, tax, risk management, and business advisory. Regardless of your business size, we tailor solutions to meet your specific needs and help you achieve your objectives.`,
+      serviceDetails: [
+        {
+            slug: `audit`,
+            title: `Audit & Assurance`,
+            subtitle: `"Instilling Confidence in Capital Markets."`,
+            desc: `In a global financial landscape characterized by volatility, stakeholders demand more than just numbers—they demand the truth behind them. Our Audit & Assurance practice is the cornerstone of trust. We do not view the audit as a commodity, but as a critical diagnostic tool that validates financial health and uncovers opportunities for improvement.`,
+            image: `https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&q=80`,
+            features: [
+              `Statutory audit and financial statement audit`,
+            `Internal control review and assessment`,
+            `Special purpose audit reports`,
+            `Listed company audit services`,
+            `Compliance review`
+            ],
+            linkText: `Learn More →`,
+            href: `audit-en.html`,
+          },{
+            slug: `tax`,
+            title: `Tax Advisory`,
+            subtitle: `"Optimizing Efficiency, Preserving Legacy."`,
+            desc: `Tax laws are dynamic, often shifting with geopolitical tides. Our Tax Advisory team acts as your strategic navigator, ensuring that your tax position aligns with your commercial objectives while maintaining strict compliance. We move beyond simple filing to proactive planning.`,
+            image: `https://images.unsplash.com/photo-1554224154-26032ffc0d07?w=600&q=80`,
+            features: [
+              `Corporate tax planning and optimization`,
+            `Cross-border tax advisory`,
+            `Transfer pricing strategy`,
+            `Tax filing and compliance`,
+            `Tax dispute resolution`
+            ],
+            linkText: `Learn More →`,
+            href: `tax-en.html`,
+          },{
+            slug: `risk`,
+            title: `Risk & Regulatory`,
+            subtitle: `"From Reactive Compliance to Strategic Resilience."`,
+            desc: `In an era of polycrisis—where regulatory scrutiny, geopolitical shifts, and technological disruption intersect—resilience is a competitive advantage. We help organizations move from a tick-the-box compliance mentality to a holistic risk management strategy that anticipates change.`,
+            image: `https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&q=80`,
+            features: [
+              `Enterprise risk assessment and management`,
+            `Internal control system development`,
+            `Regulatory compliance advisory`,
+            `Anti-money laundering (AML) compliance`,
+            `Corporate governance optimization`
+            ],
+            linkText: `Learn More →`,
+            href: `risk-en.html`,
+          },{
+            slug: `forensic`,
+            title: `Forensic Services`,
+            subtitle: `"Safeguarding Integrity and Value."`,
+            desc: `When business integrity is threatened by fraud, misconduct, or dispute, speed and precision are paramount. Our Forensic team combines accounting acumen with investigative rigor to establish the facts, quantify losses, and restore trust.`,
+            image: `https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?w=600&q=80`,
+            features: [
+              `Fraud investigation and prevention`,
+            `Commercial dispute analysis`,
+            `Litigation support services`,
+            `Asset tracing`,
+            `Expert witness services`
+            ],
+            linkText: `Learn More →`,
+            href: `forensic-en.html`,
+          },{
+            slug: `consulting`,
+            title: `Consulting`,
+            subtitle: `"Driving Transformation and Performance."`,
+            desc: `Growth often brings complexity. Our Consulting practice focuses on transforming your operating model. We work closely with management teams to modernize finance functions, streamline operations, and prepare your organization for its next stage of evolution.`,
+            image: `https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&q=80`,
+            features: [
+              `Business process optimization`,
+            `Financial management advisory`,
+            `Corporate strategy planning`,
+            `Digital transformation advisory`,
+            `Human resources consulting`
+            ],
+            linkText: `Learn More →`,
+            href: `consulting-en.html`,
+          },{
+            slug: `deals`,
+            title: `Deals & M&A`,
+            subtitle: `"Unlocking Value at Every Stage of the Transaction."`,
+            desc: `A successful transaction requires leadership and clarity. Whether you are buying, selling, or restructuring, we cut through the noise to provide the critical financial insights needed to negotiate confidently and close deals.`,
+            image: `https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=600&q=80`,
+            features: [
+              `M&A strategy advisory`,
+            `Financial due diligence`,
+            `Business valuation services`,
+            `Transaction structure design`,
+            `Post-integration support`
+            ],
+            linkText: `Learn More →`,
+            href: `deals-en.html`,
+          }
+      ],
       whyChoose: {
-        title: "Why Choose Us?",
-        desc: "LT CPA Limited has an experienced professional team dedicated to providing quality accounting and advisory services. We understand the uniqueness of each business and tailor the most suitable solutions to meet our clients' actual needs.",
+        title: `Why Choose Us`,
+        desc: `We are committed to delivering exceptional professional services to every client`,
         items: [
-          { icon: "Users", title: "Professional Team", desc: "Comprised of seasoned accountants and consultants" },
-          { icon: "Award", title: "Industry Experience", desc: "Over 20 years serving all types of businesses" },
-          { icon: "Target", title: "Tailored Solutions", desc: "Personalized professional advice based on your needs" },
-          { icon: "ThumbsUp", title: "Quality Service", desc: "Customer-oriented, pursuing excellence" },
+          { icon: `fa-user-tie`, title: `Expert Team`, desc: `A team of seasoned professionals with extensive industry experience and professional qualifications` },
+            { icon: `fa-cogs`, title: `Tailored Solutions`, desc: `Customized solutions designed to meet the specific needs of each client` },
+            { icon: `fa-clock`, title: `Efficient Service`, desc: `Client-focused approach ensuring timely delivery of high-quality results` },
+            { icon: `fa-comments`, title: `Close Communication`, desc: `Maintaining close contact with clients and responding promptly to needs and questions` }
+        ],
+      },
+      process: {
+        title: `Our Process`,
+        subtitle: `Four simple steps to professional service delivery`,
+        steps: [
+          { number: `1`, title: `Initial Consultation`, desc: `Understanding your needs and business situation` },
+            { number: `2`, title: `Solution Design`, desc: `Creating a tailored service plan for you` },
+            { number: `3`, title: `Execution`, desc: `Professional team delivering efficient service` },
+            { number: `4`, title: `Ongoing Support`, desc: `Providing follow-up and continuous support` }
         ],
       },
       cta: {
-        title: "Need Professional Advice?",
-        desc: "Let our expert team provide you with tailored solutions",
-        btn: "Free Consultation",
-        href: "/contact/",
+        title: `Ready to Start Working Together?`,
+        desc: `Contact us today and let our professional team provide the best financial solutions for you`,
+        btn: `Contact Us`,
+        href: `/en/contact/`,
       },
     },
     servicePages: {

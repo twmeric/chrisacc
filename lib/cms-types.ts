@@ -138,10 +138,25 @@ export interface ServicesPageData {
   pageTitle: string;
   introTitle: string;
   introDesc: string;
+  serviceDetails: {
+    slug: string;
+    title: string;
+    subtitle: string;
+    desc: string;
+    image: string;
+    features: string[];
+    linkText: string;
+    href: string;
+  }[];
   whyChoose: {
     title: string;
     desc: string;
     items: { icon: string; title: string; desc: string }[];
+  };
+  process: {
+    title: string;
+    subtitle: string;
+    steps: { number: string; title: string; desc: string }[];
   };
   cta: {
     title: string;

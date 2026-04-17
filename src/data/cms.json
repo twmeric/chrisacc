@@ -1000,7 +1000,27 @@
         "desc": "無論您的企業規模大小，我們都能為您提供專業、可靠的財務解決方案",
         "btn": "立即聯絡我們",
         "href": "/contact/"
-      }
+      },
+      "heroTitle": "我們的使命",
+      "heroSubtitle": "\"我們走過的路\"",
+      "heroQuote": "致力以專業精準錨定全球雄心，賦能企業以清晰、合規與自信駕馭國際金融格局的複雜性。",
+      "items": [
+        {
+          "icon": "Globe",
+          "title": "傳遞無界保證與誠信",
+          "desc": "我們致力打破阻礙國際信任的屏障。透過堅持最嚴謹的審計質素標準，我們提供以通用語言表述的財務報表。我們的使命是確保投資者與持份者都能同樣信賴我們的報告。"
+        },
+        {
+          "icon": "TrendingUp",
+          "title": "構建可持續增長策略",
+          "desc": "我們不僅記錄歷史，更協助塑造未來。我們的使命超越合規，延伸至高價值顧問。我們立志成為企業從本土成功邁向全球傑出的策略建築師。"
+        },
+        {
+          "icon": "GraduationCap",
+          "title": "培育技術卓越文化",
+          "desc": "在財務法規瞬息萬變的世界中，知識是我們最寶貴的資產。我們致力營造不懈專業發展的環境，使命是走在監管曲線之前。"
+        }
+      ]
     },
     "value": {
       "pageTitle": "我們的願景",
@@ -1014,7 +1034,27 @@
         "desc": "讓我們成為您企業成長路上的專業夥伴",
         "btn": "立即聯絡我們",
         "href": "/contact/"
-      }
+      },
+      "heroTitle": "我們的願景",
+      "heroSubtitle": "\"我們建造的未來\"",
+      "heroQuote": "成為無界商業卓越的 definitive 橋樑——被全球公認為尋求進入國際資本市場並保障財務傳承的活力企業的首選精品夥伴。",
+      "items": [
+        {
+          "icon": "Building",
+          "title": "在全球尺度重新定義「精品」體驗",
+          "desc": "我們展望一個「精品」代表敏捷與個人化，而非有限範疇的未來。我們旨在打破傳統二元對立，成為大型國際企業的「剛剛好」解決方案。"
+        },
+        {
+          "icon": "Scale",
+          "title": "樹立跨境流暢度的標準",
+          "desc": "我們立志成為「司法管轄流暢度」的行業基準。我們的願景是讓不同國家會計準則與稅法之間的界線變得無縫。"
+        },
+        {
+          "icon": "Rocket",
+          "title": "賦能下一代全球企業",
+          "desc": "我們期待成為協助下一波全球巨頭成功的關鍵力量。我們將事務所視為國際成功故事的孵化器，引導初創企業與家族企業成熟為公開上市的全球實體。"
+        }
+      ]
     },
     "commitment": {
       "pageTitle": "我們的承諾",
@@ -1029,7 +1069,42 @@
         "desc": "體驗以客戶為本、追求卓越的專業服務",
         "btn": "立即聯絡我們",
         "href": "/contact/"
-      }
+      },
+      "heroTitle": "我們的承諾",
+      "heroSubtitle": "\"我們堅守的諾言\"",
+      "heroQuote": "以主動引導和技術精湛引領，架起您全球雄心的橋樑，為您的企業建立信任與變革的傳承。",
+      "items": [
+        {
+          "icon": "Crown",
+          "title": "領導力 — 主動全球引導",
+          "desc": "在波動的國際市場中，您需要的不僅是服務提供商，而是從前線帶領的夥伴。我們代表專業實踐中的領導力。我們不只對監管變化作岀反應，更預見它們。"
+        },
+        {
+          "icon": "Link",
+          "title": "連結 — 通用連接器",
+          "desc": "我們代表連結——您現有營運與全球潛力之間的重要紐帶。我們充當不同監管環境與會計框架之間的介面，創造資本流動與擴展的無縫管道。"
+        },
+        {
+          "icon": "Infinity",
+          "title": "傳承 — 持久價值創造",
+          "desc": "真正的成功不是以單一財政年度來衡量，而是以持久力來衡量。傳承是我們顧問服務的終極目標。無論是審計跨國企業還是構建私人實體持股架構，我們的焦點都是可持續性。"
+        },
+        {
+          "icon": "Cog",
+          "title": "技術性 — 國際標準",
+          "desc": "我們在技術性的頂峰運作。我們的專業超越法定框架，達至全球報告標準的精通。我們具備駕馭跨境併購盡職調查、IPO籌備及複雜監管報告精細需求的顆粒度技術知識。"
+        },
+        {
+          "icon": "ShieldAlt",
+          "title": "信任 — 全球化的貨幣",
+          "desc": "當業務跨越大洋進行時，信任是基本貨幣。我們擔任財務真相的獨立保證人。對於國際投資者、外國債權人及監管機構而言，我們的保證印章消除了遠程營運的不透明性。"
+        },
+        {
+          "icon": "SyncAlt",
+          "title": "變革 — 超越邊界的演進",
+          "desc": "我們是變革的建築師。我們引導本土企業蛻變為全球競爭者。我們的非審計顧問服務旨在現代化財務基礎設施、數碼化遠程管理報告系統，並優化營運效率。"
+        }
+      ]
     }
   },
   "zh-hans": {
@@ -2031,7 +2106,27 @@
         "desc": "无论您的企业规模大小，我们都能为您提供专业、可靠的财务解决方案",
         "btn": "立即联络我们",
         "href": "/contact/"
-      }
+      },
+      "heroTitle": "我们的使命",
+      "heroSubtitle": "\"我们走过的路\"",
+      "heroQuote": "致力以专业精准锚定全球雄心，赋能企业以清晰、合规与自信驾驭国际金融格局的复杂性。",
+      "items": [
+        {
+          "icon": "Globe",
+          "title": "传递无界保证与诚信",
+          "desc": "我们致力打破阻碍国际信任的屏障。透过坚持最严谨的审计质素标准，我们提供以通用语言表述的财务报表。我们的使命是确保投资者与持份者都能同样信赖我们的报告。"
+        },
+        {
+          "icon": "TrendingUp",
+          "title": "构建可持续增长策略",
+          "desc": "我们不仅记录历史，更协助塑造未来。我们的使命超越合规，延伸至高价值顾问。我们立志成为企业从本土成功迈向全球杰出的策略建筑师。"
+        },
+        {
+          "icon": "GraduationCap",
+          "title": "培育技术卓越文化",
+          "desc": "在财务法规瞬息万变的世界中，知识是我们最宝贵的资产。我们致力营造不懈专业发展的环境，使命是走在监管曲线之前。"
+        }
+      ]
     },
     "value": {
       "pageTitle": "我们的愿景",
@@ -2045,7 +2140,27 @@
         "desc": "让我们成为您企业成长路上的专业伙伴",
         "btn": "立即联络我们",
         "href": "/contact/"
-      }
+      },
+      "heroTitle": "我们的愿景",
+      "heroSubtitle": "\"我们建造的未来\"",
+      "heroQuote": "成为无界商业卓越的 definitive 桥梁——被全球公认为寻求进入国际资本市场并保障财务传承的活力企业的首选精品伙伴。",
+      "items": [
+        {
+          "icon": "Building",
+          "title": "在全球尺度重新定义「精品」体验",
+          "desc": "我们展望一个「精品」代表敏捷与个人化，而非有限范畴的未来。我们旨在打破传统二元对立，成为大型国际企业的「刚刚好」解决方案。"
+        },
+        {
+          "icon": "Scale",
+          "title": "树立跨境流畅度的标准",
+          "desc": "我们立志成为「司法管辖流畅度」的行业基准。我们的愿景是让不同国家会计准则与税法之间的界线变得无缝。"
+        },
+        {
+          "icon": "Rocket",
+          "title": "赋能下一代全球企业",
+          "desc": "我们期待成为协助下一波全球巨头成功的关键力量。我们将事务所视为国际成功故事的孵化器，引导初创企业与家族企业成熟为公开上市的全球实体。"
+        }
+      ]
     },
     "commitment": {
       "pageTitle": "我们的承诺",
@@ -2060,7 +2175,42 @@
         "desc": "体验以客户为本、追求卓越的专业服务",
         "btn": "立即联络我们",
         "href": "/contact/"
-      }
+      },
+      "heroTitle": "我们的承诺",
+      "heroSubtitle": "\"我们坚守的诺言\"",
+      "heroQuote": "以主动引导和技术精湛引领，架起您全球雄心的桥梁，为您的企业建立信任与变革的传承。",
+      "items": [
+        {
+          "icon": "Crown",
+          "title": "领导力 — 主动全球引导",
+          "desc": "在波动的国际市场中，您需要的不只是服务提供商，而是从前线带领的伙伴。我们代表专业实践中的领导力。我们不只对监管变化作出反应，更预见它们。"
+        },
+        {
+          "icon": "Link",
+          "title": "连结 — 通用连接器",
+          "desc": "我们代表连结——您现有营运与全球潜力之间的重要纽带。我们充当不同监管环境与会计框架之间的界面，创造资本流动与扩展的无缝管道。"
+        },
+        {
+          "icon": "Infinity",
+          "title": "传承 — 持久价值创造",
+          "desc": "真正的成功不是以单一财政年度来衡量，而是以持久力来衡量。传承是我们顾问服务的终极目标。无论是审计跨国企业还是构建私人实体持股架构，我们的焦点都是可持续性。"
+        },
+        {
+          "icon": "Cog",
+          "title": "技术性 — 国际标准",
+          "desc": "我们在技术性的顶峰运作。我们的专业超越法定框架，达至全球报告标准的精通。我们具备驾驭跨境并购尽职调查、IPO筹备及复杂监管报告精细需求的颗粒度技术知识。"
+        },
+        {
+          "icon": "ShieldAlt",
+          "title": "信任 — 全球化的货币",
+          "desc": "当业务跨越大洋进行时，信任是基本货币。我们担任财务真相的独立保证人。对于国际投资者、外国债权人及监管机构而言，我们的保证印章消除了远程营运的不透明性。"
+        },
+        {
+          "icon": "SyncAlt",
+          "title": "变革 — 超越边界的演进",
+          "desc": "我们是变革的建筑师。我们引导本土企业蜕变为全球竞争者。我们的非审计顾问服务旨在现代化财务基础设施、数码化远程管理报告系统，并优化营运效率。"
+        }
+      ]
     }
   },
   "en": {
@@ -3050,7 +3200,7 @@
       }
     },
     "purpose": {
-      "pageTitle": "Our Mission",
+      "pageTitle": "Our Purpose",
       "paragraphs": [
         "Dedicated to providing clients with the highest quality professional services, helping businesses achieve financial goals, creating sustainable commercial value, and becoming the most trusted financial partner.",
         "Our mission goes beyond numbers and reports. Through professional audit, tax, and advisory services, we craft tailored solutions for every client, enabling them to move forward steadily in a complex and ever-changing business environment.",
@@ -3061,10 +3211,30 @@
         "desc": "Regardless of your business size, we can provide professional and reliable financial solutions",
         "btn": "Contact Us Now",
         "href": "/contact/"
-      }
+      },
+      "heroTitle": "Our Purpose",
+      "heroSubtitle": "\"The Path We Walk\"",
+      "heroQuote": "To anchor global ambition with professional precision, empowering enterprises to navigate the complexities of the international financial landscape with clarity, compliance, and confidence.",
+      "items": [
+        {
+          "icon": "Globe",
+          "title": "Delivering Borderless Assurance & Integrity",
+          "desc": "We are dedicated to dismantling the barriers that hinder international trust. By upholding the most rigorous standards of audit quality—we provide financial statements that speak a universal language. Our mission is to ensure that an investor or a stakeholder can rely on our reports with equal confidence."
+        },
+        {
+          "icon": "TrendingUp",
+          "title": "Architecting Sustainable Growth Strategies",
+          "desc": "We do not merely record history; we help shape the future. Our mission extends beyond compliance into high-value advisory. We aim to be the strategic architects for companies transitioning from local success to global prominence."
+        },
+        {
+          "icon": "GraduationCap",
+          "title": "Cultivating a Culture of Technical Excellence",
+          "desc": "In a world of rapidly evolving financial regulations, knowledge is our most valuable asset. We are committed to fostering an environment of relentless professional development. Our mission is to stay ahead of the regulatory curve."
+        }
+      ]
     },
     "value": {
-      "pageTitle": "Our Vision",
+      "pageTitle": "Our Value",
       "paragraphs": [
         "To become a leading professional accounting and business advisory firm in Hong Kong and the Asia-Pacific region, creating exceptional value for clients through innovative thinking and professionalism.",
         "We aspire to continuously enhance service quality and efficiency through ongoing professional development and digital transformation, ensuring our clients receive world-class professional support wherever they are.",
@@ -3075,7 +3245,27 @@
         "desc": "Let us become your professional partner on the path to business growth",
         "btn": "Contact Us Now",
         "href": "/contact/"
-      }
+      },
+      "heroTitle": "Our Value",
+      "heroSubtitle": "\"The Future We Build\"",
+      "heroQuote": "To be the definitive bridge for borderless business excellence—recognized globally as the premier boutique partner for dynamic enterprises seeking to access international capital markets and secure their financial legacy.",
+      "items": [
+        {
+          "icon": "Building",
+          "title": "Redefining the \"Boutique\" Experience on a Global Scale",
+          "desc": "We envision a future where \"boutique\" denotes agility and personalization, not limited scope. We aim to disrupt the traditional dichotomy. We seek to be the \"Goldilocks\" solution for sizable international enterprises."
+        },
+        {
+          "icon": "Scale",
+          "title": "Setting the Standard for Cross-Border Fluency",
+          "desc": "We aim to become the industry benchmark for \"jurisdictional fluency.\" Our vision is to be where the lines between different national accounting standards and tax codes are seamless."
+        },
+        {
+          "icon": "Rocket",
+          "title": "Empowering the Next Generation of Global Business",
+          "desc": "We look toward a future where we are instrumental in the success of the next wave of global giants. We envision our firm as an incubator for international success stories, guiding startups and family enterprises as they mature into publicly traded global entities."
+        }
+      ]
     },
     "commitment": {
       "pageTitle": "Our Commitment",
@@ -3090,7 +3280,42 @@
         "desc": "Experience client-oriented professional services that pursue excellence",
         "btn": "Contact Us Now",
         "href": "/contact/"
-      }
+      },
+      "heroTitle": "Our Commitment",
+      "heroSubtitle": "\"The Promise We Keep\"",
+      "heroQuote": "To lead with proactive guidance and technical mastery to bridge your global ambitions, building a legacy of trust and transformation for your business.",
+      "items": [
+        {
+          "icon": "Crown",
+          "title": "Leadership - Proactive Global Guidance",
+          "desc": "In a volatile international market, you need more than a service provider; you need a partner who leads from the front. We represent Leadership in professional practice. We do not simply react to regulatory changes; we anticipate them."
+        },
+        {
+          "icon": "Link",
+          "title": "Linkage - The Universal Connector",
+          "desc": "We stand for Linkage—the vital connection between your present operations and your global potential. We act as the interface between disparate regulatory environments and accounting frameworks, creating a seamless conduit for capital flow and expansion."
+        },
+        {
+          "icon": "Infinity",
+          "title": "Legacy - Enduring Value Creation",
+          "desc": "True success is not measured by a single fiscal year, but by the ability to endure. Legacy is the ultimate aim of our advisory services. Whether we are auditing a multinational corporation or structuring the holdings of a private entity, our focus is on sustainability."
+        },
+        {
+          "icon": "Cog",
+          "title": "Technicality - The International Standard",
+          "desc": "We operate at the zenith of Technicality. Our expertise extends beyond statutory boxes to a mastery of global reporting standards. We possess the granular technical knowledge required to navigate the sophisticated demands of cross-border M&A due diligence, IPO preparation, and complex regulatory reporting."
+        },
+        {
+          "icon": "ShieldAlt",
+          "title": "Trust - The Currency of Globalization",
+          "desc": "When business is conducted across oceans, Trust is the essential currency. We act as the independent guarantor of financial truth. For international investors, foreign creditors, and regulatory bodies, our seal of assurance eliminates the opacity of remote operations."
+        },
+        {
+          "icon": "SyncAlt",
+          "title": "Transformation - Evolving Beyond Borders",
+          "desc": "We are architects of Transformation. We guide localized enterprises through the metamorphosis into global contenders. Our non-audit advisory services are designed to modernize financial infrastructures, digitize reporting systems for remote management, and optimize operational efficiency."
+        }
+      ]
     }
   }
 }

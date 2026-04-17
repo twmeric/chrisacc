@@ -12,9 +12,8 @@ async function main() {
   const merged = JSON.parse(JSON.stringify(current));
   for (const locale of ['zh-hant', 'zh-hans', 'en']) {
     if (!merged[locale]) merged[locale] = {};
-    // Update about with new structure
     merged[locale].about = defaultCMSData[locale].about;
-    // Update purpose/value/commitment with new structure
+    merged[locale].services = defaultCMSData[locale].services;
     merged[locale].purpose = defaultCMSData[locale].purpose;
     merged[locale].value = defaultCMSData[locale].value;
     merged[locale].commitment = defaultCMSData[locale].commitment;

@@ -543,7 +543,34 @@
       html += inputText('services_introTitle', 'Intro Title', d.introTitle);
       html += inputTextarea('services_introDesc', 'Intro Description', d.introDesc);
       html += `<div class="border-t border-slate-200 my-4"></div>`;
+      html += `<div class="mb-2 text-sm font-semibold text-slate-700">Service Details</div>`;
+      let svcDetailsHTML = '';
+      (d.serviceDetails || []).forEach((item, idx) => {
+        let inner = smallInput(`services_detail_${idx}_slug`, 'Slug', item.slug);
+        inner += smallInput(`services_detail_${idx}_title`, 'Title', item.title);
+        inner += smallInput(`services_detail_${idx}_subtitle`, 'Subtitle', item.subtitle);
+        inner += smallTextarea(`services_detail_${idx}_desc`, 'Description', item.desc);
+        inner += smallImage(`services_detail_${idx}_image`, 'Image', item.image);
+        inner += smallTextarea(`services_detail_${idx}_features`, 'Features (one per line)', (item.features || []).join('\n'));
+        inner += smallInput(`services_detail_${idx}_linkText`, 'Link Text', item.linkText);
+        inner += smallInput(`services_detail_${idx}_href`, 'Href', item.href);
+        svcDetailsHTML += arrayItemWrapper('services_detail', idx, inner);
+      });
+      html += arrayContainer('services_detail', 'Service Details', svcDetailsHTML);
+      html += `<div class="border-t border-slate-200 my-4"></div>`;
       html += renderWhyChoose('services_whyChoose', d.whyChoose || { title: '', desc: '', items: [] });
+      html += `<div class="border-t border-slate-200 my-4"></div>`;
+      html += `<div class="mb-2 text-sm font-semibold text-slate-700">Process Section</div>`;
+      html += inputText('services_process_title', 'Process Title', (d.process || {}).title);
+      html += inputText('services_process_subtitle', 'Process Subtitle', (d.process || {}).subtitle);
+      let procHTML = '';
+      ((d.process || {}).steps || []).forEach((item, idx) => {
+        let inner = smallInput(`services_process_${idx}_number`, 'Number', item.number);
+        inner += smallInput(`services_process_${idx}_title`, 'Title', item.title);
+        inner += smallTextarea(`services_process_${idx}_desc`, 'Description', item.desc);
+        procHTML += arrayItemWrapper('services_process', idx, inner);
+      });
+      html += arrayContainer('services_process', 'Process Steps', procHTML);
       html += `<div class="border-t border-slate-200 my-4"></div>`;
       html += inputText('services_cta_title', 'CTA Title', (d.cta || {}).title);
       html += inputTextarea('services_cta_desc', 'CTA Description', (d.cta || {}).desc);
@@ -943,14 +970,25 @@
           cta: { title: readInput('about_cta_title'), desc: readInput('about_cta_desc'), btn: readInput('about_cta_btn'), href: readInput('about_cta_href') },
         };
       } else if (id === 'services') {
+        const serviceDetails = readArray('services_detail', ['slug', 'title', 'subtitle', 'desc', 'image', 'features', 'linkText', 'href']).map(item => ({
+          ...item,
+          features: (item.features || '').split('\n').map(s => s.trim()).filter(Boolean),
+        }));
+        const processSteps = readArray('services_process', ['number', 'title', 'desc']);
         obj.services = {
           pageTitle: readInput('services_pageTitle'),
           introTitle: readInput('services_introTitle'),
           introDesc: readInput('services_introDesc'),
+          serviceDetails,
           whyChoose: {
             title: readInput('services_whyChoose_title'),
             desc: readInput('services_whyChoose_desc'),
             items: readArray('services_whyChoose_item', ['icon', 'title', 'desc']),
+          },
+          process: {
+            title: readInput('services_process_title'),
+            subtitle: readInput('services_process_subtitle'),
+            steps: processSteps,
           },
           cta: { title: readInput('services_cta_title'), desc: readInput('services_cta_desc'), btn: readInput('services_cta_btn'), href: readInput('services_cta_href') },
         };
