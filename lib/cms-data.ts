@@ -13,6 +13,91 @@ function mergeSimplePage(
   } as LocaleCMSData["purpose"];
 }
 
+function mergeFooter(
+  def: LocaleCMSData["footer"],
+  loaded?: Partial<LocaleCMSData["footer"]>
+) {
+  // Helper: use loaded string only if it's non-empty, otherwise fallback to default
+  const str = (loadedVal?: string, defVal?: string) =>
+    (loadedVal && loadedVal.trim()) ? loadedVal : (defVal || "");
+
+  // If loaded services array is shorter than default, it means old KV data missing new items
+  const services =
+    (loaded?.services?.length || 0) >= def.services.length
+      ? loaded!.services
+      : def.services;
+  const quickLinks =
+    (loaded?.quickLinks?.length || 0) >= def.quickLinks.length
+      ? loaded!.quickLinks
+      : def.quickLinks;
+
+  return {
+    ...def,
+    ...(loaded || {}),
+    aboutTitle: str(loaded?.aboutTitle, def.aboutTitle),
+    aboutDesc: str(loaded?.aboutDesc, def.aboutDesc),
+    linksTitle: str(loaded?.linksTitle, def.linksTitle),
+    servicesTitle: str(loaded?.servicesTitle, def.servicesTitle),
+    contactTitle: str(loaded?.contactTitle, def.contactTitle),
+    rights: str(loaded?.rights, def.rights),
+    contact: {
+      address: str(loaded?.contact?.address, def.contact.address),
+      phone: str(loaded?.contact?.phone, def.contact.phone),
+      email: str(loaded?.contact?.email, def.contact.email),
+    },
+    social: {
+      ...def.social,
+      ...(loaded?.social || {}),
+    },
+    services,
+    quickLinks,
+  } as LocaleCMSData["footer"];
+}
+
+function mergeHeader(
+  def: LocaleCMSData["header"],
+  loaded?: Partial<LocaleCMSData["header"]>
+) {
+  return {
+    ...def,
+    ...(loaded || {}),
+    navItems: loaded?.navItems?.length ? loaded.navItems : def.navItems,
+  } as LocaleCMSData["header"];
+}
+
+function mergeSite(
+  def: LocaleCMSData["site"],
+  loaded?: Partial<LocaleCMSData["site"]>
+) {
+  return {
+    ...def,
+    ...(loaded || {}),
+  } as LocaleCMSData["site"];
+}
+
+function mergeContact(
+  def: LocaleCMSData["contact"],
+  loaded?: Partial<LocaleCMSData["contact"]>
+) {
+  return {
+    ...def,
+    ...(loaded || {}),
+    cards: loaded?.cards?.length ? loaded.cards : def.cards,
+    form: {
+      ...def.form,
+      ...(loaded?.form || {}),
+      hours: loaded?.form?.hours?.length ? loaded.form.hours : def.form.hours,
+      servicesList: loaded?.form?.servicesList?.length ? loaded.form.servicesList : def.form.servicesList,
+    },
+    map: { ...def.map, ...(loaded?.map || {}) },
+    faq: {
+      ...def.faq,
+      ...(loaded?.faq || {}),
+      items: loaded?.faq?.items?.length ? loaded.faq.items : def.faq.items,
+    },
+  } as LocaleCMSData["contact"];
+}
+
 function mergeHome(
   def: LocaleCMSData["home"],
   loaded?: Partial<LocaleCMSData["home"]>
@@ -178,6 +263,18 @@ export function getCMSData(): CMSData {
     "zh-hant": {
       ...defaultCMSData["zh-hant"],
       ...(loaded["zh-hant"] || {}),
+      site: mergeSite(
+        defaultCMSData["zh-hant"].site,
+        (loaded["zh-hant"] || {}).site
+      ),
+      header: mergeHeader(
+        defaultCMSData["zh-hant"].header,
+        (loaded["zh-hant"] || {}).header
+      ),
+      footer: mergeFooter(
+        defaultCMSData["zh-hant"].footer,
+        (loaded["zh-hant"] || {}).footer
+      ),
       home: mergeHome(
         defaultCMSData["zh-hant"].home,
         (loaded["zh-hant"] || {}).home
@@ -193,6 +290,10 @@ export function getCMSData(): CMSData {
       servicePages: mergeServicePages(
         defaultCMSData["zh-hant"].servicePages,
         (loaded["zh-hant"] || {}).servicePages
+      ),
+      contact: mergeContact(
+        defaultCMSData["zh-hant"].contact,
+        (loaded["zh-hant"] || {}).contact
       ),
       purpose: mergeSimplePage(
         defaultCMSData["zh-hant"].purpose,
@@ -210,6 +311,18 @@ export function getCMSData(): CMSData {
     "zh-hans": {
       ...defaultCMSData["zh-hans"],
       ...(loaded["zh-hans"] || {}),
+      site: mergeSite(
+        defaultCMSData["zh-hans"].site,
+        (loaded["zh-hans"] || {}).site
+      ),
+      header: mergeHeader(
+        defaultCMSData["zh-hans"].header,
+        (loaded["zh-hans"] || {}).header
+      ),
+      footer: mergeFooter(
+        defaultCMSData["zh-hans"].footer,
+        (loaded["zh-hans"] || {}).footer
+      ),
       home: mergeHome(
         defaultCMSData["zh-hans"].home,
         (loaded["zh-hans"] || {}).home
@@ -225,6 +338,10 @@ export function getCMSData(): CMSData {
       servicePages: mergeServicePages(
         defaultCMSData["zh-hans"].servicePages,
         (loaded["zh-hans"] || {}).servicePages
+      ),
+      contact: mergeContact(
+        defaultCMSData["zh-hans"].contact,
+        (loaded["zh-hans"] || {}).contact
       ),
       purpose: mergeSimplePage(
         defaultCMSData["zh-hans"].purpose,
@@ -242,6 +359,18 @@ export function getCMSData(): CMSData {
     en: {
       ...defaultCMSData.en,
       ...(loaded.en || {}),
+      site: mergeSite(
+        defaultCMSData.en.site,
+        (loaded.en || {}).site
+      ),
+      header: mergeHeader(
+        defaultCMSData.en.header,
+        (loaded.en || {}).header
+      ),
+      footer: mergeFooter(
+        defaultCMSData.en.footer,
+        (loaded.en || {}).footer
+      ),
       home: mergeHome(
         defaultCMSData.en.home,
         (loaded.en || {}).home
@@ -257,6 +386,10 @@ export function getCMSData(): CMSData {
       servicePages: mergeServicePages(
         defaultCMSData.en.servicePages,
         (loaded.en || {}).servicePages
+      ),
+      contact: mergeContact(
+        defaultCMSData.en.contact,
+        (loaded.en || {}).contact
       ),
       purpose: mergeSimplePage(
         defaultCMSData.en.purpose,

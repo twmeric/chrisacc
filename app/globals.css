@@ -42,6 +42,16 @@ h1, h2, h3, h4, h5, h6 {
   color: #ffffff;
 }
 
+/* Preserve explicit gold colors inside dark sections (higher specificity override) */
+.section-dark .text-brand-gold,
+.section-dark h3.text-brand-gold,
+.section-dark h4.text-brand-gold {
+  color: #c9a227;
+}
+.section-dark .text-brand-gold-light {
+  color: #e0b84a;
+}
+
 /* Admin preview styles */
 .preview-container {
   @apply max-w-4xl mx-auto px-6 py-8;

@@ -76,20 +76,28 @@
       "rights": "© 2025 櫪韜會計師事務所有限公司. 保留所有權利.",
       "services": [
         {
-          "label": "審計及核證",
-          "url": "/services/audit/"
+          "label": "審計與鑑證",
+          "url": "/audit/"
         },
         {
           "label": "稅務諮詢",
-          "url": "/services/tax/"
+          "url": "/tax/"
         },
         {
-          "label": "風險及合規",
-          "url": "/services/risk/"
+          "label": "風險與監管",
+          "url": "/risk/"
         },
         {
-          "label": "商業諮詢",
-          "url": "/services/consulting/"
+          "label": "法證服務",
+          "url": "/forensic/"
+        },
+        {
+          "label": "企業諮詢",
+          "url": "/consulting/"
+        },
+        {
+          "label": "併購交易",
+          "url": "/deals/"
         }
       ],
       "quickLinks": [
@@ -112,8 +120,8 @@
       ],
       "contact": {
         "address": "香港金鐘力寶中心2座5樓503室",
-        "phone": "+852 1234 5678",
-        "email": "info@ltcpa.com"
+        "phone": "3987 1008",
+        "email": "info@ltgroupcpa.com"
       },
       "social": {
         "facebook": "",
@@ -1306,20 +1314,28 @@
       "rights": "© 2025 櫪韬会计师事务所有限公司. 保留所有权利.",
       "services": [
         {
-          "label": "审计及核证",
-          "url": "/services/audit/"
+          "label": "审计与鉴证",
+          "url": "/audit//"
         },
         {
           "label": "税务咨询",
-          "url": "/services/tax/"
+          "url": "/tax//"
         },
         {
-          "label": "风险及合规",
-          "url": "/services/risk/"
+          "label": "风险与监管",
+          "url": "/risk//"
         },
         {
-          "label": "商业咨询",
-          "url": "/services/consulting/"
+          "label": "法证服务",
+          "url": "/forensic//"
+        },
+        {
+          "label": "企业咨询",
+          "url": "/consulting//"
+        },
+        {
+          "label": "并购交易",
+          "url": "/deals//"
         }
       ],
       "quickLinks": [
@@ -1342,8 +1358,8 @@
       ],
       "contact": {
         "address": "香港金钟力宝中心2座5楼503室",
-        "phone": "+852 1234 5678",
-        "email": "info@ltcpa.com"
+        "phone": "3987 1008",
+        "email": "info@ltgroupcpa.com"
       },
       "social": {
         "facebook": "",
@@ -2531,7 +2547,7 @@
     },
     "footer": {
       "aboutTitle": "LT CPA Limited",
-      "aboutDesc": "Professional accounting, audit, tax, and business advisory services to support your company's steady growth.",
+      "aboutDesc": "We are a professional accounting firm dedicated to providing quality audit, tax and advisory services. With extensive experience and expertise, we help clients achieve their financial goals and drive business growth.",
       "linksTitle": "Quick Links",
       "servicesTitle": "Services",
       "contactTitle": "Contact Us",
@@ -2539,19 +2555,27 @@
       "services": [
         {
           "label": "Audit & Assurance",
-          "url": "/services/audit/"
+          "url": "/audit/"
         },
         {
           "label": "Tax Advisory",
-          "url": "/services/tax/"
+          "url": "/tax/"
         },
         {
-          "label": "Risk & Compliance",
-          "url": "/services/risk/"
+          "label": "Risk & Regulatory",
+          "url": "/risk/"
         },
         {
-          "label": "Business Advisory",
-          "url": "/services/consulting/"
+          "label": "Forensic Services",
+          "url": "/forensic/"
+        },
+        {
+          "label": "Consulting",
+          "url": "/consulting/"
+        },
+        {
+          "label": "Deals & M&A",
+          "url": "/deals/"
         }
       ],
       "quickLinks": [
@@ -2573,9 +2597,9 @@
         }
       ],
       "contact": {
-        "address": "",
-        "phone": "",
-        "email": ""
+        "address": "Unit 503, Tower 2, Lippo Centre, Admiralty, Hong Kong",
+        "phone": "+852 3987 1008",
+        "email": "info@ltgroupcpa.com"
       },
       "social": {
         "facebook": "",
