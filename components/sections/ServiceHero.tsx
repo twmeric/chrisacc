@@ -46,7 +46,7 @@ export default function ServiceHero({
 
     return (
       <section
-        className="relative mt-[72px] flex min-h-[320px] items-center justify-center bg-cover bg-center text-center text-white md:min-h-[400px]"
+        className="section-dark relative mt-[72px] flex min-h-[320px] items-center justify-center bg-cover bg-center text-center text-white md:min-h-[400px]"
         style={{
           backgroundImage: `linear-gradient(135deg, rgba(26, 58, 92, 0.9), rgba(49, 130, 206, 0.85)), url('/images/service-hero-bg.jpg')`,
         }}
@@ -79,7 +79,7 @@ export default function ServiceHero({
 
   return (
     <section
-      className="relative mt-[72px] px-4 py-16 text-center text-white md:py-24"
+      className="section-dark relative mt-[72px] px-4 py-16 text-center text-white md:py-24"
       style={{
         backgroundImage: "linear-gradient(135deg, #1a3a5c, #2c5282)",
       }}

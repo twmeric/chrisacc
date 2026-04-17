@@ -31,6 +31,17 @@ h1, h2, h3, h4, h5, h6 {
   color: #1e3a5f;
 }
 
+/* Dark section utility: ensures headings stay white on blue backgrounds */
+.section-dark,
+.section-dark h1,
+.section-dark h2,
+.section-dark h3,
+.section-dark h4,
+.section-dark h5,
+.section-dark h6 {
+  color: #ffffff;
+}
+
 /* Admin preview styles */
 .preview-container {
   @apply max-w-4xl mx-auto px-6 py-8;

@@ -129,7 +129,7 @@ export default function ContactForm({ lang, data, map }: ContactFormProps) {
             </form>
           </div>
 
-          <div className="rounded-2xl bg-gradient-to-br from-brand-navy to-brand-navy-light p-6 text-white md:p-8">
+          <div className="section-dark rounded-2xl bg-gradient-to-br from-brand-navy to-brand-navy-light p-6 text-white md:p-8">
             <h3 className="mb-5 text-xl font-bold text-white">{data.infoTitle}</h3>
             <div className="mb-6 space-y-3 text-sm opacity-90">
               <p>{map.title}</p>

@@ -13,7 +13,7 @@ export default function PageBanner({ lang, title }: PageBannerProps) {
 
   return (
     <section
-      className="relative mt-[72px] flex h-[280px] items-center justify-center bg-cover bg-center text-center text-white md:h-[350px]"
+      className="section-dark relative mt-[72px] flex h-[280px] items-center justify-center bg-cover bg-center text-center text-white md:h-[350px]"
       style={{
         backgroundImage: `linear-gradient(135deg, rgba(26, 58, 92, 0.9), rgba(49, 130, 206, 0.85)), url('/images/banner-bg.jpg')`,
       }}

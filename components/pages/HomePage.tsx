@@ -1,5 +1,4 @@
 import { Locale } from "@/lib/i18n-config";
-import { getAllMarkdownFiles } from "@/lib/cms";
 import { getLocaleCMS } from "@/lib/cms-data";
 import HeroSlider from "@/components/sections/HeroSlider";
 import ServiceCard from "@/components/ui/ServiceCard";
@@ -14,11 +13,11 @@ const serviceSlugs = ["audit", "tax", "risk", "forensic", "consulting", "deals"]
 
 function getServiceIcon(slug: string) {
   const map: Record<string, string> = {
-    audit: "fa-clipboard-check",
-    tax: "fa-calculator",
+    audit: "fa-search-dollar",
+    tax: "fa-file-invoice-dollar",
     risk: "fa-shield-alt",
-    forensic: "fa-search-dollar",
-    consulting: "fa-chart-line",
+    forensic: "fa-user-secret",
+    consulting: "fa-lightbulb",
     deals: "fa-handshake",
   };
   return map[slug] || "fa-chart-line";
@@ -26,7 +25,9 @@ function getServiceIcon(slug: string) {
 
 export default function HomePage({ lang }: HomePageProps) {
   const cms = getLocaleCMS(lang);
-  const services = getAllMarkdownFiles("services", lang).filter((s) => serviceSlugs.includes(s.slug));
+  const services = cms.services.serviceDetails
+    .filter((s) => serviceSlugs.includes(s.slug))
+    .map((s) => ({ slug: s.slug, title: s.title, desc: s.desc }));
 
   return (
     <>
@@ -41,8 +42,8 @@ export default function HomePage({ lang }: HomePageProps) {
                 key={svc.slug}
                 lang={lang}
                 slug={svc.slug}
-                title={svc.data.title as string}
-                description={svc.data.short_description as string}
+                title={svc.title}
+                description={svc.desc}
                 iconName={getServiceIcon(svc.slug)}
               />
             ))}

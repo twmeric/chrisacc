@@ -35,6 +35,29 @@ function mergeServices(
   } as LocaleCMSData["services"];
 }
 
+function mergeServicePages(
+  def: LocaleCMSData["servicePages"],
+  loaded?: Partial<LocaleCMSData["servicePages"]>
+) {
+  const merged: LocaleCMSData["servicePages"] = { ...def };
+  for (const key of Object.keys(def)) {
+    const slug = key as keyof LocaleCMSData["servicePages"];
+    const d = def[slug];
+    const l = loaded?.[slug];
+    if (l) {
+      merged[slug] = {
+        ...d,
+        ...l,
+        scopeItems: l.scopeItems || d.scopeItems,
+        processSteps: l.processSteps || d.processSteps,
+        whyItems: l.whyItems || d.whyItems,
+        scenarios: l.scenarios || d.scenarios,
+      };
+    }
+  }
+  return merged;
+}
+
 function mergeAbout(
   def: LocaleCMSData["about"],
   loaded?: Partial<LocaleCMSData["about"]>
@@ -96,6 +119,10 @@ export function getCMSData(): CMSData {
         defaultCMSData["zh-hant"].services,
         (loaded["zh-hant"] || {}).services
       ),
+      servicePages: mergeServicePages(
+        defaultCMSData["zh-hant"].servicePages,
+        (loaded["zh-hant"] || {}).servicePages
+      ),
       purpose: mergeSimplePage(
         defaultCMSData["zh-hant"].purpose,
         (loaded["zh-hant"] || {}).purpose
@@ -120,6 +147,10 @@ export function getCMSData(): CMSData {
         defaultCMSData["zh-hans"].services,
         (loaded["zh-hans"] || {}).services
       ),
+      servicePages: mergeServicePages(
+        defaultCMSData["zh-hans"].servicePages,
+        (loaded["zh-hans"] || {}).servicePages
+      ),
       purpose: mergeSimplePage(
         defaultCMSData["zh-hans"].purpose,
         (loaded["zh-hans"] || {}).purpose
@@ -143,6 +174,10 @@ export function getCMSData(): CMSData {
       services: mergeServices(
         defaultCMSData.en.services,
         (loaded.en || {}).services
+      ),
+      servicePages: mergeServicePages(
+        defaultCMSData.en.servicePages,
+        (loaded.en || {}).servicePages
       ),
       purpose: mergeSimplePage(
         defaultCMSData.en.purpose,

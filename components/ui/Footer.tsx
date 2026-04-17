@@ -11,7 +11,7 @@ export default function Footer({ lang }: FooterProps) {
   const t = getLocaleCMS(lang).footer;
 
   return (
-    <footer className="mt-auto bg-brand-navy pt-14 text-white md:pt-16">
+    <footer className="section-dark mt-auto bg-brand-navy pt-14 text-white md:pt-16">
       <div className="mx-auto max-w-7xl px-4 lg:px-6">
         <div className="grid gap-10 border-b border-white/10 pb-10 md:grid-cols-2 lg:grid-cols-4 lg:gap-8">
           {/* About */}

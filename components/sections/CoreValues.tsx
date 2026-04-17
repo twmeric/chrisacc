@@ -18,7 +18,7 @@ interface CoreValuesProps {
 
 export default function CoreValues({ lang, data }: CoreValuesProps) {
   return (
-    <section className="bg-gradient-to-br from-brand-navy to-brand-navy-light px-4 py-16 text-white md:py-24">
+    <section className="section-dark bg-gradient-to-br from-brand-navy to-brand-navy-light px-4 py-16 text-white md:py-24">
       <div className="mx-auto max-w-6xl">
         <div className="mb-12 text-center md:mb-16">
           <h2 className="relative inline-block text-3xl font-bold md:text-[40px]">

@@ -175,13 +175,16 @@ export interface ServiceDetailPageData {
   processTitle: string;
   processSteps: { number: string; title: string; desc: string }[];
   whyTitle: string;
+  whyItems?: { title: string; desc: string }[];
   ctaTitle: string;
   ctaDesc: string;
   ctaBtn: string;
   ctaBtn2: string;
   relatedServicesTitle: string;
-  serviceScopeSubtitle: string;
-  serviceProcessSubtitle: string;
+  serviceScopeSubtitle?: string;
+  serviceProcessSubtitle?: string;
+  scenariosTitle?: string;
+  scenarios?: { title: string; desc: string; points: string[] }[];
 }
 
 export interface ContactPageData {

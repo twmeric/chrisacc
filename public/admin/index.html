@@ -604,7 +604,23 @@
         procHTML += arrayItemWrapper(`svc_${slug}_proc`, idx, inner);
       });
       html += arrayContainer(`svc_${slug}_proc`, 'Process Steps', procHTML);
+      html += inputText(`svc_${slug}_scenariosTitle`, 'Scenarios Title', d.scenariosTitle || '');
+      let scenariosHTML = '';
+      (d.scenarios || []).forEach((item, idx) => {
+        let inner = smallInput(`svc_${slug}_scenarios_${idx}_title`, 'Title', item.title);
+        inner += smallInput(`svc_${slug}_scenarios_${idx}_desc`, 'Desc', item.desc);
+        inner += smallTextarea(`svc_${slug}_scenarios_${idx}_points`, 'Points (one per line)', (item.points || []).join('\n'));
+        scenariosHTML += arrayItemWrapper(`svc_${slug}_scenarios`, idx, inner);
+      });
+      html += arrayContainer(`svc_${slug}_scenarios`, 'Scenarios / Framework Items', scenariosHTML);
       html += inputText(`svc_${slug}_whyTitle`, 'Why Choose Title', d.whyTitle);
+      let whyHTML = '';
+      (d.whyItems || []).forEach((item, idx) => {
+        let inner = smallInput(`svc_${slug}_why_${idx}_title`, 'Title', item.title);
+        inner += smallTextarea(`svc_${slug}_why_${idx}_desc`, 'Description', item.desc);
+        whyHTML += arrayItemWrapper(`svc_${slug}_why`, idx, inner);
+      });
+      html += arrayContainer(`svc_${slug}_why`, 'Why Choose Items', whyHTML);
       html += inputText(`svc_${slug}_relatedTitle`, 'Related Services Title', d.relatedServicesTitle);
       html += inputText(`svc_${slug}_ctaTitle`, 'CTA Title', d.ctaTitle);
       html += inputTextarea(`svc_${slug}_ctaDesc`, 'CTA Description', d.ctaDesc);
@@ -1017,6 +1033,15 @@
             ctaDesc: readInput(`svc_${slug}_ctaDesc`),
             ctaBtn: readInput(`svc_${slug}_ctaBtn`),
             ctaBtn2: readInput(`svc_${slug}_ctaBtn2`),
+            whyItems: readArray(`svc_${slug}_why`, ['title', 'desc']).map(item => ({
+              ...item,
+              desc: item.desc || '',
+            })),
+            scenariosTitle: readInput(`svc_${slug}_scenariosTitle`),
+            scenarios: readArray(`svc_${slug}_scenarios`, ['title', 'desc', 'points']).map(item => ({
+              ...item,
+              points: (item.points || '').split('\n').map(s => s.trim()).filter(Boolean),
+            })),
           }
         };
       } else if (id === 'contact') {

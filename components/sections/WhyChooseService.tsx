@@ -3,7 +3,7 @@ import { Award, Clock, Shield, Users } from "lucide-react";
 interface WhyChooseServiceProps {
   lang: string;
   title: string;
-  items: { icon: React.ReactNode; title: string; desc: string }[];
+  items?: { title: string; desc: string }[];
 }
 
 const defaults: Record<string, { title: string; items: { icon: React.ReactNode; title: string; desc: string }[] }> = {
@@ -36,10 +36,20 @@ const defaults: Record<string, { title: string; items: { icon: React.ReactNode; 
   },
 };
 
+const iconPool = [
+  <Award className="h-8 w-8" key="Award" />,
+  <Clock className="h-8 w-8" key="Clock" />,
+  <Shield className="h-8 w-8" key="Shield" />,
+  <Users className="h-8 w-8" key="Users" />,
+];
+
 export default function WhyChooseService({ lang, title, items }: WhyChooseServiceProps) {
   const t = defaults[lang] || defaults["zh-hant"];
   const displayTitle = title || t.title;
-  const displayItems = items?.length ? items.map((it, i) => ({ ...it, icon: t.items[i]?.icon || <Award className="h-8 w-8" /> })) : t.items;
+
+  const displayItems = items?.length
+    ? items.map((it, i) => ({ ...it, icon: iconPool[i % iconPool.length] }))
+    : t.items;
 
   return (
     <section className="bg-white px-4 py-16 md:py-24">
