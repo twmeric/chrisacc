@@ -81,6 +81,7 @@ export interface AboutData {
   whyChoose: {
     title: string;
     desc: string;
+    image?: string;
     paragraphs?: string[];
     features?: { icon: string; label: string }[];
     items: { icon: string; title: string; desc: string }[];
@@ -93,7 +94,7 @@ export interface AboutData {
     quote: string;
     image?: string;
     badge?: { value: string; label: string };
-    stats: { value: string; label: string }[];
+    stats?: { value: string; label: string }[];
   };
   missionVision: {
     items: { icon: string; title: string; desc: string; linkText?: string; href?: string }[];

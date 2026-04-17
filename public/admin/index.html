@@ -426,6 +426,7 @@
       let html = inputText(`${prefix}_title`, 'Title', data.title);
       html += inputTextarea(`${prefix}_desc`, 'Description', data.desc);
       if (prefix === 'about_whyChoose') {
+        html += inputImage(`${prefix}_image`, 'Image', (data || {}).image || '');
         html += inputTextarea(`${prefix}_paragraphs`, 'Paragraphs (one per line)', ((data || {}).paragraphs || []).join('\n'), 5);
         let featuresHTML = '';
         ((data || {}).features || []).forEach((item, idx) => {
@@ -462,12 +463,6 @@
       html += inputImage('about_intro_image', 'Image', (d.intro || {}).image || '');
       const badge = (d.intro || {}).badge || {};
       html += `<div class="mb-4 grid grid-cols-1 md:grid-cols-2 gap-3"><div><label class="block text-xs font-semibold text-slate-600 mb-1">Badge Value</label><input type="text" id="about_intro_badge_value" value="${escapeHtml(badge.value || '')}" class="w-full border border-slate-300 rounded px-2 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-gold-400 bg-white"></div><div><label class="block text-xs font-semibold text-slate-600 mb-1">Badge Label</label><input type="text" id="about_intro_badge_label" value="${escapeHtml(badge.label || '')}" class="w-full border border-slate-300 rounded px-2 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-gold-400 bg-white"></div></div>`;
-      let statsHTML = '';
-      ((d.intro || {}).stats || []).forEach((s, idx) => {
-        let inner = smallInput(`about_intro_stats_${idx}_value`, 'Value', s.value) + smallInput(`about_intro_stats_${idx}_label`, 'Label', s.label);
-        statsHTML += arrayItemWrapper('about_intro_stats', idx, inner);
-      });
-      html += arrayContainer('about_intro_stats', 'Stats', statsHTML);
       html += `<div class="border-t border-slate-200 my-4"></div>`;
       html += `<div class="mb-2 text-sm font-semibold text-slate-700">Mission / Vision / Commitment</div>`;
       let mvHTML = '';
@@ -885,6 +880,7 @@
           whyChoose: {
             title: readInput('about_whyChoose_title'),
             desc: readInput('about_whyChoose_desc'),
+            image: readInput('about_whyChoose_image'),
             paragraphs: readInput('about_whyChoose_paragraphs').split('\n').map(s => s.trim()).filter(Boolean),
             features: readArray('about_whyChoose_feature', ['icon', 'label']),
             items: readArray('about_whyChoose_item', ['icon', 'title', 'desc']),
@@ -897,7 +893,6 @@
             quote: readInput('about_intro_quote'),
             image: readInput('about_intro_image'),
             badge: { value: readInput('about_intro_badge_value'), label: readInput('about_intro_badge_label') },
-            stats: readArray('about_intro_stats', ['value', 'label']),
           },
           missionVision: { items: readArray('about_mv', ['icon', 'title', 'desc', 'linkText', 'href']) },
           pillars: {

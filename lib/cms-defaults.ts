@@ -87,6 +87,7 @@ export const defaultCMSData: CMSData = {
       whyChoose: {
         title: "為何選擇我們？",
         desc: "",
+        image: "/images/about-whychoose.jpg",
         paragraphs: [
           "櫪韜會計師事務所有限公司擁有經驗豐富的專業團隊，致力於為客戶提供優質的會計及顧問服務。我們以客戶為先，深入了解每位客戶的獨特需求，量身定制解決方案。",
           "憑藉多年的行業經驗，我們建立了廣泛的專業網絡，能夠為您提供全面的商業支援，助您在競爭激烈的市場中脫穎而出。",
@@ -97,29 +98,16 @@ export const defaultCMSData: CMSData = {
           { icon: "fa-check-circle", label: "度身訂造方案" },
           { icon: "fa-check-circle", label: "優質貼心服務" },
         ],
-        items: [
-          { icon: "Users", title: "專業團隊", desc: "由資深會計師及顧問組成，經驗豐富" },
-          { icon: "Award", title: "行業經驗", desc: "超過20年服務各類型企業的經驗" },
-          { icon: "Target", title: "度身方案", desc: "根據客戶需求提供個人化專業建議" },
-          { icon: "ThumbsUp", title: "優質服務", desc: "以客為本，追求卓越服務品質" },
-        ],
+        items: [],
       },
       intro: {
         title: "您值得信賴的",
         titleAccent: "財務夥伴",
         subtitle: "櫪韜之柱：以絕對信任奠定雄心壯志",
-        paragraphs: [
-          "櫪韜會計師事務所有限公司成立於2005年，是香港領先的專業會計事務所之一。多年來，我們一直堅守專業、誠信、創新的核心價值。",
-        ],
+        paragraphs: [],
         quote: "真正的雄心壯志不是短跑，而是馬拉松。我們確保您的企業具備持久力，以堅如磐石的保證和策略遠見鞏固營運，將快速擴張轉化為可持續的長期成功。",
         image: "/images/about-team.jpg",
         badge: { value: "20+", label: "年卓越經驗" },
-        stats: [
-          { value: "20+", label: "年專業經驗" },
-          { value: "500+", label: "滿意客戶" },
-          { value: "50+", label: "專業團隊" },
-          { value: "99%", label: "客戶滿意度" },
-        ],
       },
       missionVision: {
         items: [
@@ -582,6 +570,7 @@ export const defaultCMSData: CMSData = {
       whyChoose: {
         title: "为何选择我们？",
         desc: "",
+        image: "/images/about-whychoose.jpg",
         paragraphs: [
           "櫪韬会计师事务所有限公司拥有经验丰富的专业团队，致力于为客户提供优质的会计及顾问服务。我们以客户为先，深入了解每位客户的独特需求，量身定制解决方案。",
           "凭借多年的行业经验，我们建立了广泛的专业网络，能够为您提供全面的商业支援，助您在竞争激烈的市场中脱颖而出。",
@@ -592,29 +581,16 @@ export const defaultCMSData: CMSData = {
           { icon: "fa-check-circle", label: "度身订造方案" },
           { icon: "fa-check-circle", label: "优质贴心服务" },
         ],
-        items: [
-          { icon: "Users", title: "专业团队", desc: "由资深会计师及顾问组成，经验丰富" },
-          { icon: "Award", title: "行业经验", desc: "超过20年服务各类型企业的经验" },
-          { icon: "Target", title: "度身方案", desc: "根据客户需求提供个人化专业建议" },
-          { icon: "ThumbsUp", title: "优质服务", desc: "以人为本，追求卓越服务品质" },
-        ],
+        items: [],
       },
       intro: {
         title: "您值得信赖的",
         titleAccent: "财务伙伴",
         subtitle: "櫪韬之柱：以绝对信任奠定雄心壮志",
-        paragraphs: [
-          "櫪韬会计师事务所有限公司成立于2005年，是香港领先的专业会计事务所之一。多年来，我们一直坚守专业、诚信、创新的核心价值。",
-        ],
+        paragraphs: [],
         quote: "真正的雄心壮志不是短跑，而是马拉松。我们确保您的企业具备持久力，以坚如磐石的保证和策略远见巩固营运，将快速扩张转化为可持续的长期成功。",
         image: "/images/about-team.jpg",
         badge: { value: "20+", label: "年卓越经验" },
-        stats: [
-          { value: "20+", label: "年专业经验" },
-          { value: "500+", label: "满意客户" },
-          { value: "50+", label: "专业团队" },
-          { value: "99%", label: "客户满意度" },
-        ],
       },
       missionVision: {
         items: [
@@ -1077,6 +1053,7 @@ export const defaultCMSData: CMSData = {
       whyChoose: {
         title: "Why Choose Us?",
         desc: "",
+        image: "/images/about-whychoose.jpg",
         paragraphs: [
           "LT CPA Limited has an experienced professional team dedicated to providing quality accounting and advisory services. We put clients first, deeply understanding each client's unique needs to deliver tailored solutions.",
           "With years of industry experience, we have built an extensive professional network that enables us to provide comprehensive business support, helping you stand out in a competitive market.",
@@ -1087,29 +1064,16 @@ export const defaultCMSData: CMSData = {
           { icon: "fa-check-circle", label: "Tailored Solutions" },
           { icon: "fa-check-circle", label: "Quality Service" },
         ],
-        items: [
-          { icon: "Users", title: "Certified Professionals", desc: "Experienced accountants and advisors delivering excellence" },
-          { icon: "Award", title: "Industry Experience", desc: "Over 20 years serving diverse businesses" },
-          { icon: "Target", title: "Tailored Solutions", desc: "Personalized recommendations based on your needs" },
-          { icon: "ThumbsUp", title: "Quality Service", desc: "Client-centric approach with outstanding quality" },
-        ],
+        items: [],
       },
       intro: {
         title: "Your Trusted",
         titleAccent: "Financial Partner",
         subtitle: "The Pillars of LT: Grounding Ambition in Absolute Trust",
-        paragraphs: [
-          "LT CPA Limited was established in 2005 and is one of Hong Kong's leading professional accounting firms. Over the years, we have upheld the core values of professionalism, integrity, and innovation.",
-        ],
+        paragraphs: [],
         quote: "True ambition isn't a sprint; it's a marathon. We ensure your business has the stamina to go the distance by reinforcing your operations with rock-solid assurance and strategic foresight, turning rapid expansion into sustainable, long-term success.",
         image: "/images/about-team.jpg",
         badge: { value: "20+", label: "Years of Excellence" },
-        stats: [
-          { value: "20+", label: "Years Experience" },
-          { value: "500+", label: "Happy Clients" },
-          { value: "50+", label: "Professionals" },
-          { value: "99%", label: "Client Satisfaction" },
-        ],
       },
       missionVision: {
         items: [
