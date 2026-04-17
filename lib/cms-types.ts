@@ -205,7 +205,10 @@ export interface ContactPageData {
 
 export interface SimpleContentPageData {
   pageTitle: string;
-  paragraphs: string[];
+  heroTitle: string;
+  heroSubtitle: string;
+  heroQuote: string;
+  items: { icon: string; title: string; desc: string }[];
   cta: {
     title: string;
     desc: string;

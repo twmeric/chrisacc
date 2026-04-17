@@ -648,7 +648,17 @@
 
     function renderSimplePage(id, titleKey, data) {
       let html = inputText(`${id}_pageTitle`, 'Page Title', data.pageTitle);
-      html += inputTextarea(`${id}_paragraphs`, 'Paragraphs (one per line)', (data.paragraphs || []).join('\n'), 6);
+      html += inputText(`${id}_heroTitle`, 'Hero Title', data.heroTitle);
+      html += inputText(`${id}_heroSubtitle`, 'Hero Subtitle', data.heroSubtitle);
+      html += inputTextarea(`${id}_heroQuote`, 'Hero Quote', data.heroQuote, 3);
+      let itemsHTML = '';
+      (data.items || []).forEach((item, idx) => {
+        let inner = smallInput(`${id}_item_${idx}_icon`, 'Icon', item.icon);
+        inner += smallInput(`${id}_item_${idx}_title`, 'Title', item.title);
+        inner += smallTextarea(`${id}_item_${idx}_desc`, 'Description', item.desc);
+        itemsHTML += arrayItemWrapper(`${id}_item`, idx, inner);
+      });
+      html += arrayContainer(`${id}_item`, 'Accordion Items', itemsHTML);
       html += inputText(`${id}_cta_title`, 'CTA Title', (data.cta || {}).title);
       html += inputTextarea(`${id}_cta_desc`, 'CTA Description', (data.cta || {}).desc);
       html += inputText(`${id}_cta_btn`, 'CTA Button', (data.cta || {}).btn);
@@ -1012,7 +1022,10 @@
       } else if (['purpose', 'value', 'commitment'].includes(id)) {
         obj[id] = {
           pageTitle: readInput(`${id}_pageTitle`),
-          paragraphs: readInput(`${id}_paragraphs`).split('\n').map(s => s.trim()).filter(Boolean),
+          heroTitle: readInput(`${id}_heroTitle`),
+          heroSubtitle: readInput(`${id}_heroSubtitle`),
+          heroQuote: readInput(`${id}_heroQuote`),
+          items: readArray(`${id}_item`, ['icon', 'title', 'desc']),
           cta: {
             title: readInput(`${id}_cta_title`),
             desc: readInput(`${id}_cta_desc`),

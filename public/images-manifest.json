@@ -1,6 +1,16 @@
 {
-  "generatedAt": "2026-04-17T04:50:19.446Z",
+  "generatedAt": "2026-04-17T06:23:56.562Z",
   "objects": [
+    {
+      "key": "about-team.jpg",
+      "url": "/images/about-team.jpg",
+      "source": "static"
+    },
+    {
+      "key": "about-whychoose.jpg",
+      "url": "/images/about-whychoose.jpg",
+      "source": "static"
+    },
     {
       "key": "banner-bg.jpg",
       "url": "/images/banner-bg.jpg",

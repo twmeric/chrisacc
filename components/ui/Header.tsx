@@ -35,16 +35,12 @@ export default function Header({ lang, navItems, siteName, siteTagline, logoUrl 
   return (
     <header className="fixed left-0 top-0 z-50 w-full bg-white/95 backdrop-blur shadow-[0_1px_0_rgba(0,0,0,0.05)]">
       <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-4 lg:px-6">
-        <Link href={lang === "en" ? "/" : `/${lang}/`} className="flex shrink-0 items-center gap-3">
+        <Link href={lang === "en" ? "/" : `/${lang}/`} className="flex shrink-0 items-center">
           {logoUrl ? (
             <img src={logoUrl} alt={displayName} className="h-10 w-auto md:h-12" />
           ) : (
             <div className="flex h-10 w-10 items-center justify-center bg-brand-navy text-lg font-bold text-white md:h-12 md:w-12 md:text-2xl">LT</div>
           )}
-          <div className="hidden flex-col md:flex">
-            <span className="text-lg font-bold leading-tight text-brand-navy md:text-[22px]">{displayName}</span>
-            <span className="text-[10px] tracking-[3px] text-text-light md:text-xs uppercase">{displayTagline}</span>
-          </div>
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex lg:gap-10">
