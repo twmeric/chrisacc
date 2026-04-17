@@ -5,6 +5,7 @@ import WhyChoose from "@/components/sections/WhyChoose";
 import AboutIntro from "@/components/sections/AboutIntro";
 import MissionVision from "@/components/sections/MissionVision";
 import CoreValues from "@/components/sections/CoreValues";
+import TeamSection from "@/components/sections/TeamSection";
 import TimelineSection from "@/components/sections/TimelineSection";
 import CTASection from "@/components/sections/CTASection";
 
@@ -23,6 +24,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
       <AboutIntro lang={lang} data={cms.about.intro} />
       <MissionVision lang={lang} data={cms.about.missionVision} />
       <CoreValues lang={lang} data={cms.about.coreValues} />
+      <TeamSection lang={lang} data={cms.about.team} />
       <TimelineSection lang={lang} data={cms.about.timeline} />
       <CTASection lang={lang} title={cms.about.cta.title} description={cms.about.cta.desc} primaryBtn={cms.about.cta.btn} href={cms.about.cta.href} />
     </>

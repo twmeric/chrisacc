@@ -13,15 +13,15 @@ const baselineFooter = {
     contactTitle: "Contact Us",
     rights: "© 2026 LT CPA Limited All Rights Reserved.",
     services: [
-      { label: "Audit & Assurance", url: "/audit/" },
-      { label: "Tax Advisory", url: "/tax/" },
-      { label: "Risk & Regulatory", url: "/risk/" },
-      { label: "Forensic Services", url: "/forensic/" },
-      { label: "Consulting", url: "/consulting/" },
-      { label: "Deals & M&A", url: "/deals/" },
+      { label: "Audit & Assurance", url: "/services/audit/" },
+      { label: "Tax Advisory", url: "/services/tax/" },
+      { label: "Risk & Regulatory", url: "/services/risk/" },
+      { label: "Forensic Services", url: "/services/forensic/" },
+      { label: "Consulting", url: "/services/consulting/" },
+      { label: "Deals & M&A", url: "/services/deals/" },
     ],
     quickLinks: [
-      { label: "Home", url: "/index/" },
+      { label: "Home", url: "/" },
       { label: "About Us", url: "/about/" },
       { label: "Services", url: "/services/" },
       { label: "Contact", url: "/contact/" },
@@ -37,15 +37,15 @@ const baselineFooter = {
     contactTitle: "聯絡我們",
     rights: "© 2026 櫪韜會計師事務所有限公司. 版權所有.",
     services: [
-      { label: "審計與鑑證", url: "/audit/" },
-      { label: "稅務諮詢", url: "/tax/" },
-      { label: "風險與監管", url: "/risk/" },
-      { label: "法證服務", url: "/forensic/" },
-      { label: "企業諮詢", url: "/consulting/" },
-      { label: "併購交易", url: "/deals/" },
+      { label: "審計與鑑證", url: "/services/audit/" },
+      { label: "稅務諮詢", url: "/services/tax/" },
+      { label: "風險與監管", url: "/services/risk/" },
+      { label: "法證服務", url: "/services/forensic/" },
+      { label: "企業諮詢", url: "/services/consulting/" },
+      { label: "併購交易", url: "/services/deals/" },
     ],
     quickLinks: [
-      { label: "首頁", url: "/index/" },
+      { label: "首頁", url: "/" },
       { label: "關於我們", url: "/about/" },
       { label: "服務範圍", url: "/services/" },
       { label: "聯絡我們", url: "/contact/" },
@@ -61,18 +61,18 @@ const baselineFooter = {
     contactTitle: "联系我们",
     rights: "© 2026 櫪韜会计师事务所有限公司. 版权所有.",
     services: [
-      { label: "审计与鉴证", url: "/audit//" },
-      { label: "税务咨询", url: "/tax//" },
-      { label: "风险与监管", url: "/risk//" },
-      { label: "法证服务", url: "/forensic//" },
-      { label: "企业咨询", url: "/consulting//" },
-      { label: "并购交易", url: "/deals//" },
+      { label: "审计与鉴证", url: "/services/audit/" },
+      { label: "税务咨询", url: "/services/tax/" },
+      { label: "风险与监管", url: "/services/risk/" },
+      { label: "法证服务", url: "/services/forensic/" },
+      { label: "企业咨询", url: "/services/consulting/" },
+      { label: "并购交易", url: "/services/deals/" },
     ],
     quickLinks: [
-      { label: "首页", url: "/index//" },
-      { label: "关于我们", url: "/about//" },
-      { label: "服务范围", url: "/services//" },
-      { label: "联络我们", url: "/contact//" },
+      { label: "首页", url: "/" },
+      { label: "关于我们", url: "/about/" },
+      { label: "服务范围", url: "/services/" },
+      { label: "联络我们", url: "/contact/" },
     ],
     contact: { address: "香港金钟力宝中心2座5楼503室", phone: "3987 1008", email: "info@ltgroupcpa.com" },
     social: { facebook: "", instagram: "", linkedin: "" },
@@ -127,6 +127,63 @@ async function fetchCMSData() {
     for (const loc of ["en", "zh-hant", "zh-hans"]) {
       if (data[loc]?.footer) {
         data[loc].footer = smartMergeFooter(baselineFooter[loc], data[loc].footer);
+      }
+      // Fix home service cards hrefs
+      if (data[loc]?.home?.services?.cards) {
+        data[loc].home.services.cards = data[loc].home.services.cards.map(c => ({
+          ...c,
+          href: c.href?.replace(/^\/audit\//, '/services/audit/')
+                       ?.replace(/^\/tax\//, '/services/tax/')
+                       ?.replace(/^\/risk\//, '/services/risk/')
+                       ?.replace(/^\/forensic\//, '/services/forensic/')
+                       ?.replace(/^\/consulting\//, '/services/consulting/')
+                       ?.replace(/^\/deals\//, '/services/deals/')
+                       ?.replace(/\/\/+$/, '/') || c.href
+        }));
+      }
+      // Fix about missionVision items if they contain old long-form descriptions
+      if (data[loc]?.about?.missionVision?.items) {
+        const items = data[loc].about.missionVision.items;
+        const hasOldDesc = items.some(i => i.desc && (i.desc.includes('全球雄心') || i.desc.includes('definitive')));
+        if (hasOldDesc) {
+          // Remove old missionVision so defaults take over
+          delete data[loc].about.missionVision;
+        }
+      }
+      // Fix purpose/value/commitment items if they contain old titles so defaults take over
+      const oldPurposeTitles = ["傳遞無界保證與誠信", "传递无界保证与诚信", "Delivering Borderless Assurance"];
+      const oldValueTitles = ["在全球尺度", "树立跨境流暢度", "在全球尺度", "树立跨境流畅度", "Redefining the \"Boutique\" Experience on a Global Scale"];
+      const oldCommitmentTitles = ["領導力 — 主動全球引導", "連結 — 通用連接器", "技術性 — 國際標準", "變革 — 超越邊界的演進", "领导力 — 主动全球引导", "连结 — 通用连接器", "技术性 — 国际标准", "变革 — 超越边界的演进", "Leadership - Proactive Global Guidance", "Linkage - The Universal Connector", "Technicality - The International Standard", "Transformation - Evolving Beyond Borders"];
+      if (data[loc]?.purpose?.items) {
+        const hasOld = data[loc].purpose.items.some(i => oldPurposeTitles.some(t => i.title && i.title.includes(t)));
+        if (hasOld) delete data[loc].purpose;
+      }
+      if (data[loc]?.value?.items) {
+        const hasOld = data[loc].value.items.some(i => oldValueTitles.some(t => i.title && i.title.includes(t)));
+        if (hasOld) delete data[loc].value;
+      }
+      if (data[loc]?.commitment?.items) {
+        const hasOld = data[loc].commitment.items.some(i => oldCommitmentTitles.some(t => i.title && i.title.includes(t)));
+        if (hasOld) delete data[loc].commitment;
+      }
+      // Fix contact formTitle if it's the old short title
+      const oldFormTitles = ["免費諮詢", "免费咨询", "Free Consultation"];
+      if (data[loc]?.contact?.form?.formTitle && oldFormTitles.includes(data[loc].contact.form.formTitle)) {
+        delete data[loc].contact.form;
+      }
+      // Fix contact cards if they contain old phone/email
+      const oldCardPhones = ["+852 1234 5678", "1234 5678"];
+      const oldCardEmails = ["info@ltcpa.com"];
+      if (data[loc]?.contact?.cards) {
+        const hasOldPhone = data[loc].contact.cards.some(c =>
+          c.lines?.some(l => oldCardPhones.some(p => l.includes(p)))
+        );
+        const hasOldEmail = data[loc].contact.cards.some(c =>
+          c.lines?.some(l => oldCardEmails.some(e => l.includes(e)))
+        );
+        if (hasOldPhone || hasOldEmail) {
+          delete data[loc].contact.cards;
+        }
       }
     }
     fs.writeFileSync(path.join(__dirname, "..", "src", "data", "cms.json"), JSON.stringify(data, null, 2));

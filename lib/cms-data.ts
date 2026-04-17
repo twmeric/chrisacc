@@ -204,6 +204,7 @@ function mergeServicePages(
         scenarios: mergedScenarios,
         scenarios2: mergedScenarios2,
         relatedItems: l.relatedItems || d.relatedItems,
+        extraSections: (l.extraSections && l.extraSections.length > 0) ? l.extraSections : d.extraSections,
       };
     }
   }
@@ -214,6 +215,16 @@ function mergeAbout(
   def: LocaleCMSData["about"],
   loaded?: Partial<LocaleCMSData["about"]>
 ) {
+  // Use default intro paragraphs if loaded has none or is empty
+  const introParagraphs =
+    (loaded?.intro?.paragraphs && loaded.intro.paragraphs.length > 0)
+      ? loaded.intro.paragraphs
+      : def.intro.paragraphs;
+  // Use default missionVision items if loaded has none
+  const mvItems =
+    (loaded?.missionVision?.items && loaded.missionVision.items.length > 0)
+      ? loaded.missionVision.items
+      : def.missionVision.items;
   return {
     ...def,
     ...(loaded || {}),
@@ -227,11 +238,12 @@ function mergeAbout(
     intro: {
       ...def.intro,
       ...(loaded?.intro || {}),
+      paragraphs: introParagraphs,
       badge: loaded?.intro?.badge || def.intro.badge,
     },
     missionVision: {
       ...def.missionVision,
-      items: loaded?.missionVision?.items || def.missionVision.items,
+      items: mvItems,
     },
     pillars: loaded?.pillars || def.pillars,
     coreValues: {

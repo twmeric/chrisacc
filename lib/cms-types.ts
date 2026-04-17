@@ -200,6 +200,15 @@ export interface ServiceDetailPageData {
   ctaDesc: string;
   ctaBtn: string;
   ctaBtn2: string;
+  // Extra sections for pages like Forensic (confidentiality, fraud types) and Consulting (maturity, CFO, cases)
+  extraSections?: {
+    title: string;
+    subtitle?: string;
+    body?: string;
+    items?: { title: string; desc: string; icon?: string }[];
+    steps?: { number: string; title: string; desc: string }[];
+    layout: "cards" | "steps" | "text" | "list";
+  }[];
   // Legacy aliases for backward compatibility
   serviceScopeSubtitle?: string;
   serviceProcessSubtitle?: string;

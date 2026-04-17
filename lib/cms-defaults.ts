@@ -44,15 +44,15 @@ export const defaultCMSData: CMSData = {
       contactTitle: "聯絡我們",
       rights: "© 2026 櫪韜會計師事務所有限公司. 版權所有.",
       services: [
-        { label: "審計與鑑證", url: "/audit/" },
-        { label: "稅務諮詢", url: "/tax/" },
-        { label: "風險與監管", url: "/risk/" },
-        { label: "法證服務", url: "/forensic/" },
-        { label: "企業諮詢", url: "/consulting/" },
-        { label: "併購交易", url: "/deals/" },
+        { label: "審計與鑑證", url: "/services/audit/" },
+        { label: "稅務諮詢", url: "/services/tax/" },
+        { label: "風險與監管", url: "/services/risk/" },
+        { label: "法證服務", url: "/services/forensic/" },
+        { label: "企業諮詢", url: "/services/consulting/" },
+        { label: "併購交易", url: "/services/deals/" },
       ],
       quickLinks: [
-        { label: "首頁", url: "/index/" },
+        { label: "首頁", url: "/" },
         { label: "關於我們", url: "/about/" },
         { label: "服務範圍", url: "/services/" },
         { label: "聯絡我們", url: "/contact/" },
@@ -87,7 +87,7 @@ export const defaultCMSData: CMSData = {
             desc: "提供法定審計、內部審計及各類鑒證服務，確保財務報表的準確性和合規性。",
             icon: "fas fa-search-dollar",
             linkText: "了解更多 →",
-            href: "/audit/",
+            href: "/services/audit/",
           },
           {
             slug: "tax",
@@ -95,7 +95,7 @@ export const defaultCMSData: CMSData = {
             desc: "專業的稅務規劃及申報服務，助您合法節稅，優化稅務結構。",
             icon: "fas fa-file-invoice-dollar",
             linkText: "了解更多 →",
-            href: "/tax/",
+            href: "/services/tax/",
           },
           {
             slug: "risk",
@@ -103,7 +103,7 @@ export const defaultCMSData: CMSData = {
             desc: "協助企業識別及管理風險，確保業務運營符合法規要求。",
             icon: "fas fa-shield-alt",
             linkText: "了解更多 →",
-            href: "/risk/",
+            href: "/services/risk/",
           },
           {
             slug: "forensic",
@@ -111,7 +111,7 @@ export const defaultCMSData: CMSData = {
             desc: "提供專業的調查及法證服務，協助處理商業糾紛及舞弊調查。",
             icon: "fas fa-user-secret",
             linkText: "了解更多 →",
-            href: "/forensic/",
+            href: "/services/forensic/",
           },
           {
             slug: "consulting",
@@ -119,7 +119,7 @@ export const defaultCMSData: CMSData = {
             desc: "從業務策略到營運優化，提供全方位的專業顧問服務。",
             icon: "fas fa-lightbulb",
             linkText: "了解更多 →",
-            href: "/consulting/",
+            href: "/services/consulting/",
           },
           {
             slug: "deals",
@@ -127,7 +127,7 @@ export const defaultCMSData: CMSData = {
             desc: "協助處理併購交易、盡職調查及企業估值等專業服務。",
             icon: "fas fa-handshake",
             linkText: "了解更多 →",
-            href: "/deals/",
+            href: "/services/deals/",
           },
         ],
       },
@@ -160,16 +160,19 @@ export const defaultCMSData: CMSData = {
         title: "您值得信賴的",
         titleAccent: "財務夥伴",
         subtitle: "櫪韜之柱：以絕對信任奠定雄心壯志",
-        paragraphs: [],
-        quote: "真正的雄心壯志不是短跑，而是馬拉松。我們確保您的企業具備持久力，以堅如磐石的保證和策略遠見鞏固營運，將快速擴張轉化為可持續的長期成功。",
+        paragraphs: [
+          "櫪韜會計師事務所有限公司成立於2005年，是香港領先的專業會計事務所之一。我們致力於為各行各業的企業提供全面的會計、審計、稅務及商業顧問服務。",
+          "憑藉豐富的專業經驗和深厚的行業知識，我們的團隊能夠深入了解每位客戶的獨特需求，提供度身訂造的解決方案，協助客戶實現財務目標，推動業務持續發展。",
+        ],
+        quote: "我們的成功建基於客戶的成功。透過專業、誠信、創新的服務理念，我們與客戶建立長期的合作關係，共同成長。",
         image: "/images/about-team.jpg",
         badge: { value: "20+", label: "年卓越經驗" },
       },
       missionVision: {
         items: [
-          { icon: "Bullseye", title: "我們的使命", desc: "致力以專業精準錨定全球雄心，賦能企業以清晰、合規與自信駕馭國際金融格局的複雜性。", linkText: "更多", href: "/zh-hant/purpose/" },
-          { icon: "Eye", title: "我們的願景", desc: "成為無界商業卓越的 definitive 橋樑——被全球公認為尋求進入國際資本市場並保障財務傳承的活力企業的首選精品夥伴。", linkText: "更多", href: "/zh-hant/value/" },
-          { icon: "Heart", title: "我們的承諾", desc: "以主動引導和技術精湛引領，架起您全球雄心的橋樑，為您的企業建立信任與變革的傳承。", linkText: "更多", href: "/zh-hant/commitment/" },
+          { icon: "Bullseye", title: "我們的使命", desc: "致力於為客戶提供最優質的專業服務，協助企業達成財務目標，創造可持續的商業價值，成為客戶最信賴的財務顧問。", linkText: "更多", href: "/zh-hant/purpose/" },
+          { icon: "Eye", title: "我們的願景", desc: "成為香港及大灣區最具影響力的專業會計事務所，以卓越的服務品質和創新的解決方案，引領行業發展。", linkText: "更多", href: "/zh-hant/value/" },
+          { icon: "Heart", title: "我們的承諾", desc: "堅守專業操守，以客戶利益為先，提供誠實、透明、高效的服務，與客戶建立長期互信的合作關係。", linkText: "更多", href: "/zh-hant/commitment/" },
         ],
       },
       pillars: {
@@ -178,9 +181,9 @@ export const defaultCMSData: CMSData = {
           subtitle: `"我們走過的路"`,
           quote: "致力以專業精準錨定全球雄心，賦能企業以清晰、合規與自信駕馭國際金融格局的複雜性。",
           items: [
-            { icon: "Globe", title: "傳遞無界保證與誠信 +", desc: "我們致力打破阻礙國際信任的屏障。透過堅持最嚴謹的審計質素標準，我們提供以通用語言表述的財務報表。我們的使命是確保投資者與持份者都能同樣信賴我們的報告。" },
-            { icon: "TrendingUp", title: "構建可持續增長策略 +", desc: "我們不僅記錄歷史，更協助塑造未來。我們的使命超越合規，延伸至高價值顧問。我們立志成為企業從本土成功邁向全球傑出的策略建築師。" },
-            { icon: "GraduationCap", title: "培育技術卓越文化 +", desc: "在財務法規瞬息萬變的世界中，知識是我們最寶貴的資產。我們致力營造不懈專業發展的環境，使命是走在監管曲線之前。" },
+            { icon: "Globe", title: "無疆界鑒證與誠信", desc: "我們致力打破阻礙國際信任的屏障。透過堅持最嚴謹的審計質素標準，我們提供以通用語言表述的財務報表。我們的使命是確保投資者與持份者都能同樣信賴我們的報告。" },
+            { icon: "TrendingUp", title: "構建可持續增長策略", desc: "我們不僅記錄歷史，更協助塑造未來。我們的使命超越合規，延伸至高價值顧問。我們立志成為企業從本土成功邁向全球傑出的策略建築師。" },
+            { icon: "GraduationCap", title: "培育技術卓越文化", desc: "在財務法規瞬息萬變的世界中，知識是我們最寶貴的資產。我們致力營造不懈專業發展的環境，使命是走在監管曲線之前。" },
           ],
         },
         value: {
@@ -188,9 +191,9 @@ export const defaultCMSData: CMSData = {
           subtitle: `"我們建造的未來"`,
           quote: "成為無界商業卓越的 definitive 橋樑——被全球公認為尋求進入國際資本市場並保障財務傳承的活力企業的首選精品夥伴。",
           items: [
-            { icon: "Building", title: "在全球尺度重新定義「精品」體驗 +", desc: "我們展望一個「精品」代表敏捷與個人化，而非有限範疇的未來。我們旨在打破傳統二元對立，成為大型國際企業的「剛剛好」解決方案。" },
-            { icon: "Scale", title: "樹立跨境流暢度的標準 +", desc: "我們立志成為「司法管轄流暢度」的行業基準。我們的願景是讓不同國家會計準則與稅法之間的界線變得無縫。" },
-            { icon: "Rocket", title: "賦能下一代全球企業 +", desc: "我們期待成為協助下一波全球巨頭成功的關鍵力量。我們將事務所視為國際成功故事的孵化器，引導初創企業與家族企業成熟為公開上市的全球實體。" },
+            { icon: "Building", title: "在全球規模重新定義「精品」體驗", desc: "我們展望一個「精品」代表敏捷與個人化，而非有限範疇的未來。我們旨在打破傳統二元對立，成為大型國際企業的「剛剛好」解決方案。" },
+            { icon: "Scale", title: "樹立跨境流暢的標準", desc: "我們立志成為「司法管轄流暢度」的行業基準。我們的願景是讓不同國家會計準則與稅法之間的界線變得無縫。" },
+            { icon: "Rocket", title: "賦能下一代全球企業", desc: "我們期待成為協助下一波全球巨頭成功的關鍵力量。我們將事務所視為國際成功故事的孵化器，引導初創企業與家族企業成熟為公開上市的全球實體。" },
           ],
         },
         commitment: {
@@ -198,12 +201,12 @@ export const defaultCMSData: CMSData = {
           subtitle: `"我們堅守的諾言"`,
           quote: "以主動引導和技術精湛引領，架起您全球雄心的橋樑，為您的企業建立信任與變革的傳承。",
           items: [
-            { icon: "Crown", title: "領導力 — 主動全球引導 +", desc: "在波動的國際市場中，您需要的不僅是服務提供商，而是從前線帶領的夥伴。我們代表專業實踐中的領導力。我們不只對監管變化作岀反應，更預見它們。" },
-            { icon: "Link", title: "連結 — 通用連接器 +", desc: "我們代表連結——您現有營運與全球潛力之間的重要紐帶。我們充當不同監管環境與會計框架之間的介面，創造資本流動與擴展的無縫管道。" },
-            { icon: "Infinity", title: "傳承 — 持久價值創造 +", desc: "真正的成功不是以單一財政年度來衡量，而是以持久力來衡量。傳承是我們顧問服務的終極目標。無論是審計跨國企業還是構建私人實體持股架構，我們的焦點都是可持續性。" },
-            { icon: "Cog", title: "技術性 — 國際標準 +", desc: "我們在技術性的頂峰運作。我們的專業超越法定框架，達至全球報告標準的精通。我們具備駕馭跨境併購盡職調查、IPO籌備及複雜監管報告精細需求的顆粒度技術知識。" },
-            { icon: "ShieldAlt", title: "信任 — 全球化的貨幣 +", desc: "當業務跨越大洋進行時，信任是基本貨幣。我們擔任財務真相的獨立保證人。對於國際投資者、外國債權人及監管機構而言，我們的保證印章消除了遠程營運的不透明性。" },
-            { icon: "SyncAlt", title: "變革 — 超越邊界的演進 +", desc: "我們是變革的建築師。我們引導本土企業蛻變為全球競爭者。我們的非審計顧問服務旨在現代化財務基礎設施、數碼化遠程管理報告系統，並優化營運效率。" },
+            { icon: "Crown", title: "領導力——前瞻全球指引", desc: "在波動的國際市場中，您需要的不僅是服務提供商，而是從前線帶領的夥伴。我們代表專業實踐中的領導力。我們不只對監管變化作岀反應，更預見它們。" },
+            { icon: "Link", title: "連結——環球樞紐", desc: "我們代表連結——您現有營運與全球潛力之間的重要紐帶。我們充當不同監管環境與會計框架之間的介面，創造資本流動與擴展的無縫管道。" },
+            { icon: "Infinity", title: "傳承 — 持久價值創造", desc: "真正的成功不是以單一財政年度來衡量，而是以持久力來衡量。傳承是我們顧問服務的終極目標。無論是審計跨國企業還是構建私人實體持股架構，我們的焦點都是可持續性。" },
+            { icon: "Cog", title: "專業技術——國際標準", desc: "我們在技術性的頂峰運作。我們的專業超越法定框架，達至全球報告標準的精通。我們具備駕馭跨境併購盡職調查、IPO籌備及複雜監管報告精細需求的顆粒度技術知識。" },
+            { icon: "ShieldAlt", title: "信任 — 全球化的貨幣", desc: "當業務跨越大洋進行時，信任是基本貨幣。我們擔任財務真相的獨立保證人。對於國際投資者、外國債權人及監管機構而言，我們的保證印章消除了遠程營運的不透明性。" },
+            { icon: "SyncAlt", title: "變革——跨越疆界進化", desc: "我們是變革的建築師。我們引導本土企業蛻變為全球競爭者。我們的非審計顧問服務旨在現代化財務基礎設施、數碼化遠程管理報告系統，並優化營運效率。" },
           ],
         },
       },
@@ -264,7 +267,7 @@ export const defaultCMSData: CMSData = {
             `合規性審查`
             ],
             linkText: `了解更多 →`,
-            href: `audit.html`,
+            href: "/services/audit/",
           },{
             slug: `tax`,
             title: `稅務諮詢`,
@@ -279,7 +282,7 @@ export const defaultCMSData: CMSData = {
             `稅務爭議處理`
             ],
             linkText: `了解更多 →`,
-            href: `tax.html`,
+            href: "/services/tax/",
           },{
             slug: `risk`,
             title: `風險與監管`,
@@ -294,7 +297,7 @@ export const defaultCMSData: CMSData = {
             `企業管治優化`
             ],
             linkText: `了解更多 →`,
-            href: `risk.html`,
+            href: "/services/risk/",
           },{
             slug: `forensic`,
             title: `法證服務`,
@@ -309,7 +312,7 @@ export const defaultCMSData: CMSData = {
             `專家證人服務`
             ],
             linkText: `了解更多 →`,
-            href: `forensic.html`,
+            href: "/services/forensic/",
           },{
             slug: `consulting`,
             title: `企業諮詢`,
@@ -324,7 +327,7 @@ export const defaultCMSData: CMSData = {
             `人力資源諮詢`
             ],
             linkText: `了解更多 →`,
-            href: `consulting.html`,
+            href: "/services/consulting/",
           },{
             slug: `deals`,
             title: `併購交易`,
@@ -339,7 +342,7 @@ export const defaultCMSData: CMSData = {
             `整合後支援`
             ],
             linkText: `了解更多 →`,
-            href: `deals.html`,
+            href: "/services/deals/",
           }
       ],
       whyChoose: {
@@ -452,9 +455,9 @@ export const defaultCMSData: CMSData = {
         ],
         relatedServicesTitle: "相關服務",
         relatedItems: [
-          { title: "風險與監管", desc: "協助企業建立穩健的內部控制體系，滿足監管合規要求，提升風險管理能力。", href: "risk.html", linkText: "了解更多 →" },
-          { title: "併購交易", desc: "提供財務盡職調查、估值服務及交易支援，助您做出明智的投資決策。", href: "deals.html", linkText: "了解更多 →" },
-          { title: "企業諮詢", desc: "協助財務職能轉型，優化業務流程，提升營運效率與財務透明度。", href: "consulting.html", linkText: "了解更多 →" },
+          { title: "風險與監管", desc: "協助企業建立穩健的內部控制體系，滿足監管合規要求，提升風險管理能力。", href: "/services/risk/", linkText: "了解更多 →" },
+          { title: "併購交易", desc: "提供財務盡職調查、估值服務及交易支援，助您做出明智的投資決策。", href: "/services/deals/", linkText: "了解更多 →" },
+          { title: "企業諮詢", desc: "協助財務職能轉型，優化業務流程，提升營運效率與財務透明度。", href: "/services/consulting/", linkText: "了解更多 →" },
         ],
         ctaTitle: "需要專業審計服務？",
         ctaDesc: "讓我們的專家團隊為您提供高質量的審計解決方案",
@@ -567,9 +570,9 @@ export const defaultCMSData: CMSData = {
         ],
         relatedServicesTitle: "相關服務",
         relatedItems: [
-          { title: "併購交易", desc: "在併購交易中提供稅務盡職調查、交易架構設計及購買價格分攤等專業服務。", href: "deals.html", linkText: "了解更多 →" },
-          { title: "審計與鑑證", desc: "專業的審計服務確保您的財務報表準確反映稅務立場，支持稅務規劃的有效執行。", href: "audit.html", linkText: "了解更多 →" },
-          { title: "企業諮詢", desc: "協助企業優化業務流程，建立支持稅務合規的財務管理系統和內部控制。", href: "consulting.html", linkText: "了解更多 →" },
+          { title: "併購交易", desc: "在併購交易中提供稅務盡職調查、交易架構設計及購買價格分攤等專業服務。", href: "/services/deals/", linkText: "了解更多 →" },
+          { title: "審計與鑑證", desc: "專業的審計服務確保您的財務報表準確反映稅務立場，支持稅務規劃的有效執行。", href: "/services/audit/", linkText: "了解更多 →" },
+          { title: "企業諮詢", desc: "協助企業優化業務流程，建立支持稅務合規的財務管理系統和內部控制。", href: "/services/consulting/", linkText: "了解更多 →" },
         ],
         ctaTitle: "需要稅務諮詢服務？",
         ctaDesc: "讓我們的稅務專家為您提供量身定制的解決方案",
@@ -723,9 +726,9 @@ export const defaultCMSData: CMSData = {
         ],
         relatedServicesTitle: "相關服務",
         relatedItems: [
-          { title: "法證服務", desc: "當合規問題升級為調查時，我們的法證團隊提供專業的調查支援與證據收集服務。", href: "forensic.html", linkText: "了解更多 →" },
-          { title: "審計與鑑證", desc: "我們的審計服務與風險評估緊密結合，為您提供內部控制的獨立評估。", href: "audit.html", linkText: "了解更多 →" },
-          { title: "企業諮詢", desc: "協助您優化業務流程，建立支持合規目標的高效管理系統。", href: "consulting.html", linkText: "了解更多 →" },
+          { title: "法證服務", desc: "當合規問題升級為調查時，我們的法證團隊提供專業的調查支援與證據收集服務。", href: "/services/forensic/", linkText: "了解更多 →" },
+          { title: "審計與鑑證", desc: "我們的審計服務與風險評估緊密結合，為您提供內部控制的獨立評估。", href: "/services/audit/", linkText: "了解更多 →" },
+          { title: "企業諮詢", desc: "協助您優化業務流程，建立支持合規目標的高效管理系統。", href: "/services/consulting/", linkText: "了解更多 →" },
         ],
         ctaTitle: "需要風險管理或合規諮詢？",
         ctaDesc: "讓我們的專家協助您建立穩健的風險管理與合規體系",
@@ -815,14 +818,34 @@ export const defaultCMSData: CMSData = {
         ],
         relatedServicesTitle: "相關服務",
         relatedItems: [
-          { title: "風險與監管", desc: "在調查完成後，我們可協助您加強內部控制，防止類似事件再次發生。", href: "risk.html", linkText: "了解更多 →" },
-          { title: "併購交易", desc: "在併購前進行誠信盡職調查，識別目標公司的舞弊風險和合規問題。", href: "deals.html", linkText: "了解更多 →" },
-          { title: "企業諮詢", desc: "協助建立預防性控制措施和舞弊風險管理框架，從源頭減少風險。", href: "consulting.html", linkText: "了解更多 →" },
+          { title: "風險與監管", desc: "在調查完成後，我們可協助您加強內部控制，防止類似事件再次發生。", href: "/services/risk/", linkText: "了解更多 →" },
+          { title: "併購交易", desc: "在併購前進行誠信盡職調查，識別目標公司的舞弊風險和合規問題。", href: "/services/deals/", linkText: "了解更多 →" },
+          { title: "企業諮詢", desc: "協助建立預防性控制措施和舞弊風險管理框架，從源頭減少風險。", href: "/services/consulting/", linkText: "了解更多 →" },
         ],
         ctaTitle: "需要法證調查服務？",
         ctaDesc: "我們提供保密的初步諮詢，協助評估您的情況",
         ctaBtn: "保密諮詢",
         ctaBtn2: "",
+    extraSections: [
+      {
+        title: "保密承諾",
+        body: "我們深知法證調查的敏感性。在每一個案件中，我們嚴格遵守保密原則，保護客戶的商業利益和聲譽。我們的團隊接受過專業培訓，能夠在確保調查有效性的同時，最大限度地減少對企業運營的干擾。",
+        layout: "text",
+      },
+      {
+        title: "常見舞弊類型",
+        subtitle: "我們處理過的各類企業舞弊調查",
+        layout: "cards",
+        items: [
+          { title: "員工舞弊", desc: "挪用公款、虛假報銷、採購回扣、薪資舞弊、庫存盜竊等內部人員不當行為", icon: "UserX" },
+          { title: "財務報表舞弊", desc: "收入虛增、費用隱藏、資產高估、負債低報等財務造假行為", icon: "FileWarning" },
+          { title: "管理層不當行為", desc: "利益衝突、關聯方交易不當、自我交易、濫用職權等高層違規", icon: "ShieldAlert" },
+          { title: "商業賄賂", desc: "對政府官員或商業夥伴的不當利益輸送、回扣安排", icon: "HandCoins" },
+          { title: "供應商/客戶欺詐", desc: "虛假供應商、重複付款、發票詐騙、客戶串謀等外部舞弊", icon: "Truck" },
+          { title: "網絡欺詐", desc: "商業電郵詐騙 (BEC)、網絡釣魚、身份盜竊、數據洩露調查", icon: "Monitor" },
+        ],
+      },
+    ],
       },
       consulting: {
         tagline: "「將財務轉化為策略推動力。」",
@@ -902,14 +925,51 @@ export const defaultCMSData: CMSData = {
         ],
         relatedServicesTitle: "相關服務",
         relatedItems: [
-          { title: "審計與鑑證", desc: "財務轉型後的財務報表審計，確保新流程和系統產生可靠的財務數據。", href: "audit.html", linkText: "了解更多 →" },
-          { title: "風險與監管", desc: "為轉型後的財務職能建立適當的內部控制和風險管理框架。", href: "risk.html", linkText: "了解更多 →" },
-          { title: "稅務諮詢", desc: "確保財務系統能夠支持稅務合規要求，優化稅務數據管理流程。", href: "tax.html", linkText: "了解更多 →" },
+          { title: "審計與鑑證", desc: "財務轉型後的財務報表審計，確保新流程和系統產生可靠的財務數據。", href: "/services/audit/", linkText: "了解更多 →" },
+          { title: "風險與監管", desc: "為轉型後的財務職能建立適當的內部控制和風險管理框架。", href: "/services/risk/", linkText: "了解更多 →" },
+          { title: "稅務諮詢", desc: "確保財務系統能夠支持稅務合規要求，優化稅務數據管理流程。", href: "/services/tax/", linkText: "了解更多 →" },
         ],
         ctaTitle: "需要企業諮詢服務？",
         ctaDesc: "讓我們協助您將財務職能轉化為策略優勢",
         ctaBtn: "免費諮詢",
         ctaBtn2: "",
+        extraSections: [
+          {
+            title: "財務職能成熟度模型",
+            subtitle: "評估並提升您的財務職能水平",
+            layout: "steps",
+            steps: [
+              { number: "1", title: "記錄者", desc: "基礎會計記錄及交易處理，確保財務數據準確入帳" },
+              { number: "2", title: "報告者", desc: "及時編製財務報表及管理報告，提供標準化資訊" },
+              { number: "3", title: "分析者", desc: "深入分析財務數據，識別趨勢、異常及改善機會" },
+              { number: "4", title: "策略夥伴", desc: "參與業務決策，將財務洞察轉化為策略建議" },
+            ],
+          },
+          {
+            title: "外判 CFO 服務範圍",
+            subtitle: "靈活的財務領導力，按需配置",
+            layout: "list",
+            items: [
+              { title: "財務策略與規劃", desc: "制定財務願景、目標及實施路線圖" },
+              { title: "融資與投資者關係", desc: "協助融資準備、投資者簡報及盡職調查支援" },
+              { title: "現金流管理與預測", desc: "建立現金流預測模型，優化營運資金配置" },
+              { title: "管理報告與 KPI 儀表板", desc: "設計關鍵績效指標，建立即時管理報告體系" },
+              { title: "會計團隊指導與培訓", desc: "指導內部會計團隊，提升整體財務能力" },
+              { title: "合規與風險管理", desc: "確保財務運營符合法規要求，建立風險監控機制" },
+            ],
+          },
+          {
+            title: "適用對象",
+            subtitle: "不同發展階段的企業均可受益",
+            layout: "cards",
+            items: [
+              { title: "初創企業", desc: "需要專業財務指導但尚未有足夠預算聘請全職 CFO", icon: "Rocket" },
+              { title: "成長期企業", desc: "業務快速擴張，財務管理面臨挑戰，需要臨時財務領導力", icon: "TrendingUp" },
+              { title: "跨國子公司", desc: "需要符合總部要求的財務報告及本地合規支援", icon: "Globe" },
+              { title: "私募投資組合", desc: "需要專業財務管理以提升投資組合價值及準備退出", icon: "BarChart3" },
+            ],
+          },
+        ],
       },
       deals: {
         tagline: "「在交易的每個階段釋放價值。」",
@@ -965,12 +1025,12 @@ export const defaultCMSData: CMSData = {
           },
         ],
         processTitle: "併購交易服務流程",
-        processSubtitle: "系統化的審計方法，確保質量與效率",
+        processSubtitle: "系統化的交易方法，確保價值實現",
         processSteps: [
-          { number: "1", title: "規劃與風險評估", desc: "深入了解您的業務、行業環境及內部控制，識別重大錯報風險領域，制定針對性的審計策略。" },
-          { number: "2", title: "內部控制測試", desc: "評估關鍵業務流程的內部控制設計與運作有效性，確定實質性程序的性質、時間和範圍。" },
-          { number: "3", title: "實質性審計程序", desc: "執行分析性程序和細節測試，獲取充分、適當的審計證據，以支持審計意見。" },
-          { number: "4", title: "審計總結與報告", desc: "匯總審計發現，與管理層討論重要事項，出具審計報告及管理建議書。" },
+          { number: "1", title: "規劃與範圍界定", desc: "了解交易目標、界定盡職調查及估值範圍；商定交付成果及時間表。" },
+          { number: "2", title: "盡職調查與分析", desc: "執行財務、稅務及商業盡職調查；分析盈利質量及營運資金趨勢。" },
+          { number: "3", title: "估值與報告", desc: "編製估值模型及報告；記錄發現及建議，支援定價與談判。" },
+          { number: "4", title: "交割與整合", desc: "支援交割機制、購買價格分攤及合併後整合規劃，以實現交易價值。" },
         ],
         scenariosTitle: "",
         scenarios: [
@@ -988,9 +1048,9 @@ export const defaultCMSData: CMSData = {
         ],
         relatedServicesTitle: "相關服務",
         relatedItems: [
-          { title: "稅務諮詢", desc: "在併購交易中提供稅務盡職調查、交易架構設計及購買價格分攤等專業服務。", href: "tax.html", linkText: "了解更多 →" },
-          { title: "審計與鑑證", desc: "提供財務盡職調查、估值服務及交易支援，助您做出明智的投資決策。", href: "audit.html", linkText: "了解更多 →" },
-          { title: "企業諮詢", desc: "協助合併後整合規劃、流程優化，確保實現的協同效應與交易論點相符。", href: "consulting.html", linkText: "了解更多 →" },
+          { title: "稅務諮詢", desc: "在併購交易中提供稅務盡職調查、交易架構設計及購買價格分攤等專業服務。", href: "/services/tax/", linkText: "了解更多 →" },
+          { title: "審計與鑑證", desc: "提供財務盡職調查、估值服務及交易支援，助您做出明智的投資決策。", href: "/services/audit/", linkText: "了解更多 →" },
+          { title: "企業諮詢", desc: "協助合併後整合規劃、流程優化，確保實現的協同效應與交易論點相符。", href: "/services/consulting/", linkText: "了解更多 →" },
         ],
         ctaTitle: "需要併購交易支援？",
         ctaDesc: "在交易每個階段釋放價值，讓我們的團隊助您完成交易",
@@ -1002,12 +1062,12 @@ export const defaultCMSData: CMSData = {
       pageTitle: "聯絡我們",
       cards: [
         { icon: "MapPin", title: "地址", lines: ["香港金鐘力寶中心2座5樓503室", "Unit 503, Tower 2, Lippo Centre, Admiralty, Hong Kong"] },
-        { icon: "Phone", title: "電話", lines: ["+852 1234 5678", "星期一至五 09:00 - 18:00"] },
-        { icon: "Mail", title: "電郵", lines: ["info@ltcpa.com", "歡迎查詢及預約會面"] },
+        { icon: "Phone", title: "電話", lines: ["3987 1008", "星期一至五 09:00 - 18:00"] },
+        { icon: "Mail", title: "電郵", lines: ["info@ltgroupcpa.com", "歡迎查詢及預約會面"] },
       ],
       form: {
-        formTitle: "免費諮詢",
-        formDesc: "請填寫以下表格，我們的專業顧問將盡快與您聯繫，為您提供最適合的解決方案。",
+        formTitle: "請填寫以下表格，我們的專業顧問將盡快與您聯繫，為您提供最適合的解決方案。",
+        formDesc: "",
         name: "姓名 *",
         company: "公司名稱 *",
         phone: "電話",
@@ -1058,7 +1118,7 @@ export const defaultCMSData: CMSData = {
       heroSubtitle: `"我們走過的路"`,
       heroQuote: "致力以專業精準錨定全球雄心，賦能企業以清晰、合規與自信駕馭國際金融格局的複雜性。",
       items: [
-        { icon: "Globe", title: "傳遞無界保證與誠信", desc: "我們致力打破阻礙國際信任的屏障。透過堅持最嚴謹的審計質素標準，我們提供以通用語言表述的財務報表。我們的使命是確保投資者與持份者都能同樣信賴我們的報告。" },
+        { icon: "Globe", title: "無疆界鑒證與誠信", desc: "我們致力打破阻礙國際信任的屏障。透過堅持最嚴謹的審計質素標準，我們提供以通用語言表述的財務報表。我們的使命是確保投資者與持份者都能同樣信賴我們的報告。" },
         { icon: "TrendingUp", title: "構建可持續增長策略", desc: "我們不僅記錄歷史，更協助塑造未來。我們的使命超越合規，延伸至高價值顧問。我們立志成為企業從本土成功邁向全球傑出的策略建築師。" },
         { icon: "GraduationCap", title: "培育技術卓越文化", desc: "在財務法規瞬息萬變的世界中，知識是我們最寶貴的資產。我們致力營造不懈專業發展的環境，使命是走在監管曲線之前。" },
       ],
@@ -1075,8 +1135,8 @@ export const defaultCMSData: CMSData = {
       heroSubtitle: `"我們建造的未來"`,
       heroQuote: "成為無界商業卓越的 definitive 橋樑——被全球公認為尋求進入國際資本市場並保障財務傳承的活力企業的首選精品夥伴。",
       items: [
-        { icon: "Building", title: "在全球尺度重新定義「精品」體驗", desc: "我們展望一個「精品」代表敏捷與個人化，而非有限範疇的未來。我們旨在打破傳統二元對立，成為大型國際企業的「剛剛好」解決方案。" },
-        { icon: "Scale", title: "樹立跨境流暢度的標準", desc: "我們立志成為「司法管轄流暢度」的行業基準。我們的願景是讓不同國家會計準則與稅法之間的界線變得無縫。" },
+        { icon: "Building", title: "在全球規模重新定義「精品」體驗", desc: "我們展望一個「精品」代表敏捷與個人化，而非有限範疇的未來。我們旨在打破傳統二元對立，成為大型國際企業的「剛剛好」解決方案。" },
+        { icon: "Scale", title: "樹立跨境流暢的標準", desc: "我們立志成為「司法管轄流暢度」的行業基準。我們的願景是讓不同國家會計準則與稅法之間的界線變得無縫。" },
         { icon: "Rocket", title: "賦能下一代全球企業", desc: "我們期待成為協助下一波全球巨頭成功的關鍵力量。我們將事務所視為國際成功故事的孵化器，引導初創企業與家族企業成熟為公開上市的全球實體。" },
       ],
       cta: {
@@ -1150,18 +1210,18 @@ export const defaultCMSData: CMSData = {
       contactTitle: "联系我们",
       rights: "© 2026 櫪韜会计师事务所有限公司. 版权所有.",
       services: [
-        { label: "审计与鉴证", url: "/audit//" },
-        { label: "税务咨询", url: "/tax//" },
-        { label: "风险与监管", url: "/risk//" },
-        { label: "法证服务", url: "/forensic//" },
-        { label: "企业咨询", url: "/consulting//" },
-        { label: "并购交易", url: "/deals//" },
+        { label: "审计与鉴证", url: "/services/audit/" },
+        { label: "税务咨询", url: "/services/tax/" },
+        { label: "风险与监管", url: "/services/risk/" },
+        { label: "法证服务", url: "/services/forensic/" },
+        { label: "企业咨询", url: "/services/consulting/" },
+        { label: "并购交易", url: "/services/deals/" },
       ],
       quickLinks: [
-        { label: "首页", url: "/index//" },
-        { label: "关于我们", url: "/about//" },
-        { label: "服务范围", url: "/services//" },
-        { label: "联络我们", url: "/contact//" },
+        { label: "首页", url: "/" },
+        { label: "关于我们", url: "/about/" },
+        { label: "服务范围", url: "/services/" },
+        { label: "联络我们", url: "/contact/" },
       ],
       contact: {
         address: "香港金钟力宝中心2座5楼503室",
@@ -1193,7 +1253,7 @@ export const defaultCMSData: CMSData = {
             desc: "提供法定审计、内部审计及各类鉴证服务，确保财务报表的准确性和合规性。",
             icon: "fas fa-search-dollar",
             linkText: "了解更多 →",
-            href: "/audit//",
+            href: "/services/audit/",
           },
           {
             slug: "tax",
@@ -1201,7 +1261,7 @@ export const defaultCMSData: CMSData = {
             desc: "专业的税务规划及申报服务，助您合法节税，优化税务结构。",
             icon: "fas fa-file-invoice-dollar",
             linkText: "了解更多 →",
-            href: "/tax//",
+            href: "/services/tax/",
           },
           {
             slug: "risk",
@@ -1209,7 +1269,7 @@ export const defaultCMSData: CMSData = {
             desc: "协助企业识别及管理风险，确保业务运营符合法规要求。",
             icon: "fas fa-shield-alt",
             linkText: "了解更多 →",
-            href: "/risk//",
+            href: "/services/risk/",
           },
           {
             slug: "forensic",
@@ -1217,7 +1277,7 @@ export const defaultCMSData: CMSData = {
             desc: "提供专业的调查及法证服务，协助处理商业纠纷及舞弊调查。",
             icon: "fas fa-user-secret",
             linkText: "了解更多 →",
-            href: "/forensic//",
+            href: "/services/forensic/",
           },
           {
             slug: "consulting",
@@ -1225,7 +1285,7 @@ export const defaultCMSData: CMSData = {
             desc: "从业务策略到运营优化，提供全方位的专业顾问服务。",
             icon: "fas fa-lightbulb",
             linkText: "了解更多 →",
-            href: "/consulting//",
+            href: "/services/consulting/",
           },
           {
             slug: "deals",
@@ -1233,7 +1293,7 @@ export const defaultCMSData: CMSData = {
             desc: "协助处理并购交易、尽职调查及企业估值等专业服务。",
             icon: "fas fa-handshake",
             linkText: "了解更多 →",
-            href: "/deals//",
+            href: "/services/deals/",
           },
         ],
       },
@@ -1266,16 +1326,19 @@ export const defaultCMSData: CMSData = {
         title: "您值得信赖的",
         titleAccent: "财务伙伴",
         subtitle: "櫪韬之柱：以绝对信任奠定雄心壮志",
-        paragraphs: [],
-        quote: "真正的雄心壮志不是短跑，而是马拉松。我们确保您的企业具备持久力，以坚如磐石的保证和策略远见巩固营运，将快速扩张转化为可持续的长期成功。",
+        paragraphs: [
+          "櫪韬会计师事务所有限公司成立于2005年，是香港领先的专业会计事务所之一。我们致力于为各行各业的企业提供全面的会计、审计、税务及商业顾问服务。",
+          "凭借丰富的专业经验和深厚的行业知识，我们的团队能够深入了解每位客户的独特需求，提供度身订造的解决方案，协助客户实现财务目标，推动业务持续发展。",
+        ],
+        quote: "我们的成功建基于客户的成功。透过专业、诚信、创新的服务理念，我们与客户建立长期的合作关系，共同成长。",
         image: "/images/about-team.jpg",
         badge: { value: "20+", label: "年卓越经验" },
       },
       missionVision: {
         items: [
-          { icon: "Bullseye", title: "我们的使命", desc: "致力以专业精准锚定全球雄心，赋能企业以清晰、合规与自信驾驭国际金融格局的复杂性。", linkText: "更多", href: "/zh-hans/purpose/" },
-          { icon: "Eye", title: "我们的愿景", desc: "成为无界商业卓越的 definitive 桥梁——被全球公认为寻求进入国际资本市场并保障财务传承的活力企业的首选精品伙伴。", linkText: "更多", href: "/zh-hans/value/" },
-          { icon: "Heart", title: "我们的承诺", desc: "以主动引导和技术精湛引领，架起您全球雄心的桥梁，为您的企业建立信任与变革的传承。", linkText: "更多", href: "/zh-hans/commitment/" },
+          { icon: "Bullseye", title: "我们的使命", desc: "致力于为客户提供最优质的专业服务，协助企业达成财务目标，创造可持续的商业价值，成为客户最信赖的财务顾问。", linkText: "更多", href: "/zh-hans/purpose/" },
+          { icon: "Eye", title: "我们的愿景", desc: "成为香港及大湾区最具影响力的专业会计事务所，以卓越的服务品质和创新的解决方案，引领行业发展。", linkText: "更多", href: "/zh-hans/value/" },
+          { icon: "Heart", title: "我们的承诺", desc: "坚守专业操守，以客户利益为先，提供诚实、透明、高效的服务，与客户建立长期互信的合作关系。", linkText: "更多", href: "/zh-hans/commitment/" },
         ],
       },
       pillars: {
@@ -1284,9 +1347,9 @@ export const defaultCMSData: CMSData = {
           subtitle: `"我们走过的路"`,
           quote: "致力以专业精准锚定全球雄心，赋能企业以清晰、合规与自信驾驭国际金融格局的复杂性。",
           items: [
-            { icon: "Globe", title: "传递无界保证与诚信 +", desc: "我们致力打破阻碍国际信任的屏障。透过坚持最严谨的审计质素标准，我们提供以通用语言表述的财务报表。我们的使命是确保投资者与持份者都能同样信赖我们的报告。" },
-            { icon: "TrendingUp", title: "构建可持续增长策略 +", desc: "我们不仅记录历史，更协助塑造未来。我们的使命超越合规，延伸至高价值顾问。我们立志成为企业从本土成功迈向全球杰出的策略建筑师。" },
-            { icon: "GraduationCap", title: "培育技术卓越文化 +", desc: "在财务法规瞬息万变的世界中，知识是我们最宝贵的资产。我们致力营造不懈专业发展的环境，使命是走在监管曲线之前。" },
+            { icon: "Globe", title: "无疆界鉴证与诚信", desc: "我们致力打破阻碍国际信任的屏障。透过坚持最严谨的审计质素标准，我们提供以通用语言表述的财务报表。我们的使命是确保投资者与持份者都能同样信赖我们的报告。" },
+            { icon: "TrendingUp", title: "构建可持续增长策略", desc: "我们不仅记录历史，更协助塑造未来。我们的使命超越合规，延伸至高价值顾问。我们立志成为企业从本土成功迈向全球杰出的策略建筑师。" },
+            { icon: "GraduationCap", title: "培育技术卓越文化", desc: "在财务法规瞬息万变的世界中，知识是我们最宝贵的资产。我们致力营造不懈专业发展的环境，使命是走在监管曲线之前。" },
           ],
         },
         value: {
@@ -1294,9 +1357,9 @@ export const defaultCMSData: CMSData = {
           subtitle: `"我们建造的未来"`,
           quote: "成为无界商业卓越的 definitive 桥梁——被全球公认为寻求进入国际资本市场并保障财务传承的活力企业的首选精品伙伴。",
           items: [
-            { icon: "Building", title: "在全球尺度重新定义「精品」体验 +", desc: "我们展望一个「精品」代表敏捷与个人化，而非有限范畴的未来。我们旨在打破传统二元对立，成为大型国际企业的「刚刚好」解决方案。" },
-            { icon: "Scale", title: "树立跨境流畅度的标准 +", desc: "我们立志成为「司法管辖流畅度」的行业基准。我们的愿景是让不同国家会计准则与税法之间的界线变得无缝。" },
-            { icon: "Rocket", title: "赋能下一代全球企业 +", desc: "我们期待成为协助下一波全球巨头成功的关键力量。我们将事务所视为国际成功故事的孵化器，引导初创企业与家族企业成熟为公开上市的全球实体。" },
+            { icon: "Building", title: "在全球规模重新定义「精品」体验", desc: "我们展望一个「精品」代表敏捷与个人化，而非有限范畴的未来。我们旨在打破传统二元对立，成为大型国际企业的「刚刚好」解决方案。" },
+            { icon: "Scale", title: "树立跨境流畅的标准", desc: "我们立志成为「司法管辖流畅度」的行业基准。我们的愿景是让不同国家会计准则与税法之间的界线变得无缝。" },
+            { icon: "Rocket", title: "赋能下一代全球企业", desc: "我们期待成为协助下一波全球巨头成功的关键力量。我们将事务所视为国际成功故事的孵化器，引导初创企业与家族企业成熟为公开上市的全球实体。" },
           ],
         },
         commitment: {
@@ -1304,12 +1367,12 @@ export const defaultCMSData: CMSData = {
           subtitle: `"我们坚守的诺言"`,
           quote: "以主动引导和技术精湛引领，架起您全球雄心的桥梁，为您的企业建立信任与变革的传承。",
           items: [
-            { icon: "Crown", title: "领导力 — 主动全球引导 +", desc: "在波动的国际市场中，您需要的不只是服务提供商，而是从前线带领的伙伴。我们代表专业实践中的领导力。我们不只对监管变化作出反应，更预见它们。" },
-            { icon: "Link", title: "连结 — 通用连接器 +", desc: "我们代表连结——您现有营运与全球潜力之间的重要纽带。我们充当不同监管环境与会计框架之间的界面，创造资本流动与扩展的无缝管道。" },
-            { icon: "Infinity", title: "传承 — 持久价值创造 +", desc: "真正的成功不是以单一财政年度来衡量，而是以持久力来衡量。传承是我们顾问服务的终极目标。无论是审计跨国企业还是构建私人实体持股架构，我们的焦点都是可持续性。" },
-            { icon: "Cog", title: "技术性 — 国际标准 +", desc: "我们在技术性的顶峰运作。我们的专业超越法定框架，达至全球报告标准的精通。我们具备驾驭跨境并购尽职调查、IPO筹备及复杂监管报告精细需求的颗粒度技术知识。" },
-            { icon: "ShieldAlt", title: "信任 — 全球化的货币 +", desc: "当业务跨越大洋进行时，信任是基本货币。我们担任财务真相的独立保证人。对于国际投资者、外国债权人及监管机构而言，我们的保证印章消除了远程营运的不透明性。" },
-            { icon: "SyncAlt", title: "变革 — 超越边界的演进 +", desc: "我们是变革的建筑师。我们引导本土企业蜕变为全球竞争者。我们的非审计顾问服务旨在现代化财务基础设施、数码化远程管理报告系统，并优化营运效率。" },
+            { icon: "Crown", title: "领导力——前瞻全球指引", desc: "在波动的国际市场中，您需要的不只是服务提供商，而是从前线带领的伙伴。我们代表专业实践中的领导力。我们不只对监管变化作出反应，更预见它们。" },
+            { icon: "Link", title: "连结——环球枢纽", desc: "我们代表连结——您现有营运与全球潜力之间的重要纽带。我们充当不同监管环境与会计框架之间的界面，创造资本流动与扩展的无缝管道。" },
+            { icon: "Infinity", title: "传承 — 持久价值创造", desc: "真正的成功不是以单一财政年度来衡量，而是以持久力来衡量。传承是我们顾问服务的终极目标。无论是审计跨国企业还是构建私人实体持股架构，我们的焦点都是可持续性。" },
+            { icon: "Cog", title: "专业技术——国际标准", desc: "我们在技术性的顶峰运作。我们的专业超越法定框架，达至全球报告标准的精通。我们具备驾驭跨境并购尽职调查、IPO筹备及复杂监管报告精细需求的颗粒度技术知识。" },
+            { icon: "ShieldAlt", title: "信任 — 全球化的货币", desc: "当业务跨越大洋进行时，信任是基本货币。我们担任财务真相的独立保证人。对于国际投资者、外国债权人及监管机构而言，我们的保证印章消除了远程营运的不透明性。" },
+            { icon: "SyncAlt", title: "变革——跨越疆界进化", desc: "我们是变革的建筑师。我们引导本土企业蜕变为全球竞争者。我们的非审计顾问服务旨在现代化财务基础设施、数码化远程管理报告系统，并优化营运效率。" },
           ],
         },
       },
@@ -1370,7 +1433,7 @@ export const defaultCMSData: CMSData = {
             `合规性审查`
             ],
             linkText: `了解更多 →`,
-            href: `audit-sc.html`,
+            href: "/services/audit/",
           },{
             slug: `tax`,
             title: `税务咨询`,
@@ -1385,7 +1448,7 @@ export const defaultCMSData: CMSData = {
             `税务争议处理`
             ],
             linkText: `了解更多 →`,
-            href: `tax-sc.html`,
+            href: "/services/tax/",
           },{
             slug: `risk`,
             title: `风险与监管`,
@@ -1400,7 +1463,7 @@ export const defaultCMSData: CMSData = {
             `企业管治优化`
             ],
             linkText: `了解更多 →`,
-            href: `risk-sc.html`,
+            href: "/services/risk/",
           },{
             slug: `forensic`,
             title: `法证服务`,
@@ -1415,7 +1478,7 @@ export const defaultCMSData: CMSData = {
             `专家证人服务`
             ],
             linkText: `了解更多 →`,
-            href: `forensic-sc.html`,
+            href: "/services/forensic/",
           },{
             slug: `consulting`,
             title: `企业咨询`,
@@ -1430,7 +1493,7 @@ export const defaultCMSData: CMSData = {
             `人力资源咨询`
             ],
             linkText: `了解更多 →`,
-            href: `consulting-sc.html`,
+            href: "/services/consulting/",
           },{
             slug: `deals`,
             title: `并购交易`,
@@ -1445,7 +1508,7 @@ export const defaultCMSData: CMSData = {
             `整合后支援`
             ],
             linkText: `了解更多 →`,
-            href: `deals-sc.html`,
+            href: "/services/deals/",
           }
       ],
       whyChoose: {
@@ -1495,8 +1558,14 @@ export const defaultCMSData: CMSData = {
             title: "法定及非法定审计",
             subtitle: "Statutory & Non-Statutory Audit",
             icon: "fas fa-file-invoice",
-            body: "Statutory & Non-Statutory Audit",
+            body: "我们按照香港审计准则及国际审计准则进行严格的财务报表审计。我们的方法以风险为导向，将精力集中在您行业特定的关键业务驱动因素和高风险领域，确保流程高效且对营运干扰最小。",
             features: [
+              "年度法定财务报表审计",
+              "中期财务报表审阅",
+              "特殊目的审计报告",
+              "合规审计与商定程序",
+              "非牟利组织审计",
+              "政府资助项目审计",
             ],
           },
           {
@@ -1552,9 +1621,9 @@ export const defaultCMSData: CMSData = {
         ],
         relatedServicesTitle: "相关服务",
         relatedItems: [
-          { title: "风险与监管", desc: "协助企业建立稳健的内部控制体系，满足监管合规要求，提升风险管理能力。", href: "risk-sc.html", linkText: "了解更多 →" },
-          { title: "并购交易", desc: "提供财务尽职调查、估值服务及交易支援，助您做出明智的投资决策。", href: "deals-sc.html", linkText: "了解更多 →" },
-          { title: "企业咨询", desc: "协助财务职能转型，优化业务流程，提升营运效率与财务透明度。", href: "consulting-sc.html", linkText: "了解更多 →" },
+          { title: "风险与监管", desc: "协助企业建立稳健的内部控制体系，满足监管合规要求，提升风险管理能力。", href: "/services/risk/", linkText: "了解更多 →" },
+          { title: "并购交易", desc: "提供财务尽职调查、估值服务及交易支援，助您做出明智的投资决策。", href: "/services/deals/", linkText: "了解更多 →" },
+          { title: "企业咨询", desc: "协助财务职能转型，优化业务流程，提升营运效率与财务透明度。", href: "/services/consulting/", linkText: "了解更多 →" },
         ],
         ctaTitle: "需要专业审计服务？",
         ctaDesc: "让我们的专家团队为您提供高质量的审计解决方案",
@@ -1667,9 +1736,9 @@ export const defaultCMSData: CMSData = {
         ],
         relatedServicesTitle: "相关服务",
         relatedItems: [
-          { title: "并购交易", desc: "在并购交易中提供税务尽职调查、交易架构设计及购买价格分摊等专业服务。", href: "deals-sc.html", linkText: "了解更多 →" },
-          { title: "审计与鉴证", desc: "专业的审计服务确保您的财务报表准确反映税务立场，支持税务规划的有效执行。", href: "audit-sc.html", linkText: "了解更多 →" },
-          { title: "企业咨询", desc: "协助企业优化业务流程，建立支持税务合规的财务管理系统和内部控制。", href: "consulting-sc.html", linkText: "了解更多 →" },
+          { title: "并购交易", desc: "在并购交易中提供税务尽职调查、交易架构设计及购买价格分摊等专业服务。", href: "/services/deals/", linkText: "了解更多 →" },
+          { title: "审计与鉴证", desc: "专业的审计服务确保您的财务报表准确反映税务立场，支持税务规划的有效执行。", href: "/services/audit/", linkText: "了解更多 →" },
+          { title: "企业咨询", desc: "协助企业优化业务流程，建立支持税务合规的财务管理系统和内部控制。", href: "/services/consulting/", linkText: "了解更多 →" },
         ],
         ctaTitle: "需要税务咨询服务？",
         ctaDesc: "让我们的税务专家为您优化税务结构、合法节税",
@@ -1815,9 +1884,9 @@ export const defaultCMSData: CMSData = {
         ],
         relatedServicesTitle: "相关服务",
         relatedItems: [
-          { title: "法证服务", desc: "当合规问题升级为调查时，我们的法证团队提供专业的调查支援与证据收集服务。", href: "forensic-sc.html", linkText: "了解更多 →" },
-          { title: "审计与鉴证", desc: "我们的审计服务与风险评估紧密结合，为您提供内部控制的独立评估。", href: "audit-sc.html", linkText: "了解更多 →" },
-          { title: "企业咨询", desc: "协助您优化业务流程，建立支持合规目标的高效管理系统。", href: "consulting-sc.html", linkText: "了解更多 →" },
+          { title: "法证服务", desc: "当合规问题升级为调查时，我们的法证团队提供专业的调查支援与证据收集服务。", href: "/services/forensic/", linkText: "了解更多 →" },
+          { title: "审计与鉴证", desc: "我们的审计服务与风险评估紧密结合，为您提供内部控制的独立评估。", href: "/services/audit/", linkText: "了解更多 →" },
+          { title: "企业咨询", desc: "协助您优化业务流程，建立支持合规目标的高效管理系统。", href: "/services/consulting/", linkText: "了解更多 →" },
         ],
         ctaTitle: "需要风险与监管咨询？",
         ctaDesc: "让我们的团队助您建立韧性、确保合规",
@@ -1899,9 +1968,9 @@ export const defaultCMSData: CMSData = {
         ],
         relatedServicesTitle: "相关服务",
         relatedItems: [
-          { title: "风险与监管", desc: "在调查完成后，我们可协助您加强内部控制，防止类似事件再次发生。", href: "risk-sc.html", linkText: "了解更多 →" },
-          { title: "并购交易", desc: "在并购前进行诚信尽职调查，识别目标公司的舞弊风险和合规问题。", href: "deals-sc.html", linkText: "了解更多 →" },
-          { title: "企业咨询", desc: "协助建立预防性控制措施和舞弊风险管理框架，从源头减少风险。", href: "consulting-sc.html", linkText: "了解更多 →" },
+          { title: "风险与监管", desc: "在调查完成后，我们可协助您加强内部控制，防止类似事件再次发生。", href: "/services/risk/", linkText: "了解更多 →" },
+          { title: "并购交易", desc: "在并购前进行诚信尽职调查，识别目标公司的舞弊风险和合规问题。", href: "/services/deals/", linkText: "了解更多 →" },
+          { title: "企业咨询", desc: "协助建立预防性控制措施和舞弊风险管理框架，从源头减少风险。", href: "/services/consulting/", linkText: "了解更多 →" },
         ],
         ctaTitle: "需要法证服务？",
         ctaDesc: "让我们的法证团队为您确立事实、守护诚信",
@@ -1977,14 +2046,51 @@ export const defaultCMSData: CMSData = {
         ],
         relatedServicesTitle: "相关服务",
         relatedItems: [
-          { title: "审计与鉴证", desc: "财务转型后的财务报表审计，确保新流程和系统产生可靠的财务数据。", href: "audit-sc.html", linkText: "了解更多 →" },
-          { title: "风险与监管", desc: "为转型后的财务职能建立适当的内部控制和风险管理框架。", href: "risk-sc.html", linkText: "了解更多 →" },
-          { title: "税务咨询", desc: "确保财务系统能够支持税务合规要求，优化税务数据管理流程。", href: "tax-sc.html", linkText: "了解更多 →" },
+          { title: "审计与鉴证", desc: "财务转型后的财务报表审计，确保新流程和系统产生可靠的财务数据。", href: "/services/audit/", linkText: "了解更多 →" },
+          { title: "风险与监管", desc: "为转型后的财务职能建立适当的内部控制和风险管理框架。", href: "/services/risk/", linkText: "了解更多 →" },
+          { title: "税务咨询", desc: "确保财务系统能够支持税务合规要求，优化税务数据管理流程。", href: "/services/tax/", linkText: "了解更多 →" },
         ],
         ctaTitle: "需要企业咨询服务？",
         ctaDesc: "让我们的顾问团队驱动您的转型与绩效",
         ctaBtn: "免费咨询",
         ctaBtn2: "",
+        extraSections: [
+          {
+            title: "财务职能成熟度模型",
+            subtitle: "评估并提升您的财务职能水平",
+            layout: "steps",
+            steps: [
+              { number: "1", title: "记录者", desc: "基础会计记录及交易处理，确保财务数据准确入帐" },
+              { number: "2", title: "报告者", desc: "及时编制财务报表及管理报告，提供标准化资讯" },
+              { number: "3", title: "分析者", desc: "深入分析财务数据，识别趋势、异常及改善机会" },
+              { number: "4", title: "策略伙伴", desc: "参与业务决策，将财务洞察转化为策略建议" },
+            ],
+          },
+          {
+            title: "外判 CFO 服务范围",
+            subtitle: "灵活的财务领导力，按需配置",
+            layout: "list",
+            items: [
+              { title: "财务策略与规划", desc: "制定财务愿景、目标及实施路线图" },
+              { title: "融资与投资者关系", desc: "协助融资准备、投资者简报及尽职调查支援" },
+              { title: "现金流管理与预测", desc: "建立现金流预测模型，优化营运资金配置" },
+              { title: "管理报告与 KPI 仪表板", desc: "设计关键绩效指标，建立即时管理报告体系" },
+              { title: "会计团队指导与培训", desc: "指导内部会计团队，提升整体财务能力" },
+              { title: "合规与风险管理", desc: "确保财务运营符合法规要求，建立风险监控机制" },
+            ],
+          },
+          {
+            title: "适用对象",
+            subtitle: "不同发展阶段的企业均可受益",
+            layout: "cards",
+            items: [
+              { title: "初创企业", desc: "需要专业财务指导但尚未有足够预算聘请全职 CFO", icon: "Rocket" },
+              { title: "成长期企业", desc: "业务快速扩张，财务管理面临挑战，需要临时财务领导力", icon: "TrendingUp" },
+              { title: "跨国子公司", desc: "需要符合总部要求的财务报告及本地合规支援", icon: "Globe" },
+              { title: "私募投资组合", desc: "需要专业财务管理以提升投资组合价值及准备退出", icon: "BarChart3" },
+            ],
+          },
+        ],
       },
       deals: {
         tagline: "「在交易的每个阶段释放价值。」",
@@ -2040,12 +2146,12 @@ export const defaultCMSData: CMSData = {
           },
         ],
         processTitle: "并购交易服务流程",
-        processSubtitle: "系统化的审计方法，确保质量与效率",
+        processSubtitle: "系统化的交易方法，确保价值实现",
         processSteps: [
-          { number: "1", title: "规划与风险评估", desc: "深入了解您的业务、行业环境及内部控制，识别重大错报风险领域，制定针对性的审计策略。" },
-          { number: "2", title: "内部控制测试", desc: "评估关键业务流程的内部控制设计与运作有效性，确定实质性程序的性质、时间和范围。" },
-          { number: "3", title: "实质性审计程序", desc: "执行分析性程序和细节测试，获取充分、适当的审计证据，以支持审计意见。" },
-          { number: "4", title: "审计总结与报告", desc: "汇总审计发现，与管理层讨论重要事项，出具审计报告及管理建议书。" },
+          { number: "1", title: "规划与范围界定", desc: "了解交易目标、界定尽职调查及估值范围；商定交付成果及时间表。" },
+          { number: "2", title: "尽职调查与分析", desc: "执行财务、税务及商业尽职调查；分析盈利质量及营运资金趋势。" },
+          { number: "3", title: "估值与报告", desc: "编制估值模型及报告；记录发现及建议，支持定价与谈判。" },
+          { number: "4", title: "交割与整合", desc: "支持交割机制、购买价格分摊及合并后整合规划，以实现交易价值。" },
         ],
         scenariosTitle: "",
         scenarios: [
@@ -2063,9 +2169,9 @@ export const defaultCMSData: CMSData = {
         ],
         relatedServicesTitle: "相关服务",
         relatedItems: [
-          { title: "风险与监管", desc: "协助企业建立稳健的内部控制体系，满足监管合规要求，提升风险管理能力。", href: "risk-sc.html", linkText: "了解更多 →" },
-          { title: "并购交易", desc: "提供财务尽职调查、估值服务及交易支援，助您做出明智的投资决策。", href: "deals-sc.html", linkText: "了解更多 →" },
-          { title: "企业咨询", desc: "协助财务职能转型，优化业务流程，提升营运效率与财务透明度。", href: "consulting-sc.html", linkText: "了解更多 →" },
+          { title: "风险与监管", desc: "协助企业建立稳健的内部控制体系，满足监管合规要求，提升风险管理能力。", href: "/services/risk/", linkText: "了解更多 →" },
+          { title: "并购交易", desc: "提供财务尽职调查、估值服务及交易支援，助您做出明智的投资决策。", href: "/services/deals/", linkText: "了解更多 →" },
+          { title: "企业咨询", desc: "协助财务职能转型，优化业务流程，提升营运效率与财务透明度。", href: "/services/consulting/", linkText: "了解更多 →" },
         ],
         ctaTitle: "需要并购交易支援？",
         ctaDesc: "在交易每个阶段释放价值，让我们的团队助您完成交易",
@@ -2077,12 +2183,12 @@ export const defaultCMSData: CMSData = {
       pageTitle: "联络我们",
       cards: [
         { icon: "MapPin", title: "地址", lines: ["香港金钟力宝中心2座5楼503室", "Unit 503, Tower 2, Lippo Centre, Admiralty, Hong Kong"] },
-        { icon: "Phone", title: "电话", lines: ["+852 1234 5678", "星期一至五 09:00 - 18:00"] },
-        { icon: "Mail", title: "电邮", lines: ["info@ltcpa.com", "欢迎查询及预约会面"] },
+        { icon: "Phone", title: "电话", lines: ["3987 1008", "星期一至五 09:00 - 18:00"] },
+        { icon: "Mail", title: "电邮", lines: ["info@ltgroupcpa.com", "欢迎查询及预约会面"] },
       ],
       form: {
-        formTitle: "免费咨询",
-        formDesc: "请填写以下表格，我们的专业顾问将尽快与您联系，为您提供最适合的解决方案。",
+        formTitle: "请填写以下表格，我们的专业顾问将尽快与您联系，为您提供最适合的解决方案。",
+        formDesc: "",
         name: "姓名 *",
         company: "公司名称 *",
         phone: "电话",
@@ -2133,7 +2239,7 @@ export const defaultCMSData: CMSData = {
       heroSubtitle: `"我们走过的路"`,
       heroQuote: "致力以专业精准锚定全球雄心，赋能企业以清晰、合规与自信驾驭国际金融格局的复杂性。",
       items: [
-        { icon: "Globe", title: "传递无界保证与诚信", desc: "我们致力打破阻碍国际信任的屏障。透过坚持最严谨的审计质素标准，我们提供以通用语言表述的财务报表。我们的使命是确保投资者与持份者都能同样信赖我们的报告。" },
+        { icon: "Globe", title: "无疆界鉴证与诚信", desc: "我们致力打破阻碍国际信任的屏障。透过坚持最严谨的审计质素标准，我们提供以通用语言表述的财务报表。我们的使命是确保投资者与持份者都能同样信赖我们的报告。" },
         { icon: "TrendingUp", title: "构建可持续增长策略", desc: "我们不仅记录历史，更协助塑造未来。我们的使命超越合规，延伸至高价值顾问。我们立志成为企业从本土成功迈向全球杰出的策略建筑师。" },
         { icon: "GraduationCap", title: "培育技术卓越文化", desc: "在财务法规瞬息万变的世界中，知识是我们最宝贵的资产。我们致力营造不懈专业发展的环境，使命是走在监管曲线之前。" },
       ],
@@ -2150,8 +2256,8 @@ export const defaultCMSData: CMSData = {
       heroSubtitle: `"我们建造的未来"`,
       heroQuote: "成为无界商业卓越的 definitive 桥梁——被全球公认为寻求进入国际资本市场并保障财务传承的活力企业的首选精品伙伴。",
       items: [
-        { icon: "Building", title: "在全球尺度重新定义「精品」体验", desc: "我们展望一个「精品」代表敏捷与个人化，而非有限范畴的未来。我们旨在打破传统二元对立，成为大型国际企业的「刚刚好」解决方案。" },
-        { icon: "Scale", title: "树立跨境流畅度的标准", desc: "我们立志成为「司法管辖流畅度」的行业基准。我们的愿景是让不同国家会计准则与税法之间的界线变得无缝。" },
+        { icon: "Building", title: "在全球规模重新定义「精品」体验", desc: "我们展望一个「精品」代表敏捷与个人化，而非有限范畴的未来。我们旨在打破传统二元对立，成为大型国际企业的「刚刚好」解决方案。" },
+        { icon: "Scale", title: "树立跨境流畅的标准", desc: "我们立志成为「司法管辖流畅度」的行业基准。我们的愿景是让不同国家会计准则与税法之间的界线变得无缝。" },
         { icon: "Rocket", title: "赋能下一代全球企业", desc: "我们期待成为协助下一波全球巨头成功的关键力量。我们将事务所视为国际成功故事的孵化器，引导初创企业与家族企业成熟为公开上市的全球实体。" },
       ],
       cta: {
@@ -2225,15 +2331,15 @@ export const defaultCMSData: CMSData = {
       contactTitle: "Contact Us",
       rights: "© 2026 LT CPA Limited All Rights Reserved.",
       services: [
-        { label: "Audit & Assurance", url: "/audit/" },
-        { label: "Tax Advisory", url: "/tax/" },
-        { label: "Risk & Regulatory", url: "/risk/" },
-        { label: "Forensic Services", url: "/forensic/" },
-        { label: "Consulting", url: "/consulting/" },
-        { label: "Deals & M&A", url: "/deals/" },
+        { label: "Audit & Assurance", url: "/services/audit/" },
+        { label: "Tax Advisory", url: "/services/tax/" },
+        { label: "Risk & Regulatory", url: "/services/risk/" },
+        { label: "Forensic Services", url: "/services/forensic/" },
+        { label: "Consulting", url: "/services/consulting/" },
+        { label: "Deals & M&A", url: "/services/deals/" },
       ],
       quickLinks: [
-        { label: "Home", url: "/index/" },
+        { label: "Home", url: "/" },
         { label: "About Us", url: "/about/" },
         { label: "Services", url: "/services/" },
         { label: "Contact", url: "/contact/" },
@@ -2268,7 +2374,7 @@ export const defaultCMSData: CMSData = {
             desc: "Statutory audits, internal audits and various assurance services to ensure accuracy and compliance of financial statements.",
             icon: "fas fa-search-dollar",
             linkText: "Learn More →",
-            href: "/audit/",
+            href: "/services/audit/",
           },
           {
             slug: "tax",
@@ -2276,7 +2382,7 @@ export const defaultCMSData: CMSData = {
             desc: "Professional tax planning and filing services to help you legally minimize taxes and optimize tax structures.",
             icon: "fas fa-file-invoice-dollar",
             linkText: "Learn More →",
-            href: "/tax/",
+            href: "/services/tax/",
           },
           {
             slug: "risk",
@@ -2284,7 +2390,7 @@ export const defaultCMSData: CMSData = {
             desc: "Helping businesses identify and manage risks while ensuring operations comply with regulatory requirements.",
             icon: "fas fa-shield-alt",
             linkText: "Learn More →",
-            href: "/risk/",
+            href: "/services/risk/",
           },
           {
             slug: "forensic",
@@ -2292,7 +2398,7 @@ export const defaultCMSData: CMSData = {
             desc: "Professional investigation and forensic services to assist with commercial disputes and fraud investigations.",
             icon: "fas fa-user-secret",
             linkText: "Learn More →",
-            href: "/forensic/",
+            href: "/services/forensic/",
           },
           {
             slug: "consulting",
@@ -2300,7 +2406,7 @@ export const defaultCMSData: CMSData = {
             desc: "From business strategy to operational optimization, providing comprehensive professional advisory services.",
             icon: "fas fa-lightbulb",
             linkText: "Learn More →",
-            href: "/consulting/",
+            href: "/services/consulting/",
           },
           {
             slug: "deals",
@@ -2308,7 +2414,7 @@ export const defaultCMSData: CMSData = {
             desc: "Assisting with M&A transactions, due diligence and business valuations with professional expertise.",
             icon: "fas fa-handshake",
             linkText: "Learn More →",
-            href: "/deals/",
+            href: "/services/deals/",
           },
         ],
       },
@@ -2341,16 +2447,19 @@ export const defaultCMSData: CMSData = {
         title: "Your Trusted",
         titleAccent: "Financial Partner",
         subtitle: "The Pillars of LT: Grounding Ambition in Absolute Trust",
-        paragraphs: [],
-        quote: "True ambition isn't a sprint; it's a marathon. We ensure your business has the stamina to go the distance by reinforcing your operations with rock-solid assurance and strategic foresight, turning rapid expansion into sustainable, long-term success.",
+        paragraphs: [
+          "LT CPA Limited was established in 2005 and is one of Hong Kong's leading professional accounting firms. We are dedicated to providing comprehensive accounting, audit, tax and business advisory services to enterprises across all industries.",
+          "With extensive professional experience and deep industry knowledge, our team is able to deeply understand each client's unique needs, provide tailored solutions, help clients achieve their financial goals, and drive sustainable business growth.",
+        ],
+        quote: "Our success is built on our clients' success. Through professional, honest and innovative service philosophy, we build long-term partnerships with our clients and grow together.",
         image: "/images/about-team.jpg",
         badge: { value: "20+", label: "Years of Excellence" },
       },
       missionVision: {
         items: [
-          { icon: "Bullseye", title: "Our Purpose", desc: "To anchor global ambition with professional precision, empowering enterprises to navigate the complexities of the international financial landscape with clarity, compliance, and confidence.", linkText: "MORE", href: "/en/purpose/" },
-          { icon: "Eye", title: "Our Value", desc: "To be the definitive bridge for borderless business excellence—recognized globally as the premier boutique partner for dynamic enterprises seeking to access international capital markets and secure their financial legacy.", linkText: "MORE", href: "/en/value/" },
-          { icon: "Heart", title: "Our Commitment", desc: "To lead with proactive guidance and technical mastery to bridge your global ambitions, building a legacy of trust and transformation for your business.", linkText: "MORE", href: "/en/commitment/" },
+          { icon: "Bullseye", title: "Our Purpose", desc: "Dedicated to providing clients with the highest quality professional services, helping businesses achieve financial goals, create sustainable commercial value, and become the most trusted financial advisor.", linkText: "MORE", href: "/en/purpose/" },
+          { icon: "Eye", title: "Our Vision", desc: "To become the most influential professional accounting firm in Hong Kong and the Greater Bay Area, leading industry development with excellent service quality and innovative solutions.", linkText: "MORE", href: "/en/value/" },
+          { icon: "Heart", title: "Our Commitment", desc: "Upholding professional integrity, putting client interests first, providing honest, transparent and efficient services, and building long-term trusting partnerships with clients.", linkText: "MORE", href: "/en/commitment/" },
         ],
       },
       pillars: {
@@ -2359,9 +2468,9 @@ export const defaultCMSData: CMSData = {
           subtitle: `"The Path We Walk"`,
           quote: "To anchor global ambition with professional precision, empowering enterprises to navigate the complexities of the international financial landscape with clarity, compliance, and confidence.",
           items: [
-            { icon: "Globe", title: "Delivering Borderless Assurance & Integrity +", desc: "We are dedicated to dismantling the barriers that hinder international trust. By upholding the most rigorous standards of audit quality—we provide financial statements that speak a universal language. Our mission is to ensure that an investor or a stakeholder can rely on our reports with equal confidence." },
-            { icon: "TrendingUp", title: "Architecting Sustainable Growth Strategies+", desc: "We do not merely record history; we help shape the future. Our mission extends beyond compliance into high-value advisory. We aim to be the strategic architects for companies transitioning from local success to global prominence." },
-            { icon: "GraduationCap", title: "Cultivating a Culture of Technical Excellence+", desc: "In a world of rapidly evolving financial regulations, knowledge is our most valuable asset. We are committed to fostering an environment of relentless professional development. Our mission is to stay ahead of the regulatory curve." },
+            { icon: "Globe", title: "Borderless Assurance & Integrity", desc: "We are dedicated to dismantling the barriers that hinder international trust. By upholding the most rigorous standards of audit quality—we provide financial statements that speak a universal language. Our mission is to ensure that an investor or a stakeholder can rely on our reports with equal confidence." },
+            { icon: "TrendingUp", title: "Architecting Sustainable Growth Strategies", desc: "We do not merely record history; we help shape the future. Our mission extends beyond compliance into high-value advisory. We aim to be the strategic architects for companies transitioning from local success to global prominence." },
+            { icon: "GraduationCap", title: "Cultivating a Culture of Technical Excellence", desc: "In a world of rapidly evolving financial regulations, knowledge is our most valuable asset. We are committed to fostering an environment of relentless professional development. Our mission is to stay ahead of the regulatory curve." },
           ],
         },
         value: {
@@ -2369,9 +2478,9 @@ export const defaultCMSData: CMSData = {
           subtitle: `"The Future We Build"`,
           quote: "To be the definitive bridge for borderless business excellence—recognized globally as the premier boutique partner for dynamic enterprises seeking to access international capital markets and secure their financial legacy.",
           items: [
-            { icon: "Building", title: `Redefining the "Boutique" Experience on a Global Scale+`, desc: `We envision a future where "boutique" denotes agility and personalization, not limited scope. We aim to disrupt the traditional dichotomy. We seek to be the "Goldilocks" solution for sizable international enterprises.` },
-            { icon: "Scale", title: "Setting the Standard for Cross-Border Fluency+", desc: 'We aim to become the industry benchmark for "jurisdictional fluency." Our vision is to be where the lines between different national accounting standards and tax codes are seamless.' },
-            { icon: "Rocket", title: "Empowering the Next Generation of Global Business+", desc: "We look toward a future where we are instrumental in the success of the next wave of global giants. We envision our firm as an incubator for international success stories, guiding startups and family enterprises as they mature into publicly traded global entities." },
+            { icon: "Building", title: `Redefining the "Boutique" Experience at Global Scale`, desc: `We envision a future where "boutique" denotes agility and personalization, not limited scope. We aim to disrupt the traditional dichotomy. We seek to be the "Goldilocks" solution for sizable international enterprises.` },
+            { icon: "Scale", title: "Setting the Standard for Cross-Border Fluidity", desc: 'We aim to become the industry benchmark for "jurisdictional fluency." Our vision is to be where the lines between different national accounting standards and tax codes are seamless.' },
+            { icon: "Rocket", title: "Empowering the Next Generation of Global Business", desc: "We look toward a future where we are instrumental in the success of the next wave of global giants. We envision our firm as an incubator for international success stories, guiding startups and family enterprises as they mature into publicly traded global entities." },
           ],
         },
         commitment: {
@@ -2379,12 +2488,12 @@ export const defaultCMSData: CMSData = {
           subtitle: `"The Promise We Keep"`,
           quote: "To lead with proactive guidance and technical mastery to bridge your global ambitions, building a legacy of trust and transformation for your business.",
           items: [
-            { icon: "Crown", title: "Leadership - Proactive Global Guidance +", desc: "In a volatile international market, you need more than a service provider; you need a partner who leads from the front. We represent Leadership in professional practice. We do not simply react to regulatory changes; we anticipate them." },
-            { icon: "Link", title: "Linkage - The Universal Connector+", desc: "We stand for Linkage—the vital connection between your present operations and your global potential. We act as the interface between disparate regulatory environments and accounting frameworks, creating a seamless conduit for capital flow and expansion." },
-            { icon: "Infinity", title: "Legacy - Enduring Value Creation +", desc: "True success is not measured by a single fiscal year, but by the ability to endure. Legacy is the ultimate aim of our advisory services. Whether we are auditing a multinational corporation or structuring the holdings of a private entity, our focus is on sustainability." },
-            { icon: "Cog", title: "Technicality - The International Standard +", desc: "We operate at the zenith of Technicality. Our expertise extends beyond statutory boxes to a mastery of global reporting standards. We possess the granular technical knowledge required to navigate the sophisticated demands of cross-border M&A due diligence, IPO preparation, and complex regulatory reporting." },
-            { icon: "ShieldAlt", title: "Trust - The Currency of Globalization +", desc: "When business is conducted across oceans, Trust is the essential currency. We act as the independent guarantor of financial truth. For international investors, foreign creditors, and regulatory bodies, our seal of assurance eliminates the opacity of remote operations." },
-            { icon: "SyncAlt", title: "Transformation - Evolving Beyond Borders +", desc: "We are architects of Transformation. We guide localized enterprises through the metamorphosis into global contenders. Our non-audit advisory services are designed to modernize financial infrastructures, digitize reporting systems for remote management, and optimize operational efficiency." },
+            { icon: "Crown", title: "Leadership—Proactive Global Guidance", desc: "In a volatile international market, you need more than a service provider; you need a partner who leads from the front. We represent Leadership in professional practice. We do not simply react to regulatory changes; we anticipate them." },
+            { icon: "Link", title: "Linkage—The Universal Hub", desc: "We stand for Linkage—the vital connection between your present operations and your global potential. We act as the interface between disparate regulatory environments and accounting frameworks, creating a seamless conduit for capital flow and expansion." },
+            { icon: "Infinity", title: "Legacy - Enduring Value Creation", desc: "True success is not measured by a single fiscal year, but by the ability to endure. Legacy is the ultimate aim of our advisory services. Whether we are auditing a multinational corporation or structuring the holdings of a private entity, our focus is on sustainability." },
+            { icon: "Cog", title: "Technical Mastery—The International Standard", desc: "We operate at the zenith of Technicality. Our expertise extends beyond statutory boxes to a mastery of global reporting standards. We possess the granular technical knowledge required to navigate the sophisticated demands of cross-border M&A due diligence, IPO preparation, and complex regulatory reporting." },
+            { icon: "ShieldAlt", title: "Trust - The Currency of Globalization", desc: "When business is conducted across oceans, Trust is the essential currency. We act as the independent guarantor of financial truth. For international investors, foreign creditors, and regulatory bodies, our seal of assurance eliminates the opacity of remote operations." },
+            { icon: "SyncAlt", title: "Transformation—Evolving Beyond Borders", desc: "We are architects of Transformation. We guide localized enterprises through the metamorphosis into global contenders. Our non-audit advisory services are designed to modernize financial infrastructures, digitize reporting systems for remote management, and optimize operational efficiency." },
           ],
         },
       },
@@ -2445,7 +2554,7 @@ export const defaultCMSData: CMSData = {
             `Compliance review`
             ],
             linkText: `Learn More →`,
-            href: `audit-en.html`,
+            href: "/services/audit/",
           },{
             slug: `tax`,
             title: `Tax Advisory`,
@@ -2460,7 +2569,7 @@ export const defaultCMSData: CMSData = {
             `Tax dispute resolution`
             ],
             linkText: `Learn More →`,
-            href: `tax-en.html`,
+            href: "/services/tax/",
           },{
             slug: `risk`,
             title: `Risk & Regulatory`,
@@ -2475,7 +2584,7 @@ export const defaultCMSData: CMSData = {
             `Corporate governance optimization`
             ],
             linkText: `Learn More →`,
-            href: `risk-en.html`,
+            href: "/services/risk/",
           },{
             slug: `forensic`,
             title: `Forensic Services`,
@@ -2490,7 +2599,7 @@ export const defaultCMSData: CMSData = {
             `Expert witness services`
             ],
             linkText: `Learn More →`,
-            href: `forensic-en.html`,
+            href: "/services/forensic/",
           },{
             slug: `consulting`,
             title: `Consulting`,
@@ -2505,7 +2614,7 @@ export const defaultCMSData: CMSData = {
             `Human resources consulting`
             ],
             linkText: `Learn More →`,
-            href: `consulting-en.html`,
+            href: "/services/consulting/",
           },{
             slug: `deals`,
             title: `Deals & M&A`,
@@ -2520,7 +2629,7 @@ export const defaultCMSData: CMSData = {
             `Post-integration support`
             ],
             linkText: `Learn More →`,
-            href: `deals-en.html`,
+            href: "/services/deals/",
           }
       ],
       whyChoose: {
@@ -2633,9 +2742,9 @@ export const defaultCMSData: CMSData = {
         ],
         relatedServicesTitle: "Related Services",
         relatedItems: [
-          { title: "Risk & Regulatory", desc: "Help build robust internal control frameworks and meet regulatory compliance requirements.", href: "risk-en.html", linkText: "Learn more →" },
-          { title: "Deals & M&A", desc: "Financial due diligence, valuation and transaction support for informed investment decisions.", href: "deals-en.html", linkText: "Learn more →" },
-          { title: "Consulting", desc: "Finance function transformation, process optimisation and improved operational efficiency.", href: "consulting-en.html", linkText: "Learn more →" },
+          { title: "Risk & Regulatory", desc: "Help build robust internal control frameworks and meet regulatory compliance requirements.", href: "/services/risk/", linkText: "Learn more →" },
+          { title: "Deals & M&A", desc: "Financial due diligence, valuation and transaction support for informed investment decisions.", href: "/services/deals/", linkText: "Learn more →" },
+          { title: "Consulting", desc: "Finance function transformation, process optimisation and improved operational efficiency.", href: "/services/consulting/", linkText: "Learn more →" },
         ],
         ctaTitle: "Need Professional Audit Services?",
         ctaDesc: "Let our expert team deliver high-quality audit solutions for you",
@@ -2748,9 +2857,9 @@ export const defaultCMSData: CMSData = {
         ],
         relatedServicesTitle: "Related Services",
         relatedItems: [
-          { title: "Deals & M&A", desc: "Tax due diligence, transaction structure design and purchase price allocation for M&A.", href: "deals-en.html", linkText: "Learn more →" },
-          { title: "Audit & Assurance", desc: "Professional audit so your financial statements accurately reflect your tax position and support effective tax planning.", href: "audit-en.html", linkText: "Learn more →" },
-          { title: "Consulting", desc: "Optimise processes and build financial management and internal control systems that support tax compliance.", href: "consulting-en.html", linkText: "Learn more →" },
+          { title: "Deals & M&A", desc: "Tax due diligence, transaction structure design and purchase price allocation for M&A.", href: "/services/deals/", linkText: "Learn more →" },
+          { title: "Audit & Assurance", desc: "Professional audit so your financial statements accurately reflect your tax position and support effective tax planning.", href: "/services/audit/", linkText: "Learn more →" },
+          { title: "Consulting", desc: "Optimise processes and build financial management and internal control systems that support tax compliance.", href: "/services/consulting/", linkText: "Learn more →" },
         ],
         ctaTitle: "Need Tax Advisory?",
         ctaDesc: "Let our tax experts optimise your tax structure and ensure compliance",
@@ -2896,9 +3005,9 @@ export const defaultCMSData: CMSData = {
         ],
         relatedServicesTitle: "Related Services",
         relatedItems: [
-          { title: "Forensic Services", desc: "When compliance issues escalate to investigation, our forensic team provides investigation support and evidence collection.", href: "forensic-en.html", linkText: "Learn more →" },
-          { title: "Audit & Assurance", desc: "Our audit work is aligned with risk assessment and provides independent assurance over internal controls.", href: "audit-en.html", linkText: "Learn more →" },
-          { title: "Consulting", desc: "Optimise processes and build management systems that support your compliance objectives.", href: "consulting-en.html", linkText: "Learn more →" },
+          { title: "Forensic Services", desc: "When compliance issues escalate to investigation, our forensic team provides investigation support and evidence collection.", href: "/services/forensic/", linkText: "Learn more →" },
+          { title: "Audit & Assurance", desc: "Our audit work is aligned with risk assessment and provides independent assurance over internal controls.", href: "/services/audit/", linkText: "Learn more →" },
+          { title: "Consulting", desc: "Optimise processes and build management systems that support your compliance objectives.", href: "/services/consulting/", linkText: "Learn more →" },
         ],
         ctaTitle: "Need Risk & Regulatory Advisory?",
         ctaDesc: "Let our team help you build resilience and ensure compliance",
@@ -2980,9 +3089,9 @@ export const defaultCMSData: CMSData = {
         ],
         relatedServicesTitle: "Related Services",
         relatedItems: [
-          { title: "Risk & Regulatory", desc: "After an investigation we can help you strengthen internal controls to prevent similar issues.", href: "risk-en.html", linkText: "Learn more →" },
-          { title: "Deals & M&A", desc: "Integrity due diligence before M&A to identify fraud and compliance risks in the target.", href: "deals-en.html", linkText: "Learn more →" },
-          { title: "Consulting", desc: "Help build preventive controls and fraud risk management frameworks to reduce risk at source.", href: "consulting-en.html", linkText: "Learn more →" },
+          { title: "Risk & Regulatory", desc: "After an investigation we can help you strengthen internal controls to prevent similar issues.", href: "/services/risk/", linkText: "Learn more →" },
+          { title: "Deals & M&A", desc: "Integrity due diligence before M&A to identify fraud and compliance risks in the target.", href: "/services/deals/", linkText: "Learn more →" },
+          { title: "Consulting", desc: "Help build preventive controls and fraud risk management frameworks to reduce risk at source.", href: "/services/consulting/", linkText: "Learn more →" },
         ],
         ctaTitle: "Need Forensic Services?",
         ctaDesc: "Let our forensic team establish the facts and protect integrity for you",
@@ -3058,14 +3167,51 @@ export const defaultCMSData: CMSData = {
         ],
         relatedServicesTitle: "Related Services",
         relatedItems: [
-          { title: "Audit & Assurance", desc: "Audit of financial statements after transformation so new processes and systems produce reliable data.", href: "audit-en.html", linkText: "Learn more →" },
-          { title: "Risk & Regulatory", desc: "Build appropriate internal controls and risk management frameworks for the transformed finance function.", href: "risk-en.html", linkText: "Learn more →" },
-          { title: "Tax Advisory", desc: "Ensure systems support tax compliance and optimise tax data management.", href: "tax-en.html", linkText: "Learn more →" },
+          { title: "Audit & Assurance", desc: "Audit of financial statements after transformation so new processes and systems produce reliable data.", href: "/services/audit/", linkText: "Learn more →" },
+          { title: "Risk & Regulatory", desc: "Build appropriate internal controls and risk management frameworks for the transformed finance function.", href: "/services/risk/", linkText: "Learn more →" },
+          { title: "Tax Advisory", desc: "Ensure systems support tax compliance and optimise tax data management.", href: "/services/tax/", linkText: "Learn more →" },
         ],
         ctaTitle: "Need Consulting Services?",
         ctaDesc: "Let our advisory team drive your transformation and performance",
         ctaBtn: "Contact Us",
         ctaBtn2: "",
+        extraSections: [
+          {
+            title: "Finance Maturity Model",
+            subtitle: "Assess and elevate your finance function",
+            layout: "steps",
+            steps: [
+              { number: "1", title: "Recorder", desc: "Basic accounting and transaction processing to ensure accurate financial data entry" },
+              { number: "2", title: "Reporter", desc: "Timely preparation of financial and management reports providing standardised information" },
+              { number: "3", title: "Analyst", desc: "In-depth analysis of financial data to identify trends, anomalies and improvement opportunities" },
+              { number: "4", title: "Strategic Partner", desc: "Participate in business decisions and translate financial insights into strategic recommendations" },
+            ],
+          },
+          {
+            title: "Outsourced CFO Services",
+            subtitle: "Flexible finance leadership on demand",
+            layout: "list",
+            items: [
+              { title: "Financial Strategy & Planning", desc: "Develop financial vision, goals and implementation roadmaps" },
+              { title: "Fundraising & Investor Relations", desc: "Assist with fundraising preparation, investor presentations and due diligence support" },
+              { title: "Cash Flow Management & Forecasting", desc: "Build cash flow forecast models and optimise working capital allocation" },
+              { title: "Management Reporting & KPI Dashboards", desc: "Design key performance indicators and establish real-time management reporting" },
+              { title: "Accounting Team Coaching & Training", desc: "Mentor internal accounting teams to uplift overall finance capability" },
+              { title: "Compliance & Risk Management", desc: "Ensure financial operations meet regulatory requirements and establish risk monitoring" },
+            ],
+          },
+          {
+            title: "Who We Serve",
+            subtitle: "Businesses at every stage of growth can benefit",
+            layout: "cards",
+            items: [
+              { title: "Start-ups", desc: "Need professional financial guidance but don't yet have the budget for a full-time CFO", icon: "Rocket" },
+              { title: "Growing Businesses", desc: "Rapid expansion creating financial management challenges that need interim leadership", icon: "TrendingUp" },
+              { title: "Multinational Subsidiaries", desc: "Require financial reporting aligned with headquarters plus local compliance support", icon: "Globe" },
+              { title: "PE Portfolio Companies", desc: "Need professional financial management to enhance portfolio value and prepare for exit", icon: "BarChart3" },
+            ],
+          },
+        ],
       },
       deals: {
         tagline: "\"Unlocking Value at Every Stage of the Transaction.\"",
@@ -3144,9 +3290,9 @@ export const defaultCMSData: CMSData = {
         ],
         relatedServicesTitle: "Related Services",
         relatedItems: [
-          { title: "Risk & Regulatory", desc: "Help build robust internal control frameworks and meet regulatory compliance requirements.", href: "risk-en.html", linkText: "Learn more →" },
-          { title: "Deals & M&A", desc: "Financial due diligence, valuation and transaction support for informed investment decisions.", href: "deals-en.html", linkText: "Learn more →" },
-          { title: "Consulting", desc: "Finance function transformation, process optimisation and improved operational efficiency.", href: "consulting-en.html", linkText: "Learn more →" },
+          { title: "Risk & Regulatory", desc: "Help build robust internal control frameworks and meet regulatory compliance requirements.", href: "/services/risk/", linkText: "Learn more →" },
+          { title: "Deals & M&A", desc: "Financial due diligence, valuation and transaction support for informed investment decisions.", href: "/services/deals/", linkText: "Learn more →" },
+          { title: "Consulting", desc: "Finance function transformation, process optimisation and improved operational efficiency.", href: "/services/consulting/", linkText: "Learn more →" },
         ],
         ctaTitle: "Need Deals & M&A Support?",
         ctaDesc: "Unlock value at every stage of the deal—let our team help you get the transaction done",
@@ -3158,12 +3304,12 @@ export const defaultCMSData: CMSData = {
       pageTitle: "Contact Us",
       cards: [
         { icon: "MapPin", title: "Address", lines: ["Unit 503, Tower 2, Lippo Centre, Admiralty, Hong Kong"] },
-        { icon: "Phone", title: "Phone", lines: ["+852 1234 5678", "Mon - Fri 09:00 - 18:00"] },
-        { icon: "Mail", title: "Email", lines: ["info@ltcpa.com", "Inquiries & appointments welcome"] },
+        { icon: "Phone", title: "Phone", lines: ["3987 1008", "Mon - Fri 09:00 - 18:00"] },
+        { icon: "Mail", title: "Email", lines: ["info@ltgroupcpa.com", "Inquiries & appointments welcome"] },
       ],
       form: {
-        formTitle: "Free Consultation",
-        formDesc: "Please fill out the form below and our professional consultants will contact you as soon as possible.",
+        formTitle: "Please fill out the form below and our professional consultants will contact you as soon as possible.",
+        formDesc: "",
         name: "Name *",
         company: "Company *",
         phone: "Phone",

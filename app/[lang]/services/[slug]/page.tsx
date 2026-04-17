@@ -8,6 +8,7 @@ import ServiceProcessV2 from "@/components/sections/ServiceProcessV2";
 import ServiceScenariosV2 from "@/components/sections/ServiceScenariosV2";
 import WhyChooseServiceV2 from "@/components/sections/WhyChooseServiceV2";
 import RelatedServicesV2 from "@/components/sections/RelatedServicesV2";
+import ServiceExtraSections from "@/components/sections/ServiceExtraSections";
 import CTASection from "@/components/sections/CTASection";
 
 interface ServicePageProps {
@@ -67,6 +68,9 @@ export default async function ServicePage({ params }: ServicePageProps) {
       )}
 
       <WhyChooseServiceV2 title={data.whyTitle} subtitle={data.whySubtitle} items={data.whyItems} />
+      {data.extraSections && data.extraSections.length > 0 && (
+        <ServiceExtraSections sections={data.extraSections} />
+      )}
       <RelatedServicesV2
         lang={lang}
         currentSlug={slug}
