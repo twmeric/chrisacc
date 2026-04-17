@@ -1,13 +1,13 @@
 import { notFound } from "next/navigation";
 import { Locale, i18n } from "@/lib/i18n-config";
 import { getLocaleCMS } from "@/lib/cms-data";
-import ServiceHero from "@/components/sections/ServiceHero";
-import ServiceOverview from "@/components/sections/ServiceOverview";
-import ServiceScope from "@/components/sections/ServiceScope";
-import ServiceProcess from "@/components/sections/ServiceProcess";
-import ServiceScenarios from "@/components/sections/ServiceScenarios";
-import WhyChooseService from "@/components/sections/WhyChooseService";
-import RelatedServices from "@/components/sections/RelatedServices";
+import ServiceHeroV2 from "@/components/sections/ServiceHeroV2";
+import ServiceOverviewV2 from "@/components/sections/ServiceOverviewV2";
+import ServiceScopeV2 from "@/components/sections/ServiceScopeV2";
+import ServiceProcessV2 from "@/components/sections/ServiceProcessV2";
+import ServiceScenariosV2 from "@/components/sections/ServiceScenariosV2";
+import WhyChooseServiceV2 from "@/components/sections/WhyChooseServiceV2";
+import RelatedServicesV2 from "@/components/sections/RelatedServicesV2";
 import CTASection from "@/components/sections/CTASection";
 
 interface ServicePageProps {
@@ -39,30 +39,40 @@ export default async function ServicePage({ params }: ServicePageProps) {
 
   return (
     <>
-      <ServiceHero lang={lang} title={title} tagline={data.tagline} />
-      <ServiceOverview title={data.overviewTitle} paragraphs={data.overview} />
-      <ServiceScope
-        lang={lang}
+      <ServiceHeroV2 lang={lang} title={title} tagline={data.tagline} description={data.heroDesc} />
+      <ServiceOverviewV2
+        title={data.overviewTitle}
+        paragraphs={data.overview}
+        highlight={data.overviewHighlight}
+        stat={data.overviewStat}
+        image={data.overviewImage}
+      />
+      <ServiceScopeV2
         title={data.scopeTitle}
-        subtitle={data.serviceScopeSubtitle || ""}
+        subtitle={data.scopeSubtitle || data.serviceScopeSubtitle || ""}
         items={data.scopeItems}
       />
       {data.processSteps && data.processSteps.length > 0 ? (
-        <ServiceProcess
-          lang={lang}
+        <ServiceProcessV2
           title={data.processTitle}
-          subtitle={data.serviceProcessSubtitle || ""}
+          subtitle={data.processSubtitle || data.serviceProcessSubtitle || ""}
           steps={data.processSteps}
         />
       ) : data.scenarios && data.scenarios.length > 0 ? (
-        <ServiceScenarios
-          lang={lang}
-          title={data.scenariosTitle || data.processTitle}
-          items={data.scenarios}
-        />
+        <ServiceScenariosV2 title={data.scenariosTitle || data.processTitle} items={data.scenarios} />
       ) : null}
-      <WhyChooseService lang={lang} title={data.whyTitle} items={data.whyItems} />
-      <RelatedServices lang={lang} currentSlug={slug} services={allServices} title={data.relatedServicesTitle} />
+
+      {data.scenarios2 && data.scenarios2.length > 0 && (
+        <ServiceScenariosV2 title={data.scenarios2Title} items={data.scenarios2} />
+      )}
+
+      <WhyChooseServiceV2 title={data.whyTitle} subtitle={data.whySubtitle} items={data.whyItems} />
+      <RelatedServicesV2
+        lang={lang}
+        currentSlug={slug}
+        title={data.relatedServicesTitle}
+        items={data.relatedItems}
+      />
       <CTASection
         lang={lang}
         title={data.ctaTitle}

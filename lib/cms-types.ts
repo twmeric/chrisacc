@@ -168,23 +168,40 @@ export interface ServicesPageData {
 
 export interface ServiceDetailPageData {
   tagline: string;
+  heroDesc: string;
   overviewTitle: string;
   overview: string[];
+  overviewHighlight: string;
+  overviewStat: { number: string; label: string } | null;
+  overviewImage: string;
   scopeTitle: string;
-  scopeItems: { title: string; desc: string; points: string[] }[];
+  scopeSubtitle: string;
+  scopeItems: {
+    title: string;
+    subtitle: string;
+    icon: string;
+    body: string;
+    features: string[];
+  }[];
   processTitle: string;
+  processSubtitle: string;
   processSteps: { number: string; title: string; desc: string }[];
+  scenariosTitle: string;
+  scenarios: { title: string; desc: string; features: string[] }[];
+  scenarios2Title: string;
+  scenarios2: { title: string; desc: string; features: string[] }[];
   whyTitle: string;
-  whyItems?: { title: string; desc: string }[];
+  whySubtitle: string;
+  whyItems: { title: string; desc: string; icon: string }[];
+  relatedServicesTitle: string;
+  relatedItems: { title: string; desc: string; href: string; linkText: string }[];
   ctaTitle: string;
   ctaDesc: string;
   ctaBtn: string;
   ctaBtn2: string;
-  relatedServicesTitle: string;
+  // Legacy aliases for backward compatibility
   serviceScopeSubtitle?: string;
   serviceProcessSubtitle?: string;
-  scenariosTitle?: string;
-  scenarios?: { title: string; desc: string; points: string[] }[];
 }
 
 export interface ContactPageData {

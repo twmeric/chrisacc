@@ -45,13 +45,58 @@ function mergeServicePages(
     const d = def[slug];
     const l = loaded?.[slug];
     if (l) {
+      // Migrate old scopeItems (with points) to new format (with features/body/icon)
+      const mergedScopeItems = (l.scopeItems || d.scopeItems).map((item: any, idx: number) => {
+        const defItem = d.scopeItems[idx] || d.scopeItems[0] || {};
+        return {
+          title: item.title || '',
+          subtitle: item.subtitle || item.desc || '',
+          icon: item.icon || defItem.icon || '',
+          body: item.body || defItem.body || '',
+          features: item.features || item.points || defItem.features || [],
+        };
+      });
+
+      // Migrate old scenarios (with points) to new format
+      const mergedScenarios = (l.scenarios || d.scenarios || []).map((item: any, idx: number) => {
+        const defItem = (d.scenarios || [])[idx] || {};
+        return {
+          title: item.title || '',
+          desc: item.desc || '',
+          features: item.features || item.points || defItem.features || [],
+        };
+      });
+
+      const mergedScenarios2 = (l.scenarios2 || d.scenarios2 || []).map((item: any, idx: number) => {
+        const defItem = (d.scenarios2 || [])[idx] || {};
+        return {
+          title: item.title || '',
+          desc: item.desc || '',
+          features: item.features || item.points || defItem.features || [],
+        };
+      });
+
+      // Migrate old whyItems (without icon) to new format
+      const mergedWhyItems = (l.whyItems || d.whyItems || []).map((item: any, idx: number) => {
+        const defItem = (d.whyItems || [])[idx] || {};
+        return {
+          title: item.title || '',
+          desc: item.desc || '',
+          icon: item.icon || defItem.icon || '',
+        };
+      });
+
       merged[slug] = {
         ...d,
         ...l,
-        scopeItems: l.scopeItems || d.scopeItems,
+        overview: l.overview || d.overview,
+        overviewStat: l.overviewStat ?? d.overviewStat,
+        scopeItems: mergedScopeItems,
         processSteps: l.processSteps || d.processSteps,
-        whyItems: l.whyItems || d.whyItems,
-        scenarios: l.scenarios || d.scenarios,
+        whyItems: mergedWhyItems,
+        scenarios: mergedScenarios,
+        scenarios2: mergedScenarios2,
+        relatedItems: l.relatedItems || d.relatedItems,
       };
     }
   }

@@ -2471,18 +2471,19 @@
       "navItems": [
         {
           "label": "Home",
-          "url": "/"
+          "url": "/",
+          "children": []
         },
         {
           "label": "About Us",
           "url": "/about/",
           "children": [
             {
-              "label": "Our Mission",
+              "label": "Our Purpose",
               "url": "/purpose/"
             },
             {
-              "label": "Our Vision",
+              "label": "Our Value",
               "url": "/value/"
             },
             {
@@ -2504,26 +2505,27 @@
               "url": "/services/tax/"
             },
             {
-              "label": "Risk & Compliance",
+              "label": "Risk & Regulatory",
               "url": "/services/risk/"
             },
             {
-              "label": "Forensic Accounting",
+              "label": "Forensic Services",
               "url": "/services/forensic/"
             },
             {
-              "label": "Business Advisory",
+              "label": "Consulting",
               "url": "/services/consulting/"
             },
             {
-              "label": "M&A Services",
+              "label": "Deals  & M&A",
               "url": "/services/deals/"
             }
           ]
         },
         {
-          "label": "Contact",
-          "url": "/contact/"
+          "label": "Contact Us",
+          "url": "/contact/",
+          "children": []
         }
       ]
     },
@@ -2566,7 +2568,7 @@
           "url": "/services/"
         },
         {
-          "label": "Contact",
+          "label": "Contact Us",
           "url": "/contact/"
         }
       ],

@@ -582,20 +582,31 @@
     function renderServiceDetail(slug) {
       const d = (getLangObj().servicePages || {})[slug] || {};
       let html = inputText(`svc_${slug}_tagline`, 'Tagline', d.tagline);
+      html += inputTextarea(`svc_${slug}_heroDesc`, 'Hero Description', d.heroDesc);
       html += inputText(`svc_${slug}_overviewTitle`, 'Overview Title', d.overviewTitle);
       html += inputTextarea(`svc_${slug}_overview`, 'Overview Paragraphs (one per line)', (d.overview || []).join('\n'), 5);
+      html += inputTextarea(`svc_${slug}_overviewHighlight`, 'Overview Highlight Quote', d.overviewHighlight);
+      html += `<div class="grid grid-cols-2 gap-3 mb-3">`;
+      html += smallInput(`svc_${slug}_overviewStatNumber`, 'Stat Number', (d.overviewStat || {}).number);
+      html += smallInput(`svc_${slug}_overviewStatLabel`, 'Stat Label', (d.overviewStat || {}).label);
+      html += `</div>`;
+      html += inputText(`svc_${slug}_overviewImage`, 'Overview Image URL', d.overviewImage || '');
+      html += `<div class="border-t border-slate-200 my-4"></div>`;
       html += inputText(`svc_${slug}_scopeTitle`, 'Scope Title', d.scopeTitle);
-      html += inputTextarea(`svc_${slug}_scopeSubtitle`, 'Scope Subtitle', d.serviceScopeSubtitle);
+      html += inputTextarea(`svc_${slug}_scopeSubtitle`, 'Scope Subtitle', d.scopeSubtitle || d.serviceScopeSubtitle);
       let scopeHTML = '';
       (d.scopeItems || []).forEach((item, idx) => {
         let inner = smallInput(`svc_${slug}_scope_${idx}_title`, 'Title', item.title);
-        inner += smallInput(`svc_${slug}_scope_${idx}_desc`, 'Desc', item.desc);
-        inner += smallTextarea(`svc_${slug}_scope_${idx}_points`, 'Points (one per line)', (item.points || []).join('\n'));
+        inner += smallInput(`svc_${slug}_scope_${idx}_subtitle`, 'Subtitle', item.subtitle);
+        inner += smallInput(`svc_${slug}_scope_${idx}_icon`, 'Icon Class', item.icon);
+        inner += smallTextarea(`svc_${slug}_scope_${idx}_body`, 'Body Text', item.body);
+        inner += smallTextarea(`svc_${slug}_scope_${idx}_features`, 'Features (one per line)', (item.features || []).join('\n'));
         scopeHTML += arrayItemWrapper(`svc_${slug}_scope`, idx, inner);
       });
       html += arrayContainer(`svc_${slug}_scope`, 'Scope Items', scopeHTML);
+      html += `<div class="border-t border-slate-200 my-4"></div>`;
       html += inputText(`svc_${slug}_processTitle`, 'Process Title', d.processTitle);
-      html += inputTextarea(`svc_${slug}_processSubtitle`, 'Process Subtitle', d.serviceProcessSubtitle);
+      html += inputTextarea(`svc_${slug}_processSubtitle`, 'Process Subtitle', d.processSubtitle || d.serviceProcessSubtitle);
       let procHTML = '';
       (d.processSteps || []).forEach((item, idx) => {
         let inner = smallInput(`svc_${slug}_proc_${idx}_number`, 'Number', item.number);
@@ -609,19 +620,42 @@
       (d.scenarios || []).forEach((item, idx) => {
         let inner = smallInput(`svc_${slug}_scenarios_${idx}_title`, 'Title', item.title);
         inner += smallInput(`svc_${slug}_scenarios_${idx}_desc`, 'Desc', item.desc);
-        inner += smallTextarea(`svc_${slug}_scenarios_${idx}_points`, 'Points (one per line)', (item.points || []).join('\n'));
+        inner += smallTextarea(`svc_${slug}_scenarios_${idx}_features`, 'Features (one per line)', (item.features || item.points || []).join('\n'));
         scenariosHTML += arrayItemWrapper(`svc_${slug}_scenarios`, idx, inner);
       });
       html += arrayContainer(`svc_${slug}_scenarios`, 'Scenarios / Framework Items', scenariosHTML);
+      html += inputText(`svc_${slug}_scenarios2Title`, 'Scenarios 2 Title', d.scenarios2Title || '');
+      let scenarios2HTML = '';
+      (d.scenarios2 || []).forEach((item, idx) => {
+        let inner = smallInput(`svc_${slug}_scenarios2_${idx}_title`, 'Title', item.title);
+        inner += smallInput(`svc_${slug}_scenarios2_${idx}_desc`, 'Desc', item.desc);
+        inner += smallTextarea(`svc_${slug}_scenarios2_${idx}_features`, 'Features (one per line)', (item.features || []).join('\n'));
+        scenarios2HTML += arrayItemWrapper(`svc_${slug}_scenarios2`, idx, inner);
+      });
+      html += arrayContainer(`svc_${slug}_scenarios2`, 'Scenarios 2 / ESG / Case Types', scenarios2HTML);
+      html += `<div class="border-t border-slate-200 my-4"></div>`;
       html += inputText(`svc_${slug}_whyTitle`, 'Why Choose Title', d.whyTitle);
+      html += inputTextarea(`svc_${slug}_whySubtitle`, 'Why Choose Subtitle', d.whySubtitle || '');
       let whyHTML = '';
       (d.whyItems || []).forEach((item, idx) => {
-        let inner = smallInput(`svc_${slug}_why_${idx}_title`, 'Title', item.title);
+        let inner = smallInput(`svc_${slug}_why_${idx}_icon`, 'Icon Class', item.icon);
+        inner += smallInput(`svc_${slug}_why_${idx}_title`, 'Title', item.title);
         inner += smallTextarea(`svc_${slug}_why_${idx}_desc`, 'Description', item.desc);
         whyHTML += arrayItemWrapper(`svc_${slug}_why`, idx, inner);
       });
       html += arrayContainer(`svc_${slug}_why`, 'Why Choose Items', whyHTML);
+      html += `<div class="border-t border-slate-200 my-4"></div>`;
       html += inputText(`svc_${slug}_relatedTitle`, 'Related Services Title', d.relatedServicesTitle);
+      let relatedHTML = '';
+      (d.relatedItems || []).forEach((item, idx) => {
+        let inner = smallInput(`svc_${slug}_related_${idx}_title`, 'Title', item.title);
+        inner += smallTextarea(`svc_${slug}_related_${idx}_desc`, 'Description', item.desc);
+        inner += smallInput(`svc_${slug}_related_${idx}_href`, 'Href', item.href);
+        inner += smallInput(`svc_${slug}_related_${idx}_linkText`, 'Link Text', item.linkText);
+        relatedHTML += arrayItemWrapper(`svc_${slug}_related`, idx, inner);
+      });
+      html += arrayContainer(`svc_${slug}_related`, 'Related Services Items', relatedHTML);
+      html += `<div class="border-t border-slate-200 my-4"></div>`;
       html += inputText(`svc_${slug}_ctaTitle`, 'CTA Title', d.ctaTitle);
       html += inputTextarea(`svc_${slug}_ctaDesc`, 'CTA Description', d.ctaDesc);
       html += inputText(`svc_${slug}_ctaBtn`, 'CTA Button', d.ctaBtn);
@@ -1011,37 +1045,53 @@
       } else if (id.startsWith('service_')) {
         const slug = id.replace('service_', '');
         const overview = readInput(`svc_${slug}_overview`).split('\n').map(s => s.trim()).filter(Boolean);
-        const scopeItems = readArray(`svc_${slug}_scope`, ['title', 'desc', 'points']).map(item => ({
+        const statNumber = readInput(`svc_${slug}_overviewStatNumber`);
+        const statLabel = readInput(`svc_${slug}_overviewStatLabel`);
+        const scopeItems = readArray(`svc_${slug}_scope`, ['title', 'subtitle', 'icon', 'body', 'features']).map(item => ({
           ...item,
-          points: (item.points || '').split('\n').map(s => s.trim()).filter(Boolean),
+          features: (item.features || '').split('\n').map(s => s.trim()).filter(Boolean),
         }));
         const processSteps = readArray(`svc_${slug}_proc`, ['number', 'title', 'desc']);
+        const whyItems = readArray(`svc_${slug}_why`, ['icon', 'title', 'desc']);
+        const relatedItems = readArray(`svc_${slug}_related`, ['title', 'desc', 'href', 'linkText']);
+        const scenarios = readArray(`svc_${slug}_scenarios`, ['title', 'desc', 'features']).map(item => ({
+          ...item,
+          features: (item.features || '').split('\n').map(s => s.trim()).filter(Boolean),
+        }));
+        const scenarios2 = readArray(`svc_${slug}_scenarios2`, ['title', 'desc', 'features']).map(item => ({
+          ...item,
+          features: (item.features || '').split('\n').map(s => s.trim()).filter(Boolean),
+        }));
         obj.servicePages = {
           [slug]: {
             tagline: readInput(`svc_${slug}_tagline`),
+            heroDesc: readInput(`svc_${slug}_heroDesc`),
             overviewTitle: readInput(`svc_${slug}_overviewTitle`),
             overview,
+            overviewHighlight: readInput(`svc_${slug}_overviewHighlight`),
+            overviewStat: statNumber ? { number: statNumber, label: statLabel } : null,
+            overviewImage: readInput(`svc_${slug}_overviewImage`),
             scopeTitle: readInput(`svc_${slug}_scopeTitle`),
+            scopeSubtitle: readInput(`svc_${slug}_scopeSubtitle`),
             serviceScopeSubtitle: readInput(`svc_${slug}_scopeSubtitle`),
             scopeItems,
             processTitle: readInput(`svc_${slug}_processTitle`),
+            processSubtitle: readInput(`svc_${slug}_processSubtitle`),
             serviceProcessSubtitle: readInput(`svc_${slug}_processSubtitle`),
             processSteps,
+            scenariosTitle: readInput(`svc_${slug}_scenariosTitle`),
+            scenarios,
+            scenarios2Title: readInput(`svc_${slug}_scenarios2Title`),
+            scenarios2,
             whyTitle: readInput(`svc_${slug}_whyTitle`),
+            whySubtitle: readInput(`svc_${slug}_whySubtitle`),
+            whyItems,
             relatedServicesTitle: readInput(`svc_${slug}_relatedTitle`),
+            relatedItems,
             ctaTitle: readInput(`svc_${slug}_ctaTitle`),
             ctaDesc: readInput(`svc_${slug}_ctaDesc`),
             ctaBtn: readInput(`svc_${slug}_ctaBtn`),
             ctaBtn2: readInput(`svc_${slug}_ctaBtn2`),
-            whyItems: readArray(`svc_${slug}_why`, ['title', 'desc']).map(item => ({
-              ...item,
-              desc: item.desc || '',
-            })),
-            scenariosTitle: readInput(`svc_${slug}_scenariosTitle`),
-            scenarios: readArray(`svc_${slug}_scenarios`, ['title', 'desc', 'points']).map(item => ({
-              ...item,
-              points: (item.points || '').split('\n').map(s => s.trim()).filter(Boolean),
-            })),
           }
         };
       } else if (id === 'contact') {
