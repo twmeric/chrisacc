@@ -12,11 +12,16 @@ interface WhyChooseProps {
   data: {
     title: string;
     desc: string;
+    paragraphs?: string[];
+    features?: { icon: string; label: string }[];
     items: { icon: string; title: string; desc: string }[];
   };
 }
 
 export default function WhyChoose({ lang, data }: WhyChooseProps) {
+  const hasParagraphs = data.paragraphs && data.paragraphs.length > 0;
+  const hasFeatures = data.features && data.features.length > 0;
+
   return (
     <section className="bg-brand-cream px-4 py-16 md:py-24">
       <div className="mx-auto max-w-6xl">
@@ -26,9 +31,28 @@ export default function WhyChoose({ lang, data }: WhyChooseProps) {
             <span className="absolute -bottom-3 left-1/2 h-[2px] w-20 -translate-x-1/2 bg-brand-gold" />
           </h2>
         </div>
-        <div className="mb-12 text-center">
-          <p className="mx-auto max-w-3xl text-lg leading-relaxed text-text-light">{data.desc}</p>
-        </div>
+
+        {hasParagraphs && (
+          <div className="mb-10 space-y-5 text-center">
+            {data.paragraphs!.map((p, idx) => (
+              <p key={idx} className="mx-auto max-w-4xl text-base leading-relaxed text-text-light md:text-lg">
+                {p}
+              </p>
+            ))}
+          </div>
+        )}
+
+        {hasFeatures && (
+          <div className="mb-12 grid gap-4 sm:grid-cols-2">
+            {data.features!.map((f, idx) => (
+              <div key={idx} className="flex items-center gap-3 rounded-lg bg-white/60 px-5 py-4">
+                <i className="fas fa-check-circle text-brand-gold text-xl"></i>
+                <span className="text-base font-medium text-brand-navy md:text-lg">{f.label}</span>
+              </div>
+            ))}
+          </div>
+        )}
+
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {data.items.map((item, idx) => (
             <div

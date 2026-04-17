@@ -1,15 +1,17 @@
-import { Target, Eye, ShieldCheck } from "lucide-react";
+import Link from "next/link";
+import { Target, Eye, Heart, ArrowRight } from "lucide-react";
 
 const iconMap: Record<string, React.ReactNode> = {
+  Bullseye: <Target className="h-9 w-9" />,
   Target: <Target className="h-9 w-9" />,
   Eye: <Eye className="h-9 w-9" />,
-  ShieldCheck: <ShieldCheck className="h-9 w-9" />,
+  Heart: <Heart className="h-9 w-9" />,
 };
 
 interface MissionVisionProps {
   lang: string;
   data: {
-    items: { icon: string; title: string; desc: string }[];
+    items: { icon: string; title: string; desc: string; linkText?: string; href?: string }[];
   };
 }
 
@@ -28,7 +30,15 @@ export default function MissionVision({ lang, data }: MissionVisionProps) {
                 {iconMap[item.icon] || <Target className="h-9 w-9" />}
               </div>
               <h3 className="mb-3 text-xl font-bold text-brand-navy md:text-2xl">{item.title}</h3>
-              <p className="text-sm leading-relaxed text-text-light md:text-base">{item.desc}</p>
+              <p className="mb-4 text-sm leading-relaxed text-text-light md:text-base">{item.desc}</p>
+              {item.linkText && item.href && (
+                <Link
+                  href={item.href}
+                  className="inline-flex items-center gap-1 text-sm font-semibold text-brand-gold transition-colors hover:text-brand-navy"
+                >
+                  {item.linkText} <ArrowRight className="h-4 w-4" />
+                </Link>
+              )}
             </div>
           ))}
         </div>

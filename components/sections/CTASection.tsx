@@ -7,9 +7,12 @@ interface CTASectionProps {
   description: string;
   primaryBtn: string;
   secondaryBtn?: string;
+  href?: string;
 }
 
-export default function CTASection({ lang, title, description, primaryBtn, secondaryBtn }: CTASectionProps) {
+export default function CTASection({ lang, title, description, primaryBtn, secondaryBtn, href }: CTASectionProps) {
+  const primaryHref = href || `/${lang}/contact/`;
+
   return (
     <section
       className="relative bg-cover bg-center px-4 py-20 text-center text-white md:py-24"
@@ -22,7 +25,7 @@ export default function CTASection({ lang, title, description, primaryBtn, secon
         <p className="mb-8 text-lg text-white/90">{description}</p>
         <div className="flex flex-wrap items-center justify-center gap-4">
           <Link
-            href={`/${lang}/contact/`}
+            href={primaryHref}
             className="inline-block rounded-full bg-brand-gold px-8 py-3.5 text-base font-semibold text-white transition-all hover:-translate-y-1 hover:bg-white hover:text-brand-navy"
           >
             {primaryBtn}

@@ -81,17 +81,27 @@ export interface AboutData {
   whyChoose: {
     title: string;
     desc: string;
+    paragraphs?: string[];
+    features?: { icon: string; label: string }[];
     items: { icon: string; title: string; desc: string }[];
   };
   intro: {
     title: string;
     titleAccent: string;
+    subtitle?: string;
     paragraphs: string[];
     quote: string;
+    image?: string;
+    badge?: { value: string; label: string };
     stats: { value: string; label: string }[];
   };
   missionVision: {
-    items: { icon: string; title: string; desc: string }[];
+    items: { icon: string; title: string; desc: string; linkText?: string; href?: string }[];
+  };
+  pillars?: {
+    purpose: PillarSection;
+    value: PillarSection;
+    commitment: PillarSection;
   };
   coreValues: {
     title: string;
@@ -114,6 +124,13 @@ export interface AboutData {
     btn: string;
     href: string;
   };
+}
+
+export interface PillarSection {
+  title: string;
+  subtitle: string;
+  quote: string;
+  items: { icon: string; title: string; desc: string }[];
 }
 
 export interface ServicesPageData {

@@ -1179,28 +1179,7 @@
       "team": {
         "title": "专业团队",
         "subtitle": "我们拥有经验丰富的专业团队，致力于为客户提供最优质的服务",
-        "members": [
-          {
-            "name": "陈大文",
-            "role": "创办人及执行董事",
-            "image": "/images/team-1.jpg"
-          },
-          {
-            "name": "李美琪",
-            "role": "审计总监",
-            "image": "/images/team-2.jpg"
-          },
-          {
-            "name": "张志伟",
-            "role": "税务合伙人",
-            "image": "/images/team-3.jpg"
-          },
-          {
-            "name": "王晓明",
-            "role": "咨询总监",
-            "image": "/images/team-4.jpg"
-          }
-        ]
+        "members": []
       },
       "timeline": {
         "title": "发展历程",
@@ -2116,28 +2095,7 @@
       "team": {
         "title": "Professional Team",
         "subtitle": "We have an experienced professional team dedicated to providing the best service to our clients",
-        "members": [
-          {
-            "name": "David Chan",
-            "role": "Founder & Executive Director",
-            "image": "/images/team-1.jpg"
-          },
-          {
-            "name": "Maggie Lee",
-            "role": "Audit Director",
-            "image": "/images/team-2.jpg"
-          },
-          {
-            "name": "Peter Cheung",
-            "role": "Tax Partner",
-            "image": "/images/team-3.jpg"
-          },
-          {
-            "name": "Raymond Wong",
-            "role": "Advisory Director",
-            "image": "/images/team-4.jpg"
-          }
-        ]
+        "members": []
       },
       "timeline": {
         "title": "Our Journey",

@@ -1,8 +1,8 @@
-import { Award, Shield, Lightbulb, Users } from "lucide-react";
+import { Award, Handshake, Lightbulb, Users } from "lucide-react";
 
 const iconMap: Record<string, React.ReactNode> = {
   Award: <Award className="h-10 w-10" />,
-  Shield: <Shield className="h-10 w-10" />,
+  Handshake: <Handshake className="h-10 w-10" />,
   Lightbulb: <Lightbulb className="h-10 w-10" />,
   Users: <Users className="h-10 w-10" />,
 };
