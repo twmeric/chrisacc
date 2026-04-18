@@ -188,6 +188,39 @@
     let currentLang = 'zh-hant';
     let currentSection = 'site';
     let cmsData = {};
+    let defaultsData = {};
+
+    function deepMerge(target, source) {
+      if (source === null || source === undefined) return target;
+      if (typeof source !== 'object') {
+        // For strings, if source is empty but target has a value, use target (fallback)
+        if (typeof source === 'string' && source.trim() === '' && typeof target === 'string' && target.trim() !== '') {
+          return target;
+        }
+        return source;
+      }
+      if (Array.isArray(source)) {
+        if (!Array.isArray(target)) return source;
+        // Merge arrays item-by-item when elements are objects (e.g. scopeItems)
+        return source.map((item, idx) => {
+          if (typeof item === 'object' && item !== null && !Array.isArray(item) &&
+              typeof target[idx] === 'object' && target[idx] !== null && !Array.isArray(target[idx])) {
+            return deepMerge(target[idx], item);
+          }
+          return item;
+        });
+      }
+      const result = {};
+      const allKeys = new Set([...Object.keys(target || {}), ...Object.keys(source)]);
+      for (const key of allKeys) {
+        if (key in source) {
+          result[key] = deepMerge(target?.[key], source[key]);
+        } else {
+          result[key] = target[key];
+        }
+      }
+      return result;
+    }
 
     function toggleGroup(id, btn) {
       const el = document.getElementById(id);
@@ -212,16 +245,30 @@
         .then(r => r.json())
         .then(data => {
           cmsData = data || {};
-          document.getElementById('login').classList.add('hidden');
-          document.getElementById('app').classList.remove('hidden');
-          // Open collapsible groups by default
-          setTimeout(() => {
-            const svcBtn = document.querySelector('[onclick^="toggleGroup(\'svcGroup\'"]');
-            if (svcBtn) toggleGroup('svcGroup', svcBtn);
-            const aboutBtn = document.querySelector('[onclick^="toggleGroup(\'aboutGroup\'"]');
-            if (aboutBtn) toggleGroup('aboutGroup', aboutBtn);
-          }, 0);
-          renderSections();
+          // Load defaults and merge so admin shows fallback data when KV is incomplete
+          return fetch('/admin/cms-defaults.json')
+            .then(r => r.ok ? r.json() : {})
+            .then(defs => {
+              defaultsData = defs || {};
+              for (const loc of ['en', 'zh-hant', 'zh-hans']) {
+                if (defaultsData[loc] || cmsData[loc]) {
+                  cmsData[loc] = deepMerge(defaultsData[loc] || {}, cmsData[loc] || {});
+                }
+              }
+            })
+            .catch(() => {})
+            .finally(() => {
+              document.getElementById('login').classList.add('hidden');
+              document.getElementById('app').classList.remove('hidden');
+              // Open collapsible groups by default
+              setTimeout(() => {
+                const svcBtn = document.querySelector('[onclick^="toggleGroup(\'svcGroup\'"]');
+                if (svcBtn) toggleGroup('svcGroup', svcBtn);
+                const aboutBtn = document.querySelector('[onclick^="toggleGroup(\'aboutGroup\'"]');
+                if (aboutBtn) toggleGroup('aboutGroup', aboutBtn);
+              }, 0);
+              renderSections();
+            });
         })
         .catch(() => { document.getElementById('loginError').classList.remove('hidden'); });
     }

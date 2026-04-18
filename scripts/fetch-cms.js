@@ -228,3 +228,15 @@ function generateImagesManifest() {
 
 fetchCMSData();
 generateImagesManifest();
+
+// Generate admin defaults JSON so the admin panel can fallback to defaults
+// when KV data is missing or incomplete.
+try {
+  require("ts-node/register");
+  const { defaultCMSData } = require(path.join(__dirname, "..", "lib", "cms-defaults.ts"));
+  const adminDefaultsPath = path.join(__dirname, "..", "public", "admin", "cms-defaults.json");
+  fs.writeFileSync(adminDefaultsPath, JSON.stringify(defaultCMSData, null, 2));
+  console.log("Admin defaults generated:", adminDefaultsPath);
+} catch (err) {
+  console.warn("Failed to generate admin defaults:", err.message);
+}
