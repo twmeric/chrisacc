@@ -60,9 +60,11 @@ interface PageViewData {
 async function savePageView(env: Env, data: PageViewData, request: Request): Promise<void> {
   const id = `pv_${Date.now()}_${Math.random().toString(36).slice(2, 9)}`;
   const country = request.headers.get("CF-IPCountry") || "unknown";
+  // Frontend sends "path", but interface names it "page" — support both
+  const page = data.page || (data as any).path || "unknown";
   const pageView = {
     id,
-    page: data.page,
+    page,
     referrer: data.referrer || "",
     userAgent: data.userAgent || request.headers.get("User-Agent") || "",
     country,
@@ -76,16 +78,16 @@ async function savePageView(env: Env, data: PageViewData, request: Request): Pro
   const existing = await env.CMS_DATA.get(statsKey, "json") as any;
   if (existing) {
     existing.totalViews++;
-    const pageIdx = existing.topPages.findIndex((p: any) => p.page === data.page);
+    const pageIdx = existing.topPages.findIndex((p: any) => p.page === page);
     if (pageIdx >= 0) existing.topPages[pageIdx].views++;
-    else existing.topPages.push({ page: data.page, views: 1 });
+    else existing.topPages.push({ page, views: 1 });
     await env.CMS_DATA.put(statsKey, JSON.stringify(existing));
   } else {
     await env.CMS_DATA.put(statsKey, JSON.stringify({
       date: today,
       totalViews: 1,
       uniqueVisitors: 1,
-      topPages: [{ page: data.page, views: 1 }],
+      topPages: [{ page, views: 1 }],
     }), { expirationTtl: 86400 * 90 });
   }
 }
@@ -248,6 +250,31 @@ export default {
         const days = parseInt(url.searchParams.get("days") || "7");
         const report = await getAnalyticsReport(env, days);
         return jsonResponse({ success: true, data: report });
+      }
+
+      if (path === "/api/cms/analytics/reset" && request.method === "POST") {
+        const auth = requireAuth(request, env);
+        if (auth) return auth;
+        // Delete all pv_ keys
+        const pvList = await env.CMS_DATA.list({ prefix: "pv_" });
+        const pvKeys = pvList.keys.map(k => k.name);
+        for (const key of pvKeys) {
+          await env.CMS_DATA.delete(key);
+        }
+        // Delete all stats_ keys
+        const statsList = await env.CMS_DATA.list({ prefix: "stats_" });
+        const statsKeys = statsList.keys.map(k => k.name);
+        for (const key of statsKeys) {
+          await env.CMS_DATA.delete(key);
+        }
+        return jsonResponse({
+          success: true,
+          deleted: {
+            pageviews: pvKeys.length,
+            dailyStats: statsKeys.length,
+            total: pvKeys.length + statsKeys.length,
+          },
+        });
       }
 
       if (path === "/api/cms/deploy" && request.method === "POST") {

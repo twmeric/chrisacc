@@ -91,12 +91,15 @@ This creates a **preview deployment** that does NOT update the production domain
 ## Build System
 
 ### `npm run build` does two things:
-1. `npm run fetch-cms` → fetches live KV data into `src/data/cms.json`
-2. `next build` → static export to `dist/`
+1. `npm run build:admin-css` → compiles Tailwind CSS for Admin panel
+2. `npm run fetch-cms` → fetches live KV data into `src/data/cms.json`
+3. `next build` → static export to `dist/`
 
 ### `scripts/fetch-cms.js`
 - Pulls `https://ltcpa-cms-api.jimsbond007.workers.dev/api/cms/data`
+- Deep-merges with `lib/cms-defaults.ts` fallback data
 - Writes to `src/data/cms.json`
+- **Also generates** `public/admin/cms-defaults.json` for Admin panel fallback
 - On failure, writes `{}` so `cms-defaults.ts` takes over
 
 ### `public/images-manifest.json`
@@ -114,6 +117,7 @@ This creates a **preview deployment** that does NOT update the production domain
 
 ### At runtime (Admin panel)
 - Admin reads/writes directly to KV via `ltcpa-cms-api`
+- **Admin now merges KV data with `cms-defaults.json`** to prevent missing fields
 - Saving in Admin does **not** auto-rebuild the site
 - After editing content, click **"Deploy Site"** in Admin to trigger GitHub Actions
 
@@ -134,6 +138,7 @@ This creates a **preview deployment** that does NOT update the production domain
 | POST | `/api/cms/data` | `X-Admin-Token` | Deep-merge save to KV |
 | POST | `/api/cms/upload` | `X-Admin-Token` | Upload image to R2 |
 | GET | `/api/cms/media` | `X-Admin-Token` | List R2 objects |
+| DELETE | `/api/cms/media/:key` | `X-Admin-Token` | Delete R2 object |
 | GET | `/api/cms/auth/verify` | `X-Admin-Token` | Verify admin token |
 | POST | `/api/cms/deploy` | `X-Admin-Token` | Trigger GitHub Actions workflow |
 | GET | `/api/cms/analytics/report?days=N` | `X-Admin-Token` | Visitor stats |
@@ -180,10 +185,27 @@ This creates a **preview deployment** that does NOT update the production domain
 5. **Production branch mismatch**  
    → Cloudflare Pages production branch is `main`. Local branch was `master`. All development must happen on `main`.
 
+6. **Service Pages Scope Items disappear**  
+   → KV's `servicePages` was incomplete after `fetch-cms.js` deleted outdated entries. Admin panel loaded KV data without fallback. **Fixed**: `fetch-cms.js` generates `cms-defaults.json`; Admin `doLogin()` deepMerges defaults into KV data with array-object item-by-item merging.
+
+7. **Static images cannot be deleted from Admin**  
+   → Static images in `public/images/` are baked into the static export. Deletion requires git commit + redeploy. R2 uploaded files can be deleted normally. Admin shows "Read-only" badge for static images.
+
+---
+
+## Recent Feature Additions (2026-04-17)
+
+- ✅ **In-page Search Overlay** — `components/ui/SearchOverlay.tsx`. Ctrl+K trigger, ESC close, `<mark>` highlighting, prev/next navigation. Excludes header/nav/footer/script/style zones.
+- ✅ **Media Delete** — `DELETE /api/cms/media/:key` endpoint. Admin Gallery shows red Delete button for R2 items only.
+- ✅ **Analytics Enrichment** — Admin shows Top Pages, Countries distribution, Recent Views table with referrer/country/timestamp.
+- ✅ **Admin Sidebar Hierarchy** — Grouped with titles (Brand/Navigation/Pages/Services/Library), indentation, collapsible sections.
+- ✅ **WhatsApp Admin Setting** — `site_whatsapp` field in Site Settings. Contact page fallback: `contact.form.whatsapp || site.whatsapp || ""`.
+- ✅ **Forensic Gold Icons** — `ServiceExtraSections.tsx` icons changed to `text-brand-gold` with `bg-brand-gold/10` circles.
+
 ---
 
 ## Next Steps (when you return)
-- [ ] Set `GITHUB_TOKEN` Worker secret if Deploy button still fails
+- [x] Set `GITHUB_TOKEN` Worker secret if Deploy button still fails
 - [ ] Set `RESEND_API_KEY` Worker secret for inquiry email notifications
 - [ ] Configure DNS for `ltgroupcpa.com` when ready to go live
-- [ ] Add more analytics charts in Admin (referrers, countries, etc.)
+- [x] Add more analytics charts in Admin (referrers, countries, etc.)
