@@ -48,7 +48,7 @@ export default function Header({ lang, navItems, siteName, siteTagline, logoUrl 
             <div key={item.label} className="relative" onMouseEnter={() => item.children && setOpenDropdown(item.label)} onMouseLeave={() => setOpenDropdown(null)}>
               <Link href={`/${lang}${item.url}`} className={`group relative flex items-center gap-1 py-2 text-[15px] font-medium transition-colors lg:text-base ${normalizedPathname.startsWith(`/${lang}${item.url.replace(/\/$/, "")}`) ? "text-brand-navy" : "text-text-dark hover:text-brand-navy"}`}>
                 {item.label}
-                {item.children && <ChevronDown className="h-4 w-4" />}
+                {item.children && item.children.length > 0 && <ChevronDown className="h-4 w-4" />}
                 <span className={`absolute bottom-0 left-0 h-0.5 bg-brand-gold transition-all ${normalizedPathname.startsWith(`/${lang}${item.url.replace(/\/$/, "")}`) ? "w-full" : "w-0 group-hover:w-full"}`} />
               </Link>
               {item.children && openDropdown === item.label && (
@@ -93,29 +93,38 @@ export default function Header({ lang, navItems, siteName, siteTagline, logoUrl 
           <nav className="space-y-1">
             {items.map((item) => (
               <div key={item.label}>
-                <Link
-                  href={`/${lang}${item.url}`}
-                  onClick={() => !item.children && setMobileOpen(false)}
-                  className={`flex items-center justify-between rounded-lg px-3 py-3 text-sm font-medium ${normalizedPathname.startsWith(`/${lang}${item.url.replace(/\/$/, "")}`) ? "bg-brand-cream text-brand-navy" : "text-text-dark hover:bg-gray-50"}`}
-                >
-                  {item.label}
-                  {item.children && (
-                    <button
-                      onClick={(e) => { e.preventDefault(); e.stopPropagation(); setOpenDropdown(openDropdown === item.label ? null : item.label); }}
-                      className="p-1"
-                    >
-                      <ChevronDown className={`h-4 w-4 transition-transform ${openDropdown === item.label ? "rotate-180" : ""}`} />
-                    </button>
-                  )}
-                </Link>
-                {item.children && openDropdown === item.label && (
-                  <div className="mt-1 space-y-1 border-l-2 border-brand-gold bg-gray-50 py-1 pl-4">
-                    {item.children.map((child) => (
-                      <Link key={child.label} href={child.url.startsWith("http") ? child.url : `/${lang}${child.url}`} onClick={() => setMobileOpen(false)} className="block rounded-lg px-3 py-2 text-sm text-text-dark hover:bg-white hover:text-brand-navy">
-                        {child.label}
+                {item.children && item.children.length > 0 ? (
+                  <>
+                    <div className={`flex items-center justify-between rounded-lg px-3 py-3 text-sm font-medium ${normalizedPathname.startsWith(`/${lang}${item.url.replace(/\/$/, "")}`) ? "bg-brand-cream text-brand-navy" : "text-text-dark hover:bg-gray-50"}`}>
+                      <Link href={`/${lang}${item.url}`} onClick={() => setMobileOpen(false)} className="flex-1">
+                        {item.label}
                       </Link>
-                    ))}
-                  </div>
+                      <button
+                        onClick={() => setOpenDropdown(openDropdown === item.label ? null : item.label)}
+                        className="p-1"
+                        aria-label={openDropdown === item.label ? "Collapse" : "Expand"}
+                      >
+                        <ChevronDown className={`h-4 w-4 transition-transform ${openDropdown === item.label ? "rotate-180" : ""}`} />
+                      </button>
+                    </div>
+                    {openDropdown === item.label && (
+                      <div className="mt-1 space-y-1 border-l-2 border-brand-gold bg-gray-50 py-1 pl-4">
+                        {item.children.map((child) => (
+                          <Link key={child.label} href={child.url.startsWith("http") ? child.url : `/${lang}${child.url}`} onClick={() => setMobileOpen(false)} className="block rounded-lg px-3 py-2 text-sm text-text-dark hover:bg-white hover:text-brand-navy">
+                            {child.label}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </>
+                ) : (
+                  <Link
+                    href={`/${lang}${item.url}`}
+                    onClick={() => setMobileOpen(false)}
+                    className={`block rounded-lg px-3 py-3 text-sm font-medium ${normalizedPathname.startsWith(`/${lang}${item.url.replace(/\/$/, "")}`) ? "bg-brand-cream text-brand-navy" : "text-text-dark hover:bg-gray-50"}`}
+                  >
+                    {item.label}
+                  </Link>
                 )}
               </div>
             ))}

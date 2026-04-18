@@ -20,20 +20,9 @@ body {
   font-family: "Inter", "Noto Sans TC", "Noto Sans SC", system-ui, sans-serif;
 }
 
-/* Elegant serif headings for luxury feel */
+/* Elegant serif headings for luxury feel (non-EN locales override via inline style) */
 h1, h2, h3, h4, h5, h6 {
-  @apply font-serif text-brand-navy tracking-tight;
-}
-
-/* English locale: use Inter throughout (matching original site) */
-:lang(en) body,
-:lang(en) h1,
-:lang(en) h2,
-:lang(en) h3,
-:lang(en) h4,
-:lang(en) h5,
-:lang(en) h6 {
-  font-family: "Inter", system-ui, sans-serif;
+  @apply text-brand-navy tracking-tight;
 }
 
 /* Custom selection color */

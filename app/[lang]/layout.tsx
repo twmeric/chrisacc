@@ -4,6 +4,7 @@ import { getLocaleCMS } from "@/lib/cms-data";
 import Header from "@/components/ui/Header";
 import Footer from "@/components/ui/Footer";
 import AnalyticsTracker from "@/components/AnalyticsTracker";
+import SetHtmlLang from "@/components/SetHtmlLang";
 import "../globals.css";
 
 export async function generateStaticParams() {
@@ -26,30 +27,30 @@ export default async function RootLayout({
   const locale = (lang as Locale) || i18n.defaultLocale;
   const cms = getLocaleCMS(locale);
 
+  const bodyFont = locale === "en"
+    ? '"Inter", system-ui, sans-serif'
+    : '"Inter", "Noto Sans TC", "Noto Sans SC", system-ui, sans-serif';
+  const headingFont = locale === "en"
+    ? '"Inter", system-ui, sans-serif'
+    : '"Playfair Display", Georgia, serif';
+
   return (
-    <html lang={locale}>
-      <head>
-        <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap"
-          rel="stylesheet"
-        />
-      </head>
-      <body className="flex min-h-screen flex-col">
-        <AnalyticsTracker />
-        <Header
-          lang={locale}
-          navItems={cms.header.navItems}
-          siteName={cms.site.name}
-          siteTagline={cms.site.tagline}
-          logoUrl={cms.site.logo}
-        />
-        <main className="flex-1">{children}</main>
-        <Footer lang={locale} />
-      </body>
-    </html>
+    <>
+      <SetHtmlLang lang={locale} />
+      <style>{`
+        body { font-family: ${bodyFont}; }
+        h1, h2, h3, h4, h5, h6 { font-family: ${headingFont}; }
+      `}</style>
+      <AnalyticsTracker />
+      <Header
+        lang={locale}
+        navItems={cms.header.navItems}
+        siteName={cms.site.name}
+        siteTagline={cms.site.tagline}
+        logoUrl={cms.site.logo}
+      />
+      <main className="flex-1">{children}</main>
+      <Footer lang={locale} />
+    </>
   );
 }
