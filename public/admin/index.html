@@ -895,9 +895,13 @@
 
       let html = '<div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">';
       items.forEach(obj => {
-        const badgeColor = obj.source === 'r2' ? 'bg-emerald-100 text-emerald-700' : 'bg-amber-100 text-amber-700';
-        const badgeLabel = obj.source === 'r2' ? 'Uploaded' : 'Static';
-        html += `<div class="border rounded-lg overflow-hidden bg-white group hover:shadow-md transition">
+        const isR2 = obj.source === 'r2';
+        const badgeColor = isR2 ? 'bg-emerald-100 text-emerald-700' : 'bg-amber-100 text-amber-700';
+        const badgeLabel = isR2 ? 'Uploaded' : 'Static';
+        const deleteBtn = isR2
+          ? `<button onclick="deleteMedia('${obj.key}')" class="text-[10px] bg-red-50 hover:bg-red-100 text-red-600 py-1 px-2 rounded transition">Delete</button>`
+          : `<span class="text-[10px] text-slate-400 py-1 px-2">Read-only</span>`;
+        html += `<div class="border rounded-lg overflow-hidden bg-white group hover:shadow-md transition" data-key="${obj.key}">
           <div class="relative">
             <img src="${obj.url}" class="w-full h-28 object-cover" loading="lazy">
             <span class="absolute top-2 left-2 text-[10px] font-bold px-2 py-0.5 rounded-full ${badgeColor}">${badgeLabel}</span>
@@ -906,6 +910,7 @@
             <div class="text-xs text-slate-700 font-medium truncate mb-1" title="${obj.key}">${obj.key}</div>
             <div class="flex gap-1">
               <button onclick="navigator.clipboard.writeText('${obj.url}').then(()=>showToast('URL copied'))" class="flex-1 text-[10px] bg-slate-100 hover:bg-slate-200 text-slate-600 py-1 rounded transition">Copy URL</button>
+              ${deleteBtn}
             </div>
           </div>
         </div>`;
@@ -959,8 +964,19 @@
       } catch (e) { showToast('Upload error', 'error'); }
     }
 
+    async function deleteMedia(key) {
+      if (!confirm(`Delete "${key}"? This cannot be undone.`)) return;
+      try {
+        const r = await fetch(`${API_BASE}/media/${encodeURIComponent(key)}`, { method: 'DELETE', headers: { 'X-Admin-Token': token } });
+        const data = await r.json();
+        if (data.success) { showToast('Image deleted'); loadMediaGallery(); }
+        else { showToast(data.error || 'Delete failed', 'error'); }
+      } catch (e) { showToast('Delete error', 'error'); }
+    }
+
     window.loadMediaGallery = loadMediaGallery;
     window.uploadMediaGallery = uploadMediaGallery;
+    window.deleteMedia = deleteMedia;
 
     function renderAnalytics() {
       return sectionBox('analytics', 'Visitor Statistics', `

@@ -186,6 +186,17 @@ export default {
         return jsonResponse({ success: true, objects });
       }
 
+      if (path.startsWith("/api/cms/media/") && request.method === "DELETE") {
+        const auth = requireAuth(request, env);
+        if (auth) return auth;
+        const key = path.replace("/api/cms/media/", "");
+        if (!key) {
+          return jsonResponse({ error: "No key provided" }, 400);
+        }
+        await env.MEDIA_BUCKET.delete(key);
+        return jsonResponse({ success: true });
+      }
+
       if (path === "/api/cms/auth/verify" && request.method === "GET") {
         const auth = requireAuth(request, env);
         if (auth) return auth;
