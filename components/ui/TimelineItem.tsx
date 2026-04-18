@@ -9,7 +9,7 @@ export default function TimelineItem({ year, title, description, side }: Timelin
   return (
     <div className="relative mb-8 md:mb-12">
       {/* Center dot on the timeline — matches original .timeline-item::after */}
-      <span className="absolute left-1/2 top-[30px] hidden h-5 w-5 -translate-x-1/2 rounded-full border-4 border-white bg-brand-gold shadow md:block" />
+      <span className="absolute left-1/2 top-[30px] z-10 hidden h-5 w-5 -translate-x-1/2 rounded-full border-4 border-white bg-brand-gold shadow md:block" />
       {/* Card row */}
       <div className={`flex ${side === "left" ? "justify-end md:pr-[50%]" : "justify-start md:pl-[50%]"}`}>
         <div className={`w-full md:w-[45%] ${side === "left" ? "md:pr-8" : "md:pl-8"}`}>
