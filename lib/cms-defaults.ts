@@ -932,6 +932,10 @@ export const defaultCMSData: CMSData = {
         processTitle: "財務轉型旅程",
         processSubtitle: "從傳統財務到策略夥伴的進化路徑",
         processSteps: [
+          { number: "1", title: "記錄者", desc: "基礎會計記錄及交易處理，確保財務數據準確入帳" },
+          { number: "2", title: "報告者", desc: "及時編製財務報表及管理報告，提供標準化資訊" },
+          { number: "3", title: "分析者", desc: "深入分析財務數據，識別趨勢、異常及改善機會" },
+          { number: "4", title: "策略夥伴", desc: "參與業務決策，將財務洞察轉化為策略建議" },
         ],
         scenariosTitle: "",
         scenarios: [
@@ -958,17 +962,6 @@ export const defaultCMSData: CMSData = {
         ctaBtn: "免費諮詢",
         ctaBtn2: "",
         extraSections: [
-          {
-            title: "財務職能成熟度模型",
-            subtitle: "評估並提升您的財務職能水平",
-            layout: "steps",
-            steps: [
-              { number: "1", title: "記錄者", desc: "基礎會計記錄及交易處理，確保財務數據準確入帳" },
-              { number: "2", title: "報告者", desc: "及時編製財務報表及管理報告，提供標準化資訊" },
-              { number: "3", title: "分析者", desc: "深入分析財務數據，識別趨勢、異常及改善機會" },
-              { number: "4", title: "策略夥伴", desc: "參與業務決策，將財務洞察轉化為策略建議" },
-            ],
-          },
           {
             title: "外判 CFO 服務範圍",
             subtitle: "靈活的財務領導力，按需配置",
@@ -1070,10 +1063,10 @@ export const defaultCMSData: CMSData = {
         whyTitle: "為何選擇 LT CPA 併購交易服務",
         whySubtitle: "我們的差異化優勢",
         whyItems: [
-          { title: "專業資質", desc: "團隊成員均持有香港會計師公會及國際認可專業資格，確保服務符合最高專業標準。", icon: "fas fa-star" },
-          { title: "合夥人參與", desc: "每個審計項目由資深合夥人親自督導，確保審計質量和客戶服務的一致性。", icon: "fas fa-users" },
-          { title: "行業專長", desc: "深入了解各行業特點，提供具針對性的審計方法和有價值的行業洞察。", icon: "fas fa-cogs" },
-          { title: "高效溝通", desc: "建立清晰的溝通機制，及時反饋審計進度，確保審計過程順暢高效。", icon: "fas fa-clock" },
+          { title: "豐富交易經驗", desc: "涵蓋買方、賣方及重組項目的深厚經驗，從中小企交易到複雜跨境併購。", icon: "fas fa-handshake" },
+          { title: "合夥人親自督導", desc: "每個項目由資深合夥人提供策略監督，確保交付成果符合最高標準。", icon: "fas fa-users" },
+          { title: "行業專長", desc: "具備行業針對性洞察，實現精準盡職調查、準確估值及識別交易關鍵風險。", icon: "fas fa-chart-line" },
+          { title: "整合服務", desc: "與稅務、諮詢及法證團隊無縫協作，全面覆蓋交易的每個層面。", icon: "fas fa-link" },
         ],
         relatedServicesTitle: "相關服務",
         relatedItems: [
@@ -2024,6 +2017,26 @@ export const defaultCMSData: CMSData = {
         ctaDesc: "让我们的法证团队为您确立事实、守护诚信",
         ctaBtn: "免费咨询",
         ctaBtn2: "",
+        extraSections: [
+          {
+            title: "保密承诺",
+            body: "我们深知法证调查的敏感性。在每一个案件中，我们都严格遵守保密原则，以保护客户的商业利益和声誉。我们的团队经过专业培训，确保调查工作的有效性，同时最大限度地减少对业务运营的干扰。",
+            layout: "text",
+          },
+          {
+            title: "常见舞弊类型",
+            subtitle: "我们处理过的各类企业舞弊调查",
+            layout: "cards",
+            items: [
+              { title: "员工舞弊", desc: "挪用公款、虚报费用、采购回扣、薪资舞弊、库存盗窃及其他内部不当行为", icon: "UserX" },
+              { title: "财务报表舞弊", desc: "虚增收入、隐瞒费用、高估资产、低估负债及其他财务造假行为", icon: "FileWarning" },
+              { title: "管理层不当行为", desc: "利益冲突、关联交易、自我交易、滥用职权及其他高层违规行为", icon: "ShieldAlert" },
+              { title: "商业贿赂", desc: "向政府官员或商业伙伴提供不当利益、回扣安排", icon: "HandCoins" },
+              { title: "供应商/客户舞弊", desc: "虚假供应商、重复付款、发票欺诈、客户串通及其他外部欺诈", icon: "Truck" },
+              { title: "网络欺诈", desc: "商业电子邮件入侵(BEC)、网络钓鱼、身份盗窃、数据泄露调查", icon: "Monitor" },
+            ],
+          },
+        ],
       },
       consulting: {
         tagline: "「将财务转化为策略推动力。」",
@@ -2082,6 +2095,10 @@ export const defaultCMSData: CMSData = {
         processTitle: "财务转型旅程",
         processSubtitle: "从传统财务到策略伙伴的进化路径",
         processSteps: [
+          { number: "1", title: "记录者", desc: "基础会计记录及交易处理，确保财务数据准确入帐" },
+          { number: "2", title: "报告者", desc: "及时编制财务报表及管理报告，提供标准化资讯" },
+          { number: "3", title: "分析者", desc: "深入分析财务数据，识别趋势、异常及改善机会" },
+          { number: "4", title: "策略伙伴", desc: "参与业务决策，将财务洞察转化为策略建议" },
         ],
         scenariosTitle: "",
         scenarios: [
@@ -2108,17 +2125,6 @@ export const defaultCMSData: CMSData = {
         ctaBtn: "免费咨询",
         ctaBtn2: "",
         extraSections: [
-          {
-            title: "财务职能成熟度模型",
-            subtitle: "评估并提升您的财务职能水平",
-            layout: "steps",
-            steps: [
-              { number: "1", title: "记录者", desc: "基础会计记录及交易处理，确保财务数据准确入帐" },
-              { number: "2", title: "报告者", desc: "及时编制财务报表及管理报告，提供标准化资讯" },
-              { number: "3", title: "分析者", desc: "深入分析财务数据，识别趋势、异常及改善机会" },
-              { number: "4", title: "策略伙伴", desc: "参与业务决策，将财务洞察转化为策略建议" },
-            ],
-          },
           {
             title: "外判 CFO 服务范围",
             subtitle: "灵活的财务领导力，按需配置",
@@ -2220,16 +2226,16 @@ export const defaultCMSData: CMSData = {
         whyTitle: "为何选择 LT CPA 并购交易服务",
         whySubtitle: "我们的差异化优势",
         whyItems: [
-          { title: "专业资质", desc: "团队成员均持有香港会计师公会及国际认可专业资格，确保服务符合最高专业标准。", icon: "fas fa-star" },
-          { title: "合伙人参与", desc: "每个审计项目由资深合伙人亲自督导，确保审计质量和客户服务的一致性。", icon: "fas fa-users" },
-          { title: "行业专长", desc: "深入了解各行业特点，提供具针对性的审计方法和有价值的行业洞察。", icon: "fas fa-cogs" },
-          { title: "高效沟通", desc: "建立清晰的沟通机制，及时反馈审计进度，确保审计过程顺畅高效。", icon: "fas fa-clock" },
+          { title: "丰富交易经验", desc: "涵盖买方、卖方及重组项目的深厚经验，从中小企交易到复杂跨境并购。", icon: "fas fa-handshake" },
+          { title: "合伙人亲自督导", desc: "每个项目由资深合伙人提供策略监督，确保交付成果符合最高标准。", icon: "fas fa-users" },
+          { title: "行业专长", desc: "具备行业针对性洞察，实现精准尽职调查、准确估值及识别交易关键风险。", icon: "fas fa-chart-line" },
+          { title: "整合服务", desc: "与税务、咨询及法证团队无缝协作，全面覆盖交易的每个层面。", icon: "fas fa-link" },
         ],
         relatedServicesTitle: "相关服务",
         relatedItems: [
-          { title: "风险与监管", desc: "协助企业建立稳健的内部控制体系，满足监管合规要求，提升风险管理能力。", href: "/services/risk/", linkText: "了解更多 →" },
-          { title: "并购交易", desc: "提供财务尽职调查、估值服务及交易支援，助您做出明智的投资决策。", href: "/services/deals/", linkText: "了解更多 →" },
-          { title: "企业咨询", desc: "协助财务职能转型，优化业务流程，提升营运效率与财务透明度。", href: "/services/consulting/", linkText: "了解更多 →" },
+          { title: "税务咨询", desc: "税务尽职调查、交易架构设计及购买价格分摊，优化税务成果。", href: "/services/tax/", linkText: "了解更多 →" },
+          { title: "审计与鉴证", desc: "独立财务保证及盈利质量分析，支持交易谈判。", href: "/services/audit/", linkText: "了解更多 →" },
+          { title: "企业咨询", desc: "交易后整合规划、财务职能转型及协同效应实现支援。", href: "/services/consulting/", linkText: "了解更多 →" },
         ],
         ctaTitle: "需要并购交易支援？",
         ctaDesc: "在交易每个阶段释放价值，让我们的团队助您完成交易",
@@ -3174,6 +3180,26 @@ export const defaultCMSData: CMSData = {
         ctaDesc: "Let our forensic team establish the facts and protect integrity for you",
         ctaBtn: "Contact Us",
         ctaBtn2: "",
+        extraSections: [
+          {
+            title: "Confidentiality Commitment",
+            body: "We understand the sensitivity of forensic investigations. In every matter we strictly adhere to confidentiality to protect our clients' business interests and reputation. Our team is professionally trained to ensure investigation effectiveness while minimising disruption to business operations.",
+            layout: "text",
+          },
+          {
+            title: "Common Fraud Types",
+            subtitle: "Enterprise fraud investigations we handle",
+            layout: "cards",
+            items: [
+              { title: "Employee Fraud", desc: "Embezzlement, expense fraud, procurement kickbacks, payroll fraud, inventory theft and other internal misconduct", icon: "UserX" },
+              { title: "Financial Statement Fraud", desc: "Revenue inflation, expense concealment, asset overstatement, liability understatement and other financial misrepresentation", icon: "FileWarning" },
+              { title: "Management Misconduct", desc: "Conflicts of interest, related-party transactions, self-dealing, abuse of authority and other senior-level violations", icon: "ShieldAlert" },
+              { title: "Commercial Bribery", desc: "Improper benefits to government officials or business partners, kickback arrangements", icon: "HandCoins" },
+              { title: "Supplier/Customer Fraud", desc: "Fake suppliers, duplicate payments, invoice fraud, customer collusion and other external fraud", icon: "Truck" },
+              { title: "Cyber Fraud", desc: "Business email compromise (BEC), phishing, identity theft, data breach investigations", icon: "Monitor" },
+            ],
+          },
+        ],
       },
       consulting: {
         tagline: "\"Turn finance into a strategic driver.\"",
@@ -3232,6 +3258,10 @@ export const defaultCMSData: CMSData = {
         processTitle: "Finance Transformation Journey",
         processSubtitle: "From traditional finance to strategic partner",
         processSteps: [
+          { number: "1", title: "Recorder", desc: "Traditional finance focused on transaction processing, bookkeeping and compliance reporting" },
+          { number: "2", title: "Reporter", desc: "Standardised financial reporting with growing focus on data accuracy and timeliness" },
+          { number: "3", title: "Analyst", desc: "Deep analysis of business data, trend insights and performance analysis" },
+          { number: "4", title: "Strategic Partner", desc: "Involved in business decisions, forward-looking advice and value creation" },
         ],
         scenariosTitle: "",
         scenarios: [
@@ -3258,17 +3288,6 @@ export const defaultCMSData: CMSData = {
         ctaBtn: "Contact Us",
         ctaBtn2: "",
         extraSections: [
-          {
-            title: "Finance Maturity Model",
-            subtitle: "Assess and elevate your finance function",
-            layout: "steps",
-            steps: [
-              { number: "1", title: "Recorder", desc: "Basic accounting and transaction processing to ensure accurate financial data entry" },
-              { number: "2", title: "Reporter", desc: "Timely preparation of financial and management reports providing standardised information" },
-              { number: "3", title: "Analyst", desc: "In-depth analysis of financial data to identify trends, anomalies and improvement opportunities" },
-              { number: "4", title: "Strategic Partner", desc: "Participate in business decisions and translate financial insights into strategic recommendations" },
-            ],
-          },
           {
             title: "Outsourced CFO Services",
             subtitle: "Flexible finance leadership on demand",
@@ -3370,16 +3389,16 @@ export const defaultCMSData: CMSData = {
         whyTitle: "Why Choose LT CPA for Deals & M&A",
         whySubtitle: "Our differentiators",
         whyItems: [
-          { title: "Professional Qualifications", desc: "Our team holds HKICPA and internationally recognised qualifications, ensuring services meet the highest professional standards.", icon: "fas fa-star" },
-          { title: "Partner Involvement", desc: "Every engagement is supervised by a senior partner to ensure consistent quality and client service.", icon: "fas fa-users" },
-          { title: "Industry Expertise", desc: "Deep understanding of sector-specific issues and delivery of targeted approaches and valuable industry insights.", icon: "fas fa-cogs" },
-          { title: "Responsive Communication", desc: "Clear communication channels and timely updates for a smooth, efficient process.", icon: "fas fa-clock" },
+          { title: "Transaction Experience", desc: "Deep experience across buy-side, sell-side and restructuring engagements, from SME transactions to complex cross-border deals.", icon: "fas fa-handshake" },
+          { title: "Partner-Led Teams", desc: "Every engagement is supervised by a senior partner who provides strategic oversight and ensures quality deliverables.", icon: "fas fa-users" },
+          { title: "Industry Expertise", desc: "Sector-specific insights that enable targeted due diligence, accurate valuation and identification of deal-critical risks.", icon: "fas fa-chart-line" },
+          { title: "Integrated Approach", desc: "Seamless coordination with our tax, consulting and forensic teams to cover every angle of a transaction.", icon: "fas fa-link" },
         ],
         relatedServicesTitle: "Related Services",
         relatedItems: [
-          { title: "Risk & Regulatory", desc: "Help build robust internal control frameworks and meet regulatory compliance requirements.", href: "/services/risk/", linkText: "Learn more →" },
-          { title: "Deals & M&A", desc: "Financial due diligence, valuation and transaction support for informed investment decisions.", href: "/services/deals/", linkText: "Learn more →" },
-          { title: "Consulting", desc: "Finance function transformation, process optimisation and improved operational efficiency.", href: "/services/consulting/", linkText: "Learn more →" },
+          { title: "Tax Advisory", desc: "Tax due diligence, transaction structure design and purchase price allocation to optimise tax outcomes.", href: "/services/tax/", linkText: "Learn more →" },
+          { title: "Audit & Assurance", desc: "Independent financial assurance and quality of earnings analysis to support deal negotiations.", href: "/services/audit/", linkText: "Learn more →" },
+          { title: "Consulting", desc: "Post-deal integration planning, finance function transformation and synergy realisation support.", href: "/services/consulting/", linkText: "Learn more →" },
         ],
         ctaTitle: "Need Deals & M&A Support?",
         ctaDesc: "Unlock value at every stage of the deal—let our team help you get the transaction done",

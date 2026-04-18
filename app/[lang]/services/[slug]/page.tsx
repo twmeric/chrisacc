@@ -69,10 +69,10 @@ export default async function ServicePage({ params }: ServicePageProps) {
         <ServiceScenariosV2 title={data.scenarios2Title} items={data.scenarios2} />
       )}
 
-      <WhyChooseServiceV2 title={data.whyTitle} subtitle={data.whySubtitle} items={data.whyItems} />
       {data.extraSections && data.extraSections.length > 0 && (
         <ServiceExtraSections sections={data.extraSections} />
       )}
+      <WhyChooseServiceV2 title={data.whyTitle} subtitle={data.whySubtitle} items={data.whyItems} />
       <RelatedServicesV2
         lang={lang}
         currentSlug={slug}

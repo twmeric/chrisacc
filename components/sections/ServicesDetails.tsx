@@ -62,25 +62,7 @@ export default function ServicesDetails({ lang, items }: ServicesDetailsProps) {
 
   return (
     <section className="bg-white">
-      {/* Sticky Nav */}
-      <div className="sticky top-[72px] z-30 border-b border-gray-100 bg-white shadow-sm">
-        <div className="mx-auto max-w-6xl px-4">
-          <nav className="scrollbar-hide flex gap-6 overflow-x-auto py-4 md:justify-center">
-            {items.map((item) => (
-              <a
-                key={item.slug}
-                href={`#${item.slug}`}
-                onClick={(e) => handleNavClick(e, item.slug)}
-                className="whitespace-nowrap text-sm font-medium text-text-dark transition hover:text-brand-navy md:text-base"
-              >
-                {labels[item.slug] || item.title}
-              </a>
-            ))}
-          </nav>
-        </div>
-      </div>
-
-      {/* Detail Sections */}
+      {/* Detail Sections -- pill nav in ServiceCategoryNav replaces sticky nav */}
       <div className="mx-auto max-w-6xl px-4 py-12 md:py-20">
         {items.map((item, idx) => {
           const isEven = idx % 2 === 0;
