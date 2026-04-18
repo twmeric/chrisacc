@@ -23,38 +23,49 @@ export default function ServiceScopeV2({ title, subtitle, items }: ServiceScopeV
             <p className="mx-auto mt-6 max-w-2xl text-lg text-text-light">{subtitle}</p>
           )}
         </div>
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+
+        <div className="space-y-8">
           {items.map((item, idx) => (
             <div
               key={idx}
-              className="group rounded-xl bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md md:p-8"
+              className="overflow-hidden rounded-xl bg-white shadow-[0_5px_20px_rgba(0,0,0,0.08)]"
             >
-              <div className="mb-5 flex items-center gap-4">
+              {/* Card Header — dark navy with icon */}
+              <div className="flex items-center gap-5 bg-brand-navy px-6 py-6 md:px-10 md:py-8">
                 {item.icon && (
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-brand-navy to-brand-accent text-lg text-white">
-                    <i className={item.icon} />
+                  <div className="flex h-[70px] w-[70px] shrink-0 items-center justify-center rounded-full bg-brand-gold/15">
+                    <i className={`${item.icon} text-[30px] text-brand-gold`} />
                   </div>
                 )}
                 <div>
-                  <h3 className="text-lg font-bold text-brand-navy">{item.title}</h3>
+                  <h3 className="text-xl font-bold text-white md:text-2xl">{item.title}</h3>
                   {item.subtitle && (
-                    <p className="text-sm text-text-light">{item.subtitle}</p>
+                    <p className="mt-1 text-sm text-white/70 md:text-base">{item.subtitle}</p>
                   )}
                 </div>
               </div>
-              {item.body && (
-                <p className="mb-4 text-sm leading-relaxed text-text-dark">{item.body}</p>
-              )}
-              {item.features.length > 0 && (
-                <div className="space-y-2">
-                  {item.features.map((ft, i) => (
-                    <div key={i} className="flex items-start gap-2 text-sm text-text-dark">
-                      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-gold" />
-                      <span>{ft}</span>
-                    </div>
-                  ))}
-                </div>
-              )}
+
+              {/* Card Body */}
+              <div className="px-6 py-6 md:px-10 md:py-8">
+                {item.body && (
+                  <p className="mb-6 text-sm leading-relaxed text-text-light md:text-[15px]">
+                    {item.body}
+                  </p>
+                )}
+                {item.features.length > 0 && (
+                  <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                    {item.features.map((ft, i) => (
+                      <div
+                        key={i}
+                        className="flex items-start gap-3 rounded-md bg-brand-cream p-4"
+                      >
+                        <i className="fas fa-check mt-0.5 text-lg text-brand-gold" />
+                        <span className="text-sm leading-relaxed text-text-dark">{ft}</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
           ))}
         </div>
