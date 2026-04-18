@@ -46,6 +46,8 @@ export default async function ServicePage({ params }: ServicePageProps) {
         paragraphs={data.overview}
         highlight={data.overviewHighlight}
         stat={data.overviewStat}
+        stats={data.overviewStats}
+        icon={data.overviewIcon}
         image={data.overviewImage}
       />
       <ServiceScopeV2

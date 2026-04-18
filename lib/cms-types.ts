@@ -174,6 +174,8 @@ export interface ServiceDetailPageData {
   overview: string[];
   overviewHighlight: string;
   overviewStat: { number: string; label: string } | null;
+  overviewStats?: { number: string; label: string; position?: "top" | "bottom" }[];
+  overviewIcon?: string;
   overviewImage: string;
   scopeTitle: string;
   scopeSubtitle: string;
