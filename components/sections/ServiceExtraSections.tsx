@@ -75,8 +75,8 @@ export default function ServiceExtraSections({
                             className={`rounded-xl border p-5 text-center transition-all hover:-translate-y-1 hover:shadow-md ${cardBg}`}
                           >
                             {IconComponent && (
-                              <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-brand-navy/10">
-                                <IconComponent className="h-5 w-5 text-brand-navy" />
+                              <div className={`mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full ${isDark ? "bg-brand-gold/20" : "bg-brand-navy/10"}`}>
+                                <IconComponent className={`h-5 w-5 ${isDark ? "text-brand-gold" : "text-brand-navy"}`} />
                               </div>
                             )}
                             <h4 className={`mb-1 text-base font-bold ${cardText}`}>
@@ -105,8 +105,8 @@ export default function ServiceExtraSections({
                         className={`rounded-xl border p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg ${cardBg}`}
                       >
                         {IconComponent && (
-                          <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-brand-navy/10">
-                            <IconComponent className="h-6 w-6 text-brand-navy" />
+                          <div className={`mb-4 flex h-12 w-12 items-center justify-center rounded-full ${isDark ? "bg-brand-gold/20" : "bg-brand-gold/10"}`}>
+                            <IconComponent className="h-6 w-6 text-brand-gold" />
                           </div>
                         )}
                         <h4 className={`mb-2 text-lg font-semibold ${cardText}`}>
