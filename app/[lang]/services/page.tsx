@@ -2,6 +2,7 @@ import { Locale } from "@/lib/i18n-config";
 import { getLocaleCMS } from "@/lib/cms-data";
 import PageBanner from "@/components/ui/PageBanner";
 import ServicesIntro from "@/components/sections/ServicesIntro";
+import ServiceCategoryNav from "@/components/sections/ServiceCategoryNav";
 import ServicesDetails from "@/components/sections/ServicesDetails";
 import WhyChooseV2 from "@/components/sections/WhyChooseV2";
 import ProcessSection from "@/components/sections/ProcessSection";
@@ -20,6 +21,9 @@ export default async function ServicesPage({ params }: ServicesPageProps) {
     <>
       <PageBanner lang={lang} title={t.pageTitle} />
       <ServicesIntro title={t.introTitle} desc={t.introDesc} />
+      <ServiceCategoryNav
+        items={t.serviceDetails.map((item) => ({ slug: item.slug, title: item.title }))}
+      />
       <ServicesDetails lang={lang} items={t.serviceDetails} />
       <WhyChooseV2
         title={t.whyChoose.title}
