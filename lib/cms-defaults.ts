@@ -74,9 +74,9 @@ export const defaultCMSData: CMSData = {
           { title: "策略性商業顧問", subtitle: "", cta: "立即諮詢", href: "/contact/" },
         ],
         backgrounds: [
-          "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=1920&q=80",
-          "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1920&q=80",
-          "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=1920&q=80",
+          "/images/hero-bg-1.jpg",
+          "/images/hero-bg-2.jpg",
+          "/images/hero-bg-3.jpg",
         ],
       },
       services: {
@@ -260,7 +260,7 @@ export const defaultCMSData: CMSData = {
             title: `審計與鑑證`,
             subtitle: `「為資本市場注入信心。」`,
             desc: `在以波動性為特徵的全球金融格局中，利害關係人不僅需要數字，更需要數字背後的真相。我們的審計與鑑證業務是「信任」的基石。我們不將審計視為商品，而是將其視為驗證財務健康狀況並發掘改進機會的關鍵診斷工具。`,
-            image: `https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&q=80`,
+            image: `/images/service-audit.jpg`,
             features: [
               `法定審計及財務報表審計`,
             `內部控制審查及評估`,
@@ -275,7 +275,7 @@ export const defaultCMSData: CMSData = {
             title: `稅務諮詢`,
             subtitle: `「優化效率，傳承保護。」`,
             desc: `稅法是動態的，往往隨地緣政治潮流而變化。我們的稅務諮詢團隊作為您的策略導航員，確保您的稅務立場與商業目標一致，同時保持嚴格合規。我們超越簡單的申報，進行主動規劃。`,
-            image: `https://images.unsplash.com/photo-1554224154-26032ffc0d07?w=600&q=80`,
+            image: `/images/service-tax.jpg`,
             features: [
               `企業稅務規劃及優化`,
             `跨境稅務諮詢`,
@@ -290,7 +290,7 @@ export const defaultCMSData: CMSData = {
             title: `風險與監管`,
             subtitle: `「從被動合規到策略韌性。」`,
             desc: `在「多重危機」時代——監管審查、地緣政治變化和技術顛覆交織——韌性是競爭優勢。我們幫助組織從「打勾式」合規心態轉向預見變化的全面風險管理策略。`,
-            image: `https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&q=80`,
+            image: `/images/service-risk.jpg`,
             features: [
               `企業風險評估及管理`,
             `內部控制體系建設`,
@@ -305,7 +305,7 @@ export const defaultCMSData: CMSData = {
             title: `法證服務`,
             subtitle: `「守護誠信與價值。」`,
             desc: `當業務誠信受到欺詐、不當行為或爭議威脅時，速度和精準至關重要。我們的法證團隊結合會計專業與調查嚴謹性，確立事實、量化損失並恢復信任。`,
-            image: `https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?w=600&q=80`,
+            image: `/images/service-forensic.jpg`,
             features: [
               `欺詐調查及預防`,
             `商業糾紛分析`,
@@ -320,7 +320,7 @@ export const defaultCMSData: CMSData = {
             title: `企業諮詢`,
             subtitle: `「驅動轉型與績效。」`,
             desc: `增長往往帶來複雜性。我們的諮詢業務致力於您營運模式的「轉型」。我們與管理層並肩合作，現代化財務功能、精簡營運，並為您的組織下一階段的演進做好準備。`,
-            image: `https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&q=80`,
+            image: `/images/service-consulting.jpg`,
             features: [
               `業務流程優化`,
             `財務管理諮詢`,
@@ -335,7 +335,7 @@ export const defaultCMSData: CMSData = {
             title: `併購交易`,
             subtitle: `「在交易每個階段釋放價值。」`,
             desc: `成功的交易需要「領導力」和清晰度。無論您是買方、賣方還是進行重組，我們都能穿透噪音，提供自信談判和完成交易所需的關鍵財務洞察。`,
-            image: `https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=600&q=80`,
+            image: `/images/service-deals.jpg`,
             features: [
               `併購策略諮詢`,
             `財務盡職調查`,
@@ -1291,9 +1291,9 @@ export const defaultCMSData: CMSData = {
           { title: "策略性商业顾问", subtitle: "从税务策划到企业并购，全方位支援您的商业决策", cta: "立即咨询", href: "/contact-sc/" },
         ],
         backgrounds: [
-          "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=1920&q=80",
-          "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1920&q=80",
-          "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=1920&q=80",
+          "/images/hero-bg-1.jpg",
+          "/images/hero-bg-2.jpg",
+          "/images/hero-bg-3.jpg",
         ],
       },
       services: {
@@ -1477,7 +1477,7 @@ export const defaultCMSData: CMSData = {
             title: `审计与鉴证`,
             subtitle: `「为资本市场注入信心。」`,
             desc: `在以波动性为特征的全球金融格局中，利益相关者不仅需要数字，更需要数字背后的真相。我们的审计与鉴证业务是「信任」的基石。我们不将审计视为商品，而是将其视为验证财务健康状况并发掘改进机会的关键诊断工具。`,
-            image: `https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&q=80`,
+            image: `/images/service-audit.jpg`,
             features: [
               `法定审计及财务报表审计`,
             `内部控制审查及评估`,
@@ -1492,7 +1492,7 @@ export const defaultCMSData: CMSData = {
             title: `税务咨询`,
             subtitle: `「优化效率，传承保护。」`,
             desc: `税法是动态的，往往随地缘政治潮流而变化。我们的税务咨询团队作为您的策略导航员，确保您的税务立场与商业目标一致，同时保持严格合规。我们超越简单的申报，进行主动规划。`,
-            image: `https://images.unsplash.com/photo-1554224154-26032ffc0d07?w=600&q=80`,
+            image: `/images/service-tax.jpg`,
             features: [
               `企业税务规划及优化`,
             `跨境税务咨询`,
@@ -1507,7 +1507,7 @@ export const defaultCMSData: CMSData = {
             title: `风险与监管`,
             subtitle: `「从被动合规到策略韧性。」`,
             desc: `在「多重危机」时代——监管审查、地缘政治变化和技术颠覆交织——韧性是竞争优势。我们帮助组织从「打勾式」合规心态转向预见变化的全面风险管理策略。`,
-            image: `https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&q=80`,
+            image: `/images/service-risk.jpg`,
             features: [
               `企业风险评估及管理`,
             `内控体系建设`,
@@ -1522,7 +1522,7 @@ export const defaultCMSData: CMSData = {
             title: `法证服务`,
             subtitle: `「守护诚信与价值。」`,
             desc: `当业务诚信受到欺诈、不当行为或争议威胁时，速度和精准至关重要。我们的法证团队结合会计专业与调查严谨性，确立事实、量化损失并恢复信任。`,
-            image: `https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?w=600&q=80`,
+            image: `/images/service-forensic.jpg`,
             features: [
               `欺诈调查及预防`,
             `商业纠纷分析`,
@@ -1537,7 +1537,7 @@ export const defaultCMSData: CMSData = {
             title: `企业咨询`,
             subtitle: `「驱动转型与绩效。」`,
             desc: `增长往往带来复杂性。我们的咨询业务致力于您营运模式的「转型」。我们与管理层并肩合作，现代化财务功能、精简营运，并为您的组织下一阶段的演进做好准备。`,
-            image: `https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&q=80`,
+            image: `/images/service-consulting.jpg`,
             features: [
               `业务流程优化`,
             `财务管理咨询`,
@@ -1552,7 +1552,7 @@ export const defaultCMSData: CMSData = {
             title: `并购交易`,
             subtitle: `「在交易每个阶段释放价值。」`,
             desc: `成功的交易需要「领导力」和清晰度。无论您是买方、卖方还是进行重组，我们都能穿透噪音，提供自信谈判和完成交易所需的关键财务洞察。`,
-            image: `https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=600&q=80`,
+            image: `/images/service-deals.jpg`,
             features: [
               `并购策略咨询`,
             `财务尽职调查`,
@@ -2483,9 +2483,9 @@ export const defaultCMSData: CMSData = {
           { title: "Strategic Business Advisory", subtitle: "From tax planning to mergers & acquisitions, supporting all your business decisions", cta: "Get in Touch", href: "/contact/" },
         ],
         backgrounds: [
-          "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=1920&q=80",
-          "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1920&q=80",
-          "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=1920&q=80",
+          "/images/hero-bg-1.jpg",
+          "/images/hero-bg-2.jpg",
+          "/images/hero-bg-3.jpg",
         ],
       },
       services: {
@@ -2669,7 +2669,7 @@ export const defaultCMSData: CMSData = {
             title: `Audit & Assurance`,
             subtitle: `"Instilling Confidence in Capital Markets."`,
             desc: `In a global financial landscape characterized by volatility, stakeholders demand more than just numbers—they demand the truth behind them. Our Audit & Assurance practice is the cornerstone of trust. We do not view the audit as a commodity, but as a critical diagnostic tool that validates financial health and uncovers opportunities for improvement.`,
-            image: `https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&q=80`,
+            image: `/images/service-audit.jpg`,
             features: [
               `Statutory audit and financial statement audit`,
             `Internal control review and assessment`,
@@ -2684,7 +2684,7 @@ export const defaultCMSData: CMSData = {
             title: `Tax Advisory`,
             subtitle: `"Optimizing Efficiency, Preserving Legacy."`,
             desc: `Tax laws are dynamic, often shifting with geopolitical tides. Our Tax Advisory team acts as your strategic navigator, ensuring that your tax position aligns with your commercial objectives while maintaining strict compliance. We move beyond simple filing to proactive planning.`,
-            image: `https://images.unsplash.com/photo-1554224154-26032ffc0d07?w=600&q=80`,
+            image: `/images/service-tax.jpg`,
             features: [
               `Corporate tax planning and optimization`,
             `Cross-border tax advisory`,
@@ -2699,7 +2699,7 @@ export const defaultCMSData: CMSData = {
             title: `Risk & Regulatory`,
             subtitle: `"From Reactive Compliance to Strategic Resilience."`,
             desc: `In an era of polycrisis—where regulatory scrutiny, geopolitical shifts, and technological disruption intersect—resilience is a competitive advantage. We help organizations move from a tick-the-box compliance mentality to a holistic risk management strategy that anticipates change.`,
-            image: `https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&q=80`,
+            image: `/images/service-risk.jpg`,
             features: [
               `Enterprise risk assessment and management`,
             `Internal control system development`,
@@ -2714,7 +2714,7 @@ export const defaultCMSData: CMSData = {
             title: `Forensic Services`,
             subtitle: `"Safeguarding Integrity and Value."`,
             desc: `When business integrity is threatened by fraud, misconduct, or dispute, speed and precision are paramount. Our Forensic team combines accounting acumen with investigative rigor to establish the facts, quantify losses, and restore trust.`,
-            image: `https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?w=600&q=80`,
+            image: `/images/service-forensic.jpg`,
             features: [
               `Fraud investigation and prevention`,
             `Commercial dispute analysis`,
@@ -2729,7 +2729,7 @@ export const defaultCMSData: CMSData = {
             title: `Consulting`,
             subtitle: `"Driving Transformation and Performance."`,
             desc: `Growth often brings complexity. Our Consulting practice focuses on transforming your operating model. We work closely with management teams to modernize finance functions, streamline operations, and prepare your organization for its next stage of evolution.`,
-            image: `https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&q=80`,
+            image: `/images/service-consulting.jpg`,
             features: [
               `Business process optimization`,
             `Financial management advisory`,
@@ -2744,7 +2744,7 @@ export const defaultCMSData: CMSData = {
             title: `Deals & M&A`,
             subtitle: `"Unlocking Value at Every Stage of the Transaction."`,
             desc: `A successful transaction requires leadership and clarity. Whether you are buying, selling, or restructuring, we cut through the noise to provide the critical financial insights needed to negotiate confidently and close deals.`,
-            image: `https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=600&q=80`,
+            image: `/images/service-deals.jpg`,
             features: [
               `M&A strategy advisory`,
             `Financial due diligence`,

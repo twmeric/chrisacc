@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-18T14:54:39.288Z",
+  "generatedAt": "2026-04-18T15:07:14.516Z",
   "objects": [
     {
       "key": "about-team.jpg",
@@ -52,8 +52,38 @@
       "source": "static"
     },
     {
+      "key": "service-audit.jpg",
+      "url": "/images/service-audit.jpg",
+      "source": "static"
+    },
+    {
+      "key": "service-consulting.jpg",
+      "url": "/images/service-consulting.jpg",
+      "source": "static"
+    },
+    {
+      "key": "service-deals.jpg",
+      "url": "/images/service-deals.jpg",
+      "source": "static"
+    },
+    {
+      "key": "service-forensic.jpg",
+      "url": "/images/service-forensic.jpg",
+      "source": "static"
+    },
+    {
       "key": "service-hero-bg.jpg",
       "url": "/images/service-hero-bg.jpg",
+      "source": "static"
+    },
+    {
+      "key": "service-risk.jpg",
+      "url": "/images/service-risk.jpg",
+      "source": "static"
+    },
+    {
+      "key": "service-tax.jpg",
+      "url": "/images/service-tax.jpg",
       "source": "static"
     },
     {

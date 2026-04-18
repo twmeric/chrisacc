@@ -2,7 +2,8 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, ChevronDown, Search, Globe } from "lucide-react";
+import { Menu, X, ChevronDown, Globe } from "lucide-react";
+import SearchOverlay from "./SearchOverlay";
 import { Locale, localeLabels } from "@/lib/i18n-config";
 
 interface NavItem { label: string; url: string; children?: { label: string; url: string }[]; }
@@ -75,10 +76,7 @@ export default function Header({ lang, navItems, siteName, siteTagline, logoUrl 
               ))}
             </div>
           </div>
-          <button className="hidden items-center gap-1.5 text-sm font-medium text-text-dark transition hover:text-brand-navy md:flex">
-            <Search className="h-4 w-4 text-brand-navy" />
-            <span className="hidden lg:inline">{lang === "en" ? "Search" : "搜尋"}</span>
-          </button>
+          <SearchOverlay lang={lang} />
           <button className="flex h-6 w-8 flex-col justify-between md:hidden" onClick={() => setMobileOpen(!mobileOpen)} aria-label="Toggle menu">
             <span className={`block h-0.5 bg-brand-navy transition-transform ${mobileOpen ? "translate-y-[10px] rotate-45" : ""}`} />
             <span className={`block h-0.5 bg-brand-navy transition-opacity ${mobileOpen ? "opacity-0" : ""}`} />
