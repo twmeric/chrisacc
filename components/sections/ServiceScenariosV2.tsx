@@ -1,6 +1,6 @@
 interface ServiceScenariosV2Props {
   title: string;
-  items: { title: string; desc: string; features?: string[] }[];
+  items: { title: string; desc: string; features?: string[]; icon?: string }[];
 }
 
 export default function ServiceScenariosV2({ title, items }: ServiceScenariosV2Props) {
@@ -20,6 +20,15 @@ export default function ServiceScenariosV2({ title, items }: ServiceScenariosV2P
               key={idx}
               className="rounded-xl bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-md md:p-6"
             >
+              {item.icon && (
+                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-brand-navy/10">
+                  {item.icon.length <= 2 ? (
+                    <span className="text-xl font-bold text-brand-navy">{item.icon}</span>
+                  ) : (
+                    <i className={`${item.icon} text-xl text-brand-navy`} />
+                  )}
+                </div>
+              )}
               <h3 className="mb-2 text-base font-bold text-brand-navy md:text-lg">{item.title}</h3>
               <p className="mb-3 text-sm leading-relaxed text-text-light">{item.desc}</p>
               {item.features && item.features.length > 0 && (

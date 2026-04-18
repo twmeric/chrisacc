@@ -26,6 +26,7 @@ export interface SiteData {
   logo: string;
   jkdcodingLogo?: string;
   jkdcodingUrl?: string;
+  whatsapp?: string;
 }
 
 export interface HeaderData {
@@ -51,6 +52,7 @@ export interface FooterData {
     address: string;
     phone: string;
     email: string;
+    whatsapp?: string;
   };
   social: {
     facebook: string;
@@ -190,9 +192,9 @@ export interface ServiceDetailPageData {
   processSubtitle: string;
   processSteps: { number: string; title: string; desc: string }[];
   scenariosTitle: string;
-  scenarios: { title: string; desc: string; features: string[] }[];
+  scenarios: { title: string; desc: string; features: string[]; icon?: string }[];
   scenarios2Title: string;
-  scenarios2: { title: string; desc: string; features: string[] }[];
+  scenarios2: { title: string; desc: string; features: string[]; icon?: string }[];
   whyTitle: string;
   whySubtitle: string;
   whyItems: { title: string; desc: string; icon: string }[];
@@ -237,6 +239,8 @@ export interface ContactPageData {
     hours: { day: string; time: string }[];
     follow: string;
     servicesList: { value: string; label: string }[];
+    whatsapp?: string;
+    whatsappLabel?: string;
   };
   map: {
     title: string;

@@ -60,6 +60,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
           title={data.processTitle}
           subtitle={data.processSubtitle || data.serviceProcessSubtitle || ""}
           steps={data.processSteps}
+          variant={["forensic", "consulting", "deals"].includes(slug) ? "left" : "center"}
         />
       ) : data.scenarios && data.scenarios.length > 0 ? (
         <ServiceScenariosV2 title={data.scenariosTitle || data.processTitle} items={data.scenarios} />

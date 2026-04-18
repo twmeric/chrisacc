@@ -24,6 +24,8 @@ interface ContactFormProps {
     hours: { day: string; time: string }[];
     follow: string;
     servicesList: { value: string; label: string }[];
+    whatsapp?: string;
+    whatsappLabel?: string;
   };
   map: {
     title: string;
@@ -32,6 +34,19 @@ interface ContactFormProps {
 }
 
 const INQUIRY_API_URL = process.env.NEXT_PUBLIC_INQUIRY_API_URL || "/api/submit-inquiry/";
+
+function buildWhatsAppUrl(whatsapp: string, formData: Record<string, string>, servicesList: { value: string; label: string }[]) {
+  const phone = whatsapp.replace(/\D/g, "");
+  const serviceLabel = servicesList.find((s) => s.value === formData.service)?.label || formData.service || "N/A";
+  const text = `*New Inquiry from LT CPA Website*%0A%0A` +
+    `*Name:* ${formData.name || ""}%0A` +
+    `*Company:* ${formData.company || ""}%0A` +
+    `*Phone:* ${formData.phone || ""}%0A` +
+    `*Email:* ${formData.email || ""}%0A` +
+    `*Service:* ${serviceLabel}%0A` +
+    `*Message:* ${formData.message || ""}`;
+  return `https://wa.me/${phone}?text=${text}`;
+}
 
 export default function ContactForm({ lang, data, map }: ContactFormProps) {
   const searchParams = useSearchParams();
@@ -48,7 +63,18 @@ export default function ContactForm({ lang, data, map }: ContactFormProps) {
     e.preventDefault();
     setLoading(true);
     const form = new FormData(e.currentTarget);
-    const payload = Object.fromEntries(form.entries());
+    const payload = Object.fromEntries(form.entries()) as Record<string, string>;
+
+    // If WhatsApp is configured, open WhatsApp deeplink instead of API
+    if (data.whatsapp) {
+      const url = buildWhatsAppUrl(data.whatsapp, payload, data.servicesList);
+      window.open(url, "_blank");
+      setStatus("success");
+      (e.target as HTMLFormElement).reset();
+      setPreselectedService("");
+      setLoading(false);
+      return;
+    }
 
     try {
       const res = await fetch(INQUIRY_API_URL, {
@@ -69,6 +95,8 @@ export default function ContactForm({ lang, data, map }: ContactFormProps) {
       setLoading(false);
     }
   }
+
+  const hasWhatsApp = !!data.whatsapp;
 
   return (
     <section className="px-4 py-16 md:py-24">
@@ -122,7 +150,7 @@ export default function ContactForm({ lang, data, map }: ContactFormProps) {
                 disabled={loading}
                 className="inline-block rounded-full bg-brand-gold px-10 py-4 text-base font-semibold text-white transition-all hover:-translate-y-1 hover:bg-brand-navy disabled:opacity-60"
               >
-                {loading ? data.submitting : data.submit}
+                {loading ? data.submitting : hasWhatsApp ? (data.whatsappLabel || data.submit) : data.submit}
               </button>
               {status === "success" && <p className="text-sm font-medium text-green-600">{data.successMsg}</p>}
               {status === "error" && <p className="text-sm font-medium text-red-600">{data.errorMsg}</p>}

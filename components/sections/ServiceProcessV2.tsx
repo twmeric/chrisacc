@@ -2,9 +2,12 @@ interface ServiceProcessV2Props {
   title: string;
   subtitle: string;
   steps: { number: string; title: string; desc: string }[];
+  variant?: "center" | "left";
 }
 
-export default function ServiceProcessV2({ title, subtitle, steps }: ServiceProcessV2Props) {
+export default function ServiceProcessV2({ title, subtitle, steps, variant = "center" }: ServiceProcessV2Props) {
+  const isLeft = variant === "left";
+
   return (
     <section className="bg-white px-4 py-16 md:py-24">
       <div className="mx-auto max-w-6xl">
@@ -19,8 +22,14 @@ export default function ServiceProcessV2({ title, subtitle, steps }: ServiceProc
         </div>
 
         <div className="relative">
-          {/* Central gray line */}
-          <div className="absolute left-8 top-0 h-full w-0.5 bg-gray-200 md:left-1/2 md:-translate-x-1/2" />
+          {/* Gray line */}
+          <div
+            className={`absolute top-0 h-full w-0.5 bg-gray-200 ${
+              isLeft
+                ? "left-6 md:left-8"
+                : "left-8 md:left-1/2 md:-translate-x-1/2"
+            }`}
+          />
 
           <div className="space-y-10 md:space-y-0">
             {steps.map((step, idx) => {
@@ -29,43 +38,50 @@ export default function ServiceProcessV2({ title, subtitle, steps }: ServiceProc
                 <div
                   key={idx}
                   className="relative flex gap-6 md:gap-10"
-                  style={{ marginBottom: idx < steps.length - 1 ? '40px' : '0' }}
+                  style={{ marginBottom: idx < steps.length - 1 ? "40px" : "0" }}
                 >
-                  {/* Mobile: number on left, content to the right */}
-                  {/* Desktop: alternating layout */}
+                  {isLeft ? (
+                    /* Left-aligned layout: number on left, content to the right */
+                    <>
+                      <div className="order-1 flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-brand-navy text-lg font-bold text-brand-gold shadow-md md:h-[50px] md:w-[50px]" style={{ zIndex: 1 }}>
+                        {step.number}
+                      </div>
+                      <div className="order-2 flex-1 md:pl-4">
+                        <div className="rounded-lg bg-brand-cream p-6 md:p-8">
+                          <h4 className="mb-2 text-lg font-bold text-brand-navy">{step.title}</h4>
+                          <p className="text-sm leading-relaxed text-text-light md:text-[15px]">{step.desc}</p>
+                        </div>
+                      </div>
+                    </>
+                  ) : (
+                    /* Center alternating layout (default) */
+                    <>
+                      {/* Content — left on even, right on odd (desktop) */}
+                      <div
+                        className={`md:w-1/2 ${
+                          isEven
+                            ? "order-1 md:pr-12 md:text-right"
+                            : "order-3 md:pl-12 md:text-left"
+                        }`}
+                      >
+                        <div className="rounded-lg bg-brand-cream p-6 md:p-8">
+                          <h4 className="mb-2 text-lg font-bold text-brand-navy">{step.title}</h4>
+                          <p className="text-sm leading-relaxed text-text-light md:text-[15px]">{step.desc}</p>
+                        </div>
+                      </div>
 
-                  {/* Content — left on even, right on odd (desktop) */}
-                  <div
-                    className={`md:w-1/2 ${
-                      isEven
-                        ? 'order-1 md:pr-12 md:text-right'
-                        : 'order-3 md:pl-12 md:text-left'
-                    }`}
-                  >
-                    <div className="rounded-lg bg-brand-cream p-6 md:p-8">
-                      <h4 className="mb-2 text-lg font-bold text-brand-navy">
-                        {step.title}
-                      </h4>
-                      <p className="text-sm leading-relaxed text-text-light md:text-[15px]">
-                        {step.desc}
-                      </p>
-                    </div>
-                  </div>
+                      {/* Number circle — always center on desktop, left on mobile */}
+                      <div
+                        className="order-2 flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-brand-navy text-lg font-bold text-brand-gold shadow-md md:absolute md:left-1/2 md:h-[50px] md:w-[50px] md:-translate-x-1/2"
+                        style={{ zIndex: 1 }}
+                      >
+                        {step.number}
+                      </div>
 
-                  {/* Number circle — always center on desktop, left on mobile */}
-                  <div
-                    className={`order-2 flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-brand-navy text-lg font-bold text-brand-gold shadow-md md:absolute md:left-1/2 md:h-[50px] md:w-[50px] md:-translate-x-1/2`}
-                    style={{ zIndex: 1 }}
-                  >
-                    {step.number}
-                  </div>
-
-                  {/* Spacer — right on even, left on odd (desktop) */}
-                  <div
-                    className={`hidden md:block md:w-1/2 ${
-                      isEven ? 'order-3' : 'order-1'
-                    }`}
-                  />
+                      {/* Spacer — right on even, left on odd (desktop) */}
+                      <div className={`hidden md:block md:w-1/2 ${isEven ? "order-3" : "order-1"}`} />
+                    </>
+                  )}
                 </div>
               );
             })}

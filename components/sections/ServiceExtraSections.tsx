@@ -54,12 +54,43 @@ export default function ServiceExtraSections({
                 </div>
               )}
 
-              {sec.body && sec.layout === "text" && (
-                <div
-                  className={`mx-auto max-w-4xl text-lg leading-relaxed ${textClass}`}
-                >
-                  {sec.body}
-                </div>
+              {sec.layout === "text" && (
+                <>
+                  {sec.body && (
+                    <div
+                      className={`mx-auto max-w-4xl text-lg leading-relaxed ${textClass}`}
+                    >
+                      {sec.body}
+                    </div>
+                  )}
+                  {sec.items && sec.items.length > 0 && (
+                    <div className={`mx-auto mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4 ${sec.body ? "max-w-6xl" : "max-w-6xl"}`}>
+                      {sec.items.map((item, i) => {
+                        const IconComponent = item.icon
+                          ? (Icons as unknown as Record<string, React.ComponentType<{ className?: string }>>)[item.icon]
+                          : null;
+                        return (
+                          <div
+                            key={i}
+                            className={`rounded-xl border p-5 text-center transition-all hover:-translate-y-1 hover:shadow-md ${cardBg}`}
+                          >
+                            {IconComponent && (
+                              <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-brand-navy/10">
+                                <IconComponent className="h-5 w-5 text-brand-navy" />
+                              </div>
+                            )}
+                            <h4 className={`mb-1 text-base font-bold ${cardText}`}>
+                              {item.title}
+                            </h4>
+                            <p className={`text-sm leading-relaxed ${cardDesc}`}>
+                              {item.desc}
+                            </p>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+                </>
               )}
 
               {sec.items && sec.layout === "cards" && (

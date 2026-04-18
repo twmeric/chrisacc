@@ -8,6 +8,7 @@ export const defaultCMSData: CMSData = {
       logo: "/images/logo-tc.jpg",
       jkdcodingLogo: "",
       jkdcodingUrl: "https://jkdcoding.com",
+      whatsapp: "+85239871008",
     },
     header: {
       navItems: [
@@ -61,6 +62,7 @@ export const defaultCMSData: CMSData = {
         address: "香港金鐘力寶中心2座5樓503室",
         phone: "3987 1008",
         email: "info@ltgroupcpa.com",
+        whatsapp: "+85239871008",
       },
       social: { facebook: "", instagram: "", linkedin: "" },
     },
@@ -660,36 +662,42 @@ export const defaultCMSData: CMSData = {
           {
             title: "證監會 (SFC)",
             desc: "持牌法團合規、牌照申請、監管檢查應對、合規監察安排",
+            icon: "fas fa-building-columns",
             features: [
             ],
           },
           {
             title: "金管局 (HKMA)",
             desc: "銀行監管合規、認可機構要求、審慎監管標準",
+            icon: "fas fa-landmark",
             features: [
             ],
           },
           {
             title: "保監局 (IA)",
             desc: "保險公司合規、中介人監管、償付能力要求",
+            icon: "fas fa-shield-halved",
             features: [
             ],
           },
           {
             title: "港交所 (HKEX)",
             desc: "上市規則合規、企業管治、持續披露義務",
+            icon: "fas fa-chart-line",
             features: [
             ],
           },
           {
             title: "私隱條例 (PDPO)",
             desc: "個人資料保護、私隱影響評估、跨境數據傳輸",
+            icon: "fas fa-user-shield",
             features: [
             ],
           },
           {
             title: "國際標準",
             desc: "COSO 框架、ISO 標準、COBIT、巴塞爾協議",
+            icon: "fas fa-globe",
             features: [
             ],
           },
@@ -699,6 +707,7 @@ export const defaultCMSData: CMSData = {
           {
             title: "環境 Environment",
             desc: "",
+            icon: "E",
             features: [
               "溫室氣體排放核算",
               "碳中和路線圖",
@@ -710,6 +719,7 @@ export const defaultCMSData: CMSData = {
           {
             title: "社會 Social",
             desc: "",
+            icon: "S",
             features: [
               "員工健康與安全",
               "多元化與包容",
@@ -721,6 +731,7 @@ export const defaultCMSData: CMSData = {
           {
             title: "管治 Governance",
             desc: "",
+            icon: "G",
             features: [
               "董事會多元化",
               "商業道德與反貪腐",
@@ -845,26 +856,32 @@ export const defaultCMSData: CMSData = {
         ctaDesc: "我們提供保密的初步諮詢，協助評估您的情況",
         ctaBtn: "保密諮詢",
         ctaBtn2: "",
-    extraSections: [
-      {
-        title: "保密承諾",
-        body: "我們深知法證調查的敏感性。在每一個案件中，我們嚴格遵守保密原則，保護客戶的商業利益和聲譽。我們的團隊接受過專業培訓，能夠在確保調查有效性的同時，最大限度地減少對企業運營的干擾。",
-        layout: "text",
-      },
-      {
-        title: "常見舞弊類型",
-        subtitle: "我們處理過的各類企業舞弊調查",
-        layout: "cards",
-        items: [
-          { title: "員工舞弊", desc: "挪用公款、虛假報銷、採購回扣、薪資舞弊、庫存盜竊等內部人員不當行為", icon: "UserX" },
-          { title: "財務報表舞弊", desc: "收入虛增、費用隱藏、資產高估、負債低報等財務造假行為", icon: "FileWarning" },
-          { title: "管理層不當行為", desc: "利益衝突、關聯方交易不當、自我交易、濫用職權等高層違規", icon: "ShieldAlert" },
-          { title: "商業賄賂", desc: "對政府官員或商業夥伴的不當利益輸送、回扣安排", icon: "HandCoins" },
-          { title: "供應商/客戶欺詐", desc: "虛假供應商、重複付款、發票詐騙、客戶串謀等外部舞弊", icon: "Truck" },
-          { title: "網絡欺詐", desc: "商業電郵詐騙 (BEC)、網絡釣魚、身份盜竊、數據洩露調查", icon: "Monitor" },
+        extraSections: [
+          {
+            title: "常見舞弊類型",
+            subtitle: "我們處理過的各類企業舞弊調查",
+            layout: "cards",
+            items: [
+              { title: "員工舞弊", desc: "挪用公款、虛假報銷、採購回扣、薪資舞弊、庫存盜竊等內部人員不當行為", icon: "UserX" },
+              { title: "財務報表舞弊", desc: "收入虛增、費用隱藏、資產高估、負債低報等財務造假行為", icon: "FileWarning" },
+              { title: "管理層不當行為", desc: "利益衝突、關聯方交易不當、自我交易、濫用職權等高層違規", icon: "ShieldAlert" },
+              { title: "商業賄賂", desc: "對政府官員或商業夥伴的不當利益輸送、回扣安排", icon: "HandCoins" },
+              { title: "供應商/客戶欺詐", desc: "虛假供應商、重複付款、發票詐騙、客戶串謀等外部舞弊", icon: "Truck" },
+              { title: "網絡欺詐", desc: "商業電郵詐騙 (BEC)、網絡釣魚、身份盜竊、數據洩露調查", icon: "Monitor" },
+            ],
+          },
+          {
+            title: "保密承諾",
+            body: "我們深知法證調查的敏感性。在每一個案件中，我們嚴格遵守保密原則，保護客戶的商業利益和聲譽。我們的團隊接受過專業培訓，能夠在確保調查有效性的同時，最大限度地減少對企業運營的干擾。",
+            layout: "text",
+            items: [
+              { title: "嚴格保密", desc: "所有團隊成員簽署保密協議", icon: "Lock" },
+              { title: "安全數據處理", desc: "加密存儲、受控訪問", icon: "Database" },
+              { title: "按需知情", desc: "僅必要人員知悉調查內容", icon: "EyeOff" },
+              { title: "法律特權", desc: "可在法律顧問指導下進行調查", icon: "Scale" },
+            ],
+          },
         ],
-      },
-    ],
       },
       consulting: {
         tagline: "「將財務轉化為策略推動力。」",
@@ -967,12 +984,22 @@ export const defaultCMSData: CMSData = {
             subtitle: "靈活的財務領導力，按需配置",
             layout: "list",
             items: [
-              { title: "財務策略與規劃", desc: "制定財務願景、目標及實施路線圖" },
-              { title: "融資與投資者關係", desc: "協助融資準備、投資者簡報及盡職調查支援" },
-              { title: "現金流管理與預測", desc: "建立現金流預測模型，優化營運資金配置" },
-              { title: "管理報告與 KPI 儀表板", desc: "設計關鍵績效指標，建立即時管理報告體系" },
-              { title: "會計團隊指導與培訓", desc: "指導內部會計團隊，提升整體財務能力" },
-              { title: "合規與風險管理", desc: "確保財務運營符合法規要求，建立風險監控機制" },
+              { title: "財務策略與規劃", desc: "年度財務計劃、預算編制、資本結構優化及長期財務策略，確保業務目標與財務資源匹配。" },
+              { title: "融資與資本市場", desc: "籌備融資材料、投資者溝通、銀行關係管理及 Pre-IPO 財務準備。" },
+              { title: "現金流管理", desc: "現金流預測、營運資金優化、應收應付管理，確保企業財務健康。" },
+              { title: "董事會報告", desc: "向董事會及管理層呈報財務狀況，以專業方式向持份者展示財務狀態。" },
+              { title: "風險與內部控制", desc: "建立財務風險管理框架及內部控制系統，確保財務運營合規安全。" },
+              { title: "團隊發展", desc: "為內部財務團隊提供指導和培訓，建立可持續的財務能力。" },
+            ],
+          },
+          {
+            title: "技術合作夥伴",
+            subtitle: "我們熟悉的系統",
+            layout: "cards",
+            items: [
+              { title: "Microsoft D365", desc: "整合式 ERP", icon: "Cpu" },
+              { title: "NetSuite", desc: "雲端財務", icon: "Cloud" },
+              { title: "QuickBooks", desc: "中小企適用", icon: "Calculator" },
             ],
           },
           {
@@ -980,10 +1007,10 @@ export const defaultCMSData: CMSData = {
             subtitle: "不同發展階段的企業均可受益",
             layout: "cards",
             items: [
-              { title: "初創企業", desc: "需要專業財務指導但尚未有足夠預算聘請全職 CFO", icon: "Rocket" },
-              { title: "成長期企業", desc: "業務快速擴張，財務管理面臨挑戰，需要臨時財務領導力", icon: "TrendingUp" },
-              { title: "跨國子公司", desc: "需要符合總部要求的財務報告及本地合規支援", icon: "Globe" },
-              { title: "私募投資組合", desc: "需要專業財務管理以提升投資組合價值及準備退出", icon: "BarChart3" },
+              { title: "初創企業", desc: "業務快速增長但尚未準備好聘請全職 CFO；需要專業財務指導及投資者報告支援。", icon: "Rocket" },
+              { title: "成長期企業", desc: "擴張令財務流程變得複雜；需要系統升級和流程優化。", icon: "TrendingUp" },
+              { title: "跨境子公司", desc: "海外母公司的香港子公司；需要本地財務支援及集團報告協調。", icon: "Globe" },
+              { title: "私募投資組合", desc: "私募股權基金的投資組合公司；需要專業財務監督及價值創造支援。", icon: "BarChart3" },
             ],
           },
         ],
@@ -1108,6 +1135,8 @@ export const defaultCMSData: CMSData = {
           { day: "星期日及公眾假期", time: "休息" },
         ],
         follow: "關注我們",
+        whatsapp: "+85239871008",
+        whatsappLabel: "WhatsApp 查詢",
         servicesList: [
           { value: "", label: "請選擇服務" },
           { value: "audit", label: "審計及核證" },
@@ -1196,6 +1225,7 @@ export const defaultCMSData: CMSData = {
       logo: "/images/logo-sc.jpg",
       jkdcodingLogo: "",
       jkdcodingUrl: "https://jkdcoding.com",
+      whatsapp: "+85239871008",
     },
     header: {
       navItems: [
@@ -1249,6 +1279,7 @@ export const defaultCMSData: CMSData = {
         address: "香港金钟力宝中心2座5楼503室",
         phone: "3987 1008",
         email: "info@ltgroupcpa.com",
+        whatsapp: "+85239871008",
       },
       social: { facebook: "", instagram: "", linkedin: "" },
     },
@@ -1840,36 +1871,42 @@ export const defaultCMSData: CMSData = {
           {
             title: "证监会 (SFC)",
             desc: "持牌法团合规、牌照申请、监管检查应对、合规监察安排",
+            icon: "fas fa-building-columns",
             features: [
             ],
           },
           {
             title: "金管局 (HKMA)",
             desc: "银行监管合规、认可机构要求、审慎监管标准",
+            icon: "fas fa-landmark",
             features: [
             ],
           },
           {
             title: "保监局 (IA)",
             desc: "保险公司合规、中介人监管、偿付能力要求",
+            icon: "fas fa-shield-halved",
             features: [
             ],
           },
           {
             title: "港交所 (HKEX)",
             desc: "上市规则合规、企业管治、持续披露义务",
+            icon: "fas fa-chart-line",
             features: [
             ],
           },
           {
             title: "私隐条例 (PDPO)",
             desc: "个人资料保护、私隐影响评估、跨境数据传输",
+            icon: "fas fa-user-shield",
             features: [
             ],
           },
           {
             title: "国际标准",
             desc: "COSO 框架、ISO 标准、COBIT、巴塞尔协议",
+            icon: "fas fa-globe",
             features: [
             ],
           },
@@ -1879,6 +1916,7 @@ export const defaultCMSData: CMSData = {
           {
             title: "环境 Environment",
             desc: "",
+            icon: "E",
             features: [
               "温室气体排放核算",
               "碳中和路线图",
@@ -1890,6 +1928,7 @@ export const defaultCMSData: CMSData = {
           {
             title: "社会 Social",
             desc: "",
+            icon: "S",
             features: [
               "员工健康与安全",
               "多元化与包容",
@@ -1901,6 +1940,7 @@ export const defaultCMSData: CMSData = {
           {
             title: "管治 Governance",
             desc: "",
+            icon: "G",
             features: [
               "董事会多元化",
               "商业道德与反贪腐",
@@ -2019,11 +2059,6 @@ export const defaultCMSData: CMSData = {
         ctaBtn2: "",
         extraSections: [
           {
-            title: "保密承诺",
-            body: "我们深知法证调查的敏感性。在每一个案件中，我们都严格遵守保密原则，以保护客户的商业利益和声誉。我们的团队经过专业培训，确保调查工作的有效性，同时最大限度地减少对业务运营的干扰。",
-            layout: "text",
-          },
-          {
             title: "常见舞弊类型",
             subtitle: "我们处理过的各类企业舞弊调查",
             layout: "cards",
@@ -2034,6 +2069,17 @@ export const defaultCMSData: CMSData = {
               { title: "商业贿赂", desc: "向政府官员或商业伙伴提供不当利益、回扣安排", icon: "HandCoins" },
               { title: "供应商/客户舞弊", desc: "虚假供应商、重复付款、发票欺诈、客户串通及其他外部欺诈", icon: "Truck" },
               { title: "网络欺诈", desc: "商业电子邮件入侵(BEC)、网络钓鱼、身份盗窃、数据泄露调查", icon: "Monitor" },
+            ],
+          },
+          {
+            title: "保密承诺",
+            body: "我们深知法证调查的敏感性。在每一个案件中，我们都严格遵守保密原则，以保护客户的商业利益和声誉。我们的团队经过专业培训，确保调查工作的有效性，同时最大限度地减少对业务运营的干扰。",
+            layout: "text",
+            items: [
+              { title: "严格保密", desc: "所有团队成员签署保密协议", icon: "Lock" },
+              { title: "安全数据处理", desc: "加密存储、受控访问", icon: "Database" },
+              { title: "按需知情", desc: "仅必要人员知悉调查内容", icon: "EyeOff" },
+              { title: "法律特权", desc: "可在法律顾问指导下进行调查", icon: "Scale" },
             ],
           },
         ],
@@ -2130,12 +2176,22 @@ export const defaultCMSData: CMSData = {
             subtitle: "灵活的财务领导力，按需配置",
             layout: "list",
             items: [
-              { title: "财务策略与规划", desc: "制定财务愿景、目标及实施路线图" },
-              { title: "融资与投资者关系", desc: "协助融资准备、投资者简报及尽职调查支援" },
-              { title: "现金流管理与预测", desc: "建立现金流预测模型，优化营运资金配置" },
-              { title: "管理报告与 KPI 仪表板", desc: "设计关键绩效指标，建立即时管理报告体系" },
-              { title: "会计团队指导与培训", desc: "指导内部会计团队，提升整体财务能力" },
-              { title: "合规与风险管理", desc: "确保财务运营符合法规要求，建立风险监控机制" },
+              { title: "财务策略与规划", desc: "年度财务计划、预算编制、资本结构优化及长期财务策略，确保业务目标与财务资源匹配。" },
+              { title: "融资与资本市场", desc: "筹备融资材料、投资者沟通、银行关系管理及 Pre-IPO 财务准备。" },
+              { title: "现金流管理", desc: "现金流预测、营运资金优化、应收应付管理，确保企业财务健康。" },
+              { title: "董事会报告", desc: "向董事会及管理层呈报财务状况，以专业方式向持份者展示财务状态。" },
+              { title: "风险与内部控制", desc: "建立财务风险管理框架及内部控制系统，确保财务运营合规安全。" },
+              { title: "团队发展", desc: "为内部财务团队提供指导和培训，建立可持续的财务能力。" },
+            ],
+          },
+          {
+            title: "技术合作伙伴",
+            subtitle: "我们熟悉的系统",
+            layout: "cards",
+            items: [
+              { title: "Microsoft D365", desc: "整合式 ERP", icon: "Cpu" },
+              { title: "NetSuite", desc: "云端财务", icon: "Cloud" },
+              { title: "QuickBooks", desc: "中小企业适用", icon: "Calculator" },
             ],
           },
           {
@@ -2143,10 +2199,10 @@ export const defaultCMSData: CMSData = {
             subtitle: "不同发展阶段的企业均可受益",
             layout: "cards",
             items: [
-              { title: "初创企业", desc: "需要专业财务指导但尚未有足够预算聘请全职 CFO", icon: "Rocket" },
-              { title: "成长期企业", desc: "业务快速扩张，财务管理面临挑战，需要临时财务领导力", icon: "TrendingUp" },
-              { title: "跨国子公司", desc: "需要符合总部要求的财务报告及本地合规支援", icon: "Globe" },
-              { title: "私募投资组合", desc: "需要专业财务管理以提升投资组合价值及准备退出", icon: "BarChart3" },
+              { title: "初创企业", desc: "业务快速增长但尚未准备好聘请全职 CFO；需要专业财务指导及投资者报告支援。", icon: "Rocket" },
+              { title: "成长期企业", desc: "扩张令财务流程变得复杂；需要系统升级和流程优化。", icon: "TrendingUp" },
+              { title: "跨境子公司", desc: "海外母公司的香港子公司；需要本地财务支援及集团报告协调。", icon: "Globe" },
+              { title: "私募投资组合", desc: "私募股权基金的投资组合公司；需要专业财务监督及价值创造支援。", icon: "BarChart3" },
             ],
           },
         ],
@@ -2271,6 +2327,8 @@ export const defaultCMSData: CMSData = {
           { day: "星期日及公众假期", time: "休息" },
         ],
         follow: "关注我们",
+        whatsapp: "+85239871008",
+        whatsappLabel: "WhatsApp 查询",
         servicesList: [
           { value: "", label: "请选择服务" },
           { value: "audit", label: "审计及核证" },
@@ -2359,6 +2417,7 @@ export const defaultCMSData: CMSData = {
       logo: "/images/logo-en.jpg",
       jkdcodingLogo: "",
       jkdcodingUrl: "https://jkdcoding.com",
+      whatsapp: "+85239871008",
     },
     header: {
       navItems: [
@@ -2412,6 +2471,7 @@ export const defaultCMSData: CMSData = {
         address: "Unit 503, Tower 2, Lippo Centre, Admiralty, Hong Kong",
         phone: "+852 3987 1008",
         email: "info@ltgroupcpa.com",
+        whatsapp: "+85239871008",
       },
       social: { facebook: "", instagram: "", linkedin: "" },
     },
@@ -3003,36 +3063,42 @@ export const defaultCMSData: CMSData = {
           {
             title: "SFC",
             desc: "Licensed corporation compliance, licensing, regulatory inspections, compliance monitoring",
+            icon: "fas fa-building-columns",
             features: [
             ],
           },
           {
             title: "HKMA",
             desc: "Banking supervision, authorised institution requirements, prudential standards",
+            icon: "fas fa-landmark",
             features: [
             ],
           },
           {
             title: "IA",
             desc: "Insurance compliance, intermediary regulation, solvency requirements",
+            icon: "fas fa-shield-halved",
             features: [
             ],
           },
           {
             title: "HKEX",
             desc: "Listing rules, corporate governance, ongoing disclosure",
+            icon: "fas fa-chart-line",
             features: [
             ],
           },
           {
             title: "PDPO",
             desc: "Personal data protection, privacy impact assessment, cross-border data transfer",
+            icon: "fas fa-user-shield",
             features: [
             ],
           },
           {
             title: "International Standards",
             desc: "COSO, ISO, COBIT, Basel",
+            icon: "fas fa-globe",
             features: [
             ],
           },
@@ -3042,6 +3108,7 @@ export const defaultCMSData: CMSData = {
           {
             title: "Environment",
             desc: "",
+            icon: "E",
             features: [
               "Greenhouse gas accounting",
               "Carbon neutrality roadmap",
@@ -3053,6 +3120,7 @@ export const defaultCMSData: CMSData = {
           {
             title: "Social",
             desc: "",
+            icon: "S",
             features: [
               "Health and safety",
               "Diversity and inclusion",
@@ -3064,6 +3132,7 @@ export const defaultCMSData: CMSData = {
           {
             title: "Governance",
             desc: "",
+            icon: "G",
             features: [
               "Board diversity",
               "Business ethics and anti-corruption",
@@ -3182,11 +3251,6 @@ export const defaultCMSData: CMSData = {
         ctaBtn2: "",
         extraSections: [
           {
-            title: "Confidentiality Commitment",
-            body: "We understand the sensitivity of forensic investigations. In every matter we strictly adhere to confidentiality to protect our clients' business interests and reputation. Our team is professionally trained to ensure investigation effectiveness while minimising disruption to business operations.",
-            layout: "text",
-          },
-          {
             title: "Common Fraud Types",
             subtitle: "Enterprise fraud investigations we handle",
             layout: "cards",
@@ -3197,6 +3261,17 @@ export const defaultCMSData: CMSData = {
               { title: "Commercial Bribery", desc: "Improper benefits to government officials or business partners, kickback arrangements", icon: "HandCoins" },
               { title: "Supplier/Customer Fraud", desc: "Fake suppliers, duplicate payments, invoice fraud, customer collusion and other external fraud", icon: "Truck" },
               { title: "Cyber Fraud", desc: "Business email compromise (BEC), phishing, identity theft, data breach investigations", icon: "Monitor" },
+            ],
+          },
+          {
+            title: "Confidentiality Commitment",
+            body: "We understand the sensitivity of forensic investigations. In every matter we strictly adhere to confidentiality to protect our clients' business interests and reputation. Our team is professionally trained to ensure investigation effectiveness while minimising disruption to business operations.",
+            layout: "text",
+            items: [
+              { title: "Strict Confidentiality", desc: "All team members sign confidentiality agreements", icon: "Lock" },
+              { title: "Secure Data Handling", desc: "Encrypted storage, controlled access", icon: "Database" },
+              { title: "Need-to-know Access", desc: "Only necessary personnel are informed", icon: "EyeOff" },
+              { title: "Legal Privilege", desc: "Investigations can be conducted under legal counsel", icon: "Scale" },
             ],
           },
         ],
@@ -3293,12 +3368,22 @@ export const defaultCMSData: CMSData = {
             subtitle: "Flexible finance leadership on demand",
             layout: "list",
             items: [
-              { title: "Financial Strategy & Planning", desc: "Develop financial vision, goals and implementation roadmaps" },
-              { title: "Fundraising & Investor Relations", desc: "Assist with fundraising preparation, investor presentations and due diligence support" },
-              { title: "Cash Flow Management & Forecasting", desc: "Build cash flow forecast models and optimise working capital allocation" },
-              { title: "Management Reporting & KPI Dashboards", desc: "Design key performance indicators and establish real-time management reporting" },
-              { title: "Accounting Team Coaching & Training", desc: "Mentor internal accounting teams to uplift overall finance capability" },
-              { title: "Compliance & Risk Management", desc: "Ensure financial operations meet regulatory requirements and establish risk monitoring" },
+              { title: "Financial Strategy & Planning", desc: "Annual financial plans, budgeting, capital structure optimisation and long-term financial strategy so business goals align with financial resources." },
+              { title: "Funding & Capital Markets", desc: "Preparation of fundraising materials, investor communication, bank relationship management and Pre-IPO financial readiness." },
+              { title: "Cash Flow Management", desc: "Cash flow forecasting, working capital optimisation, receivables and payables management to keep the business financially healthy." },
+              { title: "Board Reporting", desc: "Board and management reporting to present financial position to stakeholders in a professional manner." },
+              { title: "Risk & Internal Control", desc: "Financial risk management framework and internal control systems for compliant and secure finance operations." },
+              { title: "Team Development", desc: "Coaching and training for in-house finance teams to build sustainable finance capability." },
+            ],
+          },
+          {
+            title: "Technology Partners",
+            subtitle: "Systems we work with",
+            layout: "cards",
+            items: [
+              { title: "Microsoft D365", desc: "Integrated ERP", icon: "Cpu" },
+              { title: "NetSuite", desc: "Cloud Finance", icon: "Cloud" },
+              { title: "QuickBooks", desc: "Small Business", icon: "Calculator" },
             ],
           },
           {
@@ -3306,10 +3391,10 @@ export const defaultCMSData: CMSData = {
             subtitle: "Businesses at every stage of growth can benefit",
             layout: "cards",
             items: [
-              { title: "Start-ups", desc: "Need professional financial guidance but don't yet have the budget for a full-time CFO", icon: "Rocket" },
-              { title: "Growing Businesses", desc: "Rapid expansion creating financial management challenges that need interim leadership", icon: "TrendingUp" },
-              { title: "Multinational Subsidiaries", desc: "Require financial reporting aligned with headquarters plus local compliance support", icon: "Globe" },
-              { title: "PE Portfolio Companies", desc: "Need professional financial management to enhance portfolio value and prepare for exit", icon: "BarChart3" },
+              { title: "Start-ups", desc: "Fast-growing but not yet ready for a full-time CFO; need professional finance guidance and investor reporting support.", icon: "Rocket" },
+              { title: "Growth-stage Companies", desc: "Expansion has made finance processes more complex; need system upgrades and process optimisation.", icon: "TrendingUp" },
+              { title: "Cross-border Subsidiaries", desc: "Hong Kong subsidiaries of overseas parents; need local finance support and group reporting coordination.", icon: "Globe" },
+              { title: "PE Portfolio Companies", desc: "Portfolio companies of private equity funds; need professional finance oversight and value-creation support.", icon: "BarChart3" },
             ],
           },
         ],
@@ -3434,6 +3519,8 @@ export const defaultCMSData: CMSData = {
           { day: "Sunday & Public Holidays", time: "Closed" },
         ],
         follow: "Follow Us",
+        whatsapp: "+85239871008",
+        whatsappLabel: "WhatsApp Us",
         servicesList: [
           { value: "", label: "Select a service" },
           { value: "audit", label: "Audit & Assurance" },
