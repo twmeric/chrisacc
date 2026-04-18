@@ -21,6 +21,7 @@ export default function TimelineSection({ lang, data }: TimelineSectionProps) {
           <p className="mx-auto mt-6 max-w-[600px] text-lg text-text-light">{data.subtitle}</p>
         </div>
         <div className="relative">
+          {/* Center vertical line */}
           <div className="absolute left-1/2 top-0 bottom-0 hidden w-[3px] -translate-x-1/2 bg-brand-gold md:block" />
           {data.events.map((event, idx) => (
             <TimelineItem
