@@ -257,28 +257,7 @@
       "team": {
         "title": "專業團隊",
         "subtitle": "我們擁有經驗豐富的專業團隊，致力於為客戶提供最優質的服務",
-        "members": [
-          {
-            "name": "陳大文",
-            "role": "創辦人及執行董事",
-            "image": "/images/team-1.jpg"
-          },
-          {
-            "name": "李美琪",
-            "role": "審計總監",
-            "image": "/images/team-2.jpg"
-          },
-          {
-            "name": "張志偉",
-            "role": "稅務合夥人",
-            "image": "/images/team-3.jpg"
-          },
-          {
-            "name": "王曉明",
-            "role": "諮詢總監",
-            "image": "/images/team-4.jpg"
-          }
-        ]
+        "members": []
       },
       "timeline": {
         "title": "發展歷程",
@@ -1265,28 +1244,7 @@
       "team": {
         "title": "专业团队",
         "subtitle": "我们拥有经验丰富的专业团队，致力于为客户提供最优质的服务",
-        "members": [
-          {
-            "name": "陈大文",
-            "role": "创办人及执行董事",
-            "image": "/images/team-1.jpg"
-          },
-          {
-            "name": "李美琪",
-            "role": "审计总监",
-            "image": "/images/team-2.jpg"
-          },
-          {
-            "name": "张志伟",
-            "role": "税务合伙人",
-            "image": "/images/team-3.jpg"
-          },
-          {
-            "name": "王晓明",
-            "role": "咨询总监",
-            "image": "/images/team-4.jpg"
-          }
-        ]
+        "members": []
       },
       "timeline": {
         "title": "发展历程",
@@ -2275,28 +2233,7 @@
       "team": {
         "title": "Our Team",
         "subtitle": "We have an experienced professional team dedicated to providing the highest quality service to our clients",
-        "members": [
-          {
-            "name": "John Chan",
-            "role": "Founder & Managing Director",
-            "image": "/images/team-1.jpg"
-          },
-          {
-            "name": "Maggie Lee",
-            "role": "Audit Director",
-            "image": "/images/team-2.jpg"
-          },
-          {
-            "name": "Peter Cheung",
-            "role": "Tax Partner",
-            "image": "/images/team-3.jpg"
-          },
-          {
-            "name": "Simon Wong",
-            "role": "Advisory Director",
-            "image": "/images/team-4.jpg"
-          }
-        ]
+        "members": []
       },
       "timeline": {
         "title": "Our Journey",
