@@ -1001,6 +1001,8 @@
         html += `<div class="bg-navy-50 p-4 rounded-lg"><div class="text-sm text-slate-600">Avg Daily Views</div><div class="text-2xl font-bold text-navy-900">${d.avgDailyViews}</div></div>`;
         html += `<div class="bg-navy-50 p-4 rounded-lg"><div class="text-sm text-slate-600">Period</div><div class="text-2xl font-bold text-navy-900">${days} Days</div></div>`;
         html += `</div>`;
+
+        // Daily bar chart
         if (d.dailyData && d.dailyData.length) {
           const maxViews = Math.max(...d.dailyData.map(day => day.views), 1);
           html += `<div class="mb-6"><h3 class="font-semibold text-slate-700 mb-3">Daily Views</h3><div class="space-y-2">`;
@@ -1010,13 +1012,43 @@
           });
           html += `</div></div>`;
         }
+
+        // Two-column layout for tables
+        html += `<div class="grid grid-cols-1 lg:grid-cols-2 gap-6">`;
+
+        // Top Pages table
         if (d.topPages && d.topPages.length) {
-          html += `<div class="mb-4"><h3 class="font-semibold text-slate-700 mb-3">Top Pages</h3><div class="grid grid-cols-1 md:grid-cols-2 gap-2">`;
+          html += `<div class="border rounded-lg overflow-hidden"><div class="bg-slate-50 px-4 py-2 text-sm font-bold text-slate-700 border-b">Top Pages</div><table class="w-full text-sm"><thead><tr class="text-xs text-slate-500 border-b bg-white"><th class="text-left px-4 py-2 font-medium">Page</th><th class="text-right px-4 py-2 font-medium">Views</th><th class="text-right px-4 py-2 font-medium">%</th></tr></thead><tbody>`;
           d.topPages.forEach(p => {
-            html += `<div class="flex justify-between bg-white border rounded-lg px-3 py-2 text-sm"><span class="text-slate-600 truncate">${p.page}</span><span class="font-semibold text-navy-900">${p.views}</span></div>`;
+            const pct = d.totalViews > 0 ? Math.round((p.views / d.totalViews) * 100) : 0;
+            html += `<tr class="border-b last:border-0 hover:bg-slate-50"><td class="px-4 py-2 text-slate-700 truncate max-w-[200px]" title="${p.page}">${p.page}</td><td class="px-4 py-2 text-right font-semibold text-navy-900">${p.views}</td><td class="px-4 py-2 text-right text-slate-500">${pct}%</td></tr>`;
           });
-          html += `</div></div>`;
+          html += `</tbody></table></div>`;
         }
+
+        // Countries table
+        if (d.countries && d.countries.length) {
+          html += `<div class="border rounded-lg overflow-hidden"><div class="bg-slate-50 px-4 py-2 text-sm font-bold text-slate-700 border-b">Countries</div><table class="w-full text-sm"><thead><tr class="text-xs text-slate-500 border-b bg-white"><th class="text-left px-4 py-2 font-medium">Country</th><th class="text-right px-4 py-2 font-medium">Views</th><th class="text-right px-4 py-2 font-medium">%</th></tr></thead><tbody>`;
+          d.countries.forEach(c => {
+            const pct = d.totalViews > 0 ? Math.round((c.views / d.totalViews) * 100) : 0;
+            html += `<tr class="border-b last:border-0 hover:bg-slate-50"><td class="px-4 py-2 text-slate-700">${c.name}</td><td class="px-4 py-2 text-right font-semibold text-navy-900">${c.views}</td><td class="px-4 py-2 text-right text-slate-500">${pct}%</td></tr>`;
+          });
+          html += `</tbody></table></div>`;
+        }
+
+        html += `</div>`;
+
+        // Recent Page Views
+        if (d.recentPageViews && d.recentPageViews.length) {
+          html += `<div class="mt-6 border rounded-lg overflow-hidden"><div class="bg-slate-50 px-4 py-2 text-sm font-bold text-slate-700 border-b">Recent Page Views (${d.recentPageViews.length} shown)</div><div class="overflow-x-auto"><table class="w-full text-sm"><thead><tr class="text-xs text-slate-500 border-b bg-white"><th class="text-left px-4 py-2 font-medium">Page</th><th class="text-left px-4 py-2 font-medium">Country</th><th class="text-left px-4 py-2 font-medium">Referrer</th><th class="text-left px-4 py-2 font-medium">Time</th></tr></thead><tbody>`;
+          d.recentPageViews.forEach(pv => {
+            const time = new Date(pv.timestamp).toLocaleString();
+            const refShort = pv.referrer.length > 30 ? pv.referrer.slice(0, 30) + '...' : pv.referrer;
+            html += `<tr class="border-b last:border-0 hover:bg-slate-50"><td class="px-4 py-2 text-slate-700 truncate max-w-[180px]" title="${pv.page}">${pv.page}</td><td class="px-4 py-2 text-slate-600">${pv.country}</td><td class="px-4 py-2 text-slate-600 truncate max-w-[180px]" title="${pv.referrer}">${refShort}</td><td class="px-4 py-2 text-slate-500 whitespace-nowrap">${time}</td></tr>`;
+          });
+          html += `</tbody></table></div></div>`;
+        }
+
         container.innerHTML = html;
       } catch (e) {
         container.innerHTML = '<div class="text-red-600">Error loading analytics</div>';

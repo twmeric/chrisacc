@@ -116,12 +116,51 @@ async function getAnalyticsReport(env: Env, days = 7): Promise<any> {
     }
   }
   summary.avgDailyViews = Math.round(summary.totalViews / days);
+
+  // Fetch raw pageviews for detailed breakdown (countries, referrers, recent)
+  const cutoff = new Date();
+  cutoff.setDate(cutoff.getDate() - days);
+  const list = await env.CMS_DATA.list({ prefix: "pv_" });
+  const keys = list.keys.map(k => k.name).sort().reverse().slice(0, 500);
+
+  const countries: Record<string, number> = {};
+  const referrers: Record<string, number> = {};
+  const recent: any[] = [];
+
+  await Promise.all(keys.map(async (key) => {
+    const pv = await env.CMS_DATA.get(key, "json") as any;
+    if (!pv || !pv.timestamp) return;
+    const ts = new Date(pv.timestamp).getTime();
+    if (ts >= cutoff.getTime()) {
+      countries[pv.country || "Unknown"] = (countries[pv.country || "Unknown"] || 0) + 1;
+      const ref = pv.referrer && pv.referrer.trim() ? pv.referrer : "Direct / None";
+      referrers[ref] = (referrers[ref] || 0) + 1;
+      recent.push({
+        page: pv.page,
+        country: pv.country || "Unknown",
+        referrer: ref,
+        timestamp: pv.timestamp,
+        sessionId: pv.sessionId,
+      });
+    }
+  }));
+
+  recent.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
+
   return {
     ...summary,
     topPages: Object.entries(summary.topPages)
       .map(([page, views]) => ({ page, views }))
       .sort((a, b) => b.views - a.views)
       .slice(0, 10),
+    countries: Object.entries(countries)
+      .map(([name, views]) => ({ name, views }))
+      .sort((a, b) => b.views - a.views),
+    referrers: Object.entries(referrers)
+      .map(([name, views]) => ({ name, views }))
+      .sort((a, b) => b.views - a.views)
+      .slice(0, 10),
+    recentPageViews: recent.slice(0, 50),
   };
 }
 
