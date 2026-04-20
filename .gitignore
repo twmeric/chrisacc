@@ -1,6 +1,7 @@
 /public/admin/cms-defaults.json
 .cloudflare-token
 .env
+.dev.vars
 node_modules/
 .next/
 out/
