@@ -543,6 +543,32 @@
     },
     "contact": {
       "pageTitle": "聯絡我們",
+      "cards": [
+        {
+          "icon": "MapPin",
+          "title": "地址",
+          "lines": [
+            "香港金鐘力寶中心2座5樓503室",
+            "Unit 503, Tower 2, Lippo Centre, Admiralty, Hong Kong"
+          ]
+        },
+        {
+          "icon": "Phone",
+          "title": "電話",
+          "lines": [
+            "3987 1008",
+            "星期一至五 09:00 - 18:00"
+          ]
+        },
+        {
+          "icon": "Mail",
+          "title": "電郵",
+          "lines": [
+            "info@ltgroupcpa.com",
+            "歡迎查詢及預約會面"
+          ]
+        }
+      ],
       "map": {
         "title": "櫪韜會計師事務所有限公司",
         "address": "香港金鐘力寶中心2座5樓503室",
@@ -1340,7 +1366,7 @@
             "label": "Quality Service"
           }
         ],
-        "image": "/images/about-whychoose.jpg"
+        "image": ""
       },
       "intro": {
         "title": "Your Trusted",

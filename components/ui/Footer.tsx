@@ -17,21 +17,7 @@ export default function Footer({ lang }: FooterProps) {
           {/* About */}
           <div className="lg:col-span-1">
             <h3 className="mb-4 text-xl font-bold text-brand-gold">{t.aboutTitle}</h3>
-            <p className="mb-4 text-sm leading-relaxed text-white/80">{t.aboutDesc}</p>
-            <div className="mb-5 space-y-2 text-sm text-white/80">
-              <p className="flex items-center gap-2">
-                <Phone className="h-3.5 w-3.5 shrink-0 text-brand-gold" />
-                <span>{t.contact.phone}</span>
-              </p>
-              <p className="flex items-center gap-2">
-                <Mail className="h-3.5 w-3.5 shrink-0 text-brand-gold" />
-                <span>{t.contact.email}</span>
-              </p>
-              <p className="flex items-start gap-2">
-                <MapPin className="mt-0.5 h-3.5 w-3.5 shrink-0 text-brand-gold" />
-                <span>{t.contact.address}</span>
-              </p>
-            </div>
+            <p className="mb-6 text-sm leading-relaxed text-white/80">{t.aboutDesc}</p>
             <div className="flex gap-3">
               <a href={t.social.facebook || "#"} className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition hover:-translate-y-1 hover:bg-brand-gold">
                 <Facebook className="h-4 w-4" />
