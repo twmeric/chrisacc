@@ -58,7 +58,8 @@ jobs:
           GH_TOKEN: ${{ secrets.WORKER_GITHUB_TOKEN }}
         run: |
           if [ -n "$GH_TOKEN" ]; then
-            echo "$GH_TOKEN" | npx wrangler secret put GITHUB_TOKEN
+            echo '{"GITHUB_TOKEN":"'$GH_TOKEN'"}' > secrets.json
+            npx wrangler secret bulk secrets.json
           fi
 
       # ------------------------------------------------------------------
@@ -79,5 +80,6 @@ jobs:
           RESEND_KEY: ${{ secrets.RESEND_API_KEY }}
         run: |
           if [ -n "$RESEND_KEY" ]; then
-            echo "$RESEND_KEY" | npx wrangler secret put RESEND_API_KEY
+            echo '{"RESEND_API_KEY":"'$RESEND_KEY'"}' > secrets.json
+            npx wrangler secret bulk secrets.json
           fi
