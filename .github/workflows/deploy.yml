@@ -43,16 +43,6 @@ jobs:
       # ------------------------------------------------------------------
       # CMS API Worker
       # ------------------------------------------------------------------
-      - name: Set CMS Worker GITHUB_TOKEN Secret
-        working-directory: workers/cms-api
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          GH_TOKEN: ${{ secrets.WORKER_GITHUB_TOKEN }}
-        run: |
-          if [ -n "$GH_TOKEN" ]; then
-            echo "$GH_TOKEN" | npx wrangler secret put GITHUB_TOKEN --name ltcpa-cms-api
-          fi
-
       - name: Deploy CMS API Worker
         uses: cloudflare/wrangler-action@v3
         with:
@@ -61,19 +51,19 @@ jobs:
           workingDirectory: workers/cms-api
           command: deploy
 
+      - name: Restore CMS Worker GITHUB_TOKEN Secret
+        working-directory: workers/cms-api
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          GH_TOKEN: ${{ secrets.WORKER_GITHUB_TOKEN }}
+        run: |
+          if [ -n "$GH_TOKEN" ]; then
+            echo "$GH_TOKEN" | npx wrangler secret put GITHUB_TOKEN
+          fi
+
       # ------------------------------------------------------------------
       # Inquiry Worker
       # ------------------------------------------------------------------
-      - name: Set Inquiry Worker RESEND_API_KEY Secret
-        working-directory: workers/inquiry-api
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          RESEND_KEY: ${{ secrets.RESEND_API_KEY }}
-        run: |
-          if [ -n "$RESEND_KEY" ]; then
-            echo "$RESEND_KEY" | npx wrangler secret put RESEND_API_KEY --name ltcpa-inquiry-api
-          fi
-
       - name: Deploy Inquiry Worker
         uses: cloudflare/wrangler-action@v3
         with:
@@ -81,3 +71,13 @@ jobs:
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           workingDirectory: workers/inquiry-api
           command: deploy
+
+      - name: Restore Inquiry Worker RESEND_API_KEY Secret
+        working-directory: workers/inquiry-api
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          RESEND_KEY: ${{ secrets.RESEND_API_KEY }}
+        run: |
+          if [ -n "$RESEND_KEY" ]; then
+            echo "$RESEND_KEY" | npx wrangler secret put RESEND_API_KEY
+          fi
