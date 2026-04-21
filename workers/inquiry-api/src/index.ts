@@ -48,7 +48,7 @@ async function saveToD1(env: Env, data: Record<string, string>) {
 async function sendWhatsApp(env: Env, data: Record<string, string>) {
   if (!env.WHATSAPP_TOKEN || !env.WHATSAPP_PHONE_ID) return;
 
-  const adminPhone = data.adminPhone || "85251164453";
+  const adminPhone = data.adminPhone || "85268810677";
   const serviceLabel = data.service || "N/A";
 
   const text = `📩 *New LTCPA Website Inquiry*\n\n` +
