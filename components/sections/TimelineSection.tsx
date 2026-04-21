@@ -11,26 +11,23 @@ interface TimelineSectionProps {
 
 export default function TimelineSection({ lang, data }: TimelineSectionProps) {
   return (
-    <section className="bg-brand-cream px-4 py-20 md:py-28">
+    <section className="bg-brand-cream px-4 py-16 md:py-24">
       <div className="mx-auto max-w-[1600px]">
-        <div className="mb-14 text-center md:mb-20">
-          <h2 className="relative inline-block text-3xl font-bold text-brand-navy md:text-[44px]">
+        <div className="mb-12 text-center md:mb-16">
+          <h2 className="relative inline-block text-3xl font-bold text-brand-navy md:text-[40px]">
             {data.title}
-            <span className="absolute -bottom-3 left-1/2 h-[2px] w-24 -translate-x-1/2 bg-brand-gold" />
+            <span className="absolute -bottom-3 left-1/2 h-[2px] w-20 -translate-x-1/2 bg-brand-gold" />
           </h2>
-          <p className="mx-auto mt-6 max-w-[700px] text-xl text-text-light">{data.subtitle}</p>
+          <p className="mx-auto mt-6 max-w-[600px] text-lg text-text-light">{data.subtitle}</p>
         </div>
-        <div className="relative">
-          {/* Vertical line — left side on mobile, center on desktop */}
-          <div className="absolute left-5 top-0 bottom-0 w-[3px] -translate-x-1/2 bg-brand-gold md:left-1/2" />
+        <div className="flex flex-wrap justify-center gap-6">
           {data.events.map((event, idx) => (
-            <TimelineItem
+            <div
               key={idx}
-              year={event.year}
-              title={event.title}
-              description={event.desc}
-              side={idx % 2 === 0 ? "left" : "right"}
-            />
+              className="w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]"
+            >
+              <TimelineItem title={event.title} description={event.desc} />
+            </div>
           ))}
         </div>
       </div>
