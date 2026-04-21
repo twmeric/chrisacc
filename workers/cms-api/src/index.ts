@@ -1,6 +1,7 @@
 export interface Env {
   CMS_DATA: KVNamespace;
   MEDIA_BUCKET: R2Bucket;
+  LTCPA_D1: D1Database;
   ADMIN_PASSWORD: string;
   GITHUB_TOKEN: string;
 }
@@ -347,6 +348,37 @@ export default {
         const days = parseInt(url.searchParams.get("days") || "7");
         const report = await getAnalyticsReport(env, days);
         return jsonResponse({ success: true, data: report });
+      }
+
+      // Inquiries management
+      if (path === "/api/cms/inquiries" && request.method === "GET") {
+        const auth = requireAuth(request, env);
+        if (auth) return auth;
+        const status = url.searchParams.get("status") || "";
+        let sql = "SELECT * FROM inquiries";
+        const params: string[] = [];
+        if (status) {
+          sql += " WHERE status = ?";
+          params.push(status);
+        }
+        sql += " ORDER BY submitted_at DESC LIMIT 200";
+        const stmt = env.LTCPA_D1.prepare(sql);
+        const result = params.length ? await stmt.bind(...params).all() : await stmt.all();
+        return jsonResponse({ success: true, inquiries: result.results || [] });
+      }
+
+      if (path.startsWith("/api/cms/inquiries/") && request.method === "PATCH") {
+        const auth = requireAuth(request, env);
+        if (auth) return auth;
+        const id = path.replace("/api/cms/inquiries/", "");
+        const body = await request.json() as Record<string, string>;
+        const newStatus = body.status;
+        if (!newStatus) {
+          return jsonResponse({ error: "status is required" }, 400);
+        }
+        await env.LTCPA_D1.prepare("UPDATE inquiries SET status = ? WHERE id = ?")
+          .bind(newStatus, id).run();
+        return jsonResponse({ success: true });
       }
 
       return jsonResponse({ error: "Not found" }, 404);

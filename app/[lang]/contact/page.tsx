@@ -22,10 +22,7 @@ export default async function ContactPage({ params }: ContactPageProps) {
       <Suspense fallback={<div className="px-4 py-16 md:py-24"><div className="mx-auto max-w-6xl h-64 animate-pulse rounded-xl bg-gray-100" /></div>}>
         <ContactForm
           lang={lang}
-          data={{
-            ...cms.contact.form,
-            whatsapp: cms.contact.form.whatsapp || cms.site.whatsapp || "",
-          }}
+          data={cms.contact.form}
           map={cms.contact.map}
         />
       </Suspense>

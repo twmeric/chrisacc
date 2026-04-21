@@ -11,5 +11,10 @@ preview_id = "ca4e0945e6fc4ef590e4a57548da7626"
 binding = "MEDIA_BUCKET"
 bucket_name = "ltcpa-media"
 
+[[d1_databases]]
+binding = "LTCPA_D1"
+database_name = "ltcpa-d1"
+database_id = "db7d4aa5-2407-4c20-a311-5daea0f177bf"
+
 [vars]
 ADMIN_PASSWORD = "admin360"

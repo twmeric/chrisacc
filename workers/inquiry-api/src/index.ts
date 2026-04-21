@@ -1,16 +1,16 @@
 /**
  * LTCPA Inquiry API Worker
  * - Saves inquiries to D1
- * - Sends email notification via Resend
- * - Creates inquiry markdown file via GitHub API (optional)
+ * - Sends WhatsApp notification via Cloud API
+ * - Sends email notification via Resend (optional)
  */
 
 export interface Env {
   LTCPA_D1: D1Database;
-  RESEND_API_KEY: string;
-  ADMIN_EMAIL: string;
-  GITHUB_TOKEN: string;
-  GITHUB_REPO: string;
+  RESEND_API_KEY?: string;
+  ADMIN_EMAIL?: string;
+  WHATSAPP_TOKEN?: string;
+  WHATSAPP_PHONE_ID?: string;
 }
 
 const corsHeaders = {
@@ -45,7 +45,39 @@ async function saveToD1(env: Env, data: Record<string, string>) {
   return id;
 }
 
+async function sendWhatsApp(env: Env, data: Record<string, string>) {
+  if (!env.WHATSAPP_TOKEN || !env.WHATSAPP_PHONE_ID) return;
+
+  const adminPhone = data.adminPhone || "85251164453";
+  const serviceLabel = data.service || "N/A";
+
+  const text = `📩 *New LTCPA Website Inquiry*\n\n` +
+    `*Name:* ${data.name}\n` +
+    `*Company:* ${data.company}\n` +
+    `*Email:* ${data.email}\n` +
+    `*Phone:* ${data.phone || "N/A"}\n` +
+    `*Service:* ${serviceLabel}\n` +
+    `*Message:* ${(data.message || "").slice(0, 200)}${(data.message || "").length > 200 ? "..." : ""}`;
+
+  await fetch(`https://graph.facebook.com/v18.0/${env.WHATSAPP_PHONE_ID}/messages`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${env.WHATSAPP_TOKEN}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      messaging_product: "whatsapp",
+      recipient_type: "individual",
+      to: adminPhone,
+      type: "text",
+      text: { body: text },
+    }),
+  });
+}
+
 async function sendEmail(env: Env, data: Record<string, string>) {
+  if (!env.RESEND_API_KEY || !env.ADMIN_EMAIL) return;
+
   const subject = `[LTCPA] New Inquiry from ${data.name} - ${data.company}`;
   const body = `<h2>New Website Inquiry</h2>
     <p><strong>Name:</strong> ${data.name}</p>
@@ -70,38 +102,6 @@ async function sendEmail(env: Env, data: Record<string, string>) {
   });
 }
 
-async function createInquiryFile(env: Env, data: Record<string, string>, id: string) {
-  const date = new Date().toISOString();
-  const filename = `content/inquiries/${date.split("T")[0]}-${id}.md`;
-  const content = `---
-name: "${data.name}"
-company: "${data.company}"
-email: "${data.email}"
-phone: "${data.phone || ""}"
-service: "${data.service || ""}"
-status: "new"
-submitted_at: "${date}"
----
-
-${data.message || ""}
-`;
-
-  const encoded = btoa(unescape(encodeURIComponent(content)));
-
-  await fetch(`https://api.github.com/repos/${env.GITHUB_REPO}/contents/${filename}`, {
-    method: "PUT",
-    headers: {
-      Authorization: `token ${env.GITHUB_TOKEN}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      message: `New inquiry from ${data.name}`,
-      content: encoded,
-      branch: "main",
-    }),
-  });
-}
-
 export default {
   async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
     if (request.method === "OPTIONS") {
@@ -122,11 +122,11 @@ export default {
 
       const id = await saveToD1(env, data);
 
-      // Fire-and-forget email + github file creation
+      // Fire-and-forget notifications
       ctx.waitUntil(
         Promise.all([
+          sendWhatsApp(env, data).catch(() => {}),
           sendEmail(env, data).catch(() => {}),
-          createInquiryFile(env, data, id).catch(() => {}),
         ])
       );
 
