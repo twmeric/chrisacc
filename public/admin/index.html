@@ -548,7 +548,6 @@
       html += inputText('about_intro_subtitle', 'Subtitle', (d.intro || {}).subtitle || '');
       html += inputTextarea('about_intro_paragraphs', 'Paragraphs (one per line)', ((d.intro || {}).paragraphs || []).join('\n'), 5);
       html += inputTextarea('about_intro_quote', 'Quote', (d.intro || {}).quote);
-      html += inputImage('about_intro_image', 'Image', (d.intro || {}).image || '');
       html += inputTextarea('about_intro_body', 'Combined Body Text (optional, overrides paragraphs)', (d.intro || {}).body || '', 4);
       html += `<div class="border-t border-slate-200 my-4"></div>`;
       html += `<div class="mb-2 text-sm font-semibold text-slate-700">Mission / Vision / Commitment</div>`;
@@ -1190,7 +1189,6 @@
             subtitle: readInput('about_intro_subtitle'),
             paragraphs: readInput('about_intro_paragraphs').split('\n').map(s => s.trim()).filter(Boolean),
             quote: readInput('about_intro_quote'),
-            image: readInput('about_intro_image'),
             body: readInput('about_intro_body'),
           },
           missionVision: { items: readArray('about_mv', ['icon', 'title', 'desc', 'linkText', 'href']) },

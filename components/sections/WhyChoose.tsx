@@ -37,16 +37,16 @@ export default function WhyChoose({ lang, data, intro }: WhyChooseProps) {
     return (
       <section className="bg-white px-4 py-16 md:py-24">
         <div className="mx-auto max-w-[1400px]">
-          <div className="grid items-start gap-10 lg:grid-cols-2 lg:gap-16">
+          <div className="grid items-stretch gap-10 lg:grid-cols-2 lg:gap-16">
             {/* Left: Image with gold border decoration */}
-            <div className="relative">
-              <div className="overflow-hidden rounded-xl shadow-xl">
+            <div className="relative h-full">
+              <div className="h-full overflow-hidden rounded-xl shadow-xl">
                 <Image
                   src={data.image || ""}
                   alt={data.title}
                   width={600}
                   height={500}
-                  className="h-auto w-full object-cover"
+                  className="h-full w-full object-cover"
                 />
               </div>
               {/* Gold border decoration */}

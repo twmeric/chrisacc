@@ -197,7 +197,7 @@
             "label": "優質貼心服務"
           }
         ],
-        "image": "/images/about-whychoose.jpg"
+        "image": "/images/about-team.jpg"
       },
       "intro": {
         "title": "您值得信賴的",
@@ -223,7 +223,7 @@
           }
         ],
         "subtitle": "櫪韜之柱：以絕對信任奠定雄心壯志",
-        "image": "/images/about-team.jpg",
+        "image": "",
         "badge": {
           "value": "20+",
           "label": "年卓越經驗"
@@ -267,27 +267,27 @@
         "subtitle": "見證我們的成長與蛻變",
         "events": [
           {
-            "year": "2005",
+            "year": "",
             "title": "公司成立",
             "desc": "櫪韜會計師事務所有限公司在香港正式成立，開始為本地中小企業提供專業會計服務。"
           },
           {
-            "year": "2010",
+            "year": "",
             "title": "業務擴展",
             "desc": "成功擴展至稅務顧問及商業諮詢服務，客戶群突破100間公司。"
           },
           {
-            "year": "2015",
+            "year": "",
             "title": "團隊壯大",
             "desc": "專業團隊擴充至30人，服務範圍延伸至併購及法證會計。"
           },
           {
-            "year": "2020",
+            "year": "",
             "title": "數碼轉型",
             "desc": "全面推行數碼化服務，引入雲端會計及數據分析，提升服務效率與質素。"
           },
           {
-            "year": "2025",
+            "year": "",
             "title": "展望未來",
             "desc": "服務超過500位客戶，專業團隊逾50人，持續致力為客戶創造價值。"
           }
@@ -796,7 +796,7 @@
             "label": "优质贴心服务"
           }
         ],
-        "image": "/images/about-whychoose.jpg"
+        "image": "/images/about-team.jpg"
       },
       "intro": {
         "title": "您值得信赖的",
@@ -826,7 +826,8 @@
         "badge": {
           "value": "20+",
           "label": "年卓越经验"
-        }
+        },
+        "body": ""
       },
       "coreValues": {
         "title": "核心价值",
@@ -857,34 +858,35 @@
       "team": {
         "title": "专业团队",
         "subtitle": "我们拥有经验丰富的专业团队，致力于为客户提供最优质的服务",
-        "members": []
+        "members": [],
+        "enabled": false
       },
       "timeline": {
         "title": "发展历程",
         "subtitle": "见证我们的成长与蜕变",
         "events": [
           {
-            "year": "2005",
+            "year": "",
             "title": "公司成立",
             "desc": "櫪韬会计师事务所有限公司在香港正式成立，开始为本地中小企业提供专业会计服务。"
           },
           {
-            "year": "2010",
+            "year": "",
             "title": "业务扩展",
             "desc": "成功扩展至税务顾问及商业咨询服务，客户群突破100间公司。"
           },
           {
-            "year": "2015",
+            "year": "",
             "title": "团队壮大",
             "desc": "专业团队扩充至30人，服务范围延伸至并购及法证会计。"
           },
           {
-            "year": "2020",
+            "year": "",
             "title": "数码转型",
             "desc": "全面推动数码化服务，引入云端会计及数据分析，提升服务效率与质素。"
           },
           {
-            "year": "2025",
+            "year": "",
             "title": "展望未来",
             "desc": "服务超过500位客户，专业团队逾50人，持续致力为客户创造价值。"
           }
@@ -1372,7 +1374,7 @@
             "label": "Quality Service"
           }
         ],
-        "image": ""
+        "image": "/images/about-team.jpg"
       },
       "intro": {
         "title": "Your Trusted",
@@ -1402,7 +1404,8 @@
         "badge": {
           "value": "",
           "label": ""
-        }
+        },
+        "body": ""
       },
       "coreValues": {
         "title": "Core Values",
@@ -1431,9 +1434,10 @@
         ]
       },
       "team": {
-        "title": "",
-        "subtitle": "",
-        "members": []
+        "title": "Our Team",
+        "subtitle": "We have an experienced professional team dedicated to providing the highest quality service to our clients",
+        "members": [],
+        "enabled": false
       },
       "timeline": {
         "title": "Our Journey",
