@@ -73,7 +73,9 @@ export default function Footer({ lang }: FooterProps) {
               </p>
               <p className="flex items-center gap-2">
                 <Mail className="h-4 w-4 shrink-0 text-brand-gold" />
-                <span>{t.contact.email}</span>
+                <a href={`mailto:${t.contact.email}`} className="hover:text-brand-gold transition">
+                  {t.contact.email}
+                </a>
               </p>
             </div>
           </div>

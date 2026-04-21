@@ -24,7 +24,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
       <AboutIntro lang={lang} data={cms.about.intro} />
       <MissionVision lang={lang} data={cms.about.missionVision} />
       <CoreValues lang={lang} data={cms.about.coreValues} />
-      <TeamSection lang={lang} data={cms.about.team} />
+      {cms.about.team.enabled && <TeamSection lang={lang} data={cms.about.team} />}
       <TimelineSection lang={lang} data={cms.about.timeline} />
       <CTASection lang={lang} title={cms.about.cta.title} description={cms.about.cta.desc} primaryBtn={cms.about.cta.btn} href={cms.about.cta.href} />
     </>

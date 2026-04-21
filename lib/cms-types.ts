@@ -98,6 +98,7 @@ export interface AboutData {
     image?: string;
     badge?: { value: string; label: string };
     stats?: { value: string; label: string }[];
+    body?: string;
   };
   missionVision: {
     items: { icon: string; title: string; desc: string; linkText?: string; href?: string }[];
@@ -113,6 +114,7 @@ export interface AboutData {
     items: { icon: string; title: string; desc: string }[];
   };
   team: {
+    enabled: boolean;
     title: string;
     subtitle: string;
     members: { name: string; role: string; image: string }[];

@@ -12,7 +12,7 @@ interface TimelineSectionProps {
 export default function TimelineSection({ lang, data }: TimelineSectionProps) {
   return (
     <section className="bg-brand-cream px-4 py-16 md:py-24">
-      <div className="mx-auto max-w-6xl">
+      <div className="mx-auto max-w-[1600px]">
         <div className="mb-12 text-center md:mb-16">
           <h2 className="relative inline-block text-3xl font-bold text-brand-navy md:text-[40px]">
             {data.title}
@@ -20,16 +20,14 @@ export default function TimelineSection({ lang, data }: TimelineSectionProps) {
           </h2>
           <p className="mx-auto mt-6 max-w-[600px] text-lg text-text-light">{data.subtitle}</p>
         </div>
-        <div className="relative">
-          {/* Vertical line — left side on mobile, center on desktop */}
-          <div className="absolute left-5 top-0 bottom-0 w-[3px] -translate-x-1/2 bg-brand-gold md:left-1/2" />
+        {/* Responsive grid: 1 col mobile, 2 col tablet, 3-5 col desktop */}
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
           {data.events.map((event, idx) => (
             <TimelineItem
               key={idx}
               year={event.year}
               title={event.title}
               description={event.desc}
-              side={idx % 2 === 0 ? "left" : "right"}
             />
           ))}
         </div>

@@ -167,6 +167,7 @@ export const defaultCMSData: CMSData = {
           "憑藉豐富的專業經驗和深厚的行業知識，我們的團隊能夠深入了解每位客戶的獨特需求，提供度身訂造的解決方案，協助客戶實現財務目標，推動業務持續發展。",
         ],
         quote: "我們的成功建基於客戶的成功。透過專業、誠信、創新的服務理念，我們與客戶建立長期的合作關係，共同成長。",
+        body: "",
         image: "/images/about-team.jpg",
         badge: { value: "20+", label: "年卓越經驗" },
       },
@@ -223,6 +224,7 @@ export const defaultCMSData: CMSData = {
         ],
       },
       team: {
+        enabled: true,
         title: "專業團隊",
         subtitle: "我們擁有經驗豐富的專業團隊，致力於為客戶提供最優質的服務",
         members: [
@@ -1384,6 +1386,7 @@ export const defaultCMSData: CMSData = {
           "凭借丰富的专业经验和深厚的行业知识，我们的团队能够深入了解每位客户的独特需求，提供度身订造的解决方案，协助客户实现财务目标，推动业务持续发展。",
         ],
         quote: "我们的成功建基于客户的成功。透过专业、诚信、创新的服务理念，我们与客户建立长期的合作关系，共同成长。",
+        body: "",
         image: "/images/about-team.jpg",
         badge: { value: "20+", label: "年卓越经验" },
       },
@@ -1440,6 +1443,7 @@ export const defaultCMSData: CMSData = {
         ],
       },
       team: {
+        enabled: true,
         title: "专业团队",
         subtitle: "我们拥有经验丰富的专业团队，致力于为客户提供最优质的服务",
         members: [
@@ -2576,6 +2580,7 @@ export const defaultCMSData: CMSData = {
           "With extensive professional experience and deep industry knowledge, our team is able to deeply understand each client's unique needs, provide tailored solutions, help clients achieve their financial goals, and drive sustainable business growth.",
         ],
         quote: "Our success is built on our clients' success. Through professional, honest and innovative service philosophy, we build long-term partnerships with our clients and grow together.",
+        body: "",
         image: "/images/about-team.jpg",
         badge: { value: "20+", label: "Years of Excellence" },
       },
@@ -2632,6 +2637,7 @@ export const defaultCMSData: CMSData = {
         ],
       },
       team: {
+        enabled: true,
         title: "Our Team",
         subtitle: "We have an experienced professional team dedicated to providing the highest quality service to our clients",
         members: [

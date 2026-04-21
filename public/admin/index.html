@@ -549,8 +549,7 @@
       html += inputTextarea('about_intro_paragraphs', 'Paragraphs (one per line)', ((d.intro || {}).paragraphs || []).join('\n'), 5);
       html += inputTextarea('about_intro_quote', 'Quote', (d.intro || {}).quote);
       html += inputImage('about_intro_image', 'Image', (d.intro || {}).image || '');
-      const badge = (d.intro || {}).badge || {};
-      html += `<div class="mb-4 grid grid-cols-1 md:grid-cols-2 gap-3"><div><label class="block text-xs font-semibold text-slate-600 mb-1">Badge Value</label><input type="text" id="about_intro_badge_value" value="${escapeHtml(badge.value || '')}" class="w-full border border-slate-300 rounded px-2 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-gold-400 bg-white"></div><div><label class="block text-xs font-semibold text-slate-600 mb-1">Badge Label</label><input type="text" id="about_intro_badge_label" value="${escapeHtml(badge.label || '')}" class="w-full border border-slate-300 rounded px-2 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-gold-400 bg-white"></div></div>`;
+      html += inputTextarea('about_intro_body', 'Combined Body Text (optional, overrides paragraphs)', (d.intro || {}).body || '', 4);
       html += `<div class="border-t border-slate-200 my-4"></div>`;
       html += `<div class="mb-2 text-sm font-semibold text-slate-700">Mission / Vision / Commitment</div>`;
       let mvHTML = '';
@@ -595,6 +594,8 @@
       html += arrayContainer('about_cv', 'Values', cvHTML);
       html += `<div class="border-t border-slate-200 my-4"></div>`;
       html += `<div class="mb-2 text-sm font-semibold text-slate-700">Team</div>`;
+      const teamEnabled = (d.team || {}).enabled !== false;
+      html += `<div class="mb-3 flex items-center gap-2"><input type="checkbox" id="about_team_enabled" ${teamEnabled ? 'checked' : ''} class="h-4 w-4 rounded border-slate-300 text-brand-gold focus:ring-gold-400"><label for="about_team_enabled" class="text-sm font-medium text-slate-700">Show Team Section</label></div>`;
       html += inputText('about_team_title', 'Title', (d.team || {}).title);
       html += inputText('about_team_subtitle', 'Subtitle', (d.team || {}).subtitle);
       let teamHTML = '';
@@ -1190,7 +1191,7 @@
             paragraphs: readInput('about_intro_paragraphs').split('\n').map(s => s.trim()).filter(Boolean),
             quote: readInput('about_intro_quote'),
             image: readInput('about_intro_image'),
-            badge: { value: readInput('about_intro_badge_value'), label: readInput('about_intro_badge_label') },
+            body: readInput('about_intro_body'),
           },
           missionVision: { items: readArray('about_mv', ['icon', 'title', 'desc', 'linkText', 'href']) },
           pillars: {
@@ -1219,6 +1220,7 @@
             items: readArray('about_cv', ['icon', 'title', 'desc']),
           },
           team: {
+            enabled: document.getElementById('about_team_enabled')?.checked ?? true,
             title: readInput('about_team_title'),
             subtitle: readInput('about_team_subtitle'),
             members: readArray('about_team', ['name', 'role', 'image']),
