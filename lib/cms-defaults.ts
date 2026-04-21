@@ -5,7 +5,7 @@ export const defaultCMSData: CMSData = {
     site: {
       name: "櫪韜會計師事務所",
       tagline: "Professional Accounting",
-      logo: "/images/logo-tc.jpg",
+      logo: "/images/logo-tc.png",
       jkdcodingLogo: "",
       jkdcodingUrl: "https://jkdcoding.com",
       whatsapp: "+85239871008",
@@ -1222,7 +1222,7 @@ export const defaultCMSData: CMSData = {
     site: {
       name: "櫪韬会计师事务所",
       tagline: "Professional Accounting",
-      logo: "/images/logo-sc.jpg",
+      logo: "/images/logo-sc.png",
       jkdcodingLogo: "",
       jkdcodingUrl: "https://jkdcoding.com",
       whatsapp: "+85239871008",
@@ -2414,7 +2414,7 @@ export const defaultCMSData: CMSData = {
     site: {
       name: "LT CPA Limited",
       tagline: "Professional Accounting",
-      logo: "/images/logo-en.jpg",
+      logo: "/images/logo-en.png",
       jkdcodingLogo: "",
       jkdcodingUrl: "https://jkdcoding.com",
       whatsapp: "+85239871008",

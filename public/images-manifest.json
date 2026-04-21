@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-20T04:06:43.180Z",
+  "generatedAt": "2026-04-21T02:54:08.288Z",
   "objects": [
     {
       "key": "about-team.jpg",
@@ -37,18 +37,18 @@
       "source": "static"
     },
     {
-      "key": "logo-en.jpg",
-      "url": "/images/logo-en.jpg",
+      "key": "logo-en.png",
+      "url": "/images/logo-en.png",
       "source": "static"
     },
     {
-      "key": "logo-sc.jpg",
-      "url": "/images/logo-sc.jpg",
+      "key": "logo-sc.png",
+      "url": "/images/logo-sc.png",
       "source": "static"
     },
     {
-      "key": "logo-tc.jpg",
-      "url": "/images/logo-tc.jpg",
+      "key": "logo-tc.png",
+      "url": "/images/logo-tc.png",
       "source": "static"
     },
     {

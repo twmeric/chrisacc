@@ -1,11 +1,12 @@
 {
   "zh-hant": {
     "site": {
-      "name": "櫪韜會計師事務所",
+      "name": "櫪韜會計師事務所 ",
       "tagline": "Professional Accounting",
       "logo": "/images/logo-tc.jpg",
       "jkdcodingLogo": "",
-      "jkdcodingUrl": "https://jkdcoding.com"
+      "jkdcodingUrl": "https://jkdcoding.com",
+      "whatsapp": "+85239871008"
     },
     "header": {
       "navItems": [
@@ -196,7 +197,7 @@
             "label": "優質貼心服務"
           }
         ],
-        "image": "/images/about-whychoose.jpg"
+        "image": ""
       },
       "intro": {
         "title": "您值得信賴的",
@@ -548,8 +549,8 @@
           "icon": "MapPin",
           "title": "地址",
           "lines": [
-            "香港金鐘力寶中心2座5樓503室",
-            "Unit 503, Tower 2, Lippo Centre, Admiralty, Hong Kong"
+            "香港金鐘道95號統一中心29樓A室",
+            "Room A, 29/F, United Centre, 95 Queensway, Admiralty, Hong Kong"
           ]
         },
         {
@@ -571,7 +572,7 @@
       ],
       "map": {
         "title": "櫪韜會計師事務所有限公司",
-        "address": "香港金鐘力寶中心2座5樓503室",
+        "address": "香港金鐘道95號統一中心29樓A室",
         "embedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3691.943648503026!2d114.16538231544394!3d22.27932798533504!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3404005a8b8e7c5b%3A0x7c5b8b8e7c5b8b8e!2sLippo%20Centre!5e0!3m2!1sen!2shk!4v1600000000000!5m2!1sen!2shk"
       },
       "faq": {
@@ -1142,7 +1143,7 @@
       "pageTitle": "联络我们",
       "map": {
         "title": "櫪韬会计师事务所有限公司",
-        "address": "香港金钟力宝中心2座5楼503室",
+        "address": "香港金钟道95号统一中心29楼A室",
         "embedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3691.943648503026!2d114.16538231544394!3d22.27932798533504!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3404005a8b8e7c5b%3A0x7c5b8b8e7c5b8b8e!2sLippo%20Centre!5e0!3m2!1sen!2shk!4v1600000000000!5m2!1sen!2shk"
       },
       "faq": {
@@ -1173,7 +1174,10 @@
     "site": {
       "name": "LT CPA Limited",
       "tagline": "Professional Accounting",
-      "logo": "/images/logo-en.jpg"
+      "logo": "/images/logo-en.jpg",
+      "jkdcodingLogo": "",
+      "jkdcodingUrl": "https://jkdcoding.com",
+      "whatsapp": "+85239871008"
     },
     "header": {
       "navItems": [
@@ -1394,8 +1398,8 @@
         "subtitle": "The Pillars of LT: Grounding Ambition in Absolute Trust",
         "image": "/images/about-team.jpg",
         "badge": {
-          "value": "20+",
-          "label": "Years of Excellence"
+          "value": "",
+          "label": ""
         }
       },
       "coreValues": {
@@ -1425,8 +1429,8 @@
         ]
       },
       "team": {
-        "title": "Our Team",
-        "subtitle": "We have an experienced professional team dedicated to providing the highest quality service to our clients",
+        "title": "",
+        "subtitle": "",
         "members": []
       },
       "timeline": {
@@ -1434,27 +1438,27 @@
         "subtitle": "Witness our growth and transformation over the years",
         "events": [
           {
-            "year": "2005",
+            "year": "",
             "title": "Foundation",
             "desc": "LT CPA Limited was established in Hong Kong, beginning our journey serving local SMEs with professional accounting services."
           },
           {
-            "year": "2010",
+            "year": "",
             "title": "Expansion",
             "desc": "Successfully expanded into tax advisory and business consulting services, with client base exceeding 100 companies."
           },
           {
-            "year": "2015",
+            "year": "",
             "title": "Growth",
             "desc": "Professional team grew to 30 members, expanding services to include M&A and forensic accounting."
           },
           {
-            "year": "2020",
+            "year": "",
             "title": "Digital Transformation",
             "desc": "Implemented advanced digital systems to enhance service efficiency and deliver a more seamless client experience."
           },
           {
-            "year": "2025",
+            "year": "",
             "title": "Looking Forward",
             "desc": "Serving over 500 clients with a team of 50+ professionals, continuing our commitment to creating value for clients."
           }
