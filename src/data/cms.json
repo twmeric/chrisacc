@@ -197,7 +197,7 @@
             "label": "優質貼心服務"
           }
         ],
-        "image": ""
+        "image": "/images/about-whychoose.jpg"
       },
       "intro": {
         "title": "您值得信賴的",
@@ -227,7 +227,8 @@
         "badge": {
           "value": "20+",
           "label": "年卓越經驗"
-        }
+        },
+        "body": ""
       },
       "coreValues": {
         "title": "核心價值",
@@ -258,7 +259,8 @@
       "team": {
         "title": "專業團隊",
         "subtitle": "我們擁有經驗豐富的專業團隊，致力於為客戶提供最優質的服務",
-        "members": []
+        "members": [],
+        "enabled": false
       },
       "timeline": {
         "title": "發展歷程",

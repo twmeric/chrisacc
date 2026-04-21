@@ -18,9 +18,15 @@ interface WhyChooseProps {
     features?: { icon: string; label: string }[];
     items: { icon: string; title: string; desc: string }[];
   };
+  intro?: {
+    title: string;
+    titleAccent: string;
+    subtitle?: string;
+    quote: string;
+  };
 }
 
-export default function WhyChoose({ lang, data }: WhyChooseProps) {
+export default function WhyChoose({ lang, data, intro }: WhyChooseProps) {
   const hasImage = !!data.image;
   const hasParagraphs = data.paragraphs && data.paragraphs.length > 0;
   const hasFeatures = data.features && data.features.length > 0;
@@ -30,8 +36,8 @@ export default function WhyChoose({ lang, data }: WhyChooseProps) {
   if (hasImage) {
     return (
       <section className="bg-white px-4 py-16 md:py-24">
-        <div className="mx-auto max-w-6xl">
-          <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+        <div className="mx-auto max-w-[1400px]">
+          <div className="grid items-start gap-10 lg:grid-cols-2 lg:gap-16">
             {/* Left: Image with gold border decoration */}
             <div className="relative">
               <div className="overflow-hidden rounded-xl shadow-xl">
@@ -39,16 +45,17 @@ export default function WhyChoose({ lang, data }: WhyChooseProps) {
                   src={data.image || ""}
                   alt={data.title}
                   width={600}
-                  height={400}
+                  height={500}
                   className="h-auto w-full object-cover"
                 />
               </div>
-              {/* Gold border decoration (simulates ::before) */}
+              {/* Gold border decoration */}
               <div className="absolute -left-4 -top-4 -z-10 h-full w-full rounded-xl border-4 border-brand-gold md:-left-5 md:-top-5" />
             </div>
 
-            {/* Right: Content */}
-            <div>
+            {/* Right: Content — Why Choose + Intro combined */}
+            <div className="flex flex-col justify-center">
+              {/* Upper: Why Choose content */}
               <h2 className="mb-5 text-3xl font-bold text-brand-navy md:text-[36px]">{data.title}</h2>
               {hasParagraphs && (
                 <div className="mb-6 space-y-4">
@@ -60,7 +67,7 @@ export default function WhyChoose({ lang, data }: WhyChooseProps) {
                 </div>
               )}
               {hasFeatures && (
-                <div className="grid gap-4 sm:grid-cols-2">
+                <div className="mb-10 grid gap-4 sm:grid-cols-2">
                   {data.features!.map((f, idx) => (
                     <div key={idx} className="flex items-center gap-3">
                       <i className="fas fa-check-circle text-brand-gold text-xl"></i>
@@ -68,6 +75,23 @@ export default function WhyChoose({ lang, data }: WhyChooseProps) {
                     </div>
                   ))}
                 </div>
+              )}
+
+              {/* Lower: Intro content merged in */}
+              {intro && (
+                <>
+                  <div className="border-t border-slate-200 pt-8">
+                    <h3 className="mb-3 text-3xl font-bold text-brand-navy md:text-[36px]">
+                      {intro.title} <span className="text-brand-gold">{intro.titleAccent}</span>
+                    </h3>
+                    {intro.subtitle && (
+                      <p className="mb-4 text-lg text-text-light">{intro.subtitle}</p>
+                    )}
+                    <blockquote className="border-l-4 border-brand-gold bg-brand-cream p-5 text-base italic text-brand-navy md:text-lg">
+                      &ldquo;{intro.quote}&rdquo;
+                    </blockquote>
+                  </div>
+                </>
               )}
             </div>
           </div>

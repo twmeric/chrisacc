@@ -2,7 +2,6 @@ import { Locale } from "@/lib/i18n-config";
 import { getLocaleCMS } from "@/lib/cms-data";
 import PageBanner from "@/components/ui/PageBanner";
 import WhyChoose from "@/components/sections/WhyChoose";
-import AboutIntro from "@/components/sections/AboutIntro";
 import MissionVision from "@/components/sections/MissionVision";
 import CoreValues from "@/components/sections/CoreValues";
 import TeamSection from "@/components/sections/TeamSection";
@@ -20,8 +19,11 @@ export default async function AboutPage({ params }: AboutPageProps) {
   return (
     <>
       <PageBanner lang={lang} title={cms.about.pageTitle} />
-      <WhyChoose lang={lang} data={cms.about.whyChoose} />
-      <AboutIntro lang={lang} data={cms.about.intro} />
+      <WhyChoose
+        lang={lang}
+        data={cms.about.whyChoose}
+        intro={cms.about.intro}
+      />
       <MissionVision lang={lang} data={cms.about.missionVision} />
       <CoreValues lang={lang} data={cms.about.coreValues} />
       {cms.about.team.enabled && <TeamSection lang={lang} data={cms.about.team} />}
