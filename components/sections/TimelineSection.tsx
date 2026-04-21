@@ -20,14 +20,17 @@ export default function TimelineSection({ lang, data }: TimelineSectionProps) {
           </h2>
           <p className="mx-auto mt-6 max-w-[600px] text-lg text-text-light">{data.subtitle}</p>
         </div>
-        <div className="flex flex-wrap justify-center gap-6">
+        <div className="relative">
+          {/* Vertical line — left side on mobile, center on desktop */}
+          <div className="absolute left-5 top-0 bottom-0 w-[3px] -translate-x-1/2 bg-brand-gold md:left-1/2" />
           {data.events.map((event, idx) => (
-            <div
+            <TimelineItem
               key={idx}
-              className="w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]"
-            >
-              <TimelineItem title={event.title} description={event.desc} />
-            </div>
+              year={event.year}
+              title={event.title}
+              description={event.desc}
+              side={idx % 2 === 0 ? "left" : "right"}
+            />
           ))}
         </div>
       </div>
