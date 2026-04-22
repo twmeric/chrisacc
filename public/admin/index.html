@@ -331,10 +331,10 @@
       return `<div class="border border-slate-200 rounded-lg p-3 bg-white relative array-item" data-prefix="${prefix}" data-idx="${idx}"><button type="button" onclick="this.closest('.array-item').remove()" class="absolute top-2 right-2 text-red-500 hover:text-red-700 text-sm font-semibold">Remove</button><div class="grid grid-cols-1 md:grid-cols-2 gap-3 pr-16">${innerHTML}</div></div>`;
     }
     function smallInput(id, label, value) {
-      return `<div><label class="block text-xs font-semibold text-slate-600 mb-1">${label}</label><input type="text" data-field="${id}" value="${escapeHtml(value)}" class="w-full border border-slate-300 rounded px-2 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-gold-400 bg-white"></div>`;
+      return `<div><label class="block text-xs font-semibold text-slate-600 mb-1">${label}</label><input type="text" id="${id}" data-field="${id}" value="${escapeHtml(value)}" class="w-full border border-slate-300 rounded px-2 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-gold-400 bg-white"></div>`;
     }
     function smallTextarea(id, label, value) {
-      return `<div class="md:col-span-2"><label class="block text-xs font-semibold text-slate-600 mb-1">${label}</label><textarea data-field="${id}" rows="2" class="w-full border border-slate-300 rounded px-2 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-gold-400 bg-white">${escapeHtml(value)}</textarea></div>`;
+      return `<div class="md:col-span-2"><label class="block text-xs font-semibold text-slate-600 mb-1">${label}</label><textarea id="${id}" data-field="${id}" rows="2" class="w-full border border-slate-300 rounded px-2 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-gold-400 bg-white">${escapeHtml(value)}</textarea></div>`;
     }
     function smallImage(id, label, value) {
       return `<div><label class="block text-xs font-semibold text-slate-600 mb-1">${label}</label><div class="flex gap-2"><input type="text" data-field="${id}" value="${escapeHtml(value)}" class="flex-1 border border-slate-300 rounded px-2 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-gold-400 bg-white"><input type="file" id="${id}_file" accept="image/*" class="hidden" onchange="uploadImageForField(this)"><button type="button" onclick="document.getElementById('${id}_file').click()" class="bg-navy-800 hover:bg-navy-900 text-white px-2 py-1 rounded text-xs">Up</button></div></div>`;
