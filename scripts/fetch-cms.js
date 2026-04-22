@@ -26,7 +26,7 @@ const baselineFooter = {
       { label: "Services", url: "/services/" },
       { label: "Contact", url: "/contact/" },
     ],
-    contact: { address: "Unit 503, Tower 2, Lippo Centre, Admiralty, Hong Kong", phone: "+852 3987 1008", email: "info@ltgroupcpa.com" },
+    contact: { address: "Unit 503, Tower 2, Lippo Centre, Admiralty, Hong Kong", phone: "+852 3987 1008", email: "info@ltgroupcpa.com", whatsapp: "+85239871008" },
     social: { facebook: "", instagram: "", linkedin: "" },
   },
   "zh-hant": {
@@ -50,7 +50,7 @@ const baselineFooter = {
       { label: "服務範圍", url: "/services/" },
       { label: "聯絡我們", url: "/contact/" },
     ],
-    contact: { address: "香港金鐘力寶中心2座5樓503室", phone: "3987 1008", email: "info@ltgroupcpa.com" },
+    contact: { address: "香港金鐘力寶中心2座5樓503室", phone: "3987 1008", email: "info@ltgroupcpa.com", whatsapp: "+85239871008" },
     social: { facebook: "", instagram: "", linkedin: "" },
   },
   "zh-hans": {
@@ -74,7 +74,7 @@ const baselineFooter = {
       { label: "服务范围", url: "/services/" },
       { label: "联络我们", url: "/contact/" },
     ],
-    contact: { address: "香港金钟力宝中心2座5楼503室", phone: "3987 1008", email: "info@ltgroupcpa.com" },
+    contact: { address: "香港金钟力宝中心2座5楼503室", phone: "3987 1008", email: "info@ltgroupcpa.com", whatsapp: "+85239871008" },
     social: { facebook: "", instagram: "", linkedin: "" },
   },
 };

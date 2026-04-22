@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Locale } from "@/lib/i18n-config";
 import { getLocaleCMS } from "@/lib/cms-data";
-import { Phone, Mail, MapPin, Facebook, Instagram, Linkedin } from "lucide-react";
+import { Phone, Mail, MapPin, Facebook, Instagram, Linkedin, MessageCircle } from "lucide-react";
 
 interface FooterProps {
   lang: Locale;
@@ -77,6 +77,14 @@ export default function Footer({ lang }: FooterProps) {
                   {t.contact.email}
                 </a>
               </p>
+              {t.contact.whatsapp && (
+                <p className="flex items-center gap-2">
+                  <MessageCircle className="h-4 w-4 shrink-0 text-brand-gold" />
+                  <a href={`https://wa.me/${t.contact.whatsapp.replace(/\D/g, '')}`} target="_blank" rel="noopener noreferrer" className="hover:text-brand-gold transition">
+                    WhatsApp
+                  </a>
+                </p>
+              )}
             </div>
           </div>
         </div>
