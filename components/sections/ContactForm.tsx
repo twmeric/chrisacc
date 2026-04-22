@@ -31,7 +31,7 @@ interface ContactFormProps {
   };
 }
 
-const INQUIRY_API_URL = process.env.NEXT_PUBLIC_INQUIRY_API_URL || "/api/submit-inquiry/";
+const INQUIRY_API_URL = process.env.NEXT_PUBLIC_INQUIRY_API_URL || "https://ltcpa-inquiry-api.jimsbond007.workers.dev";
 
 export default function ContactForm({ lang, data, map }: ContactFormProps) {
   const searchParams = useSearchParams();

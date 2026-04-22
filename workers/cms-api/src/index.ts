@@ -342,6 +342,11 @@ export default {
         return jsonResponse({ success: true });
       }
 
+      if (path === "/api/analytics/interaction" && request.method === "POST") {
+        // Accept interaction events (heartbeat, visibility, etc.) — no-op for now
+        return jsonResponse({ success: true });
+      }
+
       if (path === "/api/analytics/report" && request.method === "GET") {
         const auth = requireAuth(request, env);
         if (auth) return auth;
