@@ -3,7 +3,7 @@
     "site": {
       "name": "櫪韜會計師事務所 ",
       "tagline": "Professional Accounting",
-      "logo": "/images/logo-tc.jpg",
+      "logo": "/images/logo-tc.png",
       "jkdcodingLogo": "",
       "jkdcodingUrl": "https://jkdcoding.com",
       "whatsapp": "+85239871008"
@@ -605,7 +605,10 @@
     "site": {
       "name": "櫪韬会计师事务所",
       "tagline": "Professional Accounting",
-      "logo": "/images/logo-sc.jpg"
+      "logo": "/images/logo-sc.png",
+      "jkdcodingLogo": "",
+      "jkdcodingUrl": "https://jkdcoding.com",
+      "whatsapp": "+85239871008"
     },
     "header": {
       "navItems": [
@@ -1178,7 +1181,7 @@
     "site": {
       "name": "LT CPA Limited",
       "tagline": "Professional Accounting",
-      "logo": "/images/logo-en.jpg",
+      "logo": "/images/logo-en.png",
       "jkdcodingLogo": "",
       "jkdcodingUrl": "https://jkdcoding.com",
       "whatsapp": "+85239871008"
@@ -1725,8 +1728,8 @@
       "pageTitle": "Contact Us",
       "map": {
         "title": "LT CPA Limited",
-        "address": "Unit 503, Tower 2, Lippo Centre, Admiralty, Hong Kong",
-        "embedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3691.943648503026!2d114.16538231544394!3d22.27932798533504!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3404005a8b8e7c5b%3A0x7c5b8b8e7c5b8b8e!2sLippo%20Centre!5e0!3m2!1sen!2shk!4v1600000000000!5m2!1sen!2shk"
+        "address": "Room A, 29/F, United Centre, 95 Queensway, Admiralty, Hong Kong",
+        "embedUrl": "https://www.google.com/maps/place/%E7%B5%B1%E4%B8%80%E4%B8%AD%E5%BF%83/@22.2784361,114.1628428,17z/data=!3m2!4b1!5s0x3404005c60aee8b5:0x2010b952eefb83af!4m6!3m5!1s0x34040067afa6f07f:0xd3c668e006039db1!8m2!3d22.2784312!4d114.1654177!16s%2Fg%2F122n5n6m?entry=ttu&g_ep=EgoyMDI2MDQxOS4wIKXMDSoASAFQAw%3D%3D"
       },
       "faq": {
         "title": "FAQ",

@@ -107,6 +107,7 @@ function smartMergeFooter(baseline, loaded) {
       address: str(loaded.contact?.address, baseline.contact.address),
       phone: isOldPhone ? baseline.contact.phone : str(loaded.contact?.phone, baseline.contact.phone),
       email: isOldEmail ? baseline.contact.email : str(loaded.contact?.email, baseline.contact.email),
+      whatsapp: str(loaded.contact?.whatsapp, baseline.contact.whatsapp),
     },
     social: { ...baseline.social, ...(loaded.social || {}) },
     services,

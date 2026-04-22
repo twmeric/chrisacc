@@ -44,6 +44,7 @@ function mergeFooter(
       address: str(loaded?.contact?.address, def.contact.address),
       phone: str(loaded?.contact?.phone, def.contact.phone),
       email: str(loaded?.contact?.email, def.contact.email),
+      whatsapp: str(loaded?.contact?.whatsapp, def.contact.whatsapp),
     },
     social: {
       ...def.social,
