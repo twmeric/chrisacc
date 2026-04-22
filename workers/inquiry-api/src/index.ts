@@ -26,6 +26,22 @@ function jsonResponse(data: unknown, status = 200) {
   });
 }
 
+async function initDB(env: Env) {
+  await env.LTCPA_D1.prepare(`
+    CREATE TABLE IF NOT EXISTS inquiries (
+      id TEXT PRIMARY KEY,
+      name TEXT NOT NULL,
+      company TEXT NOT NULL,
+      email TEXT NOT NULL,
+      phone TEXT,
+      service TEXT,
+      message TEXT,
+      status TEXT DEFAULT 'new',
+      submitted_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    )
+  `).run();
+}
+
 async function saveToD1(env: Env, data: Record<string, string>) {
   const id = crypto.randomUUID();
   await env.LTCPA_D1.prepare(
@@ -113,6 +129,7 @@ export default {
     }
 
     try {
+      await initDB(env);
       const data: Record<string, string> = await request.json();
 
       // Validation
