@@ -120,9 +120,10 @@
         }
       ],
       "contact": {
-        "address": "香港金鐘力寶中心2座5樓503室",
+        "address": "香港金鐘力寶中心2座5樓",
         "phone": "3987 1008",
-        "email": "info@ltgroupcpa.com"
+        "email": "info@ltgroupcpa.com",
+        "whatsapp": "+85239871008"
       },
       "social": {
         "facebook": "",
@@ -551,8 +552,7 @@
           "icon": "MapPin",
           "title": "地址",
           "lines": [
-            "香港金鐘道95號統一中心29樓A室",
-            "Room A, 29/F, United Centre, 95 Queensway, Admiralty, Hong Kong"
+            "香港金鐘道95號統一中心29樓A室"
           ]
         },
         {
@@ -1300,9 +1300,10 @@
         }
       ],
       "contact": {
-        "address": "Unit 503, Tower 2, Lippo Centre, Admiralty, Hong Kong",
+        "address": "Tower 2, Lippo Centre, Admiralty, Hong Kong",
         "phone": "+852 3987 1008",
-        "email": "info@ltgroupcpa.com"
+        "email": "info@ltgroupcpa.com",
+        "whatsapp": "+85239871008"
       },
       "social": {
         "facebook": "",

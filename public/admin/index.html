@@ -784,6 +784,8 @@
       html += inputText('contact_form_infoTitle', 'Info Title', f.infoTitle);
       html += inputText('contact_form_hoursTitle', 'Hours Title', f.hoursTitle);
       html += inputText('contact_form_follow', 'Follow Title', f.follow);
+      html += inputText('contact_form_whatsapp', 'WhatsApp Number', f.whatsapp);
+      html += inputText('contact_form_whatsappLabel', 'WhatsApp Label', f.whatsappLabel);
       let hoursHTML = '';
       (f.hours || []).forEach((h, idx) => {
         let inner = smallInput(`contact_form_hours_${idx}_day`, 'Day', h.day) + smallInput(`contact_form_hours_${idx}_time`, 'Time', h.time);
@@ -1434,6 +1436,8 @@
             infoTitle: readInput('contact_form_infoTitle'),
             hoursTitle: readInput('contact_form_hoursTitle'),
             follow: readInput('contact_form_follow'),
+            whatsapp: readInput('contact_form_whatsapp'),
+            whatsappLabel: readInput('contact_form_whatsappLabel'),
             hours: readArray('contact_form_hours', ['day', 'time']),
             servicesList: readArray('contact_form_svc', ['value', 'label']),
           },

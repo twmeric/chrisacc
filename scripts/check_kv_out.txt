@@ -1,0 +1,18 @@
+zh-hant:
+  pageTitle = 聯絡我們
+  formTitle = 免費諮詢
+  cards count = 3
+  footer.aboutTitle = 櫪韜會計師事務所
+  footer.contact.whatsapp = +85239871008
+zh-hans:
+  pageTitle = 联络我们
+  formTitle = 免费咨询
+  cards count = 3
+  footer.aboutTitle = 櫪韬会计师事务所
+  footer.contact.whatsapp = 
+en:
+  pageTitle = Contact Us
+  formTitle = Free Consultation
+  cards count = 3
+  footer.aboutTitle = LT CPA Limited
+  footer.contact.whatsapp = +85239871008

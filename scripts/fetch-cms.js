@@ -167,11 +167,6 @@ async function fetchCMSData() {
         const hasOld = data[loc].commitment.items.some(i => oldCommitmentTitles.some(t => i.title && i.title.includes(t)));
         if (hasOld) delete data[loc].commitment;
       }
-      // Fix contact formTitle if it's the old short title
-      const oldFormTitles = ["免費諮詢", "免费咨询", "Free Consultation"];
-      if (data[loc]?.contact?.form?.formTitle && oldFormTitles.includes(data[loc].contact.form.formTitle)) {
-        delete data[loc].contact.form;
-      }
       // Wipe old servicePages data (pre-rewrite format with serviceScopeSubtitle / serviceProcessSubtitle)
       // so that the new cms-defaults.ts content takes over
       if (data[loc]?.servicePages) {
@@ -179,20 +174,6 @@ async function fetchCMSData() {
         if (auditPage && (auditPage.serviceScopeSubtitle || auditPage.serviceProcessSubtitle)) {
           delete data[loc].servicePages;
           console.log(`[fetch-cms] Deleted outdated servicePages for ${loc} — defaults will take over.`);
-        }
-      }
-      // Fix contact cards if they contain old phone/email
-      const oldCardPhones = ["+852 1234 5678", "1234 5678"];
-      const oldCardEmails = ["info@ltcpa.com"];
-      if (data[loc]?.contact?.cards) {
-        const hasOldPhone = data[loc].contact.cards.some(c =>
-          c.lines?.some(l => oldCardPhones.some(p => l.includes(p)))
-        );
-        const hasOldEmail = data[loc].contact.cards.some(c =>
-          c.lines?.some(l => oldCardEmails.some(e => l.includes(e)))
-        );
-        if (hasOldPhone || hasOldEmail) {
-          delete data[loc].contact.cards;
         }
       }
     }
