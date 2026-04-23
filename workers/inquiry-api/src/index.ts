@@ -9,6 +9,7 @@ export interface Env {
   LTCPA_D1: D1Database;
   RESEND_API_KEY?: string;
   ADMIN_EMAIL?: string;
+  ADMIN_PHONE?: string;
   WHATSAPP_TOKEN?: string;
   WHATSAPP_PHONE_ID?: string;
 }
@@ -64,7 +65,7 @@ async function saveToD1(env: Env, data: Record<string, string>) {
 async function sendWhatsApp(env: Env, data: Record<string, string>) {
   if (!env.WHATSAPP_TOKEN || !env.WHATSAPP_PHONE_ID) return;
 
-  const adminPhone = data.adminPhone || "85268810677";
+  const adminPhone = data.adminPhone || env.ADMIN_PHONE || "85268810677";
   const serviceLabel = data.service || "N/A";
 
   const text = `📩 *New LTCPA Website Inquiry*\n\n` +

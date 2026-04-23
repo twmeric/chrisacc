@@ -9,6 +9,7 @@ database_id = "db7d4aa5-2407-4c20-a311-5daea0f177bf"
 
 [vars]
 ADMIN_EMAIL = "admin@ltcpa.com"
+ADMIN_PHONE = "85268810677"
 GITHUB_REPO = "twmeric/chrisacc"
 
 # Secrets (set via wrangler secret):

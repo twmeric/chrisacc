@@ -162,9 +162,17 @@ This creates a **preview deployment** that does NOT update the production domain
 | `GITHUB_TOKEN` | ⚠️ Optional | Used by CMS Worker `deploy` handler to trigger Actions. **Must be set as Worker secret (not GitHub repo secret).** Name: `GITHUB_TOKEN` in `ltcpa-cms-api` Worker settings. |
 
 ### Worker Secrets (Cloudflare Dashboard)
-- `ltcpa-cms-api` → Secret `GITHUB_TOKEN` (GitHub PAT with `repo` + `workflow` scope)
+| Worker | Secret / Variable | Purpose |
+|--------|-------------------|---------|
+| `ltcpa-cms-api` | `GITHUB_TOKEN` | GitHub PAT with `repo` + `workflow` scope (trigger Actions deploy) |
+| `ltcpa-inquiry-api` | `WHATSAPP_TOKEN` | Meta WhatsApp Cloud API token |
+| `ltcpa-inquiry-api` | `WHATSAPP_PHONE_ID` | Meta WhatsApp Business Account Phone Number ID |
+| `ltcpa-inquiry-api` | `ADMIN_PHONE` | **WhatsApp notification recipient** (e.g. `85268810677`) |
+| `ltcpa-inquiry-api` | `RESEND_API_KEY` | Optional — Resend API key for email notifications |
 
-> **Security note:** Do NOT paste GitHub tokens into chat. GitHub Secret Scanning will auto-revoke exposed tokens within seconds. Always set `GITHUB_TOKEN` directly in the Cloudflare Dashboard (Workers & Pages → `ltcpa-cms-api` → Settings → Variables and Secrets).
+> **Security note:** Do NOT paste GitHub tokens into chat. GitHub Secret Scanning will auto-revoke exposed tokens within seconds. Always set secrets directly in the Cloudflare Dashboard (Workers & Pages → Worker → Settings → Variables and Secrets).
+>
+> To change the WhatsApp notification number: go to Cloudflare Dashboard → Workers & Pages → `ltcpa-inquiry-api` → Settings → Variables and Secrets → edit `ADMIN_PHONE`.
 
 ---
 
