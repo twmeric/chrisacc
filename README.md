@@ -34,7 +34,6 @@ E:\Projects\LTCPA
 │   │   ├── value/
 │   │   ├── layout.tsx            # Locale layout (Header + Footer)
 │   │   └── page.tsx              # Home page
-│   ├── api/submit-inquiry/       # Contact form API route
 │   ├── globals.css
 │   ├── layout.tsx
 │   └── page.tsx                  # Root redirect
@@ -47,8 +46,7 @@ E:\Projects\LTCPA
 │   ├── cms-data.ts               # CMS data loader (build-time)
 │   ├── cms-defaults.ts           # Trilingual fallback defaults
 │   ├── cms-types.ts              # TypeScript types for CMS data
-│   ├── i18n-config.ts            # Locale configuration
-│   └── cms.ts                    # Legacy CMS helper (keep for compat)
+│   └── i18n-config.ts            # Locale configuration
 ├── public/
 │   ├── admin/
 │   │   ├── index.html            # Single-file CMS admin dashboard
@@ -57,6 +55,7 @@ E:\Projects\LTCPA
 │   └── images-manifest.json      # Auto-generated static image index
 ├── scripts/
 │   └── fetch-cms.js              # Pre-build script: pulls KV → cms.json
+│   └── (other one-off scripts removed)
 ├── src/data/
 │   └── cms.json                  # Fetched CMS data (build-time only)
 ├── workers/

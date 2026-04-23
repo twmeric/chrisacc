@@ -3,8 +3,8 @@
 > **Read this first before making any changes.**
 
 ## Project Status
-**Current State:** Production-ready Next.js 15 site with CMS backend (2026-04-16).  
-All 13 page families rebuilt across 3 locales (TC / SC / EN). Previous static HTML version backed up locally.
+**Current State:** Production-ready Next.js 15 site with CMS backend (2026-04-23).  
+All 13 page families rebuilt across 3 locales (TC / SC / EN). Project cleaned: removed legacy Decap CMS content files, unused components, and orphaned dependencies.
 
 ---
 
@@ -217,3 +217,5 @@ This creates a **preview deployment** that does NOT update the production domain
 - [ ] Set `RESEND_API_KEY` Worker secret for inquiry email notifications
 - [ ] Configure DNS for `ltgroupcpa.com` when ready to go live
 - [x] Add more analytics charts in Admin (referrers, countries, etc.)
+- [x] Clean up legacy content/ directory, unused components, and orphaned npm dependencies
+- [x] Fix Google Maps embedUrl for all locales (United Centre, pure embed URL)

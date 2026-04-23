@@ -572,6 +572,69 @@
           ]
         }
       ],
+      "form": {
+        "formTitle": "免費諮詢",
+        "formDesc": "請填寫以下表格，我們的專業顧問將盡快與您聯繫，為您提供最適合的解決方案。",
+        "name": "姓名 *",
+        "company": "公司名稱 *",
+        "phone": "電話",
+        "email": "電郵 *",
+        "service": "感興趣的服務",
+        "message": "訊息",
+        "submit": "提交查詢",
+        "submitting": "提交中...",
+        "successMsg": "感謝您的查詢，我們會盡快與您聯繫。",
+        "errorMsg": "提交失敗，請稍後再試。",
+        "infoTitle": "客人聯絡資料",
+        "hoursTitle": "辦公時間",
+        "hours": [
+          {
+            "day": "星期一至星期五",
+            "time": "09:00 - 18:00"
+          },
+          {
+            "day": "星期六",
+            "time": "09:00 - 13:00"
+          },
+          {
+            "day": "星期日及公眾假期",
+            "time": "休息"
+          }
+        ],
+        "follow": "關注我們",
+        "servicesList": [
+          {
+            "value": "",
+            "label": "請選擇服務"
+          },
+          {
+            "value": "audit",
+            "label": "審計及核證"
+          },
+          {
+            "value": "tax",
+            "label": "稅務諮詢"
+          },
+          {
+            "value": "risk",
+            "label": "風險及合規"
+          },
+          {
+            "value": "forensic",
+            "label": "法證會計"
+          },
+          {
+            "value": "consulting",
+            "label": "商業諮詢"
+          },
+          {
+            "value": "deals",
+            "label": "併購服務"
+          }
+        ],
+        "whatsapp": "+85239871008",
+        "whatsappLabel": "WhatsApp 查詢"
+      },
       "map": {
         "title": "櫪韜會計師事務所有限公司",
         "address": "香港金鐘道95號統一中心29樓A室",
@@ -724,7 +787,8 @@
       "contact": {
         "address": "香港金钟力宝中心2座5楼503室",
         "phone": "3987 1008",
-        "email": "info@ltgroupcpa.com"
+        "email": "info@ltgroupcpa.com",
+        "whatsapp": "+85239871008"
       },
       "social": {
         "facebook": "",
@@ -1148,6 +1212,94 @@
     },
     "contact": {
       "pageTitle": "联络我们",
+      "cards": [
+        {
+          "icon": "MapPin",
+          "title": "地址",
+          "lines": [
+            "香港金钟道95号统一中心29楼A室"
+          ]
+        },
+        {
+          "icon": "Phone",
+          "title": "电话",
+          "lines": [
+            "3987 1008",
+            "星期一至五 09:00 - 18:00"
+          ]
+        },
+        {
+          "icon": "Mail",
+          "title": "电邮",
+          "lines": [
+            "info@ltcpa.com",
+            "欢迎查询及预约会面"
+          ]
+        }
+      ],
+      "form": {
+        "formTitle": "免费咨询",
+        "formDesc": "请填写以下表格，我们的专业顾问将尽快与您联系，为您提供最适合的解决方案。",
+        "name": "姓名 *",
+        "company": "公司名称 *",
+        "phone": "电话",
+        "email": "电邮 *",
+        "service": "感兴趣的服务",
+        "message": "讯息",
+        "submit": "提交查询",
+        "submitting": "提交中...",
+        "successMsg": "感謝您的查詢，我們會盡快與您聯繫。",
+        "errorMsg": "提交失敗，請稍後再試。",
+        "infoTitle": "客人联络资料",
+        "hoursTitle": "办公时间",
+        "hours": [
+          {
+            "day": "星期一至星期五",
+            "time": "09:00 - 18:00"
+          },
+          {
+            "day": "星期六",
+            "time": "09:00 - 13:00"
+          },
+          {
+            "day": "星期日及公众假期",
+            "time": "休息"
+          }
+        ],
+        "follow": "关注我们",
+        "servicesList": [
+          {
+            "value": "",
+            "label": "请选择服务"
+          },
+          {
+            "value": "audit",
+            "label": "审计及核证"
+          },
+          {
+            "value": "tax",
+            "label": "税务咨询"
+          },
+          {
+            "value": "risk",
+            "label": "风险及合规"
+          },
+          {
+            "value": "forensic",
+            "label": "法证会计"
+          },
+          {
+            "value": "consulting",
+            "label": "商业咨询"
+          },
+          {
+            "value": "deals",
+            "label": "并购服务"
+          }
+        ],
+        "whatsapp": "+85239871008",
+        "whatsappLabel": "WhatsApp 查询"
+      },
       "map": {
         "title": "櫪韬会计师事务所有限公司",
         "address": "香港金钟道95号统一中心29楼A室",
@@ -1727,6 +1879,94 @@
     },
     "contact": {
       "pageTitle": "Contact Us",
+      "cards": [
+        {
+          "icon": "MapPin",
+          "title": "Address",
+          "lines": [
+            "Room A, 29/F, United Centre, 95 Queensway, Admiralty, Hong Kong"
+          ]
+        },
+        {
+          "icon": "Phone",
+          "title": "Phone",
+          "lines": [
+            "3987 1008",
+            "Mon - Fri 09:00 - 18:00"
+          ]
+        },
+        {
+          "icon": "Mail",
+          "title": "Email",
+          "lines": [
+            "info@ltgroupcpa.com",
+            "Inquiries & appointments welcome"
+          ]
+        }
+      ],
+      "form": {
+        "formTitle": "Free Consultation",
+        "formDesc": "Please fill out the form below and our professional consultants will contact you as soon as possible.",
+        "name": "Name *",
+        "company": "Company *",
+        "phone": "Phone",
+        "email": "Email *",
+        "service": "Service of Interest",
+        "message": "Message",
+        "submit": "Submit Inquiry",
+        "submitting": "Submitting...",
+        "successMsg": "Thank you! We will contact you soon.",
+        "errorMsg": "Something went wrong. Please try again.",
+        "infoTitle": "Contact Info",
+        "hoursTitle": "Business Hours",
+        "hours": [
+          {
+            "day": "Monday - Friday",
+            "time": "09:00 - 18:00"
+          },
+          {
+            "day": "Saturday",
+            "time": "09:00 - 13:00"
+          },
+          {
+            "day": "Sunday & Public Holidays",
+            "time": "Closed"
+          }
+        ],
+        "follow": "Follow Us",
+        "servicesList": [
+          {
+            "value": "",
+            "label": "Select a service"
+          },
+          {
+            "value": "audit",
+            "label": "Audit & Assurance"
+          },
+          {
+            "value": "tax",
+            "label": "Tax Advisory"
+          },
+          {
+            "value": "risk",
+            "label": "Risk & Compliance"
+          },
+          {
+            "value": "forensic",
+            "label": "Forensic Accounting"
+          },
+          {
+            "value": "consulting",
+            "label": "Business Advisory"
+          },
+          {
+            "value": "deals",
+            "label": "M&A Services"
+          }
+        ],
+        "whatsapp": "+85239871008",
+        "whatsappLabel": "WhatsApp Us"
+      },
       "map": {
         "title": "LT CPA Limited",
         "address": "Room A, 29/F, United Centre, 95 Queensway, Admiralty, Hong Kong",
