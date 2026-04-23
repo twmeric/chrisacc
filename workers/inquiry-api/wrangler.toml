@@ -7,6 +7,10 @@ binding = "LTCPA_D1"
 database_name = "ltcpa-d1"
 database_id = "db7d4aa5-2407-4c20-a311-5daea0f177bf"
 
+[[kv_namespaces]]
+binding = "CMS_DATA"
+id = "ca4e0945e6fc4ef590e4a57548da7626"
+
 [vars]
 ADMIN_EMAIL = "admin@ltcpa.com"
 ADMIN_PHONE = "85268810677"

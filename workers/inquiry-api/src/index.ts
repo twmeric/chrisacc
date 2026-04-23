@@ -7,6 +7,7 @@
 
 export interface Env {
   LTCPA_D1: D1Database;
+  CMS_DATA: KVNamespace;
   RESEND_API_KEY?: string;
   ADMIN_EMAIL?: string;
   ADMIN_PHONE?: string;
@@ -62,10 +63,25 @@ async function saveToD1(env: Env, data: Record<string, string>) {
   return id;
 }
 
+async function getAdminPhoneFromKV(env: Env): Promise<string | null> {
+  try {
+    const raw = await env.CMS_DATA.get("cms_data");
+    if (!raw) return null;
+    const cms = JSON.parse(raw);
+    // Try each locale's site.whatsapp
+    for (const loc of ["en", "zh-hant", "zh-hans"]) {
+      const phone = cms[loc]?.site?.whatsapp;
+      if (phone && String(phone).trim()) return String(phone).trim();
+    }
+  } catch { /* ignore */ }
+  return null;
+}
+
 async function sendWhatsApp(env: Env, data: Record<string, string>) {
   if (!env.WHATSAPP_TOKEN || !env.WHATSAPP_PHONE_ID) return;
 
-  const adminPhone = data.adminPhone || env.ADMIN_PHONE || "85268810677";
+  const kvPhone = await getAdminPhoneFromKV(env);
+  const adminPhone = data.adminPhone || kvPhone || env.ADMIN_PHONE || "85268810677";
   const serviceLabel = data.service || "N/A";
 
   const text = `📩 *New LTCPA Website Inquiry*\n\n` +
