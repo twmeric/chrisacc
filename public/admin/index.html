@@ -453,9 +453,14 @@
       html += smallInput('footer_contact_whatsapp', 'WhatsApp', (d.contact || {}).whatsapp);
       html += `<div class="border-t border-slate-200 my-4"></div>`;
       html += `<div class="mb-2 text-sm font-semibold text-slate-700">Social Links</div>`;
-      html += smallInput('footer_social_facebook', 'Facebook', ((d.social || {})).facebook);
-      html += smallInput('footer_social_instagram', 'Instagram', ((d.social || {})).instagram);
-      html += smallInput('footer_social_linkedin', 'LinkedIn', ((d.social || {})).linkedin);
+      html += `<div class="grid grid-cols-12 gap-2 mb-1"><div class="col-span-2 text-xs font-medium text-slate-500">Platform</div><div class="col-span-7 text-xs font-medium text-slate-500">URL</div><div class="col-span-3 text-xs font-medium text-slate-500">Status</div></div>`;
+      const socials = ['facebook','instagram','linkedin'];
+      socials.forEach(platform => {
+        const s = (d.social || {})[platform] || {};
+        const url = typeof s === 'string' ? s : (s.url || '');
+        const status = typeof s === 'string' ? (s ? 'visible' : 'hidden') : (s.status || 'hidden');
+        html += `<div class="grid grid-cols-12 gap-2 mb-2 items-center"><div class="col-span-2 text-sm text-slate-700 capitalize">${platform}</div><div class="col-span-7"><input type="text" id="footer_social_${platform}_url" data-field="footer_social_${platform}_url" value="${escapeHtml(url)}" class="w-full border border-slate-300 rounded px-2 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-gold-400 bg-white"></div><div class="col-span-3"><select id="footer_social_${platform}_status" data-field="footer_social_${platform}_status" class="w-full border border-slate-300 rounded px-2 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-gold-400 bg-white"><option value="visible" ${status==='visible'?'selected':''}>Visible</option><option value="hidden" ${status==='hidden'?'selected':''}>Hidden</option><option value="deactivated" ${status==='deactivated'?'selected':''}>Deactivated</option></select></div></div>`;
+      });
 
       const services = d.services || [];
       let svcHTML = '';
@@ -1263,9 +1268,9 @@
             whatsapp: readInput('footer_contact_whatsapp'),
           },
           social: {
-            facebook: readInput('footer_social_facebook'),
-            instagram: readInput('footer_social_instagram'),
-            linkedin: readInput('footer_social_linkedin'),
+            facebook: { url: readInput('footer_social_facebook_url'), status: readInput('footer_social_facebook_status') },
+            instagram: { url: readInput('footer_social_instagram_url'), status: readInput('footer_social_instagram_status') },
+            linkedin: { url: readInput('footer_social_linkedin_url'), status: readInput('footer_social_linkedin_status') },
           },
           services: readArray('footer_svc', ['label', 'url']),
           quickLinks: readArray('footer_link', ['label', 'url']),

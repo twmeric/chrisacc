@@ -3,12 +3,32 @@ import { Locale } from "@/lib/i18n-config";
 import { getLocaleCMS } from "@/lib/cms-data";
 import { Phone, Mail, MapPin, Facebook, Instagram, Linkedin, MessageCircle } from "lucide-react";
 
+interface SocialLink {
+  url: string;
+  status: 'visible' | 'hidden' | 'deactivated';
+}
+
+function getSocialLink(social: SocialLink | string | undefined): { url: string; status: 'visible' | 'hidden' | 'deactivated' } {
+  if (!social) return { url: '', status: 'hidden' };
+  if (typeof social === 'string') {
+    return { url: social, status: social ? 'visible' : 'hidden' };
+  }
+  return {
+    url: social.url || '',
+    status: social.status || 'hidden',
+  };
+}
+
 interface FooterProps {
   lang: Locale;
 }
 
 export default function Footer({ lang }: FooterProps) {
   const t = getLocaleCMS(lang).footer;
+
+  const fb = getSocialLink(t.social.facebook);
+  const ig = getSocialLink(t.social.instagram);
+  const li = getSocialLink(t.social.linkedin);
 
   return (
     <footer className="section-dark mt-auto bg-brand-navy pt-14 text-white md:pt-16">
@@ -19,15 +39,39 @@ export default function Footer({ lang }: FooterProps) {
             <h3 className="mb-4 text-xl font-bold text-brand-gold">{t.aboutTitle}</h3>
             <p className="mb-6 text-sm leading-relaxed text-white/80">{t.aboutDesc}</p>
             <div className="flex gap-3">
-              <a href={t.social.facebook || "#"} className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition hover:-translate-y-1 hover:bg-brand-gold">
-                <Facebook className="h-4 w-4" />
-              </a>
-              <a href={t.social.instagram || "#"} className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition hover:-translate-y-1 hover:bg-brand-gold">
-                <Instagram className="h-4 w-4" />
-              </a>
-              <a href={t.social.linkedin || "#"} className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition hover:-translate-y-1 hover:bg-brand-gold">
-                <Linkedin className="h-4 w-4" />
-              </a>
+              {fb.status !== 'hidden' && (
+                fb.status === 'deactivated' ? (
+                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white/40 cursor-not-allowed" title="Coming soon">
+                    <Facebook className="h-4 w-4" />
+                  </span>
+                ) : (
+                  <a href={fb.url || "#"} target="_blank" rel="noopener noreferrer" className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition hover:-translate-y-1 hover:bg-brand-gold">
+                    <Facebook className="h-4 w-4" />
+                  </a>
+                )
+              )}
+              {ig.status !== 'hidden' && (
+                ig.status === 'deactivated' ? (
+                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white/40 cursor-not-allowed" title="Coming soon">
+                    <Instagram className="h-4 w-4" />
+                  </span>
+                ) : (
+                  <a href={ig.url || "#"} target="_blank" rel="noopener noreferrer" className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition hover:-translate-y-1 hover:bg-brand-gold">
+                    <Instagram className="h-4 w-4" />
+                  </a>
+                )
+              )}
+              {li.status !== 'hidden' && (
+                li.status === 'deactivated' ? (
+                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white/40 cursor-not-allowed" title="Coming soon">
+                    <Linkedin className="h-4 w-4" />
+                  </span>
+                ) : (
+                  <a href={li.url || "#"} target="_blank" rel="noopener noreferrer" className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition hover:-translate-y-1 hover:bg-brand-gold">
+                    <Linkedin className="h-4 w-4" />
+                  </a>
+                )
+              )}
             </div>
           </div>
 

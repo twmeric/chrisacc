@@ -39,6 +39,11 @@ export interface NavItem {
   children?: { label: string; url: string }[];
 }
 
+export interface SocialLink {
+  url: string;
+  status: 'visible' | 'hidden' | 'deactivated';
+}
+
 export interface FooterData {
   aboutTitle: string;
   aboutDesc: string;
@@ -55,9 +60,9 @@ export interface FooterData {
     whatsapp?: string;
   };
   social: {
-    facebook: string;
-    instagram: string;
-    linkedin: string;
+    facebook: SocialLink;
+    instagram: SocialLink;
+    linkedin: SocialLink;
   };
 }
 

@@ -64,7 +64,11 @@ export const defaultCMSData: CMSData = {
         email: "info@ltgroupcpa.com",
         whatsapp: "+85239871008",
       },
-      social: { facebook: "", instagram: "", linkedin: "" },
+      social: {
+        facebook: { url: "", status: "hidden" },
+        instagram: { url: "", status: "hidden" },
+        linkedin: { url: "", status: "hidden" },
+      },
     },
     home: {
       hero: {
@@ -1283,7 +1287,11 @@ export const defaultCMSData: CMSData = {
         email: "info@ltgroupcpa.com",
         whatsapp: "+85239871008",
       },
-      social: { facebook: "", instagram: "", linkedin: "" },
+      social: {
+        facebook: { url: "", status: "hidden" },
+        instagram: { url: "", status: "hidden" },
+        linkedin: { url: "", status: "hidden" },
+      },
     },
     home: {
       hero: {
@@ -2477,7 +2485,11 @@ export const defaultCMSData: CMSData = {
         email: "info@ltgroupcpa.com",
         whatsapp: "+85239871008",
       },
-      social: { facebook: "", instagram: "", linkedin: "" },
+      social: {
+        facebook: { url: "", status: "hidden" },
+        instagram: { url: "", status: "hidden" },
+        linkedin: { url: "", status: "hidden" },
+      },
     },
     home: {
       hero: {

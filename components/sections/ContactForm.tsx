@@ -4,6 +4,11 @@ import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { Clock, Facebook, Instagram, Linkedin } from "lucide-react";
 
+interface SocialLink {
+  url: string;
+  status: 'visible' | 'hidden' | 'deactivated';
+}
+
 interface ContactFormProps {
   lang: string;
   data: {
@@ -29,11 +34,27 @@ interface ContactFormProps {
     title: string;
     address: string;
   };
+  social?: {
+    facebook: SocialLink | string;
+    instagram: SocialLink | string;
+    linkedin: SocialLink | string;
+  };
 }
 
 const INQUIRY_API_URL = process.env.NEXT_PUBLIC_INQUIRY_API_URL || "https://ltcpa-inquiry-api.jimsbond007.workers.dev";
 
-export default function ContactForm({ lang, data, map }: ContactFormProps) {
+function getSocialLink(social: SocialLink | string | undefined): { url: string; status: 'visible' | 'hidden' | 'deactivated' } {
+  if (!social) return { url: '', status: 'hidden' };
+  if (typeof social === 'string') {
+    return { url: social, status: social ? 'visible' : 'hidden' };
+  }
+  return {
+    url: social.url || '',
+    status: social.status || 'hidden',
+  };
+}
+
+export default function ContactForm({ lang, data, map, social }: ContactFormProps) {
   const searchParams = useSearchParams();
   const [preselectedService, setPreselectedService] = useState("");
   const [loading, setLoading] = useState(false);
@@ -152,15 +173,57 @@ export default function ContactForm({ lang, data, map }: ContactFormProps) {
             <div className="border-t border-white/10 pt-5">
               <h4 className="mb-3 font-semibold">{data.follow}</h4>
               <div className="flex gap-3">
-                <a href="#" className="flex h-10 w-10 items-center justify-center rounded-full bg-white/15 text-white transition hover:-translate-y-1 hover:bg-brand-gold">
-                  <Facebook className="h-4 w-4" />
-                </a>
-                <a href="#" className="flex h-10 w-10 items-center justify-center rounded-full bg-white/15 text-white transition hover:-translate-y-1 hover:bg-brand-gold">
-                  <Instagram className="h-4 w-4" />
-                </a>
-                <a href="#" className="flex h-10 w-10 items-center justify-center rounded-full bg-white/15 text-white transition hover:-translate-y-1 hover:bg-brand-gold">
-                  <Linkedin className="h-4 w-4" />
-                </a>
+                {(() => {
+                  const fb = getSocialLink(social?.facebook);
+                  if (fb.status === 'hidden') return null;
+                  const baseClass = "flex h-10 w-10 items-center justify-center rounded-full";
+                  if (fb.status === 'deactivated') {
+                    return (
+                      <span key="fb" className={`${baseClass} bg-white/10 text-white/40 cursor-not-allowed`} title="Coming soon">
+                        <Facebook className="h-4 w-4" />
+                      </span>
+                    );
+                  }
+                  return (
+                    <a key="fb" href={fb.url || "#"} target="_blank" rel="noopener noreferrer" className={`${baseClass} bg-white/15 text-white transition hover:-translate-y-1 hover:bg-brand-gold`}>
+                      <Facebook className="h-4 w-4" />
+                    </a>
+                  );
+                })()}
+                {(() => {
+                  const ig = getSocialLink(social?.instagram);
+                  if (ig.status === 'hidden') return null;
+                  const baseClass = "flex h-10 w-10 items-center justify-center rounded-full";
+                  if (ig.status === 'deactivated') {
+                    return (
+                      <span key="ig" className={`${baseClass} bg-white/10 text-white/40 cursor-not-allowed`} title="Coming soon">
+                        <Instagram className="h-4 w-4" />
+                      </span>
+                    );
+                  }
+                  return (
+                    <a key="ig" href={ig.url || "#"} target="_blank" rel="noopener noreferrer" className={`${baseClass} bg-white/15 text-white transition hover:-translate-y-1 hover:bg-brand-gold`}>
+                      <Instagram className="h-4 w-4" />
+                    </a>
+                  );
+                })()}
+                {(() => {
+                  const li = getSocialLink(social?.linkedin);
+                  if (li.status === 'hidden') return null;
+                  const baseClass = "flex h-10 w-10 items-center justify-center rounded-full";
+                  if (li.status === 'deactivated') {
+                    return (
+                      <span key="li" className={`${baseClass} bg-white/10 text-white/40 cursor-not-allowed`} title="Coming soon">
+                        <Linkedin className="h-4 w-4" />
+                      </span>
+                    );
+                  }
+                  return (
+                    <a key="li" href={li.url || "#"} target="_blank" rel="noopener noreferrer" className={`${baseClass} bg-white/15 text-white transition hover:-translate-y-1 hover:bg-brand-gold`}>
+                      <Linkedin className="h-4 w-4" />
+                    </a>
+                  );
+                })()}
               </div>
             </div>
           </div>

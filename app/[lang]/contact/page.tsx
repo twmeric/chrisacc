@@ -24,6 +24,7 @@ export default async function ContactPage({ params }: ContactPageProps) {
           lang={lang}
           data={cms.contact.form}
           map={cms.contact.map}
+          social={cms.footer.social}
         />
       </Suspense>
       <MapSection lang={lang} data={cms.contact.map} />
