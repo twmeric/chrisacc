@@ -13,6 +13,24 @@ function mergeSimplePage(
   } as LocaleCMSData["purpose"];
 }
 
+function mergeSocialLink(
+  def: { url: string; status: 'visible' | 'hidden' | 'deactivated' } | string | undefined,
+  loaded: { url: string; status: 'visible' | 'hidden' | 'deactivated' } | string | undefined
+) {
+  // Normalize default
+  const defObj = typeof def === 'string'
+    ? { url: def, status: (def ? 'visible' : 'hidden') as 'visible' | 'hidden' | 'deactivated' }
+    : def || { url: '', status: 'hidden' as 'visible' | 'hidden' | 'deactivated' };
+  // Normalize loaded
+  const loadedObj = typeof loaded === 'string'
+    ? { url: loaded, status: (loaded ? 'visible' : 'hidden') as 'visible' | 'hidden' | 'deactivated' }
+    : loaded || { url: '', status: 'hidden' as 'visible' | 'hidden' | 'deactivated' };
+  return {
+    url: loadedObj.url || defObj.url,
+    status: loadedObj.status || defObj.status,
+  };
+}
+
 function mergeFooter(
   def: LocaleCMSData["footer"],
   loaded?: Partial<LocaleCMSData["footer"]>
@@ -47,8 +65,9 @@ function mergeFooter(
       whatsapp: str(loaded?.contact?.whatsapp, def.contact.whatsapp),
     },
     social: {
-      ...def.social,
-      ...(loaded?.social || {}),
+      facebook: mergeSocialLink(def.social?.facebook, loaded?.social?.facebook),
+      instagram: mergeSocialLink(def.social?.instagram, loaded?.social?.instagram),
+      linkedin: mergeSocialLink(def.social?.linkedin, loaded?.social?.linkedin),
     },
     services,
     quickLinks,
@@ -260,7 +279,14 @@ function mergeAbout(
     timeline: {
       ...def.timeline,
       ...(loaded?.timeline || {}),
-      events: loaded?.timeline?.events || def.timeline.events,
+      events: (loaded?.timeline?.events || def.timeline.events).map((event: any, idx: number) => {
+        const defEvent = def.timeline.events[idx] || def.timeline.events[0] || {};
+        return {
+          year: event.year || defEvent.year || '',
+          title: event.title || defEvent.title || '',
+          desc: event.desc || defEvent.desc || '',
+        };
+      }),
     },
     cta: { ...def.cta, ...(loaded?.cta || {}) },
   } as LocaleCMSData["about"];

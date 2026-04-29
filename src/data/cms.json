@@ -126,9 +126,18 @@
         "whatsapp": "+85239871008"
       },
       "social": {
-        "facebook": "",
-        "instagram": "",
-        "linkedin": ""
+        "facebook": {
+          "url": "",
+          "status": "hidden"
+        },
+        "instagram": {
+          "url": "",
+          "status": "hidden"
+        },
+        "linkedin": {
+          "url": "",
+          "status": "hidden"
+        }
       }
     },
     "home": {
@@ -268,29 +277,29 @@
         "subtitle": "見證我們的成長與蛻變",
         "events": [
           {
-            "year": "",
-            "title": "公司成立",
-            "desc": "櫪韜會計師事務所有限公司在香港正式成立，開始為本地中小企業提供專業會計服務。"
+            "title": "????",
+            "desc": "???????????????????,??????????????????",
+            "year": "2005"
           },
           {
-            "year": "",
-            "title": "業務擴展",
-            "desc": "成功擴展至稅務顧問及商業諮詢服務，客戶群突破100間公司。"
+            "title": "????",
+            "desc": "???????????????,??????100??",
+            "year": "2010"
           },
           {
-            "year": "",
-            "title": "團隊壯大",
-            "desc": "專業團隊擴充至30人，服務範圍延伸至併購及法證會計。"
+            "title": "????",
+            "desc": "??????30?,???????????????????",
+            "year": "2015"
           },
           {
-            "year": "",
-            "title": "數碼轉型",
-            "desc": "全面推行數碼化服務，引入雲端會計及數據分析，提升服務效率與質素。"
+            "title": "????",
+            "desc": "??????????,??????,??????????????",
+            "year": "2020"
           },
           {
-            "year": "",
-            "title": "展望未來",
-            "desc": "服務超過500位客戶，專業團隊逾50人，持續致力為客戶創造價值。"
+            "title": "????",
+            "desc": "??????500?,??????50?,?????????????",
+            "year": "2025"
           }
         ]
       },
@@ -632,7 +641,7 @@
             "label": "併購服務"
           }
         ],
-        "whatsapp": "+85239871008",
+        "whatsapp": "+85255055692",
         "whatsappLabel": "WhatsApp 查詢"
       },
       "map": {
@@ -785,15 +794,24 @@
         }
       ],
       "contact": {
-        "address": "香港金钟力宝中心2座5楼503室",
+        "address": "香港金钟道95号统一中心29楼A室",
         "phone": "3987 1008",
         "email": "info@ltgroupcpa.com",
         "whatsapp": "+85239871008"
       },
       "social": {
-        "facebook": "",
-        "instagram": "",
-        "linkedin": ""
+        "facebook": {
+          "url": "",
+          "status": "hidden"
+        },
+        "instagram": {
+          "url": "",
+          "status": "hidden"
+        },
+        "linkedin": {
+          "url": "",
+          "status": "hidden"
+        }
       }
     },
     "home": {
@@ -933,29 +951,29 @@
         "subtitle": "见证我们的成长与蜕变",
         "events": [
           {
-            "year": "",
-            "title": "公司成立",
-            "desc": "櫪韬会计师事务所有限公司在香港正式成立，开始为本地中小企业提供专业会计服务。"
+            "title": "????",
+            "desc": "???????????????????,??????????????????",
+            "year": "2005"
           },
           {
-            "year": "",
-            "title": "业务扩展",
-            "desc": "成功扩展至税务顾问及商业咨询服务，客户群突破100间公司。"
+            "title": "????",
+            "desc": "???????????????,??????100??",
+            "year": "2010"
           },
           {
-            "year": "",
-            "title": "团队壮大",
-            "desc": "专业团队扩充至30人，服务范围延伸至并购及法证会计。"
+            "title": "????",
+            "desc": "??????30?,???????????????????",
+            "year": "2015"
           },
           {
-            "year": "",
-            "title": "数码转型",
-            "desc": "全面推动数码化服务，引入云端会计及数据分析，提升服务效率与质素。"
+            "title": "????",
+            "desc": "??????????,??????,??????????????",
+            "year": "2020"
           },
           {
-            "year": "",
-            "title": "展望未来",
-            "desc": "服务超过500位客户，专业团队逾50人，持续致力为客户创造价值。"
+            "title": "????",
+            "desc": "??????500?,??????50?,?????????????",
+            "year": "2025"
           }
         ]
       },
@@ -1458,9 +1476,18 @@
         "whatsapp": "85239871008"
       },
       "social": {
-        "facebook": "",
-        "instagram": "",
-        "linkedin": ""
+        "facebook": {
+          "url": "",
+          "status": "hidden"
+        },
+        "instagram": {
+          "url": "",
+          "status": "hidden"
+        },
+        "linkedin": {
+          "url": "",
+          "status": "hidden"
+        }
       }
     },
     "home": {
@@ -1600,29 +1627,29 @@
         "subtitle": "Witness our growth and transformation over the years",
         "events": [
           {
-            "year": "",
+            "year": "2005",
             "title": "Foundation",
-            "desc": "LT CPA Limited was established in Hong Kong, beginning our journey serving local SMEs with professional accounting services."
+            "desc": "LT CPA Limited was established in Hong Kong, beginning our journey serving various clients, with professional auditing and accounting services."
           },
           {
-            "year": "",
+            "year": "2010",
             "title": "Expansion",
-            "desc": "Successfully expanded into tax advisory and business consulting services, with client base exceeding 100 companies."
+            "desc": "Successfully expanded into tax advisory, business consulting and other services."
           },
           {
-            "year": "",
+            "year": "2015",
             "title": "Growth",
-            "desc": "Professional team grew to 30 members, expanding services to include M&A and forensic accounting."
+            "desc": "Professional team grew, expanding services to include M&A and forensic accounting."
           },
           {
-            "year": "",
+            "year": "2020",
             "title": "Digital Transformation",
             "desc": "Implemented advanced digital systems to enhance service efficiency and deliver a more seamless client experience."
           },
           {
-            "year": "",
+            "year": "2025",
             "title": "Looking Forward",
-            "desc": "Serving over 500 clients with a team of 50+ professionals, continuing our commitment to creating value for clients."
+            "desc": "Serving sizable clients and continuing our commitment to creating value for clients."
           }
         ]
       },
@@ -1635,7 +1662,7 @@
       "pillars": {
         "purpose": {
           "title": "Our Purpose",
-          "subtitle": "\"The Path We Walk\"",
+          "subtitle": "",
           "quote": "To anchor global ambition with professional precision, empowering enterprises to navigate the complexities of the international financial landscape with clarity, compliance, and confidence.",
           "items": [
             {
@@ -1657,12 +1684,12 @@
         },
         "value": {
           "title": "Our Value",
-          "subtitle": "\"The Future We Build\"",
+          "subtitle": "",
           "quote": "To be the definitive bridge for borderless business excellence—recognized globally as the premier boutique partner for dynamic enterprises seeking to access international capital markets and secure their financial legacy.",
           "items": [
             {
               "icon": "Building",
-              "title": "Redefining the \"Boutique\" Experience on a Global Scale+",
+              "title": "Redefining the ",
               "desc": "We envision a future where \"boutique\" denotes agility and personalization, not limited scope. We aim to disrupt the traditional dichotomy. We seek to be the \"Goldilocks\" solution for sizable international enterprises."
             },
             {
@@ -1679,7 +1706,7 @@
         },
         "commitment": {
           "title": "Our Commitment",
-          "subtitle": "\"The Promise We Keep\"",
+          "subtitle": "",
           "quote": "To lead with proactive guidance and technical mastery to bridge your global ambitions, building a legacy of trust and transformation for your business.",
           "items": [
             {

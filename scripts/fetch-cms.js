@@ -26,8 +26,8 @@ const baselineFooter = {
       { label: "Services", url: "/services/" },
       { label: "Contact", url: "/contact/" },
     ],
-    contact: { address: "Unit 503, Tower 2, Lippo Centre, Admiralty, Hong Kong", phone: "+852 3987 1008", email: "info@ltgroupcpa.com", whatsapp: "+85239871008" },
-    social: { facebook: "", instagram: "", linkedin: "" },
+    contact: { address: "Room A, 29/F, United Centre, 95 Queensway, Admiralty, Hong Kong", phone: "+852 3987 1008", email: "info@ltgroupcpa.com", whatsapp: "+85239871008" },
+    social: { facebook: { url: "", status: "hidden" }, instagram: { url: "", status: "hidden" }, linkedin: { url: "", status: "hidden" } },
   },
   "zh-hant": {
     aboutTitle: "櫪韜會計師事務所有限公司",
@@ -50,8 +50,8 @@ const baselineFooter = {
       { label: "服務範圍", url: "/services/" },
       { label: "聯絡我們", url: "/contact/" },
     ],
-    contact: { address: "香港金鐘力寶中心2座5樓503室", phone: "3987 1008", email: "info@ltgroupcpa.com", whatsapp: "+85239871008" },
-    social: { facebook: "", instagram: "", linkedin: "" },
+    contact: { address: "香港金鐘道95號統一中心29樓A室", phone: "3987 1008", email: "info@ltgroupcpa.com", whatsapp: "+85239871008" },
+    social: { facebook: { url: "", status: "hidden" }, instagram: { url: "", status: "hidden" }, linkedin: { url: "", status: "hidden" } },
   },
   "zh-hans": {
     aboutTitle: "櫪韜会计师事务所有限公司",
@@ -74,10 +74,23 @@ const baselineFooter = {
       { label: "服务范围", url: "/services/" },
       { label: "联络我们", url: "/contact/" },
     ],
-    contact: { address: "香港金钟力宝中心2座5楼503室", phone: "3987 1008", email: "info@ltgroupcpa.com", whatsapp: "+85239871008" },
-    social: { facebook: "", instagram: "", linkedin: "" },
+    contact: { address: "香港金钟道95号统一中心29楼A室", phone: "3987 1008", email: "info@ltgroupcpa.com", whatsapp: "+85239871008" },
+    social: { facebook: { url: "", status: "hidden" }, instagram: { url: "", status: "hidden" }, linkedin: { url: "", status: "hidden" } },
   },
 };
+
+function mergeSocialLink(baseline, loaded) {
+  const baseObj = typeof baseline === 'string'
+    ? { url: baseline, status: baseline ? 'visible' : 'hidden' }
+    : baseline || { url: '', status: 'hidden' };
+  const loadObj = typeof loaded === 'string'
+    ? { url: loaded, status: loaded ? 'visible' : 'hidden' }
+    : loaded || { url: '', status: 'hidden' };
+  return {
+    url: loadObj.url || baseObj.url,
+    status: loadObj.status || baseObj.status,
+  };
+}
 
 function smartMergeFooter(baseline, loaded) {
   if (!loaded) return baseline;
@@ -109,7 +122,11 @@ function smartMergeFooter(baseline, loaded) {
       email: isOldEmail ? baseline.contact.email : str(loaded.contact?.email, baseline.contact.email),
       whatsapp: str(loaded.contact?.whatsapp, baseline.contact.whatsapp),
     },
-    social: { ...baseline.social, ...(loaded.social || {}) },
+    social: {
+      facebook: mergeSocialLink(baseline.social?.facebook, loaded.social?.facebook),
+      instagram: mergeSocialLink(baseline.social?.instagram, loaded.social?.instagram),
+      linkedin: mergeSocialLink(baseline.social?.linkedin, loaded.social?.linkedin),
+    },
     services,
     quickLinks,
   };
