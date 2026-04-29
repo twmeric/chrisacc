@@ -28,7 +28,7 @@ export default function Footer({ lang }: FooterProps) {
   const t = cms.footer;
   const siteWhatsapp = cms.site?.whatsapp;
   const footerWhatsapp = t.contact?.whatsapp;
-  const displayWhatsapp = footerWhatsapp || siteWhatsapp;
+  const displayWhatsapp = siteWhatsapp || footerWhatsapp;
 
   const fb = getSocialLink(t.social.facebook);
   const ig = getSocialLink(t.social.instagram);
