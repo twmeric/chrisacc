@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
-import { Clock, Facebook, Instagram, Linkedin } from "lucide-react";
+import { Clock, Facebook, Instagram, Linkedin, MessageCircle } from "lucide-react";
 
 interface SocialLink {
   url: string;
@@ -29,6 +29,8 @@ interface ContactFormProps {
     hours: { day: string; time: string }[];
     follow: string;
     servicesList: { value: string; label: string }[];
+    whatsapp?: string;
+    whatsappLabel?: string;
   };
   map: {
     title: string;
@@ -39,6 +41,7 @@ interface ContactFormProps {
     instagram: SocialLink | string;
     linkedin: SocialLink | string;
   };
+  siteWhatsapp?: string;
 }
 
 const INQUIRY_API_URL = process.env.NEXT_PUBLIC_INQUIRY_API_URL || "https://ltcpa-inquiry-api.jimsbond007.workers.dev";
@@ -54,7 +57,8 @@ function getSocialLink(social: SocialLink | string | undefined): { url: string; 
   };
 }
 
-export default function ContactForm({ lang, data, map, social }: ContactFormProps) {
+export default function ContactForm({ lang, data, map, social, siteWhatsapp }: ContactFormProps) {
+  const displayWhatsapp = data.whatsapp || siteWhatsapp || '';
   const searchParams = useSearchParams();
   const [preselectedService, setPreselectedService] = useState("");
   const [loading, setLoading] = useState(false);
@@ -156,6 +160,14 @@ export default function ContactForm({ lang, data, map, social }: ContactFormProp
             <div className="mb-6 space-y-3 text-sm opacity-90">
               <p>{map.title}</p>
               <p>{map.address}</p>
+              {displayWhatsapp && (
+                <p className="flex items-center gap-2">
+                  <MessageCircle className="h-4 w-4 shrink-0 text-brand-gold" />
+                  <a href={`https://wa.me/${displayWhatsapp.replace(/\D/g, '')}`} target="_blank" rel="noopener noreferrer" className="font-medium hover:text-brand-gold transition">
+                    {data.whatsappLabel || 'WhatsApp'}: {displayWhatsapp}
+                  </a>
+                </p>
+              )}
             </div>
             <div className="mb-6 border-t border-white/10 pt-5">
               <h4 className="mb-3 flex items-center gap-2 font-semibold text-white">

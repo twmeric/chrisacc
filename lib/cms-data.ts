@@ -2,14 +2,35 @@ import { CMSData, LocaleCMSData } from "./cms-types";
 import cmsJson from "@/src/data/cms.json";
 import { defaultCMSData } from "./cms-defaults";
 
+/**
+ * Deep-merge helper: loaded empty strings / empty arrays won't overwrite defaults.
+ * This prevents KV corruption (e.g. user clears input → saved as "" → overwrites default).
+ */
+function mergeObj<T extends Record<string, any>>(def: T, loaded?: Partial<T>): T {
+  const result = { ...def };
+  if (!loaded) return result;
+  for (const key of Object.keys(loaded) as Array<keyof T>) {
+    const val = loaded[key];
+    if (val === undefined) continue;
+    if (typeof val === "string" && !val.trim()) continue;     // skip empty strings
+    if (Array.isArray(val) && (val as any[]).length === 0) continue;      // skip empty arrays
+    // Nested plain objects: recurse (but NOT arrays — arrays are handled above)
+    if (val && typeof val === "object" && !Array.isArray(val) && def[key] && typeof def[key] === "object") {
+      result[key] = mergeObj(def[key], val);
+    } else {
+      result[key] = val as any;
+    }
+  }
+  return result;
+}
+
 function mergeSimplePage(
   def: LocaleCMSData["purpose"],
   loaded?: Partial<LocaleCMSData["purpose"]>
 ) {
   return {
-    ...def,
-    ...(loaded || {}),
-    cta: { ...def.cta, ...(loaded?.cta || {}) },
+    ...mergeObj(def, loaded),
+    cta: mergeObj(def.cta, loaded?.cta),
   } as LocaleCMSData["purpose"];
 }
 
@@ -35,10 +56,6 @@ function mergeFooter(
   def: LocaleCMSData["footer"],
   loaded?: Partial<LocaleCMSData["footer"]>
 ) {
-  // Helper: use loaded string only if it's non-empty, otherwise fallback to default
-  const str = (loadedVal?: string, defVal?: string) =>
-    (loadedVal && loadedVal.trim()) ? loadedVal : (defVal || "");
-
   // If loaded services array is shorter than default, it means old KV data missing new items
   const services =
     (loaded?.services?.length || 0) >= def.services.length
@@ -50,20 +67,8 @@ function mergeFooter(
       : def.quickLinks;
 
   return {
-    ...def,
-    ...(loaded || {}),
-    aboutTitle: str(loaded?.aboutTitle, def.aboutTitle),
-    aboutDesc: str(loaded?.aboutDesc, def.aboutDesc),
-    linksTitle: str(loaded?.linksTitle, def.linksTitle),
-    servicesTitle: str(loaded?.servicesTitle, def.servicesTitle),
-    contactTitle: str(loaded?.contactTitle, def.contactTitle),
-    rights: str(loaded?.rights, def.rights),
-    contact: {
-      address: str(loaded?.contact?.address, def.contact.address),
-      phone: str(loaded?.contact?.phone, def.contact.phone),
-      email: str(loaded?.contact?.email, def.contact.email),
-      whatsapp: str(loaded?.contact?.whatsapp, def.contact.whatsapp),
-    },
+    ...mergeObj(def, loaded),
+    contact: mergeObj(def.contact, loaded?.contact),
     social: {
       facebook: mergeSocialLink(def.social?.facebook, loaded?.social?.facebook),
       instagram: mergeSocialLink(def.social?.instagram, loaded?.social?.instagram),
@@ -79,8 +84,7 @@ function mergeHeader(
   loaded?: Partial<LocaleCMSData["header"]>
 ) {
   return {
-    ...def,
-    ...(loaded || {}),
+    ...mergeObj(def, loaded),
     navItems: loaded?.navItems?.length ? loaded.navItems : def.navItems,
   } as LocaleCMSData["header"];
 }
@@ -89,10 +93,7 @@ function mergeSite(
   def: LocaleCMSData["site"],
   loaded?: Partial<LocaleCMSData["site"]>
 ) {
-  return {
-    ...def,
-    ...(loaded || {}),
-  } as LocaleCMSData["site"];
+  return mergeObj(def, loaded);
 }
 
 function mergeContact(
@@ -100,19 +101,16 @@ function mergeContact(
   loaded?: Partial<LocaleCMSData["contact"]>
 ) {
   return {
-    ...def,
-    ...(loaded || {}),
+    ...mergeObj(def, loaded),
     cards: loaded?.cards?.length ? loaded.cards : def.cards,
     form: {
-      ...def.form,
-      ...(loaded?.form || {}),
+      ...mergeObj(def.form, loaded?.form),
       hours: loaded?.form?.hours?.length ? loaded.form.hours : def.form.hours,
       servicesList: loaded?.form?.servicesList?.length ? loaded.form.servicesList : def.form.servicesList,
     },
-    map: { ...def.map, ...(loaded?.map || {}) },
+    map: mergeObj(def.map, loaded?.map),
     faq: {
-      ...def.faq,
-      ...(loaded?.faq || {}),
+      ...mergeObj(def.faq, loaded?.faq),
       items: loaded?.faq?.items?.length ? loaded.faq.items : def.faq.items,
     },
   } as LocaleCMSData["contact"];
@@ -123,20 +121,17 @@ function mergeHome(
   loaded?: Partial<LocaleCMSData["home"]>
 ) {
   return {
-    ...def,
-    ...(loaded || {}),
+    ...mergeObj(def, loaded),
     hero: {
-      ...def.hero,
-      ...(loaded?.hero || {}),
+      ...mergeObj(def.hero, loaded?.hero),
       slides: loaded?.hero?.slides || def.hero.slides,
       backgrounds: loaded?.hero?.backgrounds || def.hero.backgrounds,
     },
     services: {
-      ...def.services,
-      ...(loaded?.services || {}),
+      ...mergeObj(def.services, loaded?.services),
       cards: loaded?.services?.cards || def.services.cards,
     },
-    cta: { ...def.cta, ...(loaded?.cta || {}) },
+    cta: mergeObj(def.cta, loaded?.cta),
   } as LocaleCMSData["home"];
 }
 
@@ -145,19 +140,16 @@ function mergeServices(
   loaded?: Partial<LocaleCMSData["services"]>
 ) {
   return {
-    ...def,
-    ...(loaded || {}),
+    ...mergeObj(def, loaded),
     whyChoose: {
-      ...def.whyChoose,
-      ...(loaded?.whyChoose || {}),
+      ...mergeObj(def.whyChoose, loaded?.whyChoose),
       items: loaded?.whyChoose?.items || def.whyChoose.items,
     },
     process: {
-      ...def.process,
-      ...(loaded?.process || {}),
+      ...mergeObj(def.process, loaded?.process),
       steps: loaded?.process?.steps || def.process.steps,
     },
-    cta: { ...def.cta, ...(loaded?.cta || {}) },
+    cta: mergeObj(def.cta, loaded?.cta),
     serviceDetails: loaded?.serviceDetails || def.serviceDetails,
   } as LocaleCMSData["services"];
 }
@@ -214,8 +206,7 @@ function mergeServicePages(
       });
 
       merged[slug] = {
-        ...d,
-        ...l,
+        ...mergeObj(d, l),
         overview: l.overview || d.overview,
         overviewStat: l.overviewStat ?? d.overviewStat,
         scopeItems: mergedScopeItems,
@@ -246,39 +237,33 @@ function mergeAbout(
       ? loaded.missionVision.items
       : def.missionVision.items;
   return {
-    ...def,
-    ...(loaded || {}),
+    ...mergeObj(def, loaded),
     whyChoose: {
-      ...def.whyChoose,
-      ...(loaded?.whyChoose || {}),
+      ...mergeObj(def.whyChoose, loaded?.whyChoose),
       items: loaded?.whyChoose?.items || def.whyChoose.items,
       features: loaded?.whyChoose?.features || def.whyChoose.features,
       paragraphs: loaded?.whyChoose?.paragraphs || def.whyChoose.paragraphs,
     },
     intro: {
-      ...def.intro,
-      ...(loaded?.intro || {}),
+      ...mergeObj(def.intro, loaded?.intro),
       paragraphs: introParagraphs,
       badge: loaded?.intro?.badge || def.intro.badge,
     },
     missionVision: {
-      ...def.missionVision,
+      ...mergeObj(def.missionVision, loaded?.missionVision),
       items: mvItems,
     },
     pillars: loaded?.pillars || def.pillars,
     coreValues: {
-      ...def.coreValues,
-      ...(loaded?.coreValues || {}),
+      ...mergeObj(def.coreValues, loaded?.coreValues),
       items: loaded?.coreValues?.items || def.coreValues.items,
     },
     team: {
-      ...def.team,
-      ...(loaded?.team || {}),
+      ...mergeObj(def.team, loaded?.team),
       members: loaded?.team?.members || def.team.members,
     },
     timeline: {
-      ...def.timeline,
-      ...(loaded?.timeline || {}),
+      ...mergeObj(def.timeline, loaded?.timeline),
       events: (loaded?.timeline?.events || def.timeline.events).map((event: any, idx: number) => {
         const defEvent = def.timeline.events[idx] || def.timeline.events[0] || {};
         return {
@@ -288,7 +273,7 @@ function mergeAbout(
         };
       }),
     },
-    cta: { ...def.cta, ...(loaded?.cta || {}) },
+    cta: mergeObj(def.cta, loaded?.cta),
   } as LocaleCMSData["about"];
 }
 
@@ -300,8 +285,7 @@ export function getCMSData(): CMSData {
 
   const merged: CMSData = {
     "zh-hant": {
-      ...defaultCMSData["zh-hant"],
-      ...(loaded["zh-hant"] || {}),
+      ...mergeObj(defaultCMSData["zh-hant"], loaded["zh-hant"] || {}),
       site: mergeSite(
         defaultCMSData["zh-hant"].site,
         (loaded["zh-hant"] || {}).site
@@ -348,8 +332,7 @@ export function getCMSData(): CMSData {
       ),
     } as LocaleCMSData,
     "zh-hans": {
-      ...defaultCMSData["zh-hans"],
-      ...(loaded["zh-hans"] || {}),
+      ...mergeObj(defaultCMSData["zh-hans"], loaded["zh-hans"] || {}),
       site: mergeSite(
         defaultCMSData["zh-hans"].site,
         (loaded["zh-hans"] || {}).site
@@ -396,8 +379,7 @@ export function getCMSData(): CMSData {
       ),
     } as LocaleCMSData,
     en: {
-      ...defaultCMSData.en,
-      ...(loaded.en || {}),
+      ...mergeObj(defaultCMSData.en, loaded.en || {}),
       site: mergeSite(
         defaultCMSData.en.site,
         (loaded.en || {}).site
