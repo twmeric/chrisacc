@@ -13,8 +13,11 @@ id = "ca4e0945e6fc4ef590e4a57548da7626"
 
 [vars]
 ADMIN_EMAIL = "admin@ltcpa.com"
-ADMIN_PHONE = "85268810677"
 GITHUB_REPO = "twmeric/chrisacc"
+
+# Optional fallback: if KV site.whatsapp is empty, this number receives WhatsApp notifications.
+# Remove this line to always use CMS Admin panel number exclusively.
+# ADMIN_PHONE = "85255055692"
 
 # Secrets (set via wrangler secret):
 # RESEND_API_KEY

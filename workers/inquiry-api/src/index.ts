@@ -82,9 +82,9 @@ async function sendWhatsApp(env: Env, data: Record<string, string>): Promise<{ s
     return { success: false, error: "Missing CLOUDWAPI_API_KEY" };
   }
 
-  // Recipient: ADMIN_PHONE (Worker secret) → KV site.whatsapp → hardcoded fallback
+  // Recipient: KV site.whatsapp (Admin panel) → ADMIN_PHONE (Worker fallback) → hardcoded fallback
   const kvPhone = await getAdminPhoneFromKV(env);
-  const adminPhone = env.ADMIN_PHONE || kvPhone || "85255055692";
+  const adminPhone = kvPhone || env.ADMIN_PHONE || "85255055692";
   const serviceLabel = data.service || "N/A";
 
   const text =
@@ -100,6 +100,8 @@ async function sendWhatsApp(env: Env, data: Record<string, string>): Promise<{ s
     const sender = (env.CLOUDWAPI_SENDER || "85262322466").replace(/\D/g, "");
     const cleanNumber = adminPhone.replace(/\D/g, "");
 
+    console.log("[WhatsApp] sender:", sender, "recipient:", cleanNumber, "source:", kvPhone ? "KV site.whatsapp" : env.ADMIN_PHONE ? "Worker ADMIN_PHONE" : "fallback", "msgPreview:", text.slice(0, 50));
+
     const res = await fetch("https://unofficial.cloudwapi.in/send-message", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -112,6 +114,8 @@ async function sendWhatsApp(env: Env, data: Record<string, string>): Promise<{ s
     });
 
     const rawText = await res.text();
+    console.log("[WhatsApp] CloudWapi raw response:", rawText);
+
     let result: Record<string, any> = {};
     try {
       result = JSON.parse(rawText);
@@ -120,8 +124,8 @@ async function sendWhatsApp(env: Env, data: Record<string, string>): Promise<{ s
     }
 
     if (result.status === true || result.status === "success") {
-      console.log("[WhatsApp sent] CloudWapi:", result.msg || "OK");
-      return { success: true };
+      console.log("[WhatsApp sent] to:", cleanNumber, "CloudWapi:", result.msg || "OK");
+      return { success: true, to: cleanNumber, msg: result.msg };
     }
 
     const errMsg = result.msg || JSON.stringify(result);
@@ -184,16 +188,24 @@ export default {
   async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
     const url = new URL(request.url);
 
-    // Debug endpoint: GET /api/test/whatsapp
+    // Debug endpoint: GET /api/test/whatsapp?to=85255055692
     if (url.pathname === "/api/test/whatsapp" && request.method === "GET") {
+      const to = url.searchParams.get("to") || "85255055692";
       try {
         const res = await fetch("https://unofficial.cloudwapi.in/send-message", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ api_key: env.CLOUDWAPI_API_KEY, sender: "85262322466", number: "85255055692", message: "【測試】CloudWapi POST 測試" }),
+          body: JSON.stringify({
+            api_key: env.CLOUDWAPI_API_KEY,
+            sender: (env.CLOUDWAPI_SENDER || "85262322466").replace(/\D/g, ""),
+            number: to.replace(/\D/g, ""),
+            message: "【LTCPA 系統測試】這是一條測試訊息，發送時間：" + new Date().toISOString(),
+          }),
         });
         const text = await res.text();
-        return jsonResponse({ status: res.status, body: text });
+        let parsed: any = {};
+        try { parsed = JSON.parse(text); } catch { /* ignore */ }
+        return jsonResponse({ to, status: res.status, response: parsed, raw: text });
       } catch (err: any) {
         return jsonResponse({ error: err.message }, 500);
       }

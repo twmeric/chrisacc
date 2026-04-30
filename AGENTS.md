@@ -167,12 +167,12 @@ This creates a **preview deployment** that does NOT update the production domain
 | `ltcpa-cms-api` | `GITHUB_TOKEN` | GitHub PAT with `repo` + `workflow` scope (trigger Actions deploy) |
 | `ltcpa-inquiry-api` | `CLOUDWAPI_API_KEY` | CloudWapi API key for WhatsApp notifications |
 | `ltcpa-inquiry-api` | `CLOUDWAPI_SENDER` | CloudWapi sender WhatsApp number (e.g. `85262322466`) |
-| `ltcpa-inquiry-api` | `ADMIN_PHONE` | **WhatsApp notification recipient** (e.g. `85255055692`) |
+| `ltcpa-inquiry-api` | `ADMIN_PHONE` | ⚠️ **Optional fallback** — only used if KV `site.whatsapp` is empty. Prefer setting number in Admin panel → Site Settings. |
 | `ltcpa-inquiry-api` | `RESEND_API_KEY` | Optional — Resend API key for email notifications |
 
 > **Security note:** Do NOT paste GitHub tokens into chat. GitHub Secret Scanning will auto-revoke exposed tokens within seconds. Always set secrets directly in the Cloudflare Dashboard (Workers & Pages → Worker → Settings → Variables and Secrets).
 >
-> To change the WhatsApp notification number: go to Cloudflare Dashboard → Workers & Pages → `ltcpa-inquiry-api` → Settings → Variables and Secrets → edit `ADMIN_PHONE`.
+> **To change the WhatsApp notification number:** go to Admin Panel → Site Settings → WhatsApp. The Worker reads `site.whatsapp` from KV automatically. Only fall back to `ADMIN_PHONE` Worker var if KV value is empty.
 
 ---
 
