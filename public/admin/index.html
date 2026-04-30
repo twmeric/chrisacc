@@ -1486,12 +1486,37 @@
         const data = await r.json();
         if (data.success) {
           showToast('Section saved');
-          Object.assign(getLangObj(), payload[currentLang]);
+          // Refresh from KV to ensure local state matches server
+          await refreshCMSData();
         } else {
           showToast(data.error || 'Save failed', 'error');
         }
       } catch (e) {
         showToast('Save error', 'error');
+      }
+    };
+
+    async function refreshCMSData() {
+      try {
+        const r = await fetch(`${API_BASE}/data`);
+        if (r.ok) {
+          const kv = await r.json();
+          cmsData = kv || {};
+          // Re-apply defaults fallback
+          for (const loc of ['en', 'zh-hant', 'zh-hans']) {
+            if (defaultsData[loc] || cmsData[loc]) {
+              cmsData[loc] = deepMerge(defaultsData[loc] || {}, cmsData[loc] || {});
+            }
+          }
+          // Re-render all sections while preserving current section & scroll
+          const savedSection = currentSection;
+          const savedScroll = window.scrollY;
+          renderSections();
+          setSection(savedSection);
+          window.scrollTo(0, savedScroll);
+        }
+      } catch (e) {
+        console.error('Refresh failed', e);
       }
     };
 
