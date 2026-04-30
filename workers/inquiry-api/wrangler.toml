@@ -19,3 +19,5 @@ GITHUB_REPO = "twmeric/chrisacc"
 # Secrets (set via wrangler secret):
 # RESEND_API_KEY
 # GITHUB_TOKEN
+# CLOUDWAPI_API_KEY    (CloudWapi API key for WhatsApp notifications)
+# CLOUDWAPI_SENDER     (CloudWapi sender number, e.g. 85262322466)

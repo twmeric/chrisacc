@@ -75,6 +75,7 @@ export default function ContactForm({ lang, data, map, social, siteWhatsapp }: C
     setStatus("idle");
     const form = new FormData(e.currentTarget);
     const payload = Object.fromEntries(form.entries()) as Record<string, string>;
+    console.log("[ContactForm] submitting to:", INQUIRY_API_URL, "payload:", payload);
 
     try {
       const res = await fetch(INQUIRY_API_URL, {
@@ -82,14 +83,21 @@ export default function ContactForm({ lang, data, map, social, siteWhatsapp }: C
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
+      const responseText = await res.text();
+      console.log("[ContactForm] response status:", res.status, "body:", responseText);
+      let responseData: any = {};
+      try { responseData = JSON.parse(responseText); } catch { /* ignore */ }
+
       if (res.ok) {
         setStatus("success");
         (e.target as HTMLFormElement).reset();
         setPreselectedService("");
       } else {
+        console.error("[ContactForm] submit failed:", res.status, responseData);
         setStatus("error");
       }
-    } catch {
+    } catch (err: any) {
+      console.error("[ContactForm] network error:", err.message);
       setStatus("error");
     } finally {
       setLoading(false);

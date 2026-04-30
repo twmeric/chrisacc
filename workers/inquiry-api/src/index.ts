@@ -1,7 +1,7 @@
 /**
  * LTCPA Inquiry API Worker
  * - Saves inquiries to D1
- * - Sends WhatsApp notification via Cloud API
+ * - Sends WhatsApp notification via CloudWapi
  * - Sends email notification via Resend (optional)
  */
 
@@ -11,8 +11,8 @@ export interface Env {
   RESEND_API_KEY?: string;
   ADMIN_EMAIL?: string;
   ADMIN_PHONE?: string;
-  WHATSAPP_TOKEN?: string;
-  WHATSAPP_PHONE_ID?: string;
+  CLOUDWAPI_API_KEY?: string;
+  CLOUDWAPI_SENDER?: string;
 }
 
 const corsHeaders = {
@@ -77,39 +77,69 @@ async function getAdminPhoneFromKV(env: Env): Promise<string | null> {
   return null;
 }
 
-async function sendWhatsApp(env: Env, data: Record<string, string>) {
-  if (!env.WHATSAPP_TOKEN || !env.WHATSAPP_PHONE_ID) return;
+async function sendWhatsApp(env: Env, data: Record<string, string>): Promise<{ success: boolean; error?: string }> {
+  if (!env.CLOUDWAPI_API_KEY) {
+    return { success: false, error: "Missing CLOUDWAPI_API_KEY" };
+  }
 
+  // Recipient: ADMIN_PHONE (Worker secret) → KV site.whatsapp → hardcoded fallback
   const kvPhone = await getAdminPhoneFromKV(env);
-  const adminPhone = data.adminPhone || kvPhone || env.ADMIN_PHONE || "85268810677";
+  const adminPhone = env.ADMIN_PHONE || kvPhone || "85255055692";
   const serviceLabel = data.service || "N/A";
 
-  const text = `📩 *New LTCPA Website Inquiry*\n\n` +
-    `*Name:* ${data.name}\n` +
-    `*Company:* ${data.company}\n` +
-    `*Email:* ${data.email}\n` +
-    `*Phone:* ${data.phone || "N/A"}\n` +
-    `*Service:* ${serviceLabel}\n` +
-    `*Message:* ${(data.message || "").slice(0, 200)}${(data.message || "").length > 200 ? "..." : ""}`;
+  const text =
+    `📩 New LTCPA Website Inquiry\n\n` +
+    `Name: ${data.name}\n` +
+    `Company: ${data.company}\n` +
+    `Email: ${data.email}\n` +
+    `Phone: ${data.phone || "N/A"}\n` +
+    `Service: ${serviceLabel}\n` +
+    `Message: ${(data.message || "").slice(0, 200)}${(data.message || "").length > 200 ? "..." : ""}`;
 
-  await fetch(`https://graph.facebook.com/v18.0/${env.WHATSAPP_PHONE_ID}/messages`, {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${env.WHATSAPP_TOKEN}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      messaging_product: "whatsapp",
-      recipient_type: "individual",
-      to: adminPhone,
-      type: "text",
-      text: { body: text },
-    }),
-  });
+  try {
+    const sender = (env.CLOUDWAPI_SENDER || "85262322466").replace(/\D/g, "");
+    const cleanNumber = adminPhone.replace(/\D/g, "");
+
+    const res = await fetch("https://unofficial.cloudwapi.in/send-message", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        api_key: env.CLOUDWAPI_API_KEY,
+        sender: sender,
+        number: cleanNumber,
+        message: text,
+      }),
+    });
+
+    const rawText = await res.text();
+    let result: Record<string, any> = {};
+    try {
+      result = JSON.parse(rawText);
+    } catch {
+      return { success: false, error: `Non-JSON response (${res.status}): ${rawText.slice(0, 200)}` };
+    }
+
+    if (result.status === true || result.status === "success") {
+      console.log("[WhatsApp sent] CloudWapi:", result.msg || "OK");
+      return { success: true };
+    }
+
+    const errMsg = result.msg || JSON.stringify(result);
+    console.error("[WhatsApp API error]", res.status, errMsg);
+    return { success: false, error: errMsg };
+  } catch (err: any) {
+    console.error("[WhatsApp fetch error]", err.message);
+    return { success: false, error: err.message };
+  }
 }
 
-async function sendEmail(env: Env, data: Record<string, string>) {
-  if (!env.RESEND_API_KEY || !env.ADMIN_EMAIL) return;
+async function sendEmail(env: Env, data: Record<string, string>): Promise<{ success: boolean; error?: string }> {
+  if (!env.RESEND_API_KEY) {
+    return { success: false, error: "Missing RESEND_API_KEY" };
+  }
+  if (!env.ADMIN_EMAIL) {
+    return { success: false, error: "Missing ADMIN_EMAIL" };
+  }
 
   const subject = `[LTCPA] New Inquiry from ${data.name} - ${data.company}`;
   const body = `<h2>New Website Inquiry</h2>
@@ -120,23 +150,55 @@ async function sendEmail(env: Env, data: Record<string, string>) {
     <p><strong>Service:</strong> ${data.service || "N/A"}</p>
     <p><strong>Message:</strong><br/>${(data.message || "").replace(/\n/g, "<br/>")}</p>`;
 
-  await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${env.RESEND_API_KEY}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      from: "LTCPA Website <inquiries@ltcpa.com>",
-      to: env.ADMIN_EMAIL,
-      subject,
-      html: body,
-    }),
-  });
+  try {
+    const res = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${env.RESEND_API_KEY}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        from: "LTCPA Website <inquiries@ltcpa.com>",
+        to: env.ADMIN_EMAIL,
+        subject,
+        html: body,
+      }),
+    });
+
+    if (!res.ok) {
+      const errText = await res.text();
+      console.error("[Email API error]", res.status, errText);
+      return { success: false, error: `${res.status}: ${errText.slice(0, 200)}` };
+    }
+
+    const result = await res.json();
+    console.log("[Email sent] id:", result.id);
+    return { success: true };
+  } catch (err: any) {
+    console.error("[Email fetch error]", err.message);
+    return { success: false, error: err.message };
+  }
 }
 
 export default {
   async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
+    const url = new URL(request.url);
+
+    // Debug endpoint: GET /api/test/whatsapp
+    if (url.pathname === "/api/test/whatsapp" && request.method === "GET") {
+      try {
+        const res = await fetch("https://unofficial.cloudwapi.in/send-message", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ api_key: env.CLOUDWAPI_API_KEY, sender: "85262322466", number: "85255055692", message: "【測試】CloudWapi POST 測試" }),
+        });
+        const text = await res.text();
+        return jsonResponse({ status: res.status, body: text });
+      } catch (err: any) {
+        return jsonResponse({ error: err.message }, 500);
+      }
+    }
+
     if (request.method === "OPTIONS") {
       return new Response(null, { status: 204, headers: corsHeaders });
     }
@@ -147,7 +209,15 @@ export default {
 
     try {
       await initDB(env);
-      const data: Record<string, string> = await request.json();
+      const rawBody = await request.text();
+      console.log("[Inquiry] raw body:", rawBody.slice(0, 500));
+      let data: Record<string, string>;
+      try {
+        data = JSON.parse(rawBody);
+      } catch (parseErr: any) {
+        console.error("[Inquiry] JSON parse error:", parseErr.message, "body:", rawBody.slice(0, 200));
+        return jsonResponse({ error: "Invalid JSON: " + parseErr.message }, 400);
+      }
 
       // Validation
       if (!data.name || !data.company || !data.email) {
@@ -157,14 +227,19 @@ export default {
       const id = await saveToD1(env, data);
 
       // Fire-and-forget notifications
-      ctx.waitUntil(
-        Promise.all([
-          sendWhatsApp(env, data).catch(() => {}),
-          sendEmail(env, data).catch(() => {}),
-        ])
-      );
+      const [waResult, emailResult] = await Promise.allSettled([
+        sendWhatsApp(env, data),
+        sendEmail(env, data),
+      ]);
 
-      return jsonResponse({ success: true, id });
+      return jsonResponse({
+        success: true,
+        id,
+        notifications: {
+          whatsapp: waResult.status === "fulfilled" ? waResult.value : { success: false, error: String(waResult.reason) },
+          email: emailResult.status === "fulfilled" ? (emailResult.value || { success: false, error: "Unknown error" }) : { success: false, error: String(emailResult.reason) },
+        },
+      });
     } catch (err: any) {
       return jsonResponse({ error: err.message || "Server error" }, 500);
     }

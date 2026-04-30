@@ -165,9 +165,9 @@ This creates a **preview deployment** that does NOT update the production domain
 | Worker | Secret / Variable | Purpose |
 |--------|-------------------|---------|
 | `ltcpa-cms-api` | `GITHUB_TOKEN` | GitHub PAT with `repo` + `workflow` scope (trigger Actions deploy) |
-| `ltcpa-inquiry-api` | `WHATSAPP_TOKEN` | Meta WhatsApp Cloud API token |
-| `ltcpa-inquiry-api` | `WHATSAPP_PHONE_ID` | Meta WhatsApp Business Account Phone Number ID |
-| `ltcpa-inquiry-api` | `ADMIN_PHONE` | **WhatsApp notification recipient** (e.g. `85268810677`) |
+| `ltcpa-inquiry-api` | `CLOUDWAPI_API_KEY` | CloudWapi API key for WhatsApp notifications |
+| `ltcpa-inquiry-api` | `CLOUDWAPI_SENDER` | CloudWapi sender WhatsApp number (e.g. `85262322466`) |
+| `ltcpa-inquiry-api` | `ADMIN_PHONE` | **WhatsApp notification recipient** (e.g. `85255055692`) |
 | `ltcpa-inquiry-api` | `RESEND_API_KEY` | Optional — Resend API key for email notifications |
 
 > **Security note:** Do NOT paste GitHub tokens into chat. GitHub Secret Scanning will auto-revoke exposed tokens within seconds. Always set secrets directly in the Cloudflare Dashboard (Workers & Pages → Worker → Settings → Variables and Secrets).
@@ -199,6 +199,9 @@ This creates a **preview deployment** that does NOT update the production domain
 7. **Static images cannot be deleted from Admin**  
    → Static images in `public/images/` are baked into the static export. Deletion requires git commit + redeploy. R2 uploaded files can be deleted normally. Admin shows "Read-only" badge for static images.
 
+8. **CloudWapi GET requests return 400 from Workers**  
+   → CloudWapi's `send-message` endpoint rejects GET requests when called from Cloudflare Workers (likely WAF/IP filtering), even though identical URLs work from local curl. **Solution**: Use `POST` with JSON body instead. Workers' `JSON.stringify()` correctly handles Chinese UTF-8, so the historical PowerShell encoding issue does not apply here.
+
 ---
 
 ## Recent Feature Additions (2026-04-17)
@@ -214,6 +217,7 @@ This creates a **preview deployment** that does NOT update the production domain
 
 ## Next Steps (when you return)
 - [x] Set `GITHUB_TOKEN` Worker secret if Deploy button still fails
+- [x] Fix WhatsApp inquiry notifications (switched from Meta Graph API to CloudWapi POST JSON)
 - [ ] Set `RESEND_API_KEY` Worker secret for inquiry email notifications
 - [ ] Configure DNS for `ltgroupcpa.com` when ready to go live
 - [x] Add more analytics charts in Admin (referrers, countries, etc.)
