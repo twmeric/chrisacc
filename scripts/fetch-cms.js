@@ -159,22 +159,6 @@ async function fetchCMSData() {
                        ?.replace(/\/\/+$/, '/') || c.href
         }));
       }
-      // Fix purpose/value/commitment items if they contain old titles so defaults take over
-      const oldPurposeTitles = ["傳遞無界保證與誠信", "传递无界保证与诚信", "Delivering Borderless Assurance"];
-      const oldValueTitles = ["在全球尺度", "树立跨境流暢度", "在全球尺度", "树立跨境流畅度", "Redefining the \"Boutique\" Experience on a Global Scale"];
-      const oldCommitmentTitles = ["領導力 — 主動全球引導", "連結 — 通用連接器", "技術性 — 國際標準", "變革 — 超越邊界的演進", "领导力 — 主动全球引导", "连结 — 通用连接器", "技术性 — 国际标准", "变革 — 超越边界的演进", "Leadership - Proactive Global Guidance", "Linkage - The Universal Connector", "Technicality - The International Standard", "Transformation - Evolving Beyond Borders"];
-      if (data[loc]?.purpose?.items) {
-        const hasOld = data[loc].purpose.items.some(i => oldPurposeTitles.some(t => i.title && i.title.includes(t)));
-        if (hasOld) delete data[loc].purpose;
-      }
-      if (data[loc]?.value?.items) {
-        const hasOld = data[loc].value.items.some(i => oldValueTitles.some(t => i.title && i.title.includes(t)));
-        if (hasOld) delete data[loc].value;
-      }
-      if (data[loc]?.commitment?.items) {
-        const hasOld = data[loc].commitment.items.some(i => oldCommitmentTitles.some(t => i.title && i.title.includes(t)));
-        if (hasOld) delete data[loc].commitment;
-      }
       // Wipe old servicePages data (pre-rewrite format with serviceScopeSubtitle / serviceProcessSubtitle)
       // so that the new cms-defaults.ts content takes over
       if (data[loc]?.servicePages) {
