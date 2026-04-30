@@ -43,6 +43,19 @@
 - 檢查 `ltcpa-inquiry-api` Worker 狀態
 - 檢查 D1 綁定 `LTCPA_D1` 是否正確
 - 檢查 `NEXT_PUBLIC_INQUIRY_API_URL` GitHub Secret
+- 檢查瀏覽器 Console 是否有 CORS 或網絡錯誤
+
+### 8a. WhatsApp 通知不工作
+- 檢查 `CLOUDWAPI_API_KEY` 和 `CLOUDWAPI_SENDER` Worker Secrets 是否設置
+- 檢查 Admin → Site Settings → WhatsApp 號碼是否填寫
+- 檢查 CloudWapi 發送者手機（85262322466）是否保持 WhatsApp 在線
+- 檢查接收號碼的 WhatsApp「消息請求」/「未知發送者」文件夾
+- 調試端點：`GET https://ltcpa-inquiry-api.jimsbond007.workers.dev/api/test/whatsapp?to=85255055692`
+
+### 8b. Email 通知不工作
+- 檢查 `RESEND_API_KEY` Worker Secret 是否設置
+- 檢查 `ADMIN_EMAIL` Worker var 是否正確
+- Resend 需要驗證發送域名才能發郵件
 
 ### 9. 網站顯示舊內容
 - `fetch-cms.js` 構建時拉取 KV

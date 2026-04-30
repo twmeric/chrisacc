@@ -176,8 +176,14 @@ npx wrangler secret put GITHUB_TOKEN
 
 # Inquiry Worker
 cd workers/inquiry-api
+npx wrangler secret put CLOUDWAPI_API_KEY
+# 輸入 CloudWapi API Key
+
+npx wrangler secret put CLOUDWAPI_SENDER
+# 輸入 CloudWapi 發送者 WhatsApp 號碼 (e.g. 85262322466)
+
 npx wrangler secret put RESEND_API_KEY
-# 輸入 Resend API Key
+# 輸入 Resend API Key（可選）
 ```
 
 ### 5.6 設置 GitHub Secrets
@@ -226,9 +232,12 @@ Worker 在每次保存 CMS 數據時會自動備份到 `cms_data_history_<timest
 
 | 變量 | 位置 | 值 | 說明 |
 |------|------|-----|------|
-| `ADMIN_PASSWORD` | wrangler.toml (vars) | `admin360` | Admin 登入密碼 |
+| `ADMIN_PASSWORD` | Worker var (cms-api) | `admin360` | Admin 登入密碼 |
 | `GITHUB_TOKEN` | Worker Secret | `<PAT>` | 觸發 GitHub Actions |
-| `RESEND_API_KEY` | Worker Secret | `<API_KEY>` | 郵件通知 |
+| `CLOUDWAPI_API_KEY` | Worker Secret | `<API_KEY>` | WhatsApp 通知 |
+| `CLOUDWAPI_SENDER` | Worker Secret | `85262322466` | WhatsApp 發送者號碼 |
+| `ADMIN_PHONE` | Worker var (可選) | `85255055692` | WhatsApp 通知接收號碼（後備） |
+| `RESEND_API_KEY` | Worker Secret | `<API_KEY>` | 郵件通知（可選） |
 | `CLOUDFLARE_API_TOKEN` | GitHub Secret | `<TOKEN>` | CI/CD 部署 |
 | `NEXT_PUBLIC_CMS_API_URL` | GitHub Secret + 本地 env | Worker URL | 構建時拉取 CMS |
-| `NEXT_PUBLIC_INQUIRY_API_URL` | GitHub Secret | Worker URL | 表單提交端點 |
+| `NEXT_PUBLIC_INQUIRY_API_URL` | GitHub Secret | `https://ltcpa-inquiry-api.jimsbond007.workers.dev` | 表單提交端點 |

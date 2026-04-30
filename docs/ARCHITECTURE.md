@@ -1,6 +1,14 @@
 # LTCPA Architecture Guide
 
 > 系統架構總覽 — 給未來維護者、新接手開發者、和健忘的未來自己。
+>
+> 📋 完整文檔索引:
+> - [PRD (產品需求)](./PRD.md)
+> - [SA&D (系統架構與設計)](./SA&D.md)
+> - [DEPLOYMENT (部署指南)](./DEPLOYMENT.md)
+> - [ADMIN_GUIDE (Admin 使用指南)](./ADMIN_GUIDE.md)
+> - [MAINTENANCE (維護手冊)](./MAINTENANCE.md)
+> - [LESSONS_LEARNED (踩坑記錄)](./LESSONS_LEARNED.md)
 
 ---
 
@@ -259,9 +267,14 @@ POST /api/analytics/interaction → 記錄互動事件
 ### 7.2 ltcpa-inquiry-api
 
 ```
-POST /api/inquiry               → 提交聯絡表單 → D1
-GET  /api/inquiry               → 查詢所有提交 (Admin)
+POST /                           → 提交聯絡表單 → D1 + 通知
+GET  /api/test/whatsapp          → 調試：測試 WhatsApp 發送
 ```
+
+**通知流程:**
+1. 保存表單數據到 D1
+2. 發送 WhatsApp 通知（CloudWapi POST JSON）
+3. 發送 Email 通知（Resend，可選）
 
 ### 7.3 CORS 配置
 

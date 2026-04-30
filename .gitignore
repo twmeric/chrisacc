@@ -1,8 +1,16 @@
 /public/admin/cms-defaults.json
 .cloudflare-token
 .env
+.env.local
 .dev.vars
 node_modules/
 .next/
 out/
 dist/
+
+# Local dev artifacts
+kv_dump.json
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+.wrangler/state/
