@@ -159,15 +159,6 @@ async function fetchCMSData() {
                        ?.replace(/\/\/+$/, '/') || c.href
         }));
       }
-      // Fix about missionVision items if they contain old long-form descriptions
-      if (data[loc]?.about?.missionVision?.items) {
-        const items = data[loc].about.missionVision.items;
-        const hasOldDesc = items.some(i => i.desc && (i.desc.includes('全球雄心') || i.desc.includes('definitive')));
-        if (hasOldDesc) {
-          // Remove old missionVision so defaults take over
-          delete data[loc].about.missionVision;
-        }
-      }
       // Fix purpose/value/commitment items if they contain old titles so defaults take over
       const oldPurposeTitles = ["傳遞無界保證與誠信", "传递无界保证与诚信", "Delivering Borderless Assurance"];
       const oldValueTitles = ["在全球尺度", "树立跨境流暢度", "在全球尺度", "树立跨境流畅度", "Redefining the \"Boutique\" Experience on a Global Scale"];

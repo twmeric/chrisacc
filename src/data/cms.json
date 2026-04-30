@@ -240,6 +240,31 @@
         },
         "body": ""
       },
+      "missionVision": {
+        "items": [
+          {
+            "icon": "Bullseye",
+            "title": "我們的使命",
+            "desc": "致力以專業精準錨定全球雄心，賦能企業以清晰、合規與自信駕馭國際金融格局的複雜性。",
+            "linkText": "更多",
+            "href": "/zh-hant/purpose/"
+          },
+          {
+            "icon": "Eye",
+            "title": "我們的願景",
+            "desc": "成為無界商業卓越的 definitive 橋樑——被全球公認為尋求進入國際資本市場並保障財務傳承的活力企業的首選精品夥伴。",
+            "linkText": "更多",
+            "href": "/zh-hant/value/"
+          },
+          {
+            "icon": "Heart",
+            "title": "我們的承諾",
+            "desc": "以主動引導和技術精湛引領，架起您全球雄心的橋樑，為您的企業建立信任與變革的傳承。",
+            "linkText": "更多",
+            "href": "/zh-hant/commitment/"
+          }
+        ]
+      },
       "coreValues": {
         "title": "核心價值",
         "subtitle": "我們秉持的核心價值觀，指引著我們的每一項決策和行動",
@@ -913,6 +938,31 @@
           "label": "年卓越经验"
         },
         "body": ""
+      },
+      "missionVision": {
+        "items": [
+          {
+            "icon": "Bullseye",
+            "title": "我们的使命",
+            "desc": "致力以专业精准锚定全球雄心，赋能企业以清晰、合规与自信驾驭国际金融格局的复杂性。",
+            "linkText": "更多",
+            "href": "/zh-hans/purpose/"
+          },
+          {
+            "icon": "Eye",
+            "title": "我们的愿景",
+            "desc": "成为无界商业卓越的 definitive 桥梁——被全球公认为寻求进入国际资本市场并保障财务传承的活力企业的首选精品伙伴。",
+            "linkText": "更多",
+            "href": "/zh-hans/value/"
+          },
+          {
+            "icon": "Heart",
+            "title": "我们的承诺",
+            "desc": "以主动引导和技术精湛引领，架起您全球雄心的桥梁，为您的企业建立信任与变革的传承。",
+            "linkText": "更多",
+            "href": "/zh-hans/commitment/"
+          }
+        ]
       },
       "coreValues": {
         "title": "核心价值",
@@ -1589,6 +1639,31 @@
           "label": ""
         },
         "body": ""
+      },
+      "missionVision": {
+        "items": [
+          {
+            "icon": "Bullseye",
+            "title": "Our Purpose",
+            "desc": "To anchor global ambition with professional precision, empowering enterprises to navigate the complexities of the international financial landscape with clarity, compliance, and confidence.",
+            "linkText": "MORE",
+            "href": "/en/purpose/"
+          },
+          {
+            "icon": "Eye",
+            "title": "Our Value",
+            "desc": "To be the definitive bridge for borderless business excellence—recognized globally as the premier boutique partner for dynamic enterprises seeking to access international capital markets and secure their financial legacy.",
+            "linkText": "MORE",
+            "href": "/en/value/"
+          },
+          {
+            "icon": "Heart",
+            "title": "Our Commitment",
+            "desc": "To lead with proactive guidance and technical mastery to bridge your global ambitions, building a legacy of trust and transformation for your business.",
+            "linkText": "MORE",
+            "href": "/en/commitment/"
+          }
+        ]
       },
       "coreValues": {
         "title": "Core Values",
