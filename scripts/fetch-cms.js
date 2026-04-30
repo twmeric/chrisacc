@@ -159,15 +159,8 @@ async function fetchCMSData() {
                        ?.replace(/\/\/+$/, '/') || c.href
         }));
       }
-      // Wipe old servicePages data (pre-rewrite format with serviceScopeSubtitle / serviceProcessSubtitle)
-      // so that the new cms-defaults.ts content takes over
-      if (data[loc]?.servicePages) {
-        const auditPage = data[loc].servicePages.audit;
-        if (auditPage && (auditPage.serviceScopeSubtitle || auditPage.serviceProcessSubtitle)) {
-          delete data[loc].servicePages;
-          console.log(`[fetch-cms] Deleted outdated servicePages for ${loc} — defaults will take over.`);
-        }
-      }
+      // Note: Old servicePages format migration is handled by cms-data.ts mergeServicePages()
+      // Do NOT delete here — let the merge function handle backward compatibility.
     }
     fs.writeFileSync(path.join(__dirname, "..", "src", "data", "cms.json"), JSON.stringify(data, null, 2));
     console.log("CMS data fetched and merged successfully.");
